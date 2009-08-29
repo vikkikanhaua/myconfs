@@ -5,7 +5,6 @@ out_to_x no
 border_margin 0
 border_width 0
 use_spacer left
-# Use Xft?
 use_xft yes 
  
 # Xft font when Xft is enabled
