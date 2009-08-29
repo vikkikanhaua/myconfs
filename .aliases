@@ -1,0 +1,23 @@
+eval "`dircolors -b`"
+alias ls='ls --color=auto -h'
+alias grep='grep -i --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls --color=auto -hl'
+alias la='ls --color=auto -hA'
+alias df="df -h"
+alias du="du -sh"
+alias list="ncmpcpp"
+alias cp="cp -viru"
+alias mv="mv -viu"
+alias rm="rm -vr"
+alias wget="wget -c"
+alias irc="irssi"
+alias rs="rsync -vhru"
+alias pacup="sudo pacman -Syu"
+alias pacin="sudo pacman -Sy"
+alias pacrem="sudo pacman -Rs"
+alias pacs="pacman -Ss"
+alias build="makepkg -sic"
+alias px="chmod +x"
+alias web="elinks"
