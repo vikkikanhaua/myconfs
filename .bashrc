@@ -61,7 +61,7 @@ then
 	export PS1="\[\e[36;1m\]\u@\H(\w) ->> \[\e[0m\]"
 else
 	#we're not on the console, assume an xterm
-	export PS1="\[\e]2;\u@\h \a\e[36;1m\]\w >> \[\e[0m\]"
+	export PS1="\[\e]2;\u@\h \a\e[36;1m\].-(\w)\n'--> \[\e[0m\]"
 fi
 
 # Alias definitions.
@@ -83,3 +83,41 @@ fi
 shopt -s cdspell
 export HISTTIMEFORMAT="%F %T "
 PATH=$PATH:/usr/local/bin
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P0222222" #black
+    echo -en "\e]P8222222" #darkgrey
+    echo -en "\e]P1803232" #darkred
+    echo -en "\e]P9982b2b" #red
+    echo -en "\e]P25b762f" #darkgreen
+    echo -en "\e]PA89b83f" #green
+    echo -en "\e]P3aa9943" #brown
+    echo -en "\e]PBefef60" #yellow
+    echo -en "\e]P4324c80" #darkblue
+    echo -en "\e]PC2b4f98" #blue
+    echo -en "\e]P5706c9a" #darkmagenta
+    echo -en "\e]PD826ab1" #magenta
+    echo -en "\e]P692b19e" #darkcyan
+    echo -en "\e]PEa1cdcd" #cyan
+    echo -en "\e]P7ffffff" #lightgrey
+    echo -en "\e]PFdedede" #white
+    clear #for background artifacting
+fi
+
+extract () {
+    if [ -f $1 ]; then
+            case $1 in
+            *.tar.bz2)  tar -jxvf $1        ;;
+            *.tar.gz)   tar -zxvf $1        ;;
+            *.bz2)      bzip2 -d $1         ;;
+            *.gz)       gunzip -d $1        ;;
+            *.tar)      tar -xvf $1         ;;
+            *.tgz)      tar -zxvf $1        ;;
+            *.zip)      unzip $1            ;;
+            *.Z)        uncompress $1       ;;
+            *.rar)      unrar x $1            ;;
+            *)          echo "'$1' Error. Please go away" ;;
+            esac
+            else
+            echo "'$1' is not a valid file"
+  fi
+  }
