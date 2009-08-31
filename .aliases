@@ -1,3 +1,4 @@
+eval "`dircolors -b`"
 alias ls='ls --color=auto -h'
 alias grep='grep -i --color=auto'
 alias fgrep='fgrep --color=auto'
