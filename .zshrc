@@ -1,21 +1,41 @@
-# The following lines were added by compinstall
+# {{{ Completion
+# :completion:<func>:<completer>:<command>:<argument>:<tag>
+# Expansion options
+zstyle ':completion:*' completer _complete _prefix
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+ 
+# Expand partial paths
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-slashes 'yes'
+ 
+# Separate matches into groups
+zstyle ':completion:*:matches' group 'yes'
+ 
+# Describe each match group.
+zstyle ':completion:*:descriptions' format "%B---- %d%b"
+ 
+# Messages/warnings format
+zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
+zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b'
+ 
+# Describe options in full
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+# }}}
 
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' expand prefix suffix
-zstyle ':completion:*' file-sort name
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-suffixes true
 zstyle :compinstall filename '/home/vikki/.zshrc'
 
-autoload -Uz compinit promptinit
+autoload -Uz compinit promptinit complist zutil
 compinit
 promptinit
 prompt adam2
 # End of lines added by compinstall
-# Lines configured by zsh-newuser-install
 export HISTFILE=~/.zsh_history
-export HISTSIZE=2000
-export SAVEHIST=2000
+export HISTSIZE=5000
+export SAVEHIST=5000
 export PATH=$PATH:/usr/local/bin
 export EDITOR="vim"
 eval `dircolors -b`
@@ -30,17 +50,33 @@ if [ -f ~/.aliases ]; then
         . ~/.aliases
 fi
 
-#Keybindings
-bindkey '^?' backward-delete-char
-bindkey '^[[7~' beginning-of-line
-bindkey '^[[5~' up-line-or-history
-bindkey '^[[3~' delete-char
-bindkey '^[[8~' end-of-line
-bindkey '^[[6~' down-line-or-history
-bindkey '^[[A' up-line-or-search
-bindkey '^[[D' backward-char
-bindkey '^[[B' down-line-or-search
-bindkey '^[[C' forward-char
+# {{{ Key Bindings
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+#bindkey '^[[1~' beginning-of-line
+#bindkey '^[[4~' end-of-line
+bindkey "\e[3~" delete-char
+bindkey '^i' expand-or-complete-prefix
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+ 
+#bindkey "\e[1~" beginning-of-line
+#bindkey "\e[4~" end-of-line
+#bindkey "\e[5~" beginning-of-history
+#bindkey "\e[6~" end-of-history
+#bindkey "\e[3~" delete-char
+#bindkey "\e[2~" quoted-insert
+#bindkey "\e[5C" forward-word
+#bindkey "\e[5D" backward-word
+#bindkey "\e\e[C" forward-word
+#bindkey "\e\e[D" backward-word
+#bindkey "^H" backward-delete-word
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# completion in the middle of a line
+#bindkey '^i' expand-or-complete-prefix
+# }}}
 
 # My Functions
 # Usage: extract <file>
