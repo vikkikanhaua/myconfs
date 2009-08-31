@@ -6,7 +6,6 @@ import System.IO
 
 import XMonad.Prompt
 import XMonad.Prompt.Shell
-import XMonad.Prompt.XMonad
 import XMonad.ManageHook
 import XMonad.Operations
 import XMonad.Actions.CycleWS
@@ -23,7 +22,6 @@ import XMonad.Util.Themes
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 -- Layout --
-import XMonad.Layout.Named
 import XMonad.Layout.Spiral
 import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
@@ -69,9 +67,9 @@ myManageHook = composeAll [
     className =? "Vncviewer" --> doFloat,
     title     =? "Downloads" --> doFloat,
     className =? "Vlc" --> doFloat,
-    title     =? "Shiretoko" --> doF (W.shift "2"),
-    title     =? "Downloads" --> doF (W.shift "4"),
-    title     =? "Deluge" --> doF (W.shift "4"),
+    title     =? "Shiretoko" --> doF (W.shift "web"),
+    title     =? "Downloads" --> doF (W.shift "down"),
+    title     =? "Deluge" --> doF (W.shift "down"),
     className =? "XCalc" --> doFloat
     ]
     
@@ -102,14 +100,14 @@ myXPConfig = defaultXPConfig
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
-                 { ppCurrent = wrap "^fg(green)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+                 { ppCurrent = wrap "^fg(#cd5c5c)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
 --                 , ppVisible = wrap "^bg(grey30)^fg(grey75)^p(1)" "^p(1)^fg()^bg()"
-                 , ppHidden = wrap "^fg(#ffffff)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+                 , ppHidden = wrap "^fg(grey80)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
                  , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
                  , ppSep = " ^fg(grey40)^r(2x12)^fg() "
 --                 , ppUrgent = dzenColor "red" ""
          		 , ppWsSep = " "
-		         , ppLayout = dzenColor "#ffffff" "" .
+		         , ppLayout = dzenColor "grey80" "" .
 		  		       (\x -> case x of
                             "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
                             "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
@@ -219,7 +217,7 @@ main = do
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig  
           	 	{ manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-          	 	 , workspaces = ["1","2","3","4","5","6"]
+          	 	 , workspaces = ["term","web","music","down","else"]
           	 	 , layoutHook = myLayout
           	 	 , logHook = dynamicLogWithPP $ myPP bar
           	 	 , modMask = mod4Mask    -- Rebind Mod to the Windows key
