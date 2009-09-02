@@ -1,0 +1,59 @@
+# Basic Settings {{{
+
+nethack on                         # Fun error messages
+deflogin on                        # All screens are considered logins
+autodetach on                      # Detach on HUP instead of kill
+startup_message off                # Don't be annoying
+vbell off                          # Don't be annoying
+defshell -$SHELL                   # The dash makes it a login shell
+defscrollback 10000                # Remember a lot
+nonblock on                        # Block input from hung applications
+defutf8 on                         # Always use utf8
+defflow off                        # Turn off flow-control
+msgwait 3                          # Display msgs for N seconds
+altscreen on                       # Enable alternate screen support
+attrcolor b ".I"                   # Allow bold colors
+defbce on                          # Erase background with current background color
+bell_msg ""                      # For urgency hints
+term screen-256color-bce           # Set $TERM
+
+# }}}
+
+
+# Define terminal capibilities {{{
+
+terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# }}}
+
+# 1 $irssi  _2_$zsh_  3 #vim  4 $mutt             --INSERT--  1 mail  6 updates
+hardstatus alwayslastline "%{= dd}%-w%{+u}%n %t%{-}%+w %=%{= dW}%h%{-} %{M}%c"
+
+# Banish screen 0, it sucks {{{
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen -t $zsh 1
+# }}}
+
+
+# Keybinds {{{
+
+# Be lazy and use Fx keys for screen switching
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+
+# Use F13 as escape (for caps-lock mapped to F13)
+bindkey -k F3 command
+
+# }}}
+
+
+# vim:foldlevel=0
