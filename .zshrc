@@ -28,8 +28,10 @@ zstyle ':completion:*:options' auto-description '%d'
 
 zstyle :compinstall filename '/home/vikki/.zshrc'
 
-autoload -Uz compinit complist zutil
+autoload -Uz compinit complist zutil promptinit
+promptinit
 compinit
+prompt adam2
 export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
@@ -98,21 +100,16 @@ then
 	bindkey -v
 	set-mode INSERT
 
-	zle-keymap-select() {
-		if [[ $KEYMAP == vicmd ]]; then
-			set-mode NORMAL
-		else
-			set-mode INSERT
-		fi
-	}
-
-	zle -N zle-keymap-select
 fi
 #}}}
 
 # {{{ Key Bindings
 # for rxvt
 bindkey -v
+#for screen
+bindkey '^[[1~'  beginning-of-line
+bindkey "^[[4~"  end-of-line
+#for rxvt
 bindkey "^[[8~"  end-of-line
 bindkey '^[[7~'  beginning-of-line
 bindkey '^[[3~'  delete-char
@@ -147,20 +144,18 @@ extract () {
   fi
   }
 
-grey="%{$(echo -n '\e[1;30m')%}"
-red="%{$(echo -n '\e[1;31m')%}"
-green="%{$(echo -n '\e[1;32m')%}"
-yellow="%{$(echo -n '\e[1;33m')%}"
-blue="%{$(echo -n '\e[1;34m')%}"
-magenta="%{$(echo -n '\e[1;35m')%}"
-cyan="%{$(echo -n '\e[1;36m')%}"
-white="%{$(echo -n '\e[1;37m')%}"
-lored="%{$(echo -n '\e[0;31m')%}"
-logreen="%{$(echo -n '\e[0;32m')%}"
-loyellow="%{$(echo -n '\e[0;33m')%}"
-loblue="%{$(echo -n '\e[0;34m')%}"
-lomagenta="%{$(echo -n '\e[0;34m')%}"
-locyan="%{$(echo -n '\e[0;35m')%}"
-lowhite="%{$(echo -n '\e[0;37m')%}"
-PS1="${grey}╔══${yellow}[${magenta}%m${yellow}]${grey}═${yellow}[${cyan}%~${yellow}]
-${grey}╚═══${lowhite} "
+#grey="%{$(echo -n '\e[1;30m')%}"
+#red="%{$(echo -n '\e[1;31m')%}"
+#green="%{$(echo -n '\e[1;32m')%}"
+#yellow="%{$(echo -n '\e[1;33m')%}"
+#blue="%{$(echo -n '\e[1;34m')%}"
+#magenta="%{$(echo -n '\e[1;35m')%}"
+#cyan="%{$(echo -n '\e[1;36m')%}"
+#white="%{$(echo -n '\e[1;37m')%}"
+#lored="%{$(echo -n '\e[0;31m')%}"
+#logreen="%{$(echo -n '\e[0;32m')%}"
+#loyellow="%{$(echo -n '\e[0;33m')%}"
+#loblue="%{$(echo -n '\e[0;34m')%}"
+#lomagenta="%{$(echo -n '\e[0;34m')%}"
+#locyan="%{$(echo -n '\e[0;35m')%}"
+#lowhite="%{$(echo -n '\e[0;37m')%}"
