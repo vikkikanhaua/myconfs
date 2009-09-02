@@ -61,7 +61,9 @@ then
 	export PS1="\[\e[36;1m\]\u@\H(\w) ->> \[\e[0m\]"
 else
 	#we're not on the console, assume an xterm
-	export PS1="\[\e]2;\u@\h \a\e[36;1m\].-(\w)\n'--> \[\e[0m\]"
+	#export PS1="\[\e]2;\u@\h \a\e[36;1m\].-(\w)\n'--> \[\e[0m\]"
+	PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
+	PS1="\n╔═[\[\033[01;36m\]\A\[\033[01;00m\]]═[\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;31m\]\h\[\033[01;00m\]]\n\[\033[01;00m\]╚═══\[\033[00;32m\]=\[\033[00;33m\]=\[\033[00;31m\]=\[\033[01;00m\]═══[\[\033[01;36m\]\$CurDir\[\033[01;00m\]]\[\033[01;32m\]>>\[\033[00m\] "
 fi
 
 # Alias definitions.
