@@ -152,7 +152,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_c     ),             spawn "killall -SIGUSR1 conky")
       , ((modMask,                  xK_e     ),             spawn "evince")
       , ((modMask,                  xK_o     ),             spawn "ooffice")
-      , ((controlMask,       	    xK_Print ),             spawn "scrot")    
+      , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc prev")
       , ((modMask .|. controlMask,  xK_p     ),             spawn "mpc toggle")
@@ -208,7 +208,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#ffffff' -h 14 -w 725 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
+statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#ffffff' -h 14 -w 720 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
