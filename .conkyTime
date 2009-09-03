@@ -28,3 +28,4 @@ ${if_match ${exec date +"%I"} == 3}^fg(\#cd5c5c)${else}^fg(grey10)${endif}F O U 
 ${if_match ${exec date +"%I"} == 7}^fg(\#cd5c5c)${else}^fg(grey10)${endif}E I G H T${if_match ${exec date +"%I"} == 10}^fg(\#cd5c5c)${else}^fg(grey10)${endif} E L E V E N
 ${if_match ${exec date +"%I"} == 6}^fg(\#cd5c5c)${else}^fg(grey10)${endif}S E V E N${if_match ${exec date +"%I"} == 11}^fg(\#cd5c5c)${else}^fg(grey10)${endif} T W E L V E
 ${if_match ${exec date +"%I"} == 9}^fg(\#cd5c5c)${else}^fg(grey10)${endif}T E N ${endif}^fg(grey10)S E ${if_match ${exec date +"%M"} < 5}^fg(\#cd5c5c)${endif}O C L O C K
+
