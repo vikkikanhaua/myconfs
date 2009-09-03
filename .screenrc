@@ -15,7 +15,6 @@ altscreen on                       # Enable alternate screen support
 attrcolor b ".I"                   # Allow bold colors
 defbce on                          # Erase background with current background color
 bell_msg ""                      # For urgency hints
-term screen                        # Set $TERM
 
 # }}}
 
