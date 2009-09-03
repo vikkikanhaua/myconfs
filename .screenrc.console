@@ -15,7 +15,6 @@ defflow off
 msgwait 1
 altscreen on
 defhstatus "screen: ^En (^Et)"
-term screen
 terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 shelltitle "$ | zsh"
