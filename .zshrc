@@ -120,7 +120,10 @@ bindkey '^?'     backward-delete-char
 bindkey '^['     vi-cmd-mode
 bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^b'     clear-screen
-bindkey '^K'     kill-whole-line
+bindkey '^k'     kill-whole-line
+bindkey '^y'     .vi-yank-whole-line
+bindkey '^[Oc'   forward-word
+bindkey '^[Od'   backward-word
 
 # My Functions
 # Usage: extract <file>
