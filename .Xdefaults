@@ -11,7 +11,7 @@ Urxvt.urgentOnBell : true
 Urxvt.modifier	   : alt
 URxvt.shading      : 25
 URxvt.fading       : 50
-URxvt.saveLines    : 2000
+URxvt.saveLines    : 10000
 URxvt.cursorColor  : #cccccc
 !URxvt.inheritPixmap: false
 URxvt.mouseWheelScrollPage: true 
