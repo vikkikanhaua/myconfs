@@ -82,8 +82,8 @@ permission_mode=0
 filetype_mode=1
 
 [Dirs]
-other_dir=/mnt/test1
-current_is_left=0
+other_dir=.
+current_is_left=1
 
 [New Left Panel]
 display=listing
@@ -99,7 +99,7 @@ user_status3=half type name | size | perm
 user_mini_status=1
 
 [New Right Panel]
-display=listing
+display=info
 reverse=0
 case_sensitive=1
 sort_order=name
