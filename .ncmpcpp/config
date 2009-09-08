@@ -73,7 +73,7 @@ media_library_album_format = "{(%t) }%b"
 #
 tag_editor_album_format = "{(%t) }%b"
 #
-browser_playlist_prefix = "$3myplaylists$9 "
+browser_playlist_prefix = "$3playlists $9"
 #
 selected_item_prefix = "[OK]$8"
 #
