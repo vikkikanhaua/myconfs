@@ -33,6 +33,7 @@ promptinit
 compinit
 prompt adam2
 export HISTFILE=~/.zsh_history
+export CC="colorgcc"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export EDITOR="vim"
