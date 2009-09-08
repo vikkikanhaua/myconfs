@@ -3,22 +3,19 @@
 -- Main --
 import XMonad
 import System.IO
-
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.ManageHook
 import XMonad.Operations
-import XMonad.Actions.CycleWS
 
 -- Hooks --
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageHelpers 
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.EwmhDesktops
 
 -- Utils --
-import XMonad.Util.Themes
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 -- Layout --
@@ -29,6 +26,8 @@ import XMonad.Layout.Accordion
 import XMonad.Layout.ResizableTile
 
 -- Extra --
+import XMonad.Actions.CycleWS
+import XMonad.Actions.FindEmptyWorkspace
 import qualified XMonad.StackSet as W
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified Data.Map as M
@@ -149,25 +148,26 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. shiftMask,    xK_r     ),             spawn "xscreensaver -no-splash")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
-      , ((modMask,                  xK_c     ),             spawn "killall -SIGUSR1 conky")
       , ((modMask,                  xK_e     ),             spawn "evince")
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
-      , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
-      , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc prev")
-      , ((0 , 0x1008ff19                     ),             spawn "mpc toggle")
-      , ((modMask .|. controlMask,  xK_s     ),             spawn "mpc stop")
-      , ((modMask .|. controlMask,  xK_Right ),             spawn "mpc next")
-      , ((modMask .|. controlMask,  xK_r     ),             spawn "mpc random")
+      , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc --no-status prev")
+      , ((0 , 0x1008ff19                     ),             spawn "mpc --no-status toggle")
+      , ((modMask .|. controlMask,  xK_s     ),             spawn "mpc --no-status stop")
+      , ((modMask .|. controlMask,  xK_Right ),             spawn "mpc --no-status next")
+      , ((modMask .|. controlMask,  xK_r     ),             spawn "mpc --no-status random")
       , ((0 , 0x1008ff11                     ),             spawn "aumix -v-6")
       , ((0 , 0x1008ff13                     ),             spawn "aumix -v+6")
       , ((0 , 0x1008ff12                     ),             spawn "amixer set Master toggle")
       , ((0 , 0x1008ff1b                     ),             spawn "firefox") 
       , ((modMask,                  xK_d     ),             spawn "eject -T") 
-      , ((modMask,                  xK_n     ),             spawn "pcmanfm") 
       , ((modMask,                  xK_w     ),             spawn "deluge") 
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
       
+      , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
+      , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
+--      , ((modMask,                  xK_Up    ),             nextWS)
+--      , ((modMask,                  xK_Down  ),             prevWS)
 -- layouts
       , ((modMask,               xK_space ),                sendMessage NextLayout)
       , ((modMask .|. shiftMask, xK_space ),                setLayout $ XMonad.layoutHook conf)
@@ -206,12 +206,14 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#ffffff' -h 14 -w 720 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
+myUrgencyHook = withUrgencyHookC dzenUrgencyHook
+    { args = ["-bg", "yellow", "-fg", "black"] } urgencyConfig { suppressWhen = Focused }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 main = do 
 	bar <- spawnPipe statusBarCmd1 
-        xmonad $ withUrgencyHook NoUrgencyHook
+        xmonad $ myUrgencyHook
                $ defaultConfig  
           	 	{ manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
           	 	 , workspaces = ["term","web","music","down","else"]
