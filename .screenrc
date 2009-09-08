@@ -29,6 +29,7 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 # 1 $irssi  _2_$zsh_  3 #vim  4 $mutt             --INSERT--  1 mail  6 updates
 hardstatus alwayslastline "%{= dd}%-w%{+u}%n %t%{-}%+w %=%{= dW}%h%{-}"
 
+
 # Banish screen 0, it sucks {{{
 bind c screen 1
 bind ^c screen 1

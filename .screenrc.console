@@ -18,7 +18,7 @@ defhstatus "screen: ^En (^Et)"
 terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 shelltitle "$ | zsh"
-hardstatus alwayslastline "%=%-w[%n %t]%+w"
+hardstatus alwayslastline "%=%-w[%n %t]%+w %D,%c:%s "
 
 bindkey -k k1 select 0
 bindkey -k k2 select 1

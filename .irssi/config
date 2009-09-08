@@ -263,6 +263,7 @@ settings = {
     emphasis_multiword = "yes";
     window_auto_change = "yes";
     term_charset = "utf-8";
+    beep_msg_level = "MSGS NOTICES INVITES DCC DCCMSGS HILIGHT";
   };
   "fe-common/irc" = { show_away_once = "yes"; };
   "irc/core" = { skip_motd = "yes"; };
