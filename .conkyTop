@@ -16,5 +16,3 @@ override_utf8_locale yes
  
 TEXT
 ^fg(\#cd5c5c)ppp0: ${if_up ppp0}^fg(green)${else}^fg(red)${endif}^i(/home/vikki/.xmonad/dzen/net_down_01.xbm)^fg() ${downspeed ppp0} ${totaldown ppp0} ^fg(grey40)^r(2x12)^fg() ${time %A, %d %b ^fg(#cd5c5c)%H:%M}
-^fg(\#cd5c5c) Weather:^fg()${execi 7200 /usr/local/bin/weather}^fg(grey40) ^r(2x12) ^fg(\#cd5c5c)Arch-pkg:^fg() ${execi 7200 /home/vikki/progs/scripts/pkgstats}
-
