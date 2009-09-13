@@ -81,7 +81,7 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
+export TERM="screen"
 shopt -s cdspell
 export HISTTIMEFORMAT="%F %T "
 PATH=$PATH:/usr/local/bin
