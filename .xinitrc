@@ -1,5 +1,7 @@
 #!/bin/bash
  
+mplayer -fs ~/dwhelper/Rio6000-ArchlinuxAnimationWithSound207.mov
+
 Esetroot -s `perl -e '@images = glob "~/Pictures/*"; print $images[int rand $#images+1], "\n"'` &
 
 alsactl restore &
