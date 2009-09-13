@@ -22,7 +22,6 @@ bell_msg ""                      # For urgency hints
 # Define terminal capibilities {{{
 
 terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # }}}
 
@@ -41,17 +40,17 @@ screen -t $zsh 1
 # Keybinds {{{
 
 # Be lazy and use Fx keys for screen switching
-bindkey -k k1 select 1
-bindkey -k k2 select 2
-bindkey -k k3 select 3
-bindkey -k k4 select 4
-bindkey -k k5 select 5
-bindkey -k k6 select 6
-bindkey -k k7 select 7
-bindkey -k k8 select 8
+#bindkey -k k1 select 1
+#bindkey -k k2 select 2
+#bindkey -k k3 select 3
+#bindkey -k k4 select 4
+#bindkey -k k5 select 5
+#bindkey -k k6 select 6
+#bindkey -k k7 select 7
+#bindkey -k k8 select 8
 
 # Use F13 as escape (for caps-lock mapped to F13)
-bindkey -k F3 command
+bindkey -k F1 command
 
 # }}}
 
