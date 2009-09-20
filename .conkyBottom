@@ -6,7 +6,6 @@ font -*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*
 update_interval 1.0 
 total_run_times 0
 own_window no
-double_buffer yes
 alignment top_right
 gap_x 0
 gap_y 0
@@ -15,4 +14,4 @@ cpu_avg_samples 1
 override_utf8_locale yes
  
 TEXT
-^fg(\#668b8b)^r(2x10) ^fg(\#8b795e)Arch-pkg:^fg() ${execi 7200 /home/vikki/progs/scripts/pkgstats} ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) Indore:^fg()${execi 7200 /usr/local/bin/weather}^fg(\#668b8b) ^r(2x10)^fg(\#8b795e) hdd:^fg()${hddtemp /dev/sda}'C^fg(\#668b8b) ^r(2x10)^fg(\#8b795e) gpu: ^fg()${execi 30 nvidia-settings -t -q gpucoretemp}'C ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) ${if_mixer_mute}^fg(red)^i(/home/vikki/.xmonad/dzen/vol-mute.xbm)${else}^i(/home/vikki/.xmonad/dzen/vol-hi.xbm)${endif}^fg() ${mpd_vol} ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) ^i(/home/vikki/.xmonad/dzen/mpd.xbm) ^fg()${if_match "${mpd_status}" != "Stopped"}^fg(\#c0c0a0)${mpd_status}^fg(\#668b8b) ^r(2x10) ^fg(\#8b795e)${mpd_album}^fg(\#668b8b) :: ^fg(\#8b795e)${mpd_title 52} ^fg(\#668b8b) ${mpd_elapsed}/${mpd_length}${else}^fg(brown)no song${endif}^fg(\#668b8b) ^r(2x10)
+^fg(\#668b8b)^r(2x10) ^fg(\#8b795e)Arch-pkg:^fg() ${execi 7200 /home/vikki/progs/scripts/pkgstats} ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) Indore:^fg()${texeci 7200 /usr/local/bin/weather}^fg(\#668b8b) ^r(2x10)^fg(\#8b795e) hdd:^fg()${hddtemp /dev/sda}'C^fg(\#668b8b) ^r(2x10)^fg(\#8b795e) gpu: ^fg()${execi 30 nvidia-settings -t -q gpucoretemp}'C ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) ${if_mixer_mute}^fg(red)^i(/home/vikki/.xmonad/dzen/vol-mute.xbm)${else}^i(/home/vikki/.xmonad/dzen/vol-hi.xbm)${endif}^fg() ${mpd_vol} ^fg(\#668b8b)^r(2x10)^fg(\#8b795e) ^i(/home/vikki/.xmonad/dzen/mpd.xbm) ^fg()${if_match "${mpd_status}" != "Stopped"}^fg(\#c0c0a0)${mpd_status}^fg(\#668b8b) ^r(2x10) ^fg(\#8b795e)${mpd_album}^fg(\#668b8b) :: ^fg(\#8b795e)${mpd_title 52} ^fg(\#668b8b) ${mpd_elapsed}/${mpd_length}${else}^fg(brown)no song${endif}^fg(\#668b8b) ^r(2x10)
