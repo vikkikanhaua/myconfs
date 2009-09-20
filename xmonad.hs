@@ -4,7 +4,7 @@
 import XMonad
 import System.IO
 import XMonad.Prompt
-import XMonad.Prompt.Shell
+import XMonad.Prompt.RunOrRaise
 import XMonad.ManageHook
 import XMonad.Operations
 
@@ -19,9 +19,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 -- Layout --
-import XMonad.Layout.Spiral
-import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Accordion
 import XMonad.Layout.ResizableTile
 
@@ -101,10 +100,10 @@ myXPConfig = defaultXPConfig
 myPP h = defaultPP 
                  { ppCurrent = wrap "^fg(#cd5c5c)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
 --                 , ppVisible = wrap "^bg(grey30)^fg(grey75)^p(1)" "^p(1)^fg()^bg()"
-                 , ppHidden = wrap "^fg(grey80)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+                 , ppHidden = wrap "" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
                  , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
                  , ppSep = " ^fg(grey40)^r(2x12)^fg() "
---                 , ppUrgent = dzenColor "red" ""
+                 , ppUrgent = wrap "!^fg(#e9c789)^p()" "^p()^fg()"
          		 , ppWsSep = " "
 		         , ppLayout = dzenColor "grey80" "" .
 		  		       (\x -> case x of
@@ -112,19 +111,16 @@ myPP h = defaultPP
                             "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
                             "Accordion" -> "Accordion"
                             "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm)"
-                            "Grid" -> "Grid"
-                            "Spiral" -> "sP"
                        )
 --                 , ppTitle   = dzenColor "white" "" . wrap "< " " >" 
-                 , ppTitle = dzenColor "#fffff0" "" .shorten 580
+                 , ppTitle = dzenColor "#fffff0" "" .shorten 500
                  , ppOutput = hPutStrLn h
                  }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-mySpiral = spiral (4/3)
 -- Define layout list
-myLayout = smartBorders $ ewmhDesktopsLayout $ avoidStruts (Mirror tiled ||| tiled ||| Full ||| Grid ||| mySpiral ||| Accordion)
+myLayout = avoidStruts $ smartBorders $ ewmhDesktopsLayout $ onWorkspace "down" (Full) $ (Mirror tiled ||| tiled ||| Full ||| Accordion)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled      = Tall nmaster delta ratio
@@ -165,7 +161,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
       
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
-      , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
+      , ((modMask,                  xK_p     ),             runOrRaisePrompt myXPConfig)
 --      , ((modMask,                  xK_Up    ),             nextWS)
 --      , ((modMask,                  xK_Down  ),             prevWS)
 -- layouts
@@ -205,15 +201,13 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#ffffff' -h 14 -w 720 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
-myUrgencyHook = withUrgencyHookC dzenUrgencyHook
-    { args = ["-bg", "yellow", "-fg", "black"] } urgencyConfig { suppressWhen = Focused }
+statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#ffffff' -h 14 -w 670 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 main = do 
 	bar <- spawnPipe statusBarCmd1 
-        xmonad $ myUrgencyHook
+        xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig  
           	 	{ manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
           	 	 , workspaces = ["term","web","music","down","else"]
