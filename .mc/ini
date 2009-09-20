@@ -119,18 +119,6 @@ display_codepage=Other_8_bit
 [Colors]
 base_color=normal=green,default:selected=brightmagenta,gray:marked=yellow,default:markselect=yellow,gray:directory=white,default:executable=brightgreen,default:link=cyan,default:device=brightmagenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=black,default:input=white,black:dnormal=green,gray:dfocus=brightgreen,gray:dhotnormal=cyan,gray:dhotfocus=brightcyan,gray:menu=green,default:menuhot=cyan,default:menusel=green,gray:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
 
-[Temporal:New Right Panel]
-reverse=0
-case_sensitive=1
-sort_order=name
-list_mode=user
-user_format=half type name | size | perm
-user_status0=half type name | size | perm
-user_status1=half type name | size | perm
-user_status2=half type name | size | perm
-user_status3=half type name | size | perm
-user_mini_status=0
-
 [Panelize]
 Find *.orig after patching=find . -name \*.orig -print
 Find SUID and SGID programs=find . \( \( -perm -04000 -a -perm +011 \) -o \( -perm -02000 -a -perm +01 \) \) -print
