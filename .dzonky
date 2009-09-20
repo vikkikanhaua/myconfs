@@ -7,5 +7,5 @@ H=14
 # Bottom Bar
 conky -c ~/.conkyBottom | dzen2 -bg $BG -fg $FG -h $H -y 754 -w 1024 -e '' -fn $FN -ta l &
 
-# Top Left Bar
-conky -c ~/.conkyTop | dzen2 -bg $BG -fg $FG -h $H -tw 305 -e '' -x 719 -fn $FN -ta r &
+# Top Right Bar
+conky -c ~/.conkyTop | dzen2 -bg $BG -fg $FG -h $H -w 355 -e '' -x 669 -fn $FN -ta r &
