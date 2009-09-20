@@ -28,10 +28,8 @@ zstyle ':completion:*:options' auto-description '%d'
 
 zstyle :compinstall filename '/home/vikki/.zshrc'
 
-autoload -Uz compinit complist zutil promptinit
-promptinit
+autoload -Uz compinit complist zutil
 compinit
-prompt adam2
 export HISTFILE=~/.zsh_history
 export CC="colorgcc"
 export HISTSIZE=5000
@@ -148,18 +146,20 @@ extract () {
   fi
   }
 
-#grey="%{$(echo -n '\e[1;30m')%}"
-#red="%{$(echo -n '\e[1;31m')%}"
-#green="%{$(echo -n '\e[1;32m')%}"
-#yellow="%{$(echo -n '\e[1;33m')%}"
-#blue="%{$(echo -n '\e[1;34m')%}"
-#magenta="%{$(echo -n '\e[1;35m')%}"
-#cyan="%{$(echo -n '\e[1;36m')%}"
-#white="%{$(echo -n '\e[1;37m')%}"
-#lored="%{$(echo -n '\e[0;31m')%}"
-#logreen="%{$(echo -n '\e[0;32m')%}"
-#loyellow="%{$(echo -n '\e[0;33m')%}"
-#loblue="%{$(echo -n '\e[0;34m')%}"
-#lomagenta="%{$(echo -n '\e[0;34m')%}"
-#locyan="%{$(echo -n '\e[0;35m')%}"
-#lowhite="%{$(echo -n '\e[0;37m')%}"
+grey="%{$(echo -n '\e[1;30m')%}"
+red="%{$(echo -n '\e[1;31m')%}"
+green="%{$(echo -n '\e[1;32m')%}"
+yellow="%{$(echo -n '\e[1;33m')%}"
+blue="%{$(echo -n '\e[1;34m')%}"
+magenta="%{$(echo -n '\e[1;35m')%}"
+cyan="%{$(echo -n '\e[1;36m')%}"
+white="%{$(echo -n '\e[1;37m')%}"
+lored="%{$(echo -n '\e[0;31m')%}"
+logreen="%{$(echo -n '\e[0;32m')%}"
+loyellow="%{$(echo -n '\e[0;33m')%}"
+loblue="%{$(echo -n '\e[0;34m')%}"
+lomagenta="%{$(echo -n '\e[0;34m')%}"
+locyan="%{$(echo -n '\e[0;35m')%}"
+lowhite="%{$(echo -n '\e[0;37m')%}"
+export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
+$yellow┗━━>$lowhite%B"
