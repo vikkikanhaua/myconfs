@@ -22,7 +22,7 @@ syntax on
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
-colorscheme ir_black
+colorscheme slate
 "colorscheme dark
 
 " Uncomment the following to have Vim jump to the last position when
