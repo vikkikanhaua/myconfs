@@ -120,7 +120,7 @@ myPP h = defaultPP
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Define layout list
-myLayout = avoidStruts $ smartBorders $ ewmhDesktopsLayout $ onWorkspace "down" (Full) $ (Mirror tiled ||| tiled ||| Full ||| Accordion)
+myLayout = avoidStruts $ smartBorders $ ewmhDesktopsLayout $ onWorkspace "screen" (Full) $ (Mirror tiled ||| tiled ||| Full ||| Accordion)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled      = Tall nmaster delta ratio
@@ -210,7 +210,7 @@ main = do
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig  
           	 	{ manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-          	 	 , workspaces = ["term","web","music","down","else"]
+          	 	 , workspaces = ["term","web","screen","down","else"]
           	 	 , layoutHook = myLayout
           	 	 , logHook = dynamicLogWithPP $ myPP bar
           	 	 , modMask = mod4Mask    -- Rebind Mod to the Windows key
