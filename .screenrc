@@ -1,7 +1,7 @@
 # Basic Settings {{{
 
 nethack on                         # Fun error messages
-deflogin on                        # All screens are considered logins
+deflogin off                       # All screens are considered logins
 autodetach on                      # Detach on HUP instead of kill
 startup_message off                # Don't be annoying
 vbell off                          # Don't be annoying
@@ -25,15 +25,15 @@ terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # }}}
 
-# 1 $irssi  _2_$zsh_  3 #vim  4 $mutt             --INSERT--  1 mail  6 updates
-hardstatus alwayslastline "%{= dd}%-w%{+u}%n %t%{-}%+w %=%{= dW}%h%{-}"
+hardstatus alwayslastline "%{= dd}%-w%{+u}%{G}%n %t%{-}%{-}%+w %=%{= dR}%{-}"
 
 
 # Banish screen 0, it sucks {{{
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
-screen -t $zsh 1
+screen -t rtorrent 1 rtorrent
+screen -t $zsh 2
 # }}}
 
 
@@ -49,7 +49,7 @@ screen -t $zsh 1
 #bindkey -k k7 select 7
 #bindkey -k k8 select 8
 
-# Use F13 as escape (for caps-lock mapped to F13)
+# Use F11 as escape (for caps-lock mapped to F13)
 bindkey -k F1 command
 
 # }}}
