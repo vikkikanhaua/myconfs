@@ -60,16 +60,6 @@ then
 			builtin echo -ne "\ek$*\e\\"
 		fi
 	}
-
-	set-hardstatus ()
-	{
-		if [[ $* == "zsh" ]]
-		then
-			printf '\e_%s\e\' $VIMODE
-		else
-			printf '\e_\e\'
-		fi
-  }
  
   preexec () 
   {
@@ -77,7 +67,6 @@ then
     then
         TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/$\1/;:x;q')/#*\/} 
 				set-title $TITLE
-				set-hardstatus $TITLE
     fi
   }
 
@@ -87,18 +76,8 @@ then
     then
       TITLE=${0/#*\/} 
 			set-title $TITLE
-			set-hardstatus $TITLE
     fi
   }
-
-	set-mode () { 
-		VIMODE='--'$1'--'
-		set-hardstatus $TITLE
-	}
-
-	bindkey -v
-	set-mode INSERT
-
 fi
 #}}}
 
@@ -162,4 +141,4 @@ lomagenta="%{$(echo -n '\e[0;34m')%}"
 locyan="%{$(echo -n '\e[0;35m')%}"
 lowhite="%{$(echo -n '\e[0;37m')%}"
 export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
-$yellow┗━━>$lowhite%B"
+$yellow┗━━>$white"
