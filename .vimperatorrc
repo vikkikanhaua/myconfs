@@ -1,0 +1,10 @@
+"2.1 (created: 2009/05/21 13:13:06)
+
+set guioptions=rbB
+set popups=2
+set runtimepath=/home/vikki/.vimperator
+set showtabline=0
+set wildoptions=auto
+source! /home/vikki/.vimperatorrc.local
+
+" vim: set ft=vimperator:
