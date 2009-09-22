@@ -7,7 +7,7 @@ alias ll='ls --color=auto -hl'
 alias la='ls --color=auto -hA'
 alias df="df -h"
 alias du="du -sh"
-alias list="ncmpcpp"
+alias m="ncmpcpp"
 alias cp="cp -viru"
 alias mv="mv -viu"
 alias rm="rm -vr"
