@@ -36,7 +36,6 @@ export HISTSIZE=5000
 export SAVEHIST=5000
 export EDITOR="vim"
 export PATH=$PATH:/usr/local/bin/
-eval `dircolors -b`
 
 setopt autocd extendedglob nomatch notify correctall hist_ignore_all_dups hist_ignore_space
 setopt autopushd pushdminus pushdsilent pushdtohome
@@ -141,4 +140,4 @@ lomagenta="%{$(echo -n '\e[0;34m')%}"
 locyan="%{$(echo -n '\e[0;35m')%}"
 lowhite="%{$(echo -n '\e[0;37m')%}"
 export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
-$yellow┗━━>$white"
+$yellow┗━━>$lowhite"
