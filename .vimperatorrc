@@ -1,10 +1,13 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
-set guioptions=rbB
+set "editor=urxvt -name \"DeepThought\" -e vim"
+set focuscontent
+set guioptions=
 set popups=2
 set runtimepath=/home/vikki/.vimperator
-set showtabline=0
+set showtabline=1
 set wildoptions=auto
 source! /home/vikki/.vimperatorrc.local
+colorscheme seaweed
 
 " vim: set ft=vimperator:
