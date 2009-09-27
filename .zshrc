@@ -141,3 +141,8 @@ locyan="%{$(echo -n '\e[0;35m')%}"
 lowhite="%{$(echo -n '\e[0;37m')%}"
 export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
 $yellow┗━━>$lowhite"
+
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+    logout
+fi

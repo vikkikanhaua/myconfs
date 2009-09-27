@@ -192,7 +192,7 @@ seek_time = "5"
 #
 autocenter_mode = "no"
 #
-progressbar_look = "->"
+progressbar_look = "-)"
 #
 default_place_to_search_in = "database" (database/playlist)
 #

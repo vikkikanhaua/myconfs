@@ -1,13 +1,23 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
 set "editor=urxvt -name \"DeepThought\" -e vim"
-set focuscontent
-set guioptions=
+set guioptions=rbB
 set popups=2
 set runtimepath=/home/vikki/.vimperator
-set showtabline=1
+set showtabline=0
 set wildoptions=auto
 source! /home/vikki/.vimperatorrc.local
 colorscheme seaweed
+
+javascript <<EOF
+(function(){
+var feedPanel = document.createElement("statusbarpanel");
+feedPanel.setAttribute("id", "feed-panel-clone");
+feedPanel.appendChild(document.getElementById("feed-button"));
+feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 14px;");
+document.getElementById("status-bar")
+.insertBefore(feedPanel, document.getElementById("security-button"));
+})();
+EOF
 
 " vim: set ft=vimperator:

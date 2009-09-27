@@ -27,8 +27,9 @@ session = ~/.session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,300,900,load=~/downloads/*.torrent
+schedule = watch_directory,300,900,load="~/downloads/*.torrent"
 #schedule = untied_directory,5,5,stop_untied=
+#system.method.set = event.download.finished, d.close=, d.erase=
 
 # Close torrents when diskspace is low.
 #schedule = low_diskspace,5,60,close_low_diskspace=100M

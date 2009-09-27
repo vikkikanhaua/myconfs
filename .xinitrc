@@ -6,7 +6,7 @@ Esetroot -s `perl -e '@images = glob "~/Pictures/*"; print $images[int rand $#im
 
 #/usr/lib/xscreensaver/glmatrix -root &
 
-alsactl restore &
+#alsactl restore &
 
 ~/.dzonky &
 
