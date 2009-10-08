@@ -1,0 +1,104 @@
+##
+# MailBox Config
+#####
+
+set mbox_type           = Maildir
+set mbox                = +mbox
+set folder              = ~/Mail
+set spoolfile           = +/INBOX
+set header_cache        = ~/.hcache
+set record              = +/'[Gmail].Sent Mail'
+set postponed           = +/[Gmail].Drafts
+set maildir_trash       = yes
+
+##
+# Sender 
+#####
+
+set realname            = 'Vikas Kanhaua'
+set from                = "vik_k@archlinux.us"
+set sendmail            = "/usr/bin/msmtp"
+
+##
+# Misc Opts
+#####
+
+set allow_ansi
+set check_new
+set fast_reply
+set sig_dashes
+set askcc
+set wrap_search
+set confirmcreate       = yes
+set use_from            = yes
+set envelope_from       = yes
+set edit_headers        = yes
+set copy                = yes
+set include             = yes
+set collapse_unread     = yes
+set status_chars        = "-*%A"
+set locale              = "C"
+set ispell              = "aspell -e -c"
+set query_command       = "/usr/bin/mutt_vc_query '%s'"
+set sort                = threads
+set sort_aux            = reverse-last-date-received
+
+##
+# Mailboxes & lists
+#####
+
+subscribe arch-announce arch-general xmonad
+mailboxes +INBOX +arch-announcement +arch-general +xmonad
+
+##
+# Enriched messages
+#####
+
+auto_view text/html                                               # view html automatically
+alternative_order text/plain text/enriched text/html              # save html for last
+
+##
+# Pager options
+#####
+
+set pager_stop                                                  # don't go to next message automatically
+set menu_scroll                                                 # scroll in menus
+set smart_wrap                                                  # don't split words
+set tilde                                                       # show tildes like in vim
+set pager_index_lines   = 10                                    # number of index lines to show
+set pager_context       = 5                                     # number of context lines to show
+set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot quote blocks
+
+##
+# Different Formats
+#####
+
+set alias_format        = "%4n %t %-20a %r"
+set date_format         = "!%d/%m/%y at %H:%M %Z"
+set index_format        = "%3C [%Z] [%[%d/%b at %H:%M]]  %-5.5c  %-17.17F %s"
+set status_format       = "┗━ %r ━ %v <━> Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? %?p? ━━━ %p waiting to send ? ━━ %>─(%s)━(%P)━━┛"
+set forward_format      = "Fwd: %s"
+
+##
+# Various Directories & Sourced
+#####
+
+set tmpdir              = ~/.mutt/temp
+set signature           ='~/.mutt/mysig'
+set alias_file          = ~/.mutt/aliases.muttrc
+
+source ~/.mutt/colors.muttrc 
+source ~/.mutt/aliases.muttrc
+source /etc/Muttrc.gpg.dist
+
+##
+# Macros
+#####
+
+macro index h   "c?" "view folders"
+macro index B   "<limit>~b " "search message bodies"
+macro index I   "<change-folder>!<enter>" "go to Inbox"
+macro index P   "<pipe-message>cat > ~/" "save message as"
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+
+##
