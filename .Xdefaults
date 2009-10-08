@@ -14,8 +14,8 @@ URxvt.fading       : 50
 URxvt.saveLines    : 10000
 URxvt.cursorColor  : #cccccc
 !URxvt.inheritPixmap: false
-URxvt.mouseWheelScrollPage: true 
-URxvt*cursorBlink: false
+URxvt*cursorBlink:   false
+URxvt*dynamicColors: on
  
 URxvt.perl-ext-common : default,matcher
 URxvt.urlLauncher     : /usr/bin/firefox
@@ -23,7 +23,7 @@ URxvt.matcher.button  : 1
 
 !colors
 !black
-URxvt*color0:		    #676767
+URxvt*color0:           #676767
 URxvt*color8:	        #757575
 !red
 URxvt*color1:	        #EA6868
