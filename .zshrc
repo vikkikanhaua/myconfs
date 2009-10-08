@@ -26,28 +26,41 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 # }}}
 
-zstyle :compinstall filename '/home/vikki/.zshrc'
-
 autoload -Uz compinit complist zutil
 compinit
+
+# exports {{{
 export HISTFILE=~/.zsh_history
 export CC="colorgcc"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export EDITOR="vim"
-export PATH=$PATH:/usr/local/bin/
+export PATH=$PATH:~/.bin/
+export MAILPATH=/home/vikki/Mail/INBOX/new/
+
+# }}}
 
 setopt autocd extendedglob nomatch notify correctall hist_ignore_all_dups hist_ignore_space
 setopt autopushd pushdminus pushdsilent pushdtohome
 setopt INC_APPEND_HISTORY
 setopt nohup
 
+# sourced files {{{
+
 # My Aliases
 if [ -f ~/.aliases ]; then
-        . ~/.aliases
+        source ~/.aliases
 fi
 
+# My Functions
+if [ -f ~/.funcs ]; then
+        source ~/.funcs
+fi
+
+# }}}
+
 # make screen's title change right {{{
+
 if [[ $TERM =~ "screen" ]]
 then
   set-title ()
@@ -102,27 +115,9 @@ bindkey '^y'     .vi-yank-whole-line
 bindkey '^[Oc'   forward-word
 bindkey '^[Od'   backward-word
 
-# My Functions
-# Usage: extract <file>
-# Description: extracts archived files (maybe)
-extract () {
-    if [ -f $1 ]; then
-            case $1 in
-            *.tar.bz2)  tar jxvf $1        ;;
-            *.tar.gz)   tar zxvf $1        ;;
-            *.bz2)      bzip2 -d $1         ;;
-            *.gz)       gunzip -d $1        ;;
-            *.tar)      tar -xvf $1         ;;
-            *.tgz)      tar -zxvf $1        ;;
-            *.zip)      unzip $1            ;;
-            *.Z)        uncompress $1       ;;
-            *.rar)      unrar x $1            ;;
-            *)          echo "'$1' Error. Please go away" ;;
-            esac
-            else
-            echo "'$1' is not a valid file"
-  fi
-  }
+# }}}
+
+# prompt {{{
 
 grey="%{$(echo -n '\e[1;30m')%}"
 red="%{$(echo -n '\e[1;31m')%}"
@@ -142,7 +137,20 @@ lowhite="%{$(echo -n '\e[0;37m')%}"
 export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
 $yellow┗━━>$lowhite"
 
+# }}}
+
+# login manager
+
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-    startx
-    logout
+  startx
+  logout
 fi
+
+TIME_ZONES=(Australia/Sydney America/Los_Angeles America/New_York)
+ 
+fgtime() {
+  local i
+  
+  for i in $TIME_ZONES 
+      { print -n "${i:t}:" $(TZ=$i date +'%H:%M')' ' }
+}
