@@ -1,4 +1,4 @@
-pixmap_path ".themes/Dust/gtk-2.0"
+include ".themes/Dust/gtk-2.0/gtkrc"
 
 gtk-icon-theme-name = "ALLBLACK"
 gtk-menu-popup-delay = 0
