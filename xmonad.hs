@@ -156,6 +156,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((0 , 0x1008ff13                     ),             spawn "aumix -v+6")
       , ((0 , 0x1008ff12                     ),             spawn "amixer set Master toggle")
       , ((0 , 0x1008ff1b                     ),             spawn "firefox") 
+      , ((modMask,                  xK_f     ),             spawn "/home/vikki/.bin/favsong") 
       , ((modMask,                  xK_d     ),             spawn "eject -T") 
       , ((modMask,                  xK_w     ),             spawn "deluge") 
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
