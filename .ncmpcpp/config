@@ -11,7 +11,7 @@ mpd_host = "localhost"
 #
 mpd_port = "6600"
 #
-mpd_music_dir = "/muzic"
+mpd_music_dir = "/muzic/english"
 #
 mpd_connection_timeout = "5"
 #
@@ -134,7 +134,7 @@ selected_item_suffix = "$9"
 #
 alternative_header_first_line_format = "$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
 #
-alternative_header_second_line_format = "{$7%b$9}|{$2%D$9}"
+alternative_header_second_line_format = "{$6%a$9} - {$7%b$9}|{$2%D$9}"
 #
 ## colors are not supported for below variable
 #
@@ -165,7 +165,7 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-song_columns_list_format = "(10)[cyan]{l} (30)[yellow]{b} (60)[white]{f}"
+song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (30)[green]{a} (44)[red]{f}"
 #
 ##### various settings #####
 #
@@ -292,7 +292,7 @@ state_line_color = "cyan"
 #
 state_flags_color = "red"
 #
-main_window_color = "green"
+main_window_color = "black"
 #
 color1 = "white"
 #
