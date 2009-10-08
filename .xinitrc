@@ -2,13 +2,13 @@
  
 #mplayer -fs ~/dwhelper/Rio6000-ArchlinuxAnimationWithSound207.mov
 
-Esetroot -s `perl -e '@images = glob "~/Pictures/*"; print $images[int rand $#images+1], "\n"'` &
+Esetroot -s ~/Pictures/`ls ~/Pictures | sort -R | line` &
 
 #/usr/lib/xscreensaver/glmatrix -root &
 
 #alsactl restore &
 
-~/.dzonky &
+~/.bin/dzonky &
 
 xsetroot -cursor_name left_ptr &
 
