@@ -35,7 +35,7 @@ export CC="colorgcc"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export EDITOR="vim"
-export PATH=$PATH:~/.bin/
+export PATH=$PATH:~/.bin
 export MAILPATH=/home/vikki/Mail/INBOX/new/
 
 # }}}

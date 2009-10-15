@@ -64,7 +64,7 @@ let lua_version = 5
 let lua_subversion = 1
 
 " haskell stuff:
-au Bufenter *.hs compiler ghc
+" au Bufenter *.hs compiler ghc
 
 let g:haddock_browser = "/usr/bin/firefox"
 

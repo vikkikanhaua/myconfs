@@ -18,7 +18,9 @@ import XMonad.Hooks.EwmhDesktops
 -- Utils --
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+
 -- Layout --
+import XMonad.Layout.SimpleFloat
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Accordion
@@ -90,8 +92,8 @@ myXPConfig = defaultXPConfig
 	, fgHLight    = lightTextColor
 	, bgHLight    = lightBackgroundColor
 	, position    = Bottom
-    , height      = 16
-    , historySize = 100
+        , height      = 16
+        , historySize = 100
 	, borderColor = lightBackgroundColor
 	}
 
@@ -110,6 +112,7 @@ myPP h = defaultPP
                             "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
                             "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
                             "Accordion" -> "Accordion"
+                            "Simple Float" -> "float"
                             "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm)"
                        )
 --                 , ppTitle   = dzenColor "white" "" . wrap "< " " >" 
@@ -120,7 +123,11 @@ myPP h = defaultPP
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Define layout list
-myLayout = avoidStruts $ smartBorders $ ewmhDesktopsLayout $ onWorkspace "screen" (Full) $ (Mirror tiled ||| tiled ||| Full ||| Accordion)
+myLayout = avoidStruts 
+           $ smartBorders 
+           $ ewmhDesktopsLayout 
+           $ onWorkspaces ["web","screen"] Full 
+           $ (Mirror tiled ||| tiled ||| Full ||| Accordion ||| simpleFloat )
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled      = Tall nmaster delta ratio

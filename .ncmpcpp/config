@@ -32,7 +32,7 @@ mpd_crossfade_time = "3"
 ## }
 ##
 #
-#visualizer_fifo_path = ""
+#visualizer_fifo_path = "/tmp/mpd.fifo"
 #
 ##
 ## Note: To enable spectrum frequency visualization
@@ -102,7 +102,7 @@ message_delay_time = "2"
 ## Note: colors can be nested.
 ##
 #
-song_list_format = "{$3%f$9}%r{$4%b$9}{$8[%l]$9}"
+song_list_format = "{%f}$R{%b -- %a | %l}"
 #
 #song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
 #
@@ -112,7 +112,7 @@ tag_editor_album_format = "%D"
 #
 browser_playlist_prefix = "$2playlists$9 "
 #
-selected_item_prefix = "$6[OK]"
+selected_item_prefix = "$6"
 #
 selected_item_suffix = "$9"
 #
@@ -165,7 +165,7 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (30)[green]{a} (44)[red]{f}"
+song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (25)[green]{a} (49)[red]{f}"
 #
 ##### various settings #####
 #
@@ -180,9 +180,9 @@ song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (30)[green]{a} (44)[red
 #
 #playlist_show_remaining_time = "no"
 #
-playlist_display_mode = "columns" (classic/columns)
+playlist_display_mode = "classic" (classic/columns)
 #
-browser_display_mode = "columns" (classic/columns)
+browser_display_mode = "classic" (classic/columns)
 #
 search_engine_display_mode = "columns" (classic/columns)
 #
@@ -196,9 +196,9 @@ progressbar_look = "-)"
 #
 default_place_to_search_in = "database" (database/playlist)
 #
-user_interface = "alternative" (classic/alternative)
+user_interface = "classic" (classic/alternative)
 #
-#media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
+media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
 #
 default_find_mode = "wrapped" (wrapped/normal)
 #
@@ -216,11 +216,11 @@ header_text_scrolling = "yes"
 #
 fancy_scrolling = "yes"
 #
-cyclic_scrolling = "no"
+cyclic_scrolling = "yes"
 #
 #lines_scrolled = "2"
 #
-#follow_now_playing_lyrics = "no"
+follow_now_playing_lyrics = "yes"
 #
 ncmpc_like_songs_adding = "yes" (enabled - add/remove, disabled - always add)
 #
@@ -274,9 +274,9 @@ allow_physical_directories_deletion = "no"
 #
 #lyrics_database = "1"
 #
-#external_editor = ""
+external_editor = "vim"
 #
-#use_console_editor = "no" (set to yes, if your editor is console app)
+use_console_editor = "yes" (set to yes, if your editor is console app)
 #
 ##### colors definitions #####
 #
@@ -288,7 +288,7 @@ header_window_color = "default"
 #
 volume_color = "white"
 #
-state_line_color = "cyan"
+state_line_color = "black"
 #
 state_flags_color = "red"
 #
@@ -300,7 +300,7 @@ color2 = "green"
 #
 main_window_highlight_color = "black"
 #
-progressbar_color = "default"
+progressbar_color = "black"
 #
 statusbar_color = "default"
 #

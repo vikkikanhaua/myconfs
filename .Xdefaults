@@ -9,7 +9,7 @@ URxvt.scrollBar    : False
 URxvt.pointerBlank : true
 Urxvt.urgentOnBell : true
 Urxvt.modifier	   : alt
-URxvt.shading      : 25
+URxvt.shading      : 100
 URxvt.fading       : 50
 URxvt.saveLines    : 10000
 URxvt.cursorColor  : #cccccc
