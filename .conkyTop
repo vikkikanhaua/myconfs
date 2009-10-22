@@ -16,4 +16,4 @@ override_utf8_locale yes
 mail_spool /home/vikki/Mail/INBOX/new
  
 TEXT
-${new_mails /home/vikki/Mail/INBOX} new ^fg(grey40)^r(2x12) ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg() ${mpd_vol} ^fg(grey40)^r(2x12)${if_up ppp0}^fg(green)${else}^fg(red)${endif} ^i(/home/vikki/.xmonad/dzen/dish.xbm)^fg() ${downspeed ppp0} ${totaldown ppp0} ^fg(grey40)^r(2x12)^fg() ${time %A %d %b ^fg(#cd5c5c)%H:%M}
+${new_mails /home/vikki/Mail/INBOX} new ^fg(grey40)^r(2x10) ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg() ${mpd_vol} ^fg(grey40)^r(2x10)${if_up ppp0}^fg(green)${else}^fg(red)${endif} ^i(/home/vikki/.xmonad/dzen/dish.xbm)^fg() ${downspeed ppp0} ${totaldown ppp0} ^fg(grey40)^r(2x10)^fg() ${time %A %d %b ^fg(#cd5c5c)%H:%M}

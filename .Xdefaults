@@ -6,6 +6,9 @@ URxvt.font         : -*-dina-medium-r-normal-*-13-*-*-*-*-*-iso8859-*
 URxvt.boldFont     : -*-dina-bold-r-normal-*-13-*-*-*-*-*-iso8859-*
 URxvt.transparent  : true
 URxvt.scrollBar    : False
+!URxvt.internalBorder: 0
+!URxvt.externalBorder: 0
+!URxvt.borderColor  : #272727
 URxvt.pointerBlank : true
 Urxvt.urgentOnBell : true
 Urxvt.modifier	   : alt

@@ -37,7 +37,6 @@ export SAVEHIST=5000
 export EDITOR="vim"
 export PATH=$PATH:~/.bin
 export MAILPATH=/home/vikki/Mail/INBOX/new/
-
 # }}}
 
 setopt autocd extendedglob nomatch notify correctall hist_ignore_all_dups hist_ignore_space
@@ -46,7 +45,6 @@ setopt INC_APPEND_HISTORY
 setopt nohup
 
 # sourced files {{{
-
 # My Aliases
 if [ -f ~/.aliases ]; then
         source ~/.aliases
@@ -56,11 +54,9 @@ fi
 if [ -f ~/.funcs ]; then
         source ~/.funcs
 fi
-
 # }}}
 
 # make screen's title change right {{{
-
 if [[ $TERM =~ "screen" ]]
 then
   set-title ()
@@ -114,11 +110,9 @@ bindkey '^k'     kill-whole-line
 bindkey '^y'     .vi-yank-whole-line
 bindkey '^[Oc'   forward-word
 bindkey '^[Od'   backward-word
-
 # }}}
 
 # prompt {{{
-
 grey="%{$(echo -n '\e[1;30m')%}"
 red="%{$(echo -n '\e[1;31m')%}"
 green="%{$(echo -n '\e[1;32m')%}"
@@ -134,13 +128,10 @@ loblue="%{$(echo -n '\e[0;34m')%}"
 lomagenta="%{$(echo -n '\e[0;34m')%}"
 locyan="%{$(echo -n '\e[0;35m')%}"
 lowhite="%{$(echo -n '\e[0;37m')%}"
-export PS1="$yellow┏━━["$green"%~"$yellow"]━["$green"%m"$yellow"]
-$yellow┗━━>$lowhite"
-
+export PS1=""$yellow"["$green" %n "$yellow"] ["$green" %~ "$yellow"]$lowhite "
 # }}}
 
 # login manager
-
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
   startx
   logout
