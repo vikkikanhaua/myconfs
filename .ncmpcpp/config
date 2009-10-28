@@ -102,7 +102,9 @@ message_delay_time = "2"
 ## Note: colors can be nested.
 ##
 #
-song_list_format = "{%f}$R{%b -- %a | %l}"
+#song_list_format = "{%f}$R{%b -- %a | %l}"
+song_list_format = "{$3[%l]$9} {$5%a$9} {$6%t$9} {$5%b$9}"
+
 #
 #song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
 #
@@ -165,7 +167,9 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (25)[green]{a} (49)[red]{f}"
+#song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (25)[green]{a} (49)[red]{f}"
+song_columns_list_format = "(7)[black]{l} (28)[red]{a} (28)[yellow]{t} (28)[black]{b}"
+
 #
 ##### various settings #####
 #
@@ -192,7 +196,7 @@ seek_time = "5"
 #
 autocenter_mode = "no"
 #
-progressbar_look = "━)"
+progressbar_look = "-)"
 #
 default_place_to_search_in = "database" (database/playlist)
 #
@@ -206,7 +210,7 @@ default_space_mode = "select" (add/select)
 #
 default_tag_editor_left_col = "dirs" (albums/dirs)
 #
-default_tag_editor_pattern = "%n - %t"
+default_tag_editor_pattern = "%a - %t"
 #
 header_visibility = "yes"
 #
@@ -292,7 +296,7 @@ state_line_color = "black"
 #
 state_flags_color = "red"
 #
-main_window_color = "black"
+main_window_color = "white"
 #
 color1 = "white"
 #

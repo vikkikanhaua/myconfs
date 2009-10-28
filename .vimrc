@@ -12,10 +12,12 @@ set expandtab
 set foldmethod=syntax
 set history=50
 set incsearch
+set ignorecase
+set smartcase
 set mouse=v
 set nobackup
 set nocompatible
-set nohlsearch
+set hlsearch
 set nomousehide
 set nowrap
 set number
@@ -24,7 +26,7 @@ set shiftwidth=2
 set shortmess+=r
 set showmode
 set showcmd
-set showtabline=0
+set showtabline=1
 set smartindent
 set smarttab
 set title

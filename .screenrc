@@ -24,8 +24,9 @@ terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # }}}
 
+backtick 1 1800 1800 bday
 
-hardstatus alwayslastline "%{= dd}%-w%{+u}%{G}%n %t%{-}%{-}%+w %=%{= dR}%{-}"
+hardstatus alwayslastline "%{= dd}%-w%{+u}%{G}%n %t%{-}%{-}%+w %=%{= dR}%{-}%{W}%1`%{-}"
 
 
 # Banish screen 0, it sucks {{{

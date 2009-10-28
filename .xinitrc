@@ -7,7 +7,6 @@ errorlog="$HOME/.xsession-errors"
 if ( cp /dev/null "$errorlog" 2> /dev/null ); then
   chmod 600 "$errorlog"
   exec > "$errorlog" 2>&1
-  break
 fi
 # }}}
 
@@ -15,7 +14,7 @@ export OOO_FORCE_DESKTOP="gnome" &
 
 #Esetroot -s ~/Pictures/`ls ~/Pictures | sort -R | line` &
 
-Esetroot -s ~/Pictures/mypattern.png &
+Esetroot -s ~/Pictures/skeleton_wallpaper_by_icoeph.jpg &
 
 ~/.bin/dzonky &
 

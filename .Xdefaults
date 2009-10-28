@@ -1,51 +1,76 @@
 ! urxvt settings
-URxvt.background   : #101010
-URxvt.foreground   : #f2f2f2
-!URxvt.font         : xft:Inconsolata-12:Medium
-URxvt.font         : -*-dina-medium-r-normal-*-13-*-*-*-*-*-iso8859-*
-URxvt.boldFont     : -*-dina-bold-r-normal-*-13-*-*-*-*-*-iso8859-*
-URxvt.transparent  : true
-URxvt.scrollBar    : False
-!URxvt.internalBorder: 0
-!URxvt.externalBorder: 0
-!URxvt.borderColor  : #272727
-URxvt.pointerBlank : true
-Urxvt.urgentOnBell : true
-Urxvt.modifier	   : alt
-URxvt.shading      : 100
-URxvt.fading       : 50
-URxvt.saveLines    : 10000
-URxvt.cursorColor  : #cccccc
-!URxvt.inheritPixmap: false
-URxvt*cursorBlink:   false
-URxvt*dynamicColors: on
+urxvt.termName:  rxvt-256color
+urxvt.background   : #101010
+urxvt.foreground   : #f2f2f2
+!urxvt.font         : xft:Inconsolata-12:Medium
+urxvt.font         : -*-dina-medium-r-normal-*-13-*-*-*-*-*-iso8859-*
+urxvt.boldFont     : -*-dina-bold-r-normal-*-13-*-*-*-*-*-iso8859-*
+urxvt.transparent  : true
+urxvt.scrollBar    : False
+urxvt.secondaryScroll:    true
+!urxvt.internalBorder: 0
+!urxvt.externalBorder: 0
+!urxvt.borderColor  : #272727
+urxvt.pointerBlank : true
+urxvt.urgentOnBell : true
+urxvt.modifier	   : alt
+urxvt.shading      : 30
+urxvt.fading       : 50
+urxvt.saveLines    : 10000
+urxvt.cursorColor  : #DCDCCC
+!urxvt.inheritPixmap: false
+urxvt*cursorBlink:   false
+urxvt*dynamicColors: on
  
-URxvt.perl-ext-common : default,matcher
-URxvt.urlLauncher     : /usr/bin/firefox
-URxvt.matcher.button  : 1 
+urxvt.perl-ext-common : default,matcher
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+urxvt.cutchars:         `()'*<>[]{|}"
+urxvt*cutchars:         `"()'*<>[]{|}
+urxvt.urlLauncher     : /usr/bin/firefox
+urxvt.matcher.button  : 1 
 
 !colors
 !black
-URxvt*color0:           #676767
-URxvt*color8:	        #757575
+!urxvt*color0:           #676767
+!urxvt*color8:	        #757575
 !red
-URxvt*color1:	        #EA6868
-URxvt*color9:	        #FF7272
+!urxvt*color1:	        #EA6868
+!urxvt*color9:	        #FF7272
 !green
-URxvt*color2:	        #ABCB8D
-URxvt*color10:	        #AFD78A
+!urxvt*color2:	        #ABCB8D
+!urxvt*color10:	        #AFD78A
 !yellow
-URxvt*color3:	        #E8AE5B
-URxvt*color11:	        #FFA75D
+!urxvt*color3:	        #E8AE5B
+!urxvt*color11:	        #FFA75D
 !blue
-URxvt*color4:	        #191970
-URxvt*color12:	        #67CDE9
+!urxvt*color4:	        #191970
+!urxvt*color12:	        #67CDE9
 !magenta
-URxvt*color5:	        #E2BAF1
-URxvt*color13:	        #ECAEE9
+!urxvt*color5:	        #E2BAF1
+!urxvt*color13:	        #ECAEE9
 !cyan
-URxvt*color6:	        #21F1EA
-URxvt*color14:	        #36FFFC
+!urxvt*color6:	        #21F1EA
+!urxvt*color14:	        #36FFFC
 !white
-URxvt*color7:	        #F1F1F1
-URxvt*color15:	        #FFFFFF
+!urxvt*color7:	        #F1F1F1
+!urxvt*color15:	        #FFFFFF
+
+*color0: #262729
+*color8: #554444
+
+*color0: #3d352a
+*color1: #cd5c5c
+*color2: #86af80
+*color3: #e8ae5b
+*color4: #6495ed
+*color5: #deb887
+*color6: #b0c4de
+*color7: #bbaa99
+*color8: #554444
+*color9: #cc5533
+*color10: #88aa22
+*color11: #ffa75d
+*color12: #87ceeb
+*color13: #996600
+*color14: #b0c4de
+*color15: #ddccbb
