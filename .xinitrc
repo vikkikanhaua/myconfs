@@ -12,9 +12,7 @@ fi
 
 export OOO_FORCE_DESKTOP="gnome" &
 
-#Esetroot -s ~/Pictures/`ls ~/Pictures | sort -R | line` &
-
-Esetroot -s ~/Pictures/skeleton_wallpaper_by_icoeph.jpg &
+Esetroot -s ~/Pictures/`ls ~/Pictures | sort -R | line` &
 
 ~/.bin/dzonky &
 

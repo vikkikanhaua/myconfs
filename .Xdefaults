@@ -1,5 +1,4 @@
 ! urxvt settings
-urxvt.termName:  rxvt-256color
 urxvt.background   : #101010
 urxvt.foreground   : #f2f2f2
 !urxvt.font         : xft:Inconsolata-12:Medium
