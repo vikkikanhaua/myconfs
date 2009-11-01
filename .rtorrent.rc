@@ -31,7 +31,7 @@ schedule = watch_directory,300,900,"load=~/downloads/*.torrent"
 #schedule = untied_directory,5,5,stop_untied=
 #system.method.set_key = event.download.finished,d.close=,"d.erase="
 
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,~/torrents/;"
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,~/torrents/"
 
 # Close torrents when diskspace is low.
 #schedule = low_diskspace,5,60,close_low_diskspace=100M

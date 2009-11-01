@@ -80,6 +80,7 @@ nnoremap q? <Nop>
 
 " 'transpose' key
 nmap t xp
+map ; :
 
 " }}}
 

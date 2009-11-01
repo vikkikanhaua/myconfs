@@ -1,7 +1,7 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
 set "editor=urxvt -name \"DeepThought\" -e vim"
-set guioptions=rbB
+set guioptions=rb
 set popups=2
 set runtimepath=/home/vikki/.vimperator
 set titlestring=Firefox
@@ -9,7 +9,7 @@ set newtab=all
 set showtabline=0
 set wildmode=list:longest,full
 set wildoptions=auto
-colorscheme seaweed
+colorscheme zenburn
 source! /home/vikki/.vimperatorrc.local
 
 " vim: set ft=vimperator:
