@@ -4,8 +4,15 @@
 """"""""""""
 
 colorscheme slate
+noremap <f1> :bprev<CR>
+noremap <f2> :bnext<CR>
+:let g:buftabs_only_basename=1 
+set laststatus=2
+:let g:buftabs_in_statusline=1
+:let g:buftabs_active_highlight_group="Visual"
 
-" Main options {{{
+" Main options {{{ 
+set t_Co=256
 set autoindent
 set backspace=indent,eol,start
 set expandtab
@@ -26,7 +33,7 @@ set shiftwidth=2
 set shortmess+=r
 set showmode
 set showcmd
-set showtabline=1
+set showtabline=0
 set smartindent
 set smarttab
 set title
