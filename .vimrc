@@ -12,7 +12,7 @@ set laststatus=2
 :let g:buftabs_active_highlight_group="Visual"
 
 " Main options {{{ 
-set t_Co=256
+" set t_Co=256
 set autoindent
 set backspace=indent,eol,start
 set expandtab

@@ -15,7 +15,10 @@ source! /home/vikki/.vimperatorrc.local
 
 map ; :
 
-" RSS feed button
+" buftabs stuff
+hi BufTabSelected                       color: #8B795E;
+
+" RSS feed button {{{
 javascript <<EOF
 (function(){
   var feedPanel = document.createElement("statusbarpanel");
@@ -26,5 +29,6 @@ javascript <<EOF
   .insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
+" }}}
 
 " vim: set ft=vimperator:
