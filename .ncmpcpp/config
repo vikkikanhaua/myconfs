@@ -251,7 +251,7 @@ regular_expressions = "extended" (basic/extended)
 ##
 #ignore_leading_the = "no"
 #
-block_search_constraints_change_if_items_found = "no"
+block_search_constraints_change_if_items_found = "yes"
 #
 #mouse_support = "yes"
 #

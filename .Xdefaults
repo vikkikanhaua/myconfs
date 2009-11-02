@@ -1,11 +1,11 @@
 ! urxvt settings
 urxvt.background   : #101010
-urxvt.foreground   : #f2f2f2
+urxvt.foreground   : #fffff2
 !urxvt.font         : xft:Inconsolata-12:Medium
 urxvt.font         : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
-urxvt.boldFont     : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
+urxvt.boldFont     : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
 urxvt.transparent  : true
-urxvt.scrollBar    : False
+urxvt.scrollBar    : false
 urxvt.secondaryScroll:    true
 !urxvt.internalBorder: 0
 !urxvt.externalBorder: 0
@@ -18,19 +18,17 @@ urxvt.fading       : 50
 urxvt.saveLines    : 10000
 urxvt.cursorColor  : #DCDCCC
 !urxvt.inheritPixmap: false
-urxvt*cursorBlink:   false
-urxvt*dynamicColors: on
+urxvt.cursorBlink  : false
+urxvt.dynamicColors: on
  
 urxvt.perl-ext-common : default,matcher
-urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt.cutchars:         `()'*<>[]{|}"
-urxvt*cutchars:         `"()'*<>[]{|}
+urxvt.perl-lib        : /usr/lib/urxvt/perl/
 urxvt.urlLauncher     : /usr/bin/firefox
 urxvt.matcher.button  : 1 
 
 !colors
 !black
-!urxvt*color0:           #676767
+!urxvt*color0:          #676767
 !urxvt*color8:	        #757575
 !red
 !urxvt*color1:	        #EA6868
