@@ -4,7 +4,7 @@
 import XMonad
 import System.IO
 import XMonad.Prompt
-import XMonad.Prompt.RunOrRaise
+import XMonad.Prompt.Shell
 import XMonad.ManageHook
 import XMonad.Operations
 
@@ -18,6 +18,7 @@ import XMonad.Hooks.EwmhDesktops
 -- Utils --
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Scratchpad
 
 -- Layout --
 import XMonad.Layout.SimpleFloat
@@ -25,6 +26,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Accordion
 import XMonad.Layout.ResizableTile
+--import XMonad.Layout.Spacing
 
 -- Extra --
 import XMonad.Actions.CycleWS
@@ -35,7 +37,6 @@ import qualified Data.Map as M
 
 import Graphics.X11.Xlib
 import Data.Char
-import Data.Bits ((.|.))
 
 import System.Exit
 
@@ -64,12 +65,10 @@ urgentColor          = "#ffc000"
 myManageHook = composeAll [
     className =? "MPlayer" --> doFloat,
     className =? "Gimp" --> doFloat,
-    className =? "Vncviewer" --> doFloat,
     title     =? "Downloads" --> doFloat,
     className =? "Vlc" --> doFloat,
     title     =? "Shiretoko" --> doF (W.shift "web"),
     title     =? "Downloads" --> doF (W.shift "down"),
-    title     =? "Deluge" --> doF (W.shift "down"),
     className =? "XCalc" --> doFloat
     ]
     
@@ -97,6 +96,20 @@ myXPConfig = defaultXPConfig
 	, borderColor = lightBackgroundColor
 	}
 
+-- manage the scratchpad
+manageScratchPad :: ManageHook
+manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
+
+  where
+
+    -- height, width as % screensize
+    h = 0.4
+    w = 0.6
+
+    -- top center
+    t = 0
+    l = (1 - w) / 2
+
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
@@ -106,9 +119,9 @@ myPP h = defaultPP
                  , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
                  , ppSep = " ^fg(grey40)^r(2x10)^fg() "
                  , ppUrgent = wrap "!^fg(#e9c789)^p()" "^p()^fg()"
-         		 , ppWsSep = " "
-		         , ppLayout = dzenColor "grey80" "" .
-		  		       (\x -> case x of
+       		 , ppWsSep = " "
+	         , ppLayout = dzenColor "grey80" "" .
+  		       (\x -> case x of
                             "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
                             "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
                             "Accordion" -> "Accordion"
@@ -124,8 +137,9 @@ myPP h = defaultPP
 
 -- Define layout list
 myLayout = avoidStruts 
+--           $ spacing 2
            $ smartBorders 
-           $ ewmhDesktopsLayout 
+           $ onWorkspace "term" simpleFloat
            $ onWorkspaces ["web","screen"] Full 
            $ (Mirror tiled ||| tiled ||| Full ||| Accordion ||| simpleFloat )
   where
@@ -152,6 +166,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_e     ),             spawn "evince")
+      , ((modMask,                  xK_g     ),             spawn "gimp")
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc --no-status prev")
@@ -165,11 +180,10 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((0 , 0x1008ff1b                     ),             spawn "firefox") 
       , ((modMask,                  xK_f     ),             spawn "/home/vikki/.bin/favsong") 
       , ((modMask,                  xK_d     ),             spawn "eject -T") 
-      , ((modMask,                  xK_w     ),             spawn "deluge") 
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
       
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
-      , ((modMask,                  xK_p     ),             runOrRaisePrompt myXPConfig)
+      , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
 --      , ((modMask,                  xK_Up    ),             nextWS)
 --      , ((modMask,                  xK_Down  ),             prevWS)
 -- layouts
@@ -179,14 +193,15 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 -- floating layer stuff
       , ((modMask,               xK_t     ),                withFocused $ windows . W.sink)
-
+      , ((modMask,               xK_s     ),                scratchPad)
+      
 -- focus
       , ((modMask,               xK_Tab   ),                windows W.focusDown)
       , ((modMask .|. shiftMask, xK_Tab   ),                windows W.focusUp)
       , ((modMask,               xK_m     ),                windows W.focusMaster)
 
 -- swapping
-      , ((modMask .|. shiftMask, xK_Return),                windows W.swapMaster)
+      , ((modMask .|. shiftMask, xK_Return),                windows W.shiftMaster)
       , ((modMask .|. shiftMask, xK_j     ),                windows W.swapDown  )
       , ((modMask .|. shiftMask, xK_k     ),                windows W.swapUp    )
 
@@ -207,6 +222,10 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
+    where
+      
+      scratchPad = scratchpadSpawnActionTerminal "urxvt"
+      
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 14 -w 670 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
@@ -216,8 +235,8 @@ statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 14 -w 670 -e '' -fn '-*-te
 main = do 
 	bar <- spawnPipe statusBarCmd1 
         xmonad $ withUrgencyHook NoUrgencyHook
-               $ defaultConfig  
-          	 	{ manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
+               $ ewmh defaultConfig  
+          	 	{ manageHook = manageDocks <+> myManageHook <+> manageScratchPad <+> manageHook defaultConfig
           	 	 , workspaces = ["term","web","screen","down","else"]
           	 	 , layoutHook = myLayout
           	 	 , logHook = dynamicLogWithPP $ myPP bar

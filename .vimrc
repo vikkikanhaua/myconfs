@@ -4,10 +4,10 @@
 """"""""""""
 
 colorscheme slate
-noremap <f1> :bnext<CR>
 
 " Main options {{{ 
 " set t_Co=256
+set nocompatible
 set autoindent
 set backspace=indent,eol,start
 set expandtab
@@ -18,7 +18,6 @@ set ignorecase
 set smartcase
 set mouse=v
 set nobackup
-set nocompatible
 set hlsearch
 set nomousehide
 set nowrap
@@ -28,7 +27,7 @@ set shiftwidth=2
 set shortmess+=r
 set showmode
 set showcmd
-set showtabline=0
+set showtabline=1
 set smartindent
 set smarttab
 set title
@@ -82,7 +81,11 @@ nnoremap q? <Nop>
 
 " 'transpose' key
 nmap t xp
+
+" Custom keys
 map ; :
+nnoremap <space> za
+noremap <f1> :bnext<CR>
 
 " }}}
 
