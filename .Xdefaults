@@ -1,56 +1,50 @@
-! urxvt settings
-urxvt.background   : #101010
-urxvt.foreground   : #fffff2
-!urxvt.font         : xft:Inconsolata-12:Medium
-urxvt.font         : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
-urxvt.boldFont     : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
-urxvt.transparent  : true
-urxvt.scrollBar    : false
-urxvt.secondaryScroll:    true
-!urxvt.internalBorder: 0
-!urxvt.externalBorder: 0
-!urxvt.borderColor  : #272727
-urxvt.pointerBlank : true
-urxvt.urgentOnBell : true
-urxvt.modifier	   : alt
-urxvt.shading      : 30
-urxvt.fading       : 50
-urxvt.saveLines    : 10000
-urxvt.cursorColor  : #DCDCCC
-!urxvt.inheritPixmap: false
-urxvt.cursorBlink  : false
-urxvt.dynamicColors: on
+*background   : #101010
+*foreground   : #fffff2
+*font         : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
+*boldFont     : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
+*transparent  : true
+*scrollBar    : false
+*secondaryScroll:    true
+*pointerBlank : true
+*urgentOnBell : true
+*modifier	   : alt
+*shading      : 30
+*fading       : 50
+*saveLines    : 10000
+*cursorColor  : #DCDCCC
+*cursorBlink  : false
+*dynamicColors: on
  
-urxvt.perl-ext-common : default,matcher
-urxvt.perl-lib        : /usr/lib/urxvt/perl/
-urxvt.urlLauncher     : /usr/bin/firefox
-urxvt.matcher.button  : 1 
+*perl-ext-common : default,matcher
+*perl-lib        : /usr/lib/*perl/
+*urlLauncher     : /usr/bin/firefox
+*matcher.button  : 1 
 
 !colors
 !black
-!urxvt*color0:          #676767
-!urxvt*color8:	        #757575
+!*color0:               #676767
+!*color8:	        #757575
 !red
-!urxvt*color1:	        #EA6868
-!urxvt*color9:	        #FF7272
+!*color1:	        #EA6868
+!*color9:	        #FF7272
 !green
-!urxvt*color2:	        #ABCB8D
-!urxvt*color10:	        #AFD78A
+!*color2:	        #ABCB8D
+!*color10:	        #AFD78A
 !yellow
-!urxvt*color3:	        #E8AE5B
-!urxvt*color11:	        #FFA75D
+!*color3:	        #E8AE5B
+!*color11:	        #FFA75D
 !blue
-!urxvt*color4:	        #191970
-!urxvt*color12:	        #67CDE9
+!*color4:	        #191970
+!*color12:	        #67CDE9
 !magenta
-!urxvt*color5:	        #E2BAF1
-!urxvt*color13:	        #ECAEE9
+!*color5:	        #E2BAF1
+!*color13:	        #ECAEE9
 !cyan
-!urxvt*color6:	        #21F1EA
-!urxvt*color14:	        #36FFFC
+!*color6:	        #21F1EA
+!*color14:	        #36FFFC
 !white
-!urxvt*color7:	        #F1F1F1
-!urxvt*color15:	        #FFFFFF
+!*color7:	        #F1F1F1
+!*color15:	        #FFFFFF
 
 *color0: #3d352a
 *color1: #cd5c5c

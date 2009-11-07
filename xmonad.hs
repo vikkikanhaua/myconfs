@@ -80,7 +80,7 @@ myFocusedBorderColor = "#000000"
 borderWidth' :: Dimension
 borderWidth' = 1
 
-myTerminal = "urxvt"
+myTerminal = "urxvtc"
 
 myXPConfig :: XPConfig
 myXPConfig = defaultXPConfig
@@ -102,7 +102,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
   where
 
     -- height, width as % screensize
-    h = 0.2
+    h = 0.4
     w = 0.6
 
     -- top center

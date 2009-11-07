@@ -12,6 +12,8 @@ fi
 
 export OOO_FORCE_DESKTOP="gnome" &
 
+urxvtd -q -f -o &
+
 Esetroot -s ~/Pictures/`ls ~/Pictures | sort -R | line` &
 
 ~/.bin/dzonky &
