@@ -112,25 +112,29 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
-  { ppCurrent = wrap "^fg(#cd5c5c)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
---  , ppVisible = wrap "^bg(grey30)^fg(grey75)^p(1)" "^p(1)^fg()^bg()"
-  , ppHidden = wrap "" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
-  , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
-  , ppSep = " ^fg(grey40)^r(2x10)^fg() "
-  , ppUrgent = wrap "!^fg(#e9c789)^p()" "^p()^fg()"
-  , ppWsSep = " "
-  , ppLayout = dzenColor "grey80" "" .
+  { ppCurrent = wrap "^fg(#cd5c5c)^bg(#303030)" "^fg()^bg()" . pad
+  , ppHidden = wrap "^fg(grey70)" "^fg()" . noScratchPad
+  , ppHiddenNoWindows = wrap "^fg(#456030)" "^fg()" . namedOnly
+  , ppSep = ""
+  , ppUrgent = wrap "!^fg(#e9c789)" "^fg()"
+  , ppWsSep = ""
+  , ppLayout = dzenColor "grey30" "" .
       (\x -> case x of
-        "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
-        "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
-        "Accordion" -> "Accordion"
-        "Simple Float" -> "float"
-        "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm)"
+        "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm) "
+        "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm) "
+        "Accordion" -> "Accordion "
+        "Simple Float" -> "float "
+        "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm) "
       )
---  , ppTitle   = dzenColor "white" "" . wrap "< " " >" 
-  , ppTitle = dzenColor "#fffff0" "" .shorten 500
+  , ppTitle = dzenColor "#fffff0" "" . shorten 450
   , ppOutput = hPutStrLn h
   }
+
+  where
+
+    noScratchPad ws = if all (`elem` ws) "NSP" then "" else pad ws
+    
+    namedOnly ws = if any (`elem` ws) ['a'..'z'] then pad ws else ""
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
