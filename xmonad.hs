@@ -1,5 +1,3 @@
----------------------------------------------------------------------------------------------------------------------------------------------
-
 -- Main --
 import XMonad
 import System.IO
@@ -13,7 +11,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers 
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.EwmhDesktops
 
 -- Utils --
 import XMonad.Util.Run(spawnPipe)
@@ -63,14 +60,14 @@ urgentColor          = "#ffc000"
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myManageHook = composeAll [
-    className =? "MPlayer" --> doFloat,
-    className =? "Gimp" --> doFloat,
-    title     =? "Downloads" --> doFloat,
-    className =? "Vlc" --> doFloat,
-    title     =? "Shiretoko" --> doF (W.shift "web"),
-    title     =? "Downloads" --> doF (W.shift "down"),
-    className =? "XCalc" --> doFloat
-    ]
+  className =? "MPlayer" --> doFloat,
+  className =? "Gimp" --> doFloat,
+  title     =? "Downloads" --> doFloat,
+  className =? "Vlc" --> doFloat,
+  title     =? "Shiretoko" --> doF (W.shift "web"),
+  title     =? "Downloads" --> doF (W.shift "down"),
+  className =? "XCalc" --> doFloat
+  ]
     
 tiled = ResizableTall 1 (2/100) (1/2) []
 
@@ -83,18 +80,20 @@ myFocusedBorderColor = "#000000"
 borderWidth' :: Dimension
 borderWidth' = 1
 
+myTerminal = "urxvt"
+
 myXPConfig :: XPConfig
 myXPConfig = defaultXPConfig
-	{ font        = myFont
-	, bgColor     = backgroundColor
-	, fgColor     = textColor
-	, fgHLight    = lightTextColor
-	, bgHLight    = lightBackgroundColor
-	, position    = Bottom
-        , height      = 16
-        , historySize = 100
-	, borderColor = lightBackgroundColor
-	}
+  { font        = myFont
+  , bgColor     = backgroundColor
+  , fgColor     = textColor
+  , fgHLight    = lightTextColor
+  , bgHLight    = lightBackgroundColor
+  , position    = Bottom
+  , height      = 16
+  , historySize = 100
+  , borderColor = lightBackgroundColor
+  }
 
 -- manage the scratchpad
 manageScratchPad :: ManageHook
@@ -103,7 +102,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
   where
 
     -- height, width as % screensize
-    h = 0.4
+    h = 0.2
     w = 0.6
 
     -- top center
@@ -113,56 +112,53 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
-                 { ppCurrent = wrap "^fg(#cd5c5c)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
---                 , ppVisible = wrap "^bg(grey30)^fg(grey75)^p(1)" "^p(1)^fg()^bg()"
-                 , ppHidden = wrap "" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
-                 , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
-                 , ppSep = " ^fg(grey40)^r(2x10)^fg() "
-                 , ppUrgent = wrap "!^fg(#e9c789)^p()" "^p()^fg()"
-       		 , ppWsSep = " "
-	         , ppLayout = dzenColor "grey80" "" .
-  		       (\x -> case x of
-                            "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
-                            "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
-                            "Accordion" -> "Accordion"
-                            "Simple Float" -> "float"
-                            "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm)"
-                       )
---                 , ppTitle   = dzenColor "white" "" . wrap "< " " >" 
-                 , ppTitle = dzenColor "#fffff0" "" .shorten 500
-                 , ppOutput = hPutStrLn h
-                 }
+  { ppCurrent = wrap "^fg(#cd5c5c)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+--  , ppVisible = wrap "^bg(grey30)^fg(grey75)^p(1)" "^p(1)^fg()^bg()"
+  , ppHidden = wrap "" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+  , ppHiddenNoWindows = wrap "^fg(#456030)^p(1)" "^p(1)^fg()" . \wsId -> if (':' `elem` wsId) then drop 2 wsId else wsId
+  , ppSep = " ^fg(grey40)^r(2x10)^fg() "
+  , ppUrgent = wrap "!^fg(#e9c789)^p()" "^p()^fg()"
+  , ppWsSep = " "
+  , ppLayout = dzenColor "grey80" "" .
+      (\x -> case x of
+        "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm)"
+        "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm)"
+        "Accordion" -> "Accordion"
+        "Simple Float" -> "float"
+        "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm)"
+      )
+--  , ppTitle   = dzenColor "white" "" . wrap "< " " >" 
+  , ppTitle = dzenColor "#fffff0" "" .shorten 500
+  , ppOutput = hPutStrLn h
+  }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Define layout list
 myLayout = avoidStruts 
---           $ spacing 2
            $ smartBorders 
            $ onWorkspace "term" simpleFloat
            $ onWorkspaces ["web","screen"] Full 
            $ (Mirror tiled ||| tiled ||| Full ||| Accordion ||| simpleFloat )
   where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled      = Tall nmaster delta ratio
+    -- default tiling algorithm partitions the screen into two panes
+    tiled      = Tall nmaster delta ratio
 
-     -- The default number of windows in the master pane
-     nmaster    = 1
+    -- The default number of windows in the master pane
+    nmaster    = 1
 
-     -- Default proportion of screen occupied by master pane
-     ratio      = 1/2
+    -- Default proportion of screen occupied by master pane
+    ratio      = 1/2
 
-     -- Percent of screen to increment by when resizing panes
-     delta      = 3/100
+    -- Percent of screen to increment by when resizing panes
+    delta      = 3/100
      
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
-       [((modMask,                  xK_Return),             spawn "urxvt")
-      , ((0 , 0x1008ff2f                     ),             spawn "xscreensaver-command -lock")
-      , ((modMask .|. shiftMask,    xK_x     ),             spawn "xscreensaver-command -exit")
-      , ((modMask .|. shiftMask,    xK_r     ),             spawn "xscreensaver -no-splash")
+       [((modMask,                  xK_Return),             spawn myTerminal)
+      , ((0 , 0x1008ff2f                     ),             spawn "slock")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_e     ),             spawn "evince")
@@ -184,8 +180,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
---      , ((modMask,                  xK_Up    ),             nextWS)
---      , ((modMask,                  xK_Down  ),             prevWS)
+
 -- layouts
       , ((modMask,               xK_space ),                sendMessage NextLayout)
       , ((modMask .|. shiftMask, xK_space ),                setLayout $ XMonad.layoutHook conf)
@@ -224,7 +219,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     where
       
-      scratchPad = scratchpadSpawnActionTerminal "urxvt"
+      scratchPad = scratchpadSpawnActionTerminal myTerminal
       
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -235,16 +230,17 @@ statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 14 -w 670 -e '' -fn '-*-te
 main = do 
 	bar <- spawnPipe statusBarCmd1 
         xmonad $ withUrgencyHook NoUrgencyHook
-               $ ewmh defaultConfig  
-          	 	{ manageHook = manageDocks <+> myManageHook <+> manageScratchPad <+> manageHook defaultConfig
-          	 	 , workspaces = ["term","web","screen","down","else"]
-          	 	 , layoutHook = myLayout
-          	 	 , logHook = dynamicLogWithPP $ myPP bar
-          	 	 , modMask = mod4Mask    -- Rebind Mod to the Windows key
-          	 	 , normalBorderColor  = myNormalBorderColor
-          	 	 , focusedBorderColor = myFocusedBorderColor
-          	 	 , focusFollowsMouse  = myFocusFollowsMouse
-          	 	 , keys = keys'
-          	 	 }
+               $ defaultConfig
+                   { manageHook = manageDocks <+> myManageHook <+> manageScratchPad <+> manageHook defaultConfig
+          	   , workspaces = ["term","web","screen","down","else"]
+          	   , layoutHook = myLayout
+          	   , logHook = dynamicLogWithPP $ myPP bar
+          	   , modMask = mod4Mask    -- Rebind Mod to the Windows key
+          	   , normalBorderColor  = myNormalBorderColor
+          	   , focusedBorderColor = myFocusedBorderColor
+                   , terminal           = myTerminal
+          	   , focusFollowsMouse  = myFocusFollowsMouse
+          	   , keys = keys'
+          	   }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------

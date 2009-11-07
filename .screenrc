@@ -35,8 +35,8 @@ hardstatus alwayslastline "%{= dd}%-w%{B}%n %t%{-}%+w %=%{= dR}%{-}%{W}[ %2` ] [
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
-screen -t rtorrent 1 rtorrent
-screen -t $zsh 2
+screen -t torrents 1 rtorrent
+screen -t zsh 2 zsh
 # }}}
 
 

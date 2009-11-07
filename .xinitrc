@@ -20,6 +20,4 @@ xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-xscreensaver -no-splash & 
-
 exec ~/.xmonad/xmonad-x86_64-linux

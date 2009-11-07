@@ -58,16 +58,12 @@ fi
 
 if [[ $TERM =~ "screen" ]]; then
   set-title () {
-    if [[ $* == "zsh" ]]; then
-      builtin echo -ne "\ek\$$*\e\\"
-    else
-      builtin echo -ne "\ek$*\e\\"
-    fi
+    builtin echo -ne "\ek$*\e\\"
   }
  
   preexec () {
     if [[ -n $STY ]]; then
-      TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/$\1/;:x;q')/#*\/} 
+      TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
       set-title $TITLE
     fi
   }
