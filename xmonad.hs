@@ -59,16 +59,18 @@ urgentColor          = "#ffc000"
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-myManageHook = composeAll [
-  className =? "MPlayer" --> doFloat,
-  className =? "Gimp" --> doFloat,
-  title     =? "Downloads" --> doFloat,
-  className =? "Vlc" --> doFloat,
-  title     =? "Shiretoko" --> doF (W.shift "web"),
-  title     =? "Downloads" --> doF (W.shift "down"),
-  className =? "XCalc" --> doFloat
-  ]
+myManageHook = (composeAll . concat $
+  [ [className =? c                 --> doShift "web"    |  c    <- myWebs   ] -- move webs to web
+  , [className =? c                 --> doCenterFloat    |  c    <- myFloats ] -- float my floats
+  ]) <+> manageDocks <+> manageScratchPad
+
+  where
+
+    -- classnames
+    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As...","XFontSel"]
+    myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome"]
     
+
 tiled = ResizableTall 1 (2/100) (1/2) []
 
 myFocusFollowsMouse :: Bool
@@ -113,8 +115,8 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 myPP h = defaultPP 
   { ppCurrent = wrap "^fg(#cd5c5c)^bg(#303030)" "^fg()^bg()" . pad
-  , ppHidden = wrap "^fg(grey70)" "^fg()" . noScratchPad
-  , ppHiddenNoWindows = wrap "^fg(#456030)" "^fg()" . namedOnly
+  , ppHidden = wrap "^fg(#ddefdd)" "^fg()" . noScratchPad
+  , ppHiddenNoWindows = wrap "^fg(grey70)" "^fg()" . namedOnly
   , ppSep = ""
   , ppUrgent = wrap "!^fg(#e9c789)" "^fg()"
   , ppWsSep = ""
@@ -140,10 +142,9 @@ myPP h = defaultPP
 
 -- Define layout list
 myLayout = avoidStruts 
-           $ smartBorders 
            $ onWorkspace "term" simpleFloat
            $ onWorkspaces ["web","screen"] Full 
-           $ (Mirror tiled ||| tiled ||| Full ||| Accordion ||| simpleFloat )
+           $ ( smartBorders (Mirror tiled) ||| smartBorders tiled ||| Full ||| Accordion ||| noBorders simpleFloat )
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio
@@ -162,7 +163,7 @@ myLayout = avoidStruts
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
        [((modMask,                  xK_Return),             spawn myTerminal)
-      , ((0 , 0x1008ff2f                     ),             spawn "slock")
+      , ((0,                       0x1008ff2f),             spawn "slock")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_e     ),             spawn "evince")
@@ -170,15 +171,17 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc --no-status prev")
-      , ((0 , 0x1008ff19                     ),             spawn "mpc --no-status toggle")
+      , ((0,                       0x1008ff19),             spawn "mpc --no-status toggle")
+      , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
       , ((modMask .|. controlMask,  xK_s     ),             spawn "mpc --no-status stop")
       , ((modMask .|. controlMask,  xK_Right ),             spawn "mpc --no-status next")
       , ((modMask .|. controlMask,  xK_r     ),             spawn "mpc --no-status random")
-      , ((0 , 0x1008ff11                     ),             spawn "aumix -v-6")
-      , ((0 , 0x1008ff13                     ),             spawn "aumix -v+6")
-      , ((0 , 0x1008ff12                     ),             spawn "amixer set Master toggle")
-      , ((0 , 0x1008ff1b                     ),             spawn "firefox") 
-      , ((modMask,                  xK_f     ),             spawn "/home/vikki/.bin/favsong") 
+      , ((0,                       0x1008ff11),             spawn "aumix -v-6")
+      , ((0,                       0x1008ff13),             spawn "aumix -v+6")
+      , ((0,                       0x1008ff12),             spawn "amixer set Master toggle")
+      , ((0,                       0x1008ff1b),             spawn "firefox") 
+      , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
+      , ((modMask,                  xK_f     ),             spawn "favsong") 
       , ((modMask,                  xK_d     ),             spawn "eject -T") 
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
       
@@ -235,7 +238,7 @@ main = do
 	bar <- spawnPipe statusBarCmd1 
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
-                   { manageHook = manageDocks <+> myManageHook <+> manageScratchPad <+> manageHook defaultConfig
+                   { manageHook = myManageHook
           	   , workspaces = ["term","web","screen","down","else"]
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar

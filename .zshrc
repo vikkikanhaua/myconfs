@@ -100,6 +100,7 @@ bindkey '^[Od'   backward-word
 
 # prompt {{{ 
 color="$(echo -n '\e[0;35m')"
+color1="$(echo -n '\e[0;34m')"
 rst="$(echo -n '\e[0m')"
 export PS1="$rst┌─[$color %~ $rst]
 └─╼ "

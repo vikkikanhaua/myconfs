@@ -1,6 +1,6 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
-set "editor=urxvt -name \"DeepThought\" -e vim"
+set "editor=urxvt -e vim"
 set guioptions=rb
 set popups=2
 set runtimepath=/home/vikki/.vimperator
@@ -10,13 +10,9 @@ set showtabline=0
 set wildmode=list:longest,full
 set wildoptions=auto
 colorscheme zenburn
-loadplugins
 source! /home/vikki/.vimperatorrc.local
 
 map ; :
-
-" buftabs stuff
-hi BufTabSelected                       color: #8B795E;
 
 " RSS feed button {{{
 javascript <<EOF
