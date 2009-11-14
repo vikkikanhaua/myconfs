@@ -1,13 +1,14 @@
-*font         : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
-*boldFont     : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
+*font         : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+*boldFont     : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
 *transparent  : true
 *scrollBar    : false
 *secondaryScroll:    true
 *pointerBlank : true
 *urgentOnBell : true
-*modifier	   : alt
-*shading      : 30
-*fading       : 50
+*modifier     : alt
+*shading      : 100
+*inheritPixmap: true
+*fading       : 15
 *saveLines    : 10000
 *cursorColor  : #DCDCCC
 *cursorBlink  : false

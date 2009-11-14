@@ -50,8 +50,8 @@ set sort_aux            = reverse-last-date-received
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-public arch-general arch-commits xmonad
-mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad +arch-commits
+subscribe arch-announce arch-dev-public arch-general arch-commits vim xmonad
+mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad +arch-commits +vim
 # }}}
 
 ##
@@ -69,7 +69,6 @@ alternative_order text/plain text/enriched text/html              # save html fo
 set pager_stop                                                  # don't go to next message automatically
 set menu_scroll                                                 # scroll in menus
 set smart_wrap                                                  # don't split words
-set tilde                                                       # show tildes like in vim
 set pager_index_lines   = 10                                    # number of index lines to show
 set pager_context       = 5                                     # number of context lines to show
 set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot quote blocks
@@ -81,8 +80,8 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 
 set alias_format        = "%4n %t %-20a %r"
 set date_format         = "!%d/%m/%y at %H:%M %Z"
-set index_format        = "%3C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-17.17F %s"
-set status_format       = "┗━ %r ━ %v <━> Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? %?p? ━━━ %p waiting to send ? ━━ %>─(%s)━(%P)━━┛"
+set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-17.17F %s"
+set status_format       = "┗━[ %r ]━[ %v ]━ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? %?p? ━━━ %p waiting to send ? ━━%>━[ %s ]━[ %P ]━━┛"
 set forward_format      = "Fwd: %s"
 # }}}
 
