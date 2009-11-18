@@ -18,12 +18,10 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Scratchpad
 
 -- Layout --
-import XMonad.Layout.SimpleFloat
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Accordion
 import XMonad.Layout.ResizableTile
---import XMonad.Layout.Spacing
 
 -- Extra --
 import XMonad.Actions.CycleWS
@@ -77,7 +75,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
 myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#000000"
+myFocusedBorderColor = "#ddeedd"
 
 borderWidth' :: Dimension
 borderWidth' = 1
@@ -142,9 +140,9 @@ myPP h = defaultPP
 
 -- Define layout list
 myLayout = avoidStruts 
-           $ onWorkspace "term" simpleFloat
+           $ smartBorders
            $ onWorkspaces ["web","screen"] Full 
-           $ ( smartBorders (Mirror tiled) ||| smartBorders tiled ||| Full ||| Accordion ||| noBorders simpleFloat )
+           $ Mirror tiled ||| tiled ||| Accordion
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio
