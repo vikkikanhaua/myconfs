@@ -16,4 +16,4 @@ override_utf8_locale yes
 mail_spool /home/vikki/Mail/INBOX/new
  
 TEXT
-[ ^fg(grey60)${new_mails /home/vikki/Mail/INBOX}^fg() new ][ ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg(grey70) ${mpd_vol}^fg() ][ ${if_up ppp0}^fg(grey70)${else}^fg(red)${endif}Network^fg() ][ ^fg(grey70)${time %A %d %b %H:%M} ^fg()]
+[ ^fg(grey60)${new_mails /home/vikki/Mail/INBOX}^fg() new ][ ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg(grey70) ${mpd_vol}^fg() ][${if_existing /sys/class/bluetooth/hci0}^fg(grey70) ^i(/home/vikki/.xmonad/dzen/bluetooth.xbm) |${endif} ${if_up ppp0}^fg(grey70)${else}^fg(red)${endif}ppp0^fg() ][ ^fg(grey70)${time %A %d %b %H:%M} ^fg()]

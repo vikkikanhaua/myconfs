@@ -7,7 +7,7 @@ set mbox                = +mbox
 set folder              = ~/Mail
 set spoolfile           = +/INBOX
 set header_cache        = ~/.hcache
-set record              = +/'[Gmail].Sent Mail'
+set record              = +/INBOX
 set postponed           = +/[Gmail].Drafts
 set maildir_trash       = yes
 # }}}
@@ -26,10 +26,12 @@ set sendmail            = "/usr/bin/msmtp"
 #####
 
 set allow_ansi
+set menu_scroll
 set check_new
 set fast_reply
 set sig_dashes
 set askcc
+set delete
 set wrap_search
 set confirmcreate       = yes
 set use_from            = yes
@@ -39,9 +41,9 @@ set copy                = yes
 set include             = yes
 set collapse_unread     = yes
 set status_chars        = "-*%A"
+set editor              = "vim +/^$"
 set locale              = "C"
 set ispell              = "aspell -e -c"
-set query_command       = "/usr/bin/mutt_vc_query '%s'"
 set sort                = threads
 set sort_aux            = reverse-last-date-received
 # }}}
@@ -50,8 +52,8 @@ set sort_aux            = reverse-last-date-received
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-public arch-general arch-commits vim xmonad
-mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad +arch-commits +vim
+subscribe arch-announce arch-dev-public arch-general arch-commits xmonad
+mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad +arch-commits
 # }}}
 
 ##
@@ -109,5 +111,5 @@ macro index h   "c?" "view folders"
 macro index B   "<limit>~b " "search message bodies"
 macro index I   "<change-folder>!<enter>" "go to Inbox"
 macro index P   "<pipe-message>cat > ~/" "save message as"
-macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o -c ~/.offlineimaprcui<enter>" "sync IMAP"
 # }}}

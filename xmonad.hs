@@ -37,16 +37,6 @@ import System.Exit
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-colLight       = "#8a999e"
-colDark        = "#343d55"
-colVeryDark    = "#000000"
-colTextLight   = "#ffffff"
-colTextDark    = "#bbbbbb"
-colBorderLight = colLight --"#77cc77"
-colBorderDark  = colDark
-
----------------------------------------------------------------------------------------------------------------------------------------------
-
 myFont               = "xft:DejaVu Sans:size=10"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
