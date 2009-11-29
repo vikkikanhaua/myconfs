@@ -68,7 +68,7 @@ myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#ddeedd"
 
 borderWidth' :: Dimension
-borderWidth' = 1
+borderWidth' = 2
 
 myTerminal = "urxvtc"
 
@@ -92,19 +92,19 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
   where
 
     -- height, width as % screensize
-    h = 0.4
-    w = 0.6
+    h = 0.3
+    w = 0.5
 
     -- top center
-    t = 0
-    l = (1 - w) / 2
+    t = 0.3
+    l = 0.1
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
-  { ppCurrent = wrap "^fg(#cd5c5c)^bg(#303030)" "^fg()^bg()" . pad
-  , ppHidden = wrap "^fg(#ddefdd)" "^fg()" . noScratchPad
-  , ppHiddenNoWindows = wrap "^fg(grey70)" "^fg()" . namedOnly
+  { ppCurrent = wrap "^fg(#ffe7ba)^bg(#382d22)" "^fg()^bg()" . pad
+  , ppHidden = wrap "^fg(#ddeedd)" "^fg()" . noScratchPad
+  , ppHiddenNoWindows = wrap "^fg(#382d22)" "^fg()" . namedOnly
   , ppSep = ""
   , ppUrgent = wrap "!^fg(#e9c789)" "^fg()"
   , ppWsSep = ""
@@ -131,8 +131,9 @@ myPP h = defaultPP
 -- Define layout list
 myLayout = avoidStruts 
            $ smartBorders
+           $ onWorkspace "term" Accordion
            $ onWorkspaces ["web","screen"] Full 
-           $ Mirror tiled ||| tiled ||| Accordion
+           $ Mirror tiled ||| tiled
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio

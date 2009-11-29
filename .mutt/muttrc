@@ -52,8 +52,8 @@ set sort_aux            = reverse-last-date-received
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-public arch-general arch-commits xmonad
-mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad +arch-commits
+subscribe arch-announce arch-dev-public arch-general xmonad
+mailboxes +INBOX +arch-announcement +arch-dev-public +arch-general +xmonad
 # }}}
 
 ##

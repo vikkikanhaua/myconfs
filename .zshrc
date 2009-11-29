@@ -26,17 +26,19 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 # }}}
 
-autoload -Uz compinit complist zutil
+autoload -Uz compinit complist zutil colors
 compinit
+colors
+
 
 # exports {{{
 export HISTFILE=~/.zsh_history
 export CC="colorgcc"
 export HISTSIZE=5000
+export BROWSER="firefox"
 export SAVEHIST=5000
 export EDITOR="vim"
 export PATH=$PATH:~/.bin
-#export MAIL=""
 # }}}
 
 setopt autocd extendedglob nomatch notify correctall hist_ignore_all_dups hist_ignore_space
@@ -56,25 +58,26 @@ if [ -f ~/.funcs ]; then
 fi
 # }}}
 
-if [[ $TERM =~ "screen" ]]; then
-  set-title () {
-    builtin echo -ne "\ek$*\e\\"
-  }
- 
-  preexec () {
-    if [[ -n $STY ]]; then
-      TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
-      set-title $TITLE
-    fi
-  }
+set-title () {
+  builtin echo -ne "\ek$*\e\\"
+}
 
-  precmd () { 
-    if [[ -n $STY ]]; then
-      TITLE=${0/#*\/} 
-      set-title $TITLE
-    fi
-  }
-fi
+preexec () {
+  if [[ -n $STY ]]; then
+    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
+    set-title $TITLE
+  fi
+}
+
+precmd () { 
+  local rts=$?
+  export PROMPT="`[ -w \`pwd\` ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %2~ `echo -e "%{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
+
+  if [[ -n $STY ]]; then
+    TITLE=${0/#*\/} 
+    set-title $TITLE
+  fi
+}
 
 # keybindings {{{
 bindkey -v
@@ -96,14 +99,6 @@ bindkey '^k'     kill-whole-line
 bindkey '^y'     .vi-yank-whole-line
 bindkey '^[Oc'   forward-word
 bindkey '^[Od'   backward-word
-# }}}
-
-# prompt {{{ 
-color="$(echo -n '\e[0;35m')"
-color1="$(echo -n '\e[0;34m')"
-rst="$(echo -n '\e[0m')"
-export PS1="$rst┌─[$color %~ $rst]
-└─╼ "
 # }}}
 
 # login manager {{{

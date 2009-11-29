@@ -18,7 +18,7 @@ bell_msg ""                      # For urgency hints
 # }}}
 
 
-# Define terminal capibilities {{{
+# Define terminal capabilities {{{
 
 terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
