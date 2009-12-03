@@ -65,7 +65,7 @@ editor_option_auto_para_formatting=0
 editor_option_typewriter_wrap=0
 editor_edit_confirm_save=1
 editor_syntax_highlighting=1
-nice_rotating_dash=1
+nice_rotating_dash=0
 horizontal_split=1
 
 [Layout]
