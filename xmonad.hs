@@ -158,6 +158,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_e     ),             spawn "evince")
       , ((modMask,                  xK_g     ),             spawn "gimp")
       , ((modMask,                  xK_o     ),             spawn "ooffice")
+      , ((modMask,                  xK_r     ),             spawn "ranwall")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc --no-status prev")
       , ((0,                       0x1008ff19),             spawn "mpc --no-status toggle")
