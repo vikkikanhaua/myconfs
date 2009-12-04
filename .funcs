@@ -1,0 +1,207 @@
+#!/bin/zsh
+
+# extract depending on extension 
+x() {    
+  [ $# -lt 1 ] && return 1
+  for file in "$@"; do
+    case "$file" in
+      *.tbz2|*.tar.bz2) tar xvjf "$file"   ;;
+      *.tgz|*.tar.gz)   tar xvzf "$file"   ;;
+      *.tar)            tar xvf "$file"    ;;
+      *.gz)             gunzip "$file"     ;;
+      *.bz2)            bunzip2 "$file"    ;;
+      *.zip)            unzip "$file"      ;;
+      *.rar)            unrar x "$file"    ;;
+      *.Z)              uncompress "$file" ;;
+      *.7z)             7z x "$file"       ;;
+      *)                echo "usage: x [archive]" ;;
+    esac
+  done
+}
+
+# make a thumb %20 the size of a pic 
+thumbit() {
+  for pic in "$@"; do
+    case "$pic" in
+      *.jpg)  thumb="$(echo "$pic" | sed s/.jpg/-thumb.jpg/g)"              ;;
+      *.jpeg) thumb="$(echo "$pic" | sed s/.jpeg/-thumb.jpeg/g)"            ;;
+      *.png)  thumb="$(echo "$pic" | sed s/.png/-thumb.png/g)"              ;;
+      *)      echo "usage: thumbit [file{.jpg,.jpeg,.png}]" && return 1     ;;
+    esac
+    cp "$pic" "$thumb"
+    mogrify -resize 20% "$thumb"
+  done
+}
+
+# grep by paragraph 
+grepp() {
+  if [ $# -ne 2 ]; then
+    echo "usage: grepp [term] [file]"
+  else
+    perl -00ne "print if /$1/i" < $2
+  fi
+}
+
+# recursively fix dir/file permissions on a given directory 
+fix() {
+  if [ -d "$1" ]; then
+    if [ "$1" != "/muzic" ]; then
+      find "$1" -type d -exec chmod 755 {} \;
+      find "$1" -type f -exec chmod 644 {} \;
+    else
+      sudo chown -fR root:users "$1" ;
+      sudo find "$1" -type d -exec chmod -f 1775 '{}' \; 
+      sudo find "$1" -type f -exec chmod -f 1664 '{}' \;
+    fi 
+  else
+    echo "usage: fix [directory]"
+  fi
+}
+
+# manage services 
+service() {
+  if [ $# -lt 2 ]; then
+    echo "usage: service [service] [stop|start|restart]"
+  else
+    sudo /etc/rc.d/$1 $2
+  fi
+}
+
+# open a GUI app from CLI 
+open() {
+  if [ -z $1 ]; then
+    echo "usage: open [application]"
+  else
+    $1 &>/dev/null &
+  fi
+}
+
+# take a timestamped screenshot 
+shot(){
+  scrot -q 90 -t 20 -cd 3 "$HOME/Pictures/screenshots/desktop_$(date +%y%m%d_%H%M).png"
+}
+
+# auto send an attachment from CLI 
+send() {
+  if [ $# -ne 2 ]; then
+    echo "usage: send [file] [recipient]"
+  else
+    echo "Auto-sent from linux. Please see attached." | mutt -s "File Attached" -a $1 -- $2
+  fi
+}
+
+# simple calculator 
+calc() {
+  echo "scale=3; $*" | bc
+} 
+
+# find simplified
+seek()  {
+  if [ $# -eq 0 ]; then
+    echo 'Usage: '
+    echo '   seek <*d,f> <pattern> <*location>'
+    echo '   Search directory for file of folder match (*optional)'
+  else
+    case $1 in
+      d ) if [ -z "$3" ]; then
+            find . -type d -iname "*$2*"
+          else
+            find "$3" -type d -iname "*$2*"
+          fi
+          ;;
+      f ) if [ -z "$3" ]; then
+            find . -type f -iname "*$2*"
+          else
+            find "$3" -type f -iname "*$2*"
+          fi
+          ;;
+      * ) if [ -z "$2" ]; then
+            find . -iname "*$1*"
+          else
+            find "$2" -iname "*$1*"
+          fi
+          ;;
+    esac
+  fi
+} 
+
+# sex to do linux way
+sex() {
+  echo "unzip"
+  sleep 2
+  echo "strip"
+  sleep 2
+  echo "touch"
+  sleep 2
+  echo "finger"
+  sleep 2
+  echo "mount"
+  sleep 2
+  echo "fsck"
+  sleep 2
+  echo "more"
+  sleep 2
+  echo "yes"
+  sleep 2
+  echo "umount"
+  sleep 2
+  echo "done"
+  sleep 2
+  echo "sleep"
+}
+
+# daemon statuses
+daemon_status() {
+  C_STOPPED="\033[0;31m" # red
+  C_RUNNING="\033[0;32m" # green
+  C_RESET="\033[m"
+
+  daemons=( /etc/rc.d/* )
+  if [ -z "$1" ]; then
+    for d in ${daemons[@]##*/}; do
+      if [ -f "/var/run/daemons/$d" ]; then
+        printf "%-30b%-10b\n" $d ${C_RUNNING}RUNNING${C_RESET}
+      else
+        printf "%-30b%-10b\n" $d ${C_STOPPED}STOPPED${C_RESET}
+      fi
+    done
+  else
+    [ ! -f /etc/rc.d/$1 ] && echo "err! ${C_STOPPED}$1${C_RESET} is no daemon" && return 1
+    if [ -f "/var/run/daemons/$1" ]; then
+      printf "%-30b%-10b\n" $1 ${C_RUNNING}RUNNING${C_RESET}
+    else
+      printf "%-30b%-10b\n" $1 ${C_STOPPED}STOPPED${C_RESET}
+    fi
+  fi
+}
+
+# mail stats
+fmail() {
+  local -A counts; local i
+         
+  for i in "${MAILDIR:-${HOME}/Mail}"/**/new/*
+    { (( counts[${i:h:h:t}]++ )) }
+  for i in ${(k)counts}
+  { print -n ${i//\[Gmail\]./}: $counts[$i]' ' }
+}
+
+# go to google for anything
+google() {
+  local term="$@"
+
+  local URL="http://www.google.com/search?q=${term// /+}"
+
+  $BROWSER "$URL" &> /dev/null
+} 
+
+# get file & directory count
+files() {
+  if [ ! -z "$1" ]; then
+    echo "==> $(tree "$1" &> /dev/null | tail -1) [$(du -hs "$1" | cut -f1)]"
+  else
+    echo "==> $(tree "$(pwd)" &> /dev/null | tail -1) [$(du -hs "$(pwd)" | cut -f1)]"
+  fi
+}
+
+# fold functions in vim
+# vim:foldmarker={,}
