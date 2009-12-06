@@ -71,7 +71,7 @@ preexec () {
 
 precmd () { 
   local rts=$?
-  export PROMPT="`[ -w \`pwd\` ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %2~ `echo -e "%{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
+  export PROMPT="`[ -w "\`pwd\`" ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %2~ `echo -e "%{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 

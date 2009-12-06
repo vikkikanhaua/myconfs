@@ -43,7 +43,7 @@ panel_scroll_pages=1
 xtree_mode=0
 num_history_items_recorded=60
 file_op_compute_totals=1
-vfs_timeout=60
+vfs_timeout=180
 ftpfs_directory_timeout=900
 use_netrc=1
 ftpfs_retry_seconds=30
@@ -70,7 +70,7 @@ horizontal_split=1
 
 [Layout]
 equal_split=0
-first_panel_size=40
+first_panel_size=42
 message_visible=0
 keybar_visible=0
 xterm_title=0
@@ -118,18 +118,6 @@ display_codepage=Other_8_bit
 
 [Colors]
 base_color=normal=white,default:selected=magenta,default:marked=brown,default:markselect=brown,gray:directory=white,default:executable=green,default:link=cyan,default:device=magenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=default,white:input=white,black:dnormal=green,default:dfocus=brightblue,default:dhotnormal=cyan,default:dhotfocus=brightcyan,default:menu=green,default:menuhot=cyan,default:menusel=gray,default:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
-
-[Temporal:New Right Panel]
-reverse=0
-case_sensitive=1
-sort_order=name
-list_mode=user
-user_format=half type name | size | perm
-user_status0=half type name | size | perm
-user_status1=half type name | size | perm
-user_status2=half type name | size | perm
-user_status3=half type name | size | perm
-user_mini_status=0
 
 [Panelize]
 Find *.orig after patching=find . -name \*.orig -print
