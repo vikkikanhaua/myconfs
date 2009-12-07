@@ -132,7 +132,7 @@ myPP h = defaultPP
 myLayout = avoidStruts 
            $ smartBorders
            $ onWorkspace "term" Accordion
-           $ onWorkspaces ["web","screen"] Full 
+           $ onWorkspaces ["web","tmux"] Full 
            $ Mirror tiled ||| tiled
   where
     -- default tiling algorithm partitions the screen into two panes
@@ -229,7 +229,7 @@ main = do
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook = myManageHook
-          	   , workspaces = ["term","web","screen","down","else"]
+          	   , workspaces = ["term","web","tmux","dld","else"]
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar
           	   , modMask = mod4Mask    -- Rebind Mod to the Windows key
