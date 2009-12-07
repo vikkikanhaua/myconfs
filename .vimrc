@@ -6,7 +6,7 @@
 colorscheme slate
 
 " Main options {{{ 
-" set t_Co=256
+set t_Co=256
 set nocompatible
 set autoindent
 set backspace=indent,eol,start
