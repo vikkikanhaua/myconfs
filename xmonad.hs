@@ -93,11 +93,10 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
     -- height, width as % screensize
     h = 0.4
-    w = 0.6
+    w = 0.65
 
-    -- top center
     t = 0.03
-    l = 0.4
+    l = 0.35
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
