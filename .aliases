@@ -24,4 +24,5 @@ alias ping="ping -c5"
 alias mcd="sudo mount /dev/sr0 /media/cd"
 alias auth="cat /var/log/auth.log | grep command | tail -n 20"
 alias tmux="tmux attach"
-alias on="xset s off; xset -dpms"
+alias alwayson="xset s off; xset -dpms"
+alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'

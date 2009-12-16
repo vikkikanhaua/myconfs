@@ -155,7 +155,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_e     ),             spawn "evince")
-      , ((modMask,                  xK_g     ),             spawn "gimp")
+      , ((modMask,                  xK_g     ),             spawn "inkscape")
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
