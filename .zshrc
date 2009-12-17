@@ -39,6 +39,16 @@ export BROWSER="firefox"
 export SAVEHIST=5000
 export EDITOR="vim"
 export PATH=$PATH:~/.bin
+
+# for colored man pages
+export LESS_TERMCAP_mb=$'\E[1;31m'
+export LESS_TERMCAP_md=$'\E[1;31m'
+export LESS_TERMCAP_me=$'\E[1;37m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[1;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[1;32m'
+
 # }}}
 
 setopt autocd extendedglob nomatch notify correctall hist_ignore_all_dups hist_ignore_space
@@ -71,7 +81,7 @@ preexec () {
 
 precmd () { 
   local rts=$?
-  export PROMPT="`[ -w "\`pwd\`" ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %2~ `echo -e "%{${reset_color}%}]─[%{${fg[yellow]}%} %m %{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
+  export PROMPT="`[ -w "\`pwd\`" ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %5~ `echo -e "%{${reset_color}%}]─[%{${fg[yellow]}%} %m %{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 

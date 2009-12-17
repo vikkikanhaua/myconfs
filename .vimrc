@@ -79,6 +79,12 @@ nnoremap q: <Nop>
 nnoremap q/ <Nop>
 nnoremap q? <Nop>
 
+" leader key
+:let mapleader = ","
+nnoremap <Leader>u :diffupdate<cr>
+nnoremap <Leader>g :diffget<cr>
+nnoremap <Leader>p :diffput<cr> 
+
 " 'transpose' key
 nmap t xp
 

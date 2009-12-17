@@ -56,7 +56,7 @@ myManageHook = (composeAll . concat $
 
     -- classnames
     myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As...","XFontSel"]
-    myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome"]
+    myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium"]
     
 
 tiled = ResizableTall 1 (2/100) (1/2) []
