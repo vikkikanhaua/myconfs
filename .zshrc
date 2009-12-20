@@ -80,9 +80,7 @@ preexec () {
 }
 
 precmd () { 
-  local rts=$?
-  export PROMPT="`[ -w "\`pwd\`" ] && echo "┌─[%{${fg_bold[green]}%}" || echo "┌─[%{${fg_bold[red]}%}"` %5~ `echo -e "%{${reset_color}%}]─[%{${fg[yellow]}%} %m %{${reset_color}%}]\n└─"``[ $rts -ne 0 ] && echo "%{${fg[red]}%}╼" || echo "%{${fg[green]}%}╼"``echo "%{${reset_color}%} "`"
-
+  export PROMPT="`echo "[%{${fg_bold[green]}%} %5~ %{${reset_color}%}]─[%{${fg[yellow]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${reset_color}%}"`>> "
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
     set-title $TITLE
@@ -109,10 +107,13 @@ bindkey '^k'     kill-whole-line
 bindkey '^y'     .vi-yank-whole-line
 bindkey '^[Oc'   forward-word
 bindkey '^[Od'   backward-word
-# }}}
+#  }}}
 
 # login manager {{{
 #
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx }
 #
 # }}}
+#
+# just a funny message
+# fortune -a | cowsay -f tux

@@ -7,11 +7,8 @@ update_interval 1.0
 total_run_times 0
 own_window no
 alignment top_right
-format_human_readable yes
 gap_x 0
 gap_y 0
-no_buffers yes
-cpu_avg_samples 1
 override_utf8_locale yes
 mail_spool /home/vikki/Mail/INBOX/new
  

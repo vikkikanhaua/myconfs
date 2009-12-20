@@ -9,8 +9,6 @@ own_window no
 alignment top_right
 gap_x 0
 gap_y 0
-no_buffers yes
-cpu_avg_samples 1
 override_utf8_locale yes
  
 TEXT
