@@ -80,7 +80,7 @@ preexec () {
 }
 
 precmd () { 
-  export PROMPT="`echo "[%{${fg_bold[green]}%} %5~ %{${reset_color}%}]─[%{${fg[yellow]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${reset_color}%}"`>> "
+  export PROMPT="`echo "[%{${fg_bold[green]}%} %5~ %{${reset_color}%}]─[%{${fg_bold[cyan]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${fg[yellow]}%}>>%{${reset_color}%}"` "
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
     set-title $TITLE

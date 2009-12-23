@@ -125,31 +125,6 @@ seek()  {
   fi
 } 
 
-# sex to do linux way
-sex() {
-  echo "unzip"
-  sleep 2
-  echo "strip"
-  sleep 2
-  echo "touch"
-  sleep 2
-  echo "finger"
-  sleep 2
-  echo "mount"
-  sleep 2
-  echo "fsck"
-  sleep 2
-  echo "more"
-  sleep 2
-  echo "yes"
-  sleep 2
-  echo "umount"
-  sleep 2
-  echo "done"
-  sleep 2
-  echo "sleep"
-}
-
 # daemon statuses
 daemon_status() {
   C_STOPPED="\033[0;31m" # red
