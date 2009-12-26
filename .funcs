@@ -169,8 +169,7 @@ files() { set ${1:-$PWD}; echo "==> $(tree "$1" | tail -1) [$(du -hs "$1" | cut 
 # push git repo
 pushrepo() {
   pushd ${HOME}/mydocs/myconfs &> /dev/null
-  git status 
-  [ $? -eq 0 ] && git commit -a -m "last commit" && git push
+  git status; git commit -a -m "last commit"; git push
   popd &> /dev/null
 }
 
