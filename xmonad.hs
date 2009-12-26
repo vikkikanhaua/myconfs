@@ -55,7 +55,7 @@ myManageHook = (composeAll . concat $
   where
 
     -- classnames
-    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As...","XFontSel"]
+    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As","XFontSel"]
     myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium"]
     
 

@@ -45,14 +45,8 @@ grepp() {
 # recursively fix dir/file permissions on a given directory 
 fix() {
   if [ -d "$1" ]; then
-    if [ "$1" != "/muzic" ]; then
-      find "$1" -type d -exec chmod 755 {} \;
-      find "$1" -type f -exec chmod 644 {} \;
-    else
-      sudo chown -fR root:users "$1" ;
-      sudo find "$1" -type d -exec chmod -f 1775 '{}' \; 
-      sudo find "$1" -type f -exec chmod -f 1664 '{}' \;
-    fi 
+    find "$1" -type d -exec chmod 755 {} \;
+    find "$1" -type f -exec chmod 644 {} \;
   else
     echo "usage: fix [directory]"
   fi
@@ -170,7 +164,7 @@ google() {
 } 
 
 # get file & directory count
-nofiles() { set ${1:-$PWD}; echo "==> $(tree "$1" | tail -1) [$(du -hs "$1" | cut -f1)]"; }
+files() { set ${1:-$PWD}; echo "==> $(tree "$1" | tail -1) [$(du -hs "$1" | cut -f1)]"; }
 
 # fold functions in vim
 # vim:foldmarker={,}

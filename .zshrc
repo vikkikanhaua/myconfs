@@ -38,7 +38,9 @@ export HISTSIZE=5000
 export BROWSER="firefox"
 export SAVEHIST=5000
 export EDITOR="vim"
+export VISUAL=$EDITOR
 export PATH=$PATH:~/.bin
+export STARDICT_DATA_DIR=${HOME}/.stardict
 
 # for colored man pages
 export LESS_TERMCAP_mb=$'\E[1;31m'
