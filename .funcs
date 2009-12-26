@@ -166,5 +166,13 @@ google() {
 # get file & directory count
 files() { set ${1:-$PWD}; echo "==> $(tree "$1" | tail -1) [$(du -hs "$1" | cut -f1)]"; }
 
+# push git repo
+pushrepo() {
+  pushd ${HOME}/mydocs/myconfs &> /dev/null
+  git status 
+  [ $? -eq 0 ] && git commit -a -m "last commit" && git push
+  popd &> /dev/null
+}
+
 # fold functions in vim
 # vim:foldmarker={,}
