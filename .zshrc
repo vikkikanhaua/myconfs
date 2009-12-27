@@ -118,4 +118,4 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx }
 # }}}
 #
 # just a funny message
-# fortune -a | cowsay -f tux
+fortune -a 
