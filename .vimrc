@@ -88,6 +88,9 @@ nnoremap <Leader>p :diffput<cr>
 " 'transpose' key
 nmap t xp
 
+" macro key
+:nnoremap <F2> @q
+
 " Custom keys
 map ; :
 nnoremap <space> za
@@ -95,7 +98,7 @@ noremap <f1> :bnext<CR>
 
 " }}}
 
-" Option toggle function {{{
+" Option to ggle function {{{
 function MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
