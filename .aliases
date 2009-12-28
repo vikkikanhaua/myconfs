@@ -8,9 +8,9 @@ alias la='ls --color=auto -hA'
 alias df="df -h"
 alias du="du -sh"
 alias m="ncmpcpp"
-alias cp="cp -viru"
-alias mv="mv -viu"
-alias rm="rm -vr"
+alias cp="nocorrect cp -viru"
+alias mv="nocorrect mv -viu"
+alias rm="nocorrect rm -vr"
 alias wget="wget -c"
 alias irc="irssi"
 alias rs="rsync -vhru"
@@ -27,3 +27,5 @@ alias tmux="tmux attach"
 alias alwayson="xset s off; xset -dpms"
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias cdc='cd ~; clear'
+alias pa='ps aux'
