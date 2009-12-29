@@ -33,13 +33,12 @@ colors
 
 # exports {{{
 export HISTFILE=~/.zsh_history
-export CC="colorgcc"
-export HISTSIZE=5000
 export BROWSER="firefox"
-export SAVEHIST=5000
 export EDITOR="vim"
+export PAGER="less -w -M"
+export HISTSIZE=5000
+export SAVEHIST=5000
 export VISUAL=$EDITOR
-export PAGER="less -X -M"
 export PATH=$PATH:~/.bin
 export STARDICT_DATA_DIR=${HOME}/.stardict
 
@@ -56,7 +55,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'
 
 # ---[ ZSH Options ]---------------------------------------------------- {{{
 # General
-setopt   ALWAYS_TO_END BASH_AUTO_LIST NO_BEEP CLOBBER
+setopt   ALWAYS_TO_END NO_BEEP CLOBBER
 setopt   AUTO_CD CD_ABLE_VARS MULTIOS CORRECT_ALL
 
 # Job Control
@@ -64,8 +63,8 @@ setopt   CHECK_JOBS NO_HUP
 
 # History
 setopt   INC_APPEND_HISTORY EXTENDED_HISTORY HIST_IGNORE_DUPS HIST_FIND_NO_DUPS
-setopt   EXTENDED_HISTORY HIST_EXPIRE_DUPS_FIRST
 setopt   HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
+setopt   HIST_EXPIRE_DUPS_FIRST
 
 # Stay compatible to sh and IFS
 setopt   SH_WORD_SPLIT
@@ -126,8 +125,6 @@ bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^b'     clear-screen
 bindkey '^k'     kill-whole-line
 bindkey '^y'     .vi-yank-whole-line
-bindkey '^[Oc'   forward-word
-bindkey '^[Od'   backward-word
 #  }}}
 
 # login manager {{{
@@ -137,5 +134,5 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx }
 # }}}
 #
 # just a funny message
-fortune -a 
-echo
+# fortune -a 
+# echo
