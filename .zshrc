@@ -15,11 +15,11 @@ zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion:*:matches' group 'yes'
  
 # Describe each match group.
-zstyle ':completion:*:descriptions' format "%B---- %d%b"
+zstyle ':completion:*:descriptions' format "==[ %d%b ]"
  
 # Messages/warnings format
-zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
-zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b'
+zstyle ':completion:*:messages' format '==[ %d%u%b ]'
+zstyle ':completion:*:warnings' format '==[ no match for: %d%u%b ]'
  
 # Describe options in full
 zstyle ':completion:*:options' description 'yes'
@@ -35,7 +35,7 @@ colors
 export HISTFILE=~/.zsh_history
 export BROWSER="firefox"
 export EDITOR="vim"
-export PAGER="less -w -M"
+export PAGER="less -winm"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export VISUAL=$EDITOR
@@ -70,7 +70,7 @@ setopt   HIST_EXPIRE_DUPS_FIRST
 setopt   SH_WORD_SPLIT
 
 setopt   notify globdots pushdtohome
-setopt   recexact longlistjobs
+setopt   longlistjobs
 setopt   autoresume pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt BG_NICE HUP autoparamslash
