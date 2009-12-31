@@ -26,6 +26,7 @@ import XMonad.Layout.ResizableTile
 -- Extra --
 import XMonad.Actions.CycleWS
 import XMonad.Actions.FindEmptyWorkspace
+import XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified Data.Map as M
@@ -155,7 +156,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_e     ),             spawn "evince")
-      , ((modMask,                  xK_g     ),             spawn "inkscape")
+      , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
       , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
