@@ -1,0 +1,101 @@
+[default]
+###############################
+#
+really-quiet="1"
+lirc="0"
+input = file="/home/vikki/.mplayer/mplayer_fifo"
+#
+
+#======
+# Video
+#======
+
+# Set video driver.
+vo=vdpau:deint=2,gl:yuv=2:force-pbo
+vc=ffh264vdpau,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,coreavc,dummy,
+
+# Use double-buffering. (Recommended for xv with SUB/OSD usage)
+double=yes
+
+#======
+# Audio
+#======
+
+# Set audio driver.
+ao=alsa
+
+# Set mixer channel
+mixer-channel=Master
+
+# Post Processing
+# autoq=100
+# vf=pp=de,hqdn3d
+
+# Fix A/V sync problems. *
+mc=0.2
+autosync=30
+
+
+#==========
+# Subtitles
+#==========
+
+# VobSubs
+#========
+
+# Align subs. (-1: as they want to align themselves)
+spualign=-1
+
+# Anti-alias subs. (4: best and slowest)
+spuaa=2
+
+# Set language.
+slang=en
+
+# Text-based subtitles
+#=====================
+
+# Find subtitle files. (1: load all subs containing movie name)
+sub-fuzziness=1
+
+# Set font.
+font=/usr/share/fonts/TTF/ttf-inconsolata.otf
+
+# Set font encoding.
+subfont-encoding=unicode
+
+# Set subtitle file encoding.
+unicode=yes
+utf8=yes
+
+# Resample the font alphamap. (1: narrow black outline)
+ffactor=1
+
+# Set subtitle position. (100: as low as possible)
+subpos=100
+
+# Set subtitle alignment at its position. (2: bottom)
+subalign=2
+
+# Set font size. (2: proportional to movie width)
+subfont-autoscale=1
+
+# Set font blur radius. (default: 2)
+subfont-blur=2.0
+
+# Set font outline thickness. (default: 2)
+subfont-outline=2.0
+
+# Set autoscale coefficient. (default: 5)
+subfont-text-scale=3.0
+
+# OSD
+#====
+
+# Set autoscale coefficient. (default: 6)
+subfont-osd-scale=2.6
+
+[gnome-mplayer]
+msglevel=all=5
+vo=vdpau
+ao=alsa
