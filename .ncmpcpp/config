@@ -53,7 +53,7 @@ mpd_crossfade_time = "3"
 #
 ## delay after playlist highlighting will be disabled (0 = don't disable)
 #
-playlist_disable_highlight_delay = "2"
+playlist_disable_highlight_delay = "1"
 #
 ## defines how long various messages are supposed to be visible
 #
@@ -102,8 +102,7 @@ message_delay_time = "2"
 ## Note: colors can be nested.
 ##
 #
-#song_list_format = "{%f}$R{%b -- %a | %l}"
-song_list_format = "{$3[%l]$9} {$5%a$9} {$6%t$9} {$7%b$9}"
+song_list_format = "{$3[%l]$9} {$6%t$9}$R[{$5%a$9} // {$5%b$9}]"
 
 #
 #song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
@@ -167,8 +166,7 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-#song_columns_list_format = "(6)[cyan]{l} (20)[yellow]{b} (25)[green]{a} (49)[red]{f}"
-song_columns_list_format = "(7)[black]{l} (20)[black]{b} (28)[red]{a} (45)[yellow]{t}"
+#song_columns_list_format = "(7)[black]{l} (20)[black]{b} (28)[red]{a} (45)[yellow]{t}"
 
 #
 ##### various settings #####
@@ -236,7 +234,7 @@ jump_to_now_playing_song_at_start = "yes"
 #
 ask_before_clearing_main_playlist = "no"
 #
-clock_display_seconds = "no"
+clock_display_seconds = "yes"
 #
 display_bitrate = "yes"
 #
