@@ -103,8 +103,10 @@ precmd () {
   ret_sts=$?
   export PROMPT="`echo "[%{${fg_bold[green]}%} %5~ %{${reset_color}%}]─[%{${fg_bold[cyan]}%} $(history | tail -1 | awk '{print $2}').${ret_sts} %{${reset_color}%}]\n%{${fg[yellow]}%}>>%{${reset_color}%}"` "
 
-  TITLE=${0/#*\/} 
-  set-title $TITLE
+  if [[ -n $STY ]]; then
+    TITLE=${0/#*\/} 
+    set-title $TITLE
+  fi
 }
 
 # keybindings {{{
