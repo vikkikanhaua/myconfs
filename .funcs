@@ -164,7 +164,7 @@ google() {
 } 
 
 # get file & directory count
-files() { set ${1:-$PWD}; echo "==> $(tree "$1" | tail -1) [$(du -hs "$1" | cut -f1)]"; }
+files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }
 
 # push git repo
 pushrepo() {

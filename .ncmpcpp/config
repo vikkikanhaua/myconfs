@@ -115,7 +115,7 @@ browser_playlist_prefix = "$2playlists$9 "
 #
 selected_item_prefix = "$6"
 #
-selected_item_suffix = "$9*"
+selected_item_suffix = "$9 <=="
 #
 ##
 ## Note: Below variables are for alternative version of user's interface.
