@@ -29,3 +29,4 @@ alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WIND
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias cdc='cd ~; clear'
 alias pa='ps aux'
+alias svim='sudoedit'

@@ -22,4 +22,6 @@ xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
+nvidia-settings --load-config-only &
+
 exec ~/.xmonad/xmonad-x86_64-linux
