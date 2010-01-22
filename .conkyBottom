@@ -11,4 +11,4 @@ gap_y 0
 override_utf8_locale yes
  
 TEXT
-^fg(\#8b795e) Arch-pkg ^fg()${execi 7200 /home/vikki/.bin/pkgstats} ^fg(\#8b795e) Indore ^fg()${texeci 7200 /home/vikki/.bin/weather "ASI|IN|IN020|INDORE"} ^fg(\#8b795e) sda^fg()${hddtemp /dev/sda}°C ^fg(\#8b795e) sdb^fg()${hddtemp /dev/sdb}°C ^fg(\#8b795e) gpu ^fg()${execi 30 nvidia-settings -t -q gpucoretemp}°C ^fg(\#668b8b).:: ${if_match "${mpd_status}" != "Stopped"}^fg(\#c0c0a0)${mpd_status}^fg(\#668b8b) :: ^fg()${mpd_title} ^fg(grey40)by ^fg()${mpd_artist} ^fg(\#668b8b)${mpd_elapsed}/${mpd_length}${else}^fg(brown)no song${endif}^fg(\#668b8b) ::.
+^fg(grey40) Indore ^fg(\#fea63c)${texeci 7200 /home/vikki/.bin/weather "ASI|IN|IN020|INDORE"} ^fg(grey40) sda^fg(\#fea63c)${hddtemp /dev/sda}°C ^fg(grey40) sdb^fg(\#fea63c)${hddtemp /dev/sdb}°C ^fg(grey40) gpu ^fg(\#fea63c)${execi 30 nvidia-settings -t -q gpucoretemp}°C ^fg(\#66aabb).: ${if_match "${mpd_status}" != "Stopped"}^fg(\#c0c0a0)${mpd_status}^fg(\#66aabb) :: ^fg(\#fea63c)${mpd_title} ^fg(grey40)by ^fg(\#fea63c)${mpd_artist}^fg() (^fg(grey40)${mpd_length}^fg())${else}^fg(brown)no song${endif}^fg(\#66aabb) :.

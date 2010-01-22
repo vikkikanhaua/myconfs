@@ -12,4 +12,4 @@ override_utf8_locale yes
 mail_spool /home/vikki/Mail/INBOX/new
  
 TEXT
-[ ^fg(\#ffe7ba)${new_mails /home/vikki/Mail/INBOX}^fg() new ][ ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg(\#ffe7ba) ${mpd_vol}^fg() ][ ${if_up ppp0}^fg(\#ffe7ba)${else}^fg(red)${endif}ppp0^fg() ][ ^fg(\#ffe7ba)${time %A %d %b %H:%M} ^fg()]
+^fg(\#fea63c)${execi 7200 /home/vikki/.bin/pkgstats}^fg(grey40) pkgs^fg() | ^fg(\#fea63c)${new_mails /home/vikki/Mail/INBOX}^fg(grey40) new^fg() | ${if_mixer_mute}^fg(red)${else}^fg(\#8b795e)${endif}^i(/home/vikki/.xmonad/dzen/volume.xbm)^fg(\#fea63c) ${mpd_vol}^fg() | ${if_up ppp0}^fg(\#fea63c)${else}^fg(red)${endif}ppp0^fg() | ^fg(\#66aabb)${time %a %d %b, %H:%M} 

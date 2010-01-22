@@ -98,13 +98,13 @@ set alias_file          = ~/.mutt/aliases.muttrc
 
 source ~/.mutt/colors.muttrc 
 source ~/.mutt/aliases.muttrc
-#source ~/.mutt/sidebar.muttrc
 #source ~/.mutt/mailcap.muttrc
 source /etc/Muttrc.gpg.dist
 # }}}
 
 ##
-# Macros {{{
+#
+#Macros {{{
 #####
 
 macro index h   "c?" "view folders"

@@ -102,9 +102,9 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myPP h = defaultPP 
-  { ppCurrent = wrap "^fg(#ffe7ba)^bg(#382d22)" "^fg()^bg()" . pad
-  , ppHidden = wrap "^fg(#ddeedd)" "^fg()" . noScratchPad
-  , ppHiddenNoWindows = wrap "^fg(#382d22)" "^fg()" . namedOnly
+  { ppCurrent = wrap "^fg(#fea63c)^bg(#382d22)" "^fg()^bg()" . pad
+  , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
+  , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
   , ppSep = ""
   , ppUrgent = wrap "!^fg(#e9c789)" "^fg()"
   , ppWsSep = ""

@@ -1,9 +1,10 @@
+
 [default]
 ###############################
 #
 really-quiet="1"
 lirc="0"
-input = file="/home/vikki/.mplayer/mplayer_fifo"
+input=file="/home/vikki/.mplayer/mplayer_fifo"
 #
 
 #======
