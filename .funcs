@@ -181,5 +181,11 @@ pushrepo() {
   popd &> /dev/null
 }
 
+# find binary provided by a package
+pacexe() {
+  for ARG in $(pacman -Qql $1); do
+    [ ! -d $ARG ] && [ -x $ARG ] && echo $ARG;
+  done
+}
 # fold functions in vim
 # vim:foldmarker={,}
