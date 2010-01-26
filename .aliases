@@ -1,10 +1,10 @@
 eval "`dircolors -b`"
-alias ls='ls --color=auto -h'
+alias ls='ls --color=auto -vh'
+alias ll='ls --color=auto -vhl'
+alias la='ls --color=auto -vhA'
 alias grep='grep -i --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ll='ls --color=auto -hl'
-alias la='ls --color=auto -hA'
 alias df="df -h"
 alias du="du -sh"
 alias m="ncmpcpp"
@@ -30,5 +30,5 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias cdc='cd ~; clear'
 alias pa='ps aux'
 alias svim='sudoedit'
-alias chksector="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq"
+alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "Failure" /var/log/daemon.log"
 alias motd="cat /etc/motd"

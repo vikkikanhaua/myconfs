@@ -6,11 +6,11 @@
 color   normal          white           default
 
 # main colors
-color   status          blue           default
-color   indicator       brightwhite     default
+color   status          blue            default
+color   indicator       green           default
 color   tree            red             default
 color   error           brightred       default
-color   message         brightyellow    default
+color   message         yellow          default
 
 # color all ML mails
 color   index           cyan            default "~u"
