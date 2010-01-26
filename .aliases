@@ -28,7 +28,6 @@ alias alwayson="xset s off; xset -dpms"
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias cdc='cd ~; clear'
-alias pa='ps aux'
 alias svim='sudoedit'
 alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "Failure" /var/log/daemon.log"
 alias motd="cat /etc/motd"
