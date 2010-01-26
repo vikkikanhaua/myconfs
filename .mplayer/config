@@ -13,7 +13,7 @@ input=file="/home/vikki/.mplayer/mplayer_fifo"
 
 # Set video driver.
 vo=vdpau:deint=2,gl:yuv=2:force-pbo
-vc=ffh264vdpau,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,coreavc,dummy,
+vc=ffh264vdpau,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,
 
 # Use double-buffering. (Recommended for xv with SUB/OSD usage)
 double=yes
