@@ -38,7 +38,7 @@ import System.Exit
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-myFont               = "xft:DejaVu Sans:size=10"
+myFont               = "-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
 lightTextColor       = "#fffff0"
@@ -49,14 +49,16 @@ urgentColor          = "#ffc000"
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 myManageHook = (composeAll . concat $
-  [ [className =? c                 --> doShift "web"    |  c    <- myWebs   ] -- move webs to web
-  , [className =? c                 --> doCenterFloat    |  c    <- myFloats ] -- float my floats
+  [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
+  , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
+  , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
   ]) <+> manageDocks <+> manageScratchPad
 
   where
 
-    -- classnames
-    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As","XFontSel"]
+    -- names
+    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As","XFontSel","feh"]
+    myFloatsT = ["Downloads","Add-ons","Shiretoko Preferences","About Shiretoko"]
     myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium"]
     
 

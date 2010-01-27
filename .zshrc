@@ -101,7 +101,7 @@ preexec () {
 
 precmd () { 
   ret_sts=$?
-  export PROMPT="`echo "[%{${fg[green]}%} %5~ %{${reset_color}%}]─[%{${fg[cyan]}%} $(history | tail -1 | awk '{print $2}').${ret_sts} %{${reset_color}%}]\n%{${fg[yellow]}%}>>%{${reset_color}%}"` "
+  export PROMPT="`echo "[%{${fg[green]}%} %5~ %{${reset_color}%}]─[%{${fg[cyan]}%} $(history | tail -1 | awk '{print $2}').${ret_sts} %{${reset_color}%}]\n%{${fg[green]}%}>>%{${reset_color}%}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 

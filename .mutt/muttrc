@@ -34,20 +34,24 @@ set sig_dashes
 set askcc
 set delete
 set wrap_search
-set mail_check          = 0
 set confirmcreate       = yes
 set use_from            = yes
 set envelope_from       = yes
 set edit_headers        = yes
 set copy                = yes
 set include             = yes
+set forward_quote       = yes
 set collapse_unread     = yes
 set status_chars        = "-*%A"
 set editor              = "vim +/^$"
-set locale              = "C"
 set ispell              = "aspell -e -c"
 set sort                = threads
 set sort_aux            = reverse-last-date-received
+
+# headers to show
+ignore *                                          # ignore all headers
+unignore from: to: cc: subject:                   # show only these
+hdr_order from: to: cc: subject:                  # and in this order
 # }}}
 
 ##
@@ -83,9 +87,8 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 #####
 
 set alias_format        = "%4n %t %-20a %r"
-set date_format         = "!%d/%m/%y at %H:%M %Z"
 set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-17.17F | %s"
-set status_format       = "┣[ %r ]━[ %v ]━┷━ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? %?p? ━━━ %p waiting to send ? ━━%>━[ %s ]━[ %P ]┫"
+set status_format       = "-[ %r ]-[ %v ]---[ %f ]--[ Msgs: %m,%?n?, New: %n?%?d?, Del: %d?%?t?, Tag: %t? %l %?p? --- %p waiting to send ?]--%>-[ %s ]-[ %P ]-"
 set forward_format      = "fwd: %s"
 # }}}
 
@@ -94,8 +97,9 @@ set forward_format      = "fwd: %s"
 #####
 
 set tmpdir              = ~/.mutt/temp
-set signature           ='~/.mutt/mysig'
+set signature           = ~/.mutt/mysig
 set alias_file          = ~/.mutt/aliases.muttrc
+set mailcap_path        = ~/.mutt/mailcap.muttrc
 
 source ~/.mutt/colors.muttrc 
 source ~/.mutt/aliases.muttrc
@@ -112,5 +116,8 @@ macro index B   "<limit>~b " "search message bodies"
 macro index I   "<change-folder>!<enter>" "go to Inbox"
 macro index P   "<pipe-message>cat > ~/" "save message as"
 macro index Z   "<shell-escape>/usr/bin/offlineimap <enter>" "sync IMAP"
-bind index \U undelete-thread
+macro index D   "<save-message>+trash<enter>"   "move message to the trash"
+macro index S   "<save-message>+spam<enter>"    "mark message as spam"
+# a binding
+bind  index \U  undelete-thread
 # }}}

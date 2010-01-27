@@ -14,7 +14,9 @@ export OOO_FORCE_DESKTOP="gnome" &
 
 urxvtd -q -f -o &
 
-feh --bg-scale ~/Pictures/"$(ls ~/Pictures | sort -R | line)" &
+# feh --bg-scale ~/Pictures/"$(ls ~/Pictures | sort -R | line)" &
+
+eval `cat ~/.fehbg`
 
 ~/.bin/dzonky &
 
