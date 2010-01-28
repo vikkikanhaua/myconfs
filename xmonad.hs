@@ -135,7 +135,7 @@ myLayout = avoidStruts
            $ smartBorders
            $ onWorkspace "term" Accordion
            $ onWorkspaces ["web","tmux"] Full 
-           $ Mirror tiled ||| tiled
+           $ Full ||| Accordion ||| Mirror tiled ||| tiled
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio
@@ -157,7 +157,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((0,                       0x1008ff2f),             spawn "slock")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
-      , ((modMask,                  xK_e     ),             spawn "evince")
+      , ((modMask,                  xK_a     ),             spawn "apvlv")
       , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
