@@ -3,18 +3,18 @@
 # uncomment the options you wish to enable.
 
 # Maximum and minimum number of peers to connect to per torrent.
-min_peers = 40
-max_peers = 100
+min_peers = 10
+max_peers = 50
 
 # Same as above but for seeding completed torrents (-1 = same as downloading)
-min_peers_seed = 10
+min_peers_seed = 5
 max_peers_seed = 30
 
 # Maximum number of simultanious uploads per torrent.
 max_uploads = 2
 
 # Global upload and download rate in KiB. "0" for unlimited.
-download_rate = 250
+download_rate = 200
 upload_rate = 20
 
 # Default directory to save the downloaded torrents.
@@ -43,12 +43,12 @@ system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.
 #schedule = ratio,60,60,"stop_on_ratio=200,200M,2000"
 
 # The ip address reported to the tracker.
-#ip = 127.0.0.1
+ip = 0.0.0.0
 #ip = rakshasa.no
 
 # The ip address the listening socket and outgoing connections is
 # bound to.
-#bind = 127.0.0.1
+bind = 0.0.0.0
 #bind = rakshasa.no
 
 # Port range to use for listening.
@@ -109,3 +109,5 @@ peer_exchange = yes
 # before forcing. Overworked systems might need lower values to get a
 # decent hash checking rate.
 #hash_max_tries = 10
+
+# vim: ft=conf :

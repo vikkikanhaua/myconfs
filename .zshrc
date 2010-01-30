@@ -118,15 +118,19 @@ bindkey '^[[4~'  end-of-line
 bindkey '^[[8~'  end-of-line
 bindkey '^[[7~'  beginning-of-line
 bindkey '^[[3~'  delete-char
-bindkey '^[[5~'  .undefined-key
-bindkey '^[[6~'  .undefined-key
 bindkey '^[[2~'  overwrite-mode
+bindkey '^[OC'   forward-word #for tmux
+bindkey '^[OD'   backward-word
+bindkey '^[Oc'   forward-word #for normal shell
+bindkey '^[Od'   backward-word
+bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^?'     backward-delete-char
 bindkey '^['     vi-cmd-mode
-bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^b'     clear-screen
 bindkey '^k'     kill-whole-line
 bindkey '^y'     .vi-yank-whole-line
+bindkey '^[[5~'  .undefined-key
+bindkey '^[[6~'  .undefined-key
 #  }}}
 
 # login manager {{{

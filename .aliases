@@ -29,5 +29,5 @@ alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WIND
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias cdc='cd ~; clear'
 alias svim='sudoedit'
-alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "Failure" /var/log/daemon.log"
+alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
 alias motd="cat /etc/motd"

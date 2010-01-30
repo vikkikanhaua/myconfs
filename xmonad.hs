@@ -135,7 +135,7 @@ myLayout = avoidStruts
            $ smartBorders
            $ onWorkspace "term" Accordion
            $ onWorkspaces ["web","tmux"] Full 
-           $ Full ||| Accordion ||| Mirror tiled ||| tiled
+           $ Mirror tiled ||| tiled ||| Full ||| Accordion
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio
