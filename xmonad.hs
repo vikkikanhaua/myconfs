@@ -36,9 +36,9 @@ import Data.Char
 
 import System.Exit
 
----------------------------------------------------------------------------------------------------------------------------------------------
-
+-- default declaraions
 myFont               = "-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*"
+myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
 lightTextColor       = "#fffff0"
@@ -46,8 +46,7 @@ backgroundColor      = "#304520"
 lightBackgroundColor = "#456030"
 urgentColor          = "#ffc000"
 
----------------------------------------------------------------------------------------------------------------------------------------------
-
+-- custom managehook
 myManageHook = (composeAll . concat $
   [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
   , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
@@ -55,13 +54,11 @@ myManageHook = (composeAll . concat $
   ]) <+> manageDocks <+> manageScratchPad
 
   where
-
     -- names
     myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As","XFontSel","feh"]
     myFloatsT = ["Downloads","Add-ons","Shiretoko Preferences","About Shiretoko"]
     myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium"]
     
-
 tiled = ResizableTall 1 (2/100) (1/2) []
 
 myFocusFollowsMouse :: Bool
@@ -72,8 +69,6 @@ myFocusedBorderColor = "#ddeedd"
 
 borderWidth' :: Dimension
 borderWidth' = 2
-
-myTerminal = "urxvtc"
 
 myXPConfig :: XPConfig
 myXPConfig = defaultXPConfig
@@ -93,7 +88,6 @@ manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
   where
-
     -- height, width as % screensize
     h = 0.32
     w = 0.65
@@ -101,14 +95,13 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 0.62
     l = 0.22
 
----------------------------------------------------------------------------------------------------------------------------------------------
-
+-- custom pp
 myPP h = defaultPP 
   { ppCurrent = wrap "^fg(#fea63c)^bg(#382d22)" "^fg()^bg()" . pad
   , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
   , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
   , ppSep = ""
-  , ppUrgent = wrap "!^fg(#e9c789)" "^fg()"
+  , ppUrgent = wrap "^fg(#000000)^bg(#cd5c5c)" "^fg()^bg()" . dzenStrip
   , ppWsSep = ""
   , ppLayout = dzenColor "grey30" "" .
       (\x -> case x of
@@ -123,14 +116,11 @@ myPP h = defaultPP
   }
 
   where
-
-    noScratchPad ws = if all (`elem` ws) "NSP" then "" else pad ws
-    
+    -- filter out NSP
+    noScratchPad ws = if ws == "NSP" then "" else pad ws    
     namedOnly ws = if any (`elem` ws) ['a'..'z'] then pad ws else ""
 
----------------------------------------------------------------------------------------------------------------------------------------------
-
--- Define layout list
+-- layout list
 myLayout = avoidStruts 
            $ smartBorders
            $ onWorkspace "term" Accordion
@@ -148,9 +138,8 @@ myLayout = avoidStruts
 
     -- Percent of screen to increment by when resizing panes
     delta      = 3/100
-     
----------------------------------------------------------------------------------------------------------------------------------------------
 
+-- custom keys
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
        [((modMask,                  xK_Return),             spawn myTerminal)
@@ -218,14 +207,9 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
     where
-      
       scratchPad = scratchpadSpawnActionTerminal myTerminal
       
----------------------------------------------------------------------------------------------------------------------------------------------
-
 statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 14 -w 670 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
-
----------------------------------------------------------------------------------------------------------------------------------------------
 
 main = do 
 	bar <- spawnPipe statusBarCmd1 
@@ -242,5 +226,4 @@ main = do
           	   , focusFollowsMouse  = myFocusFollowsMouse
           	   , keys = keys'
           	   }
-
----------------------------------------------------------------------------------------------------------------------------------------------
+-- END
