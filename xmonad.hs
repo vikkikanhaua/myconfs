@@ -92,8 +92,8 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     h = 0.32
     w = 0.65
 
-    t = 0.62
-    l = 0.22
+    t = 0.64
+    l = 0.35
 
 -- custom pp
 myPP h = defaultPP 
