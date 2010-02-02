@@ -117,7 +117,7 @@ ftp_proxy_host=gate
 display_codepage=Other_8_bit
 
 [Colors]
-base_color=normal=brightblack,default:selected=brown,default:marked=brown,default:markselect=brown,gray:directory=gray,default:executable=green,default:link=cyan,default:device=magenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=default,white:input=white,black:dnormal=green,default:dfocus=brightblue,default:dhotnormal=cyan,default:dhotfocus=brightcyan,default:menu=green,default:menuhot=cyan,default:menusel=gray,default:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
+base_color=normal=brightblack,default:selected=yellow,default:marked=brown,default:markselect=brown,gray:directory=gray,default:executable=green,default:link=cyan,default:device=magenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=default,white:input=white,black:dnormal=green,default:dfocus=brightblue,default:dhotnormal=cyan,default:dhotfocus=brightcyan,default:menu=green,default:menuhot=cyan,default:menusel=gray,default:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
 
 [Panelize]
 Find *.orig after patching=find . -name \*.orig -print
