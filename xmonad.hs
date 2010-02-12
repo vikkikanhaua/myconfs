@@ -59,8 +59,6 @@ myManageHook = (composeAll . concat $
     myFloatsT = ["Downloads","Add-ons","Shiretoko Preferences","About Shiretoko"]
     myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium","Namoroka"]
     
-tiled = ResizableTall 1 (2/100) (1/2) []
-
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 

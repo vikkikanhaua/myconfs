@@ -10,13 +10,13 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
+feh --bg-scale ~/Pictures/"$(ls ~/Pictures | sort -R | line)"
+
 export OOO_FORCE_DESKTOP="gnome" &
 
 urxvtd -q -f -o &
 
-# feh --bg-scale ~/Pictures/"$(ls ~/Pictures | sort -R | line)" &
-
-eval `cat ~/.fehbg`
+# eval `cat ~/.fehbg`
 
 ~/.bin/dzonky &
 
