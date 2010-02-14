@@ -58,8 +58,8 @@ hdr_order from: to: cc: subject:                  # and in this order
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-pub arch-general xmonad
-mailboxes +INBOX +arch-general +arch-dev-pub +arch-announce +xmonad +drafts +sent +spam +trash +archive
+subscribe arch-announce arch-dev-pub arch-general xmonad mc
+mailboxes +INBOX +mc +arch-general +arch-dev-pub +arch-announce +xmonad +drafts +sent +spam +trash +archive
 # }}}
 
 ##
@@ -118,6 +118,7 @@ macro index P   "<pipe-message>cat > ~/" "save message as"
 macro index Z   "<shell-escape>/usr/bin/offlineimap <enter>" "sync IMAP"
 macro index D   "<save-message>+trash<enter>"   "move message to the trash"
 macro index S   "<save-message>+spam<enter>"    "mark message as spam"
-# a binding
-bind  index \U  undelete-thread
+macro index,pager b '<enter-command>toggle sidebar_visible<enter>'
+# bindings
+bind  index U  undelete-thread
 # }}}

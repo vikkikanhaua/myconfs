@@ -1,4 +1,4 @@
-# {{{ Completion
+# {{{ ---[ Completion ]
 # :completion:<func>:<completer>:<command>:<argument>:<tag>
 # Expansion options
 zstyle ':completion:*' completer _complete _prefix
@@ -26,12 +26,30 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 # }}}
 
-autoload -Uz compinit complist zutil colors
-compinit
-colors
+# ---[ misc options ]---------------------------------------------------- {{{
+# General
+setopt   ALWAYS_TO_END NO_BEEP CLOBBER
+setopt   AUTO_CD CD_ABLE_VARS MULTIOS CORRECT_ALL
 
+# Job Control
+setopt   CHECK_JOBS NO_HUP
 
-# exports {{{
+# History
+setopt   INC_APPEND_HISTORY EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS
+setopt   HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS HIST_IGNORE_SPACE
+setopt   HIST_EXPIRE_DUPS_FIRST
+
+# Stay compatible to sh and IFS
+setopt   SH_WORD_SPLIT
+
+setopt   notify globdots pushdtohome
+setopt   longlistjobs
+setopt   autoresume pushdsilent
+setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+unsetopt BG_NICE HUP autoparamslash
+# }}}
+
+# ---[ exports ] {{{
 export HISTFILE=~/.zsh_history
 export BROWSER="firefox"
 export EDITOR="vim"
@@ -53,30 +71,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'
 
 # }}}
 
-# ---[ ZSH Options ]---------------------------------------------------- {{{
-# General
-setopt   ALWAYS_TO_END NO_BEEP CLOBBER
-setopt   AUTO_CD CD_ABLE_VARS MULTIOS CORRECT_ALL
-
-# Job Control
-setopt   CHECK_JOBS NO_HUP
-
-# History
-setopt   INC_APPEND_HISTORY EXTENDED_HISTORY HIST_IGNORE_DUPS HIST_FIND_NO_DUPS
-setopt   HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
-setopt   HIST_EXPIRE_DUPS_FIRST
-
-# Stay compatible to sh and IFS
-setopt   SH_WORD_SPLIT
-
-setopt   notify globdots pushdtohome
-setopt   longlistjobs
-setopt   autoresume pushdsilent
-setopt   autopushd pushdminus extendedglob rcquotes mailwarning
-unsetopt BG_NICE HUP autoparamslash
-# }}}
-
-# sourced files {{{
+# ---[ sourced files ] {{{
 # My Aliases
 if [ -f ~/.aliases ]; then
         source ~/.aliases
@@ -88,28 +83,7 @@ if [ -f ~/.funcs ]; then
 fi
 # }}}
 
-set-title () {
-  builtin echo -ne "\ek$*\e\\"
-}
-
-preexec () {
-  if [[ -n $STY ]]; then
-    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
-    set-title $TITLE
-  fi
-}
-
-precmd () { 
-  ret_sts=$?
-  export PROMPT="`echo "[%{${fg[green]}%} %5~ %{${reset_color}%}]─[%{${fg[cyan]}%} $(history | tail -1 | awk '{print $2}').${ret_sts} %{${reset_color}%}]\n%{${fg[yellow]}%}>>%{${reset_color}%}"` "
-
-  if [[ -n $STY ]]; then
-    TITLE=${0/#*\/} 
-    set-title $TITLE
-  fi
-}
-
-# keybindings {{{
+# ---[ keybindings ] {{{
 bindkey -v
 #for screen
 bindkey '^[[1~'  beginning-of-line
@@ -133,12 +107,32 @@ bindkey '^[[5~'  .undefined-key
 bindkey '^[[6~'  .undefined-key
 #  }}}
 
-# login manager {{{
-#
+autoload -Uz compinit complist zutil colors
+compinit
+colors
+
+
+set-title () {
+  builtin echo -ne "\ek$*\e\\"
+}
+
+preexec () {
+  if [[ -n $STY ]]; then
+    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
+    set-title $TITLE
+  fi
+}
+
+precmd () { 
+  ret_sts=$?
+  export PROMPT="`echo "[%{${fg[green]}%} %5~ %{${reset_color}%}]─[%{${fg[cyan]}%} $(history | tail -1 | awk '{print $2}').${ret_sts} %{${reset_color}%}]\n%{${fg[yellow]}%}>>%{${reset_color}%}"` "
+
+  if [[ -n $STY ]]; then
+    TITLE=${0/#*\/} 
+    set-title $TITLE
+  fi
+}
+
+# ---[ login manager ] {{{
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx }
-#
 # }}}
-#
-# just a funny message
-# fortune -a 
-# echo

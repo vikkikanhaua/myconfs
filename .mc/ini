@@ -28,13 +28,13 @@ mouse_move_pages_viewer=1
 fast_refresh=0
 navigate_with_arrows=1
 drop_menus=1
-wrap_mode=-1
+wrap_mode=1
 old_esc_mode=1
 cd_symlinks=1
 show_all_if_ambiguous=1
 have_fast_cpu=0
 max_dirt_limit=10
-torben_fj_mode=0
+torben_fj_mode=1
 use_file_to_guess_type=1
 alternate_plus_minus=0
 only_leading_plus_minus=1
@@ -68,9 +68,31 @@ editor_syntax_highlighting=1
 nice_rotating_dash=0
 horizontal_split=1
 
+kilobyte_si=0
+confirm_directory_hotlist_delete=1
+mouse_close_dialog=0
+ftpfs_use_passive_connections_over_proxy=0
+fish_directory_timeout=900
+editor_persistent_selections=1
+editor_cursor_beyond_eol=0
+editor_visible_tabs=1
+editor_visible_spaces=1
+editor_line_state=0
+editor_simple_statusbar=0
+editor_check_new_line=0
+mcview_remember_file_position=0
+auto_fill_mkdir_name=1
+reverse_files_only=1
+copymove_persistent_attr=1
+select_flags=6
+editor_backup_extension=~
+skin=vik
+keymap=mc.keymap
+auto_save_setup_panels=0
+
 [Layout]
 equal_split=0
-first_panel_size=42
+first_panel_size=40
 message_visible=0
 keybar_visible=0
 xterm_title=0
@@ -78,48 +100,25 @@ output_lines=0
 command_prompt=0
 menubar_visible=0
 show_mini_info=0
-permission_mode=0
+permission_mode=1
 filetype_mode=1
 
-[Dirs]
-other_dir=.
-current_is_left=1
-
-[New Left Panel]
-display=listing
-reverse=0
-case_sensitive=1
-sort_order=name
-list_mode=user
-user_format=full type name | size | perm
-user_status0=half type name | size | perm
-user_status1=half type name | size | perm
-user_status2=half type name | size | perm
-user_status3=half type name | size | perm
-user_mini_status=1
-
-[New Right Panel]
-display=info
-reverse=0
-case_sensitive=1
-sort_order=name
-list_mode=user
-user_format=half type name | size | perm
-user_status0=half type name | size | perm
-user_status1=half type name | size | perm
-user_status2=half type name | size | perm
-user_status3=half type name | size | perm
-user_mini_status=0
+free_space=1
 
 [Misc]
 ftpfs_password=anonymous@
 ftp_proxy_host=gate
-display_codepage=Other_8_bit
+display_codepage=UTF-8
+
+find_ignore_dirs=
+source_codepage=UTF-8
 
 [Colors]
-base_color=normal=brightblack,default:selected=yellow,default:marked=brown,default:markselect=brown,gray:directory=gray,default:executable=green,default:link=cyan,default:device=magenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=default,white:input=white,black:dnormal=green,default:dfocus=brightblue,default:dhotnormal=cyan,default:dhotfocus=brightcyan,default:menu=green,default:menuhot=cyan,default:menusel=gray,default:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
+base_color=
+screen=
+color_terminals=
 
 [Panelize]
-Find *.orig after patching=find . -name \*.orig -print
-Find SUID and SGID programs=find . \( \( -perm -04000 -a -perm +011 \) -o \( -perm -02000 -a -perm +01 \) \) -print
-Find rejects after patching=find . -name \*.rej -print
+Find *.orig after patching=find . -name \\*.orig -print
+Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm +011 \\) -o \\( -perm -02000 -a -perm +01 \\) \\) -print
+Find rejects after patching=find . -name \\*.rej -print

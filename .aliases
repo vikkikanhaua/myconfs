@@ -5,7 +5,7 @@ alias la='ls --color=auto -vhA'
 alias grep='grep -i --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias df="df -h | grep 'sd[ab]' | sed 's/^\/dev\// /g;s/      / /g'"
+alias df="df -h | grep 'sd[a-z]' | sed 's/^\/dev\// /g;s/      / /g'"
 alias du="du -sh"
 alias m="ncmpcpp"
 alias cp="nocorrect cp -viru"
