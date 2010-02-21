@@ -3,6 +3,7 @@ require("awful")
 require("awful.autofocus")
 require("awful.rules")
 require("beautiful")
+require("naughty")
 require("vicious")
 require("teardrop")
 -- }}}
@@ -34,6 +35,17 @@ layouts = {
   awful.layout.suit.magnifier
 }
 -- }}}   
+
+-- {{{ naughty configuration
+naughty.config.presets.normal.timeout          = 8
+naughty.config.presets.normal.font             = beautiful.font or "Verdana 8"
+naughty.config.presets.normal.icon_size        = 16
+naughty.config.presets.normal.ontop            = true
+naughty.config.presets.normal.fg               = beautiful.fg_focus or '#fea63c'
+naughty.config.presets.normal.bg               = beautiful.bg_focus or '#535d6c'
+naughty.config.presets.normal.border_color     = beautiful.border_focus or '#535d6c'
+naughty.config.presets.normal.border_width     = 1
+-- }}}
 
 -- {{{ Tags
 -- Define a tag table which will hold all screen tags.
@@ -231,7 +243,7 @@ uptimewidget = widget({ type = 'textbox' })
 uptimewidget.align = 'right'
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('uptime:<span color="#66aabb"> %2dd %02d:%02d</span>', args[1], args[2], args[3])
+    return string.format('uptime<span color="#66aabb"> %2dd %02d:%02d</span>', args[1], args[2], args[3])
   end, 61)
 -- }}} 
 
