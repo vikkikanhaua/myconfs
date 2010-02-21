@@ -18,8 +18,4 @@ xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-case $1 in
-  *) exec awesome ;;
-  xmonad) ~/.bin/dzonky &
-  exec ~/.xmonad/xmonad-x86_64-linux ;;
-esac
+exec awesome
