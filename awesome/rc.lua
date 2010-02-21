@@ -58,6 +58,7 @@ separator.image = image(beautiful.widget_sep)
 -- }}}
 
 -- {{{ top
+
 -- {{{ creation of widgets 
 
 -- {{{ File system usage  
@@ -83,10 +84,10 @@ end
 -- caching
 vicious.enable_caching(vicious.widgets.fs)
 -- Register widgets
-vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",            599)
-vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",            599)
-vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",            599)
-vicious.register(fs.t, vicious.widgets.fs, "${/mnt/tv used_p}",            599)
+vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",       599)
+vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",   599)
+vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
+vicious.register(fs.t, vicious.widgets.fs, "${/mnt/tv used_p}", 599)
 -- }}} 
 
 -- {{{ Network usage
@@ -109,7 +110,7 @@ volicon.image = image(beautiful.widget_vol)
 volbar    = awful.widget.progressbar()
 volwidget = widget({ type = "textbox" })
 -- Progressbar properties
-volbar:set_width(8)
+volbar:set_width(10)
 volbar:set_height(12)
 volbar:set_vertical(true)
 volbar:set_background_color(beautiful.fg_off_widget)
@@ -137,7 +138,7 @@ vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d 
 mailicon = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 61, {"/home/vikki/Mail/INBOX"})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/Mail/INBOX"})
 --}}}
 
 -- {{{ systray
@@ -184,7 +185,7 @@ for s = 1, screen.count() do
       layout = awful.widget.layout.horizontal.leftright
     },
     spacer, datewidget, spacer, dateicon,
-    separator, volwidget, volbar.widget, spacer, volicon, 
+    separator, volwidget, spacer, volbar.widget, volicon, 
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
     separator, upicon, netwidget, dnicon, 
@@ -194,6 +195,7 @@ for s = 1, screen.count() do
   }
 end
 -- }}}
+
 -- }}} 
 
 -- {{{ bottom
@@ -206,23 +208,20 @@ hdd = {
   sda = widget({ type = "textbox" }),
   sdb = widget({ type = "textbox" })
 }
--- enable caching
-vicious.enable_caching(vicious.widgets.hddtemp)
 -- register
 vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}°C</span>', 53)
-vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}°C</span>', 57)
+vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}°C</span>', 59)
 -- }}}
 
 -- mpd {{{
 mpdwidget = widget({ type = 'textbox' })
-vicious.enable_caching(vicious.widgets.mpd)
 -- register & custom o/p fn
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args[1] == 'Stopped' then
       return '<span color="brown">mpd stopped</span>'
     else
-      return '<span color="#88a175">'.. args[1] ..'</span>'
+      return '<span color="#fea63c">'.. args[1] ..'</span>'
     end
   end)
 -- }}}
@@ -230,16 +229,14 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
 -- {{{ uptime
 uptimewidget = widget({ type = 'textbox' })
 uptimewidget.align = 'right'
-vicious.enable_caching(vicious.widgets.uptime)
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('uptime: %2dd %02d:%02d', args[1], args[2], args[3])
+    return string.format('uptime:<span color="#66aabb"> %2dd %02d:%02d</span>', args[1], args[2], args[3])
   end, 61)
 -- }}} 
 
 -- {{{ pkg updates
 updatewidget = widget({ type = 'textbox' })
-vicious.enable_caching(vicious.widgets.pkg)
 vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
     if args[1] <= 50 then
@@ -247,7 +244,7 @@ vicious.register(updatewidget, vicious.widgets.pkg,
     else
       return '<span color="red">'..args[1]..' pkg(s)</span> to upgrade'
     end
-  end, 1707, 'Arch')
+  end, 3600, 'Arch')
 -- }}}
 
 -- }}}

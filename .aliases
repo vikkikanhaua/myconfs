@@ -31,3 +31,4 @@ alias cdc='cd ~; clear'
 alias svim='sudoedit'
 alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
 alias motd="cat /etc/motd"
+alias packer="packer --auronly"
