@@ -1,4 +1,4 @@
-include ".themes/Dust/gtk-2.0/gtkrc"
+include ".themes/ORI/gtk-2.0/gtkrc"
 
-gtk-icon-theme-name = "ALLBLACK"
+gtk-icon-theme-name = "ACYL"
 gtk-menu-popup-delay = 0
