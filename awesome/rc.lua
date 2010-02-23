@@ -50,7 +50,7 @@ naughty.config.presets.normal.border_width     = 1
 -- {{{ Tags
 -- Define a tag table which will hold all screen tags.
 tags = {
-  names  = { "main", "web", "term", "media", "code" },
+  names  = { "sys", "web", "term", "media", "code" },
   layout = { layouts[3], layouts[7], layouts[5], layouts[1], layouts[2]
 }}
 
@@ -143,7 +143,7 @@ dateicon.image = image(beautiful.widget_date)
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d %b</span>, %H:%M' , 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d</span>, %H:%M' , 61)
 -- }}}
 
 --{{{ mail
