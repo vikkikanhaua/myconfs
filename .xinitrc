@@ -16,7 +16,7 @@ eval `cat ~/.fehbg`
 
 urxvtd -q -f -o &
 
-xsetroot -cursor_name left_ptr &
+# xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
