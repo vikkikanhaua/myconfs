@@ -143,7 +143,7 @@ dateicon.image = image(beautiful.widget_date)
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d</span>, %H:%M' , 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d</span>, %H:%M', 61)
 -- }}}
 
 --{{{ mail
@@ -432,8 +432,6 @@ awful.rules.rules = {
   { rule = { class = "MPlayer" },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } },
   { rule = { class = "XFontSel" },
-    properties = { floating = true } },
-  { rule = { class = "feh" },
     properties = { floating = true } },
   { rule = { class = "aumix" },
     properties = { floating = true } },
