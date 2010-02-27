@@ -150,7 +150,7 @@ vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d<
 mailicon = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/Mail/INBOX"})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/INBOX"})
 --}}}
 
 -- {{{ systray
@@ -429,18 +429,18 @@ awful.rules.rules = {
                    size_hints_honor = false,
                    keys = clientkeys,
                    buttons = clientbuttons } },
-  { rule = { class = "MPlayer" },
-    properties = { floating = true, tag = tags[1][4], switchtotag = true } },
   { rule = { class = "XFontSel" },
     properties = { floating = true } },
   { rule = { class = "aumix" },
     properties = { floating = true } },
-  { rule = { class = "Vlc" },
-    properties = { floating = true, tag = tags[1][4], switchtotag = true } },
   { rule = { name = "Downloads" },
     properties = { floating = true } },
   { rule = { class = "Namoroka" },
-    properties = { tag = tags[1][2], switchtotag = true } }
+    properties = { tag = tags[1][2], switchtotag = true } },
+  { rule = { class = "MPlayer" },
+    properties = { floating = true, tag = tags[1][4], switchtotag = true } },
+  { rule = { class = "Vlc" },
+    properties = { floating = true, tag = tags[1][4], switchtotag = true } }
 }
 -- }}}
 

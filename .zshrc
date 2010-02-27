@@ -85,6 +85,8 @@ fi
 
 # ---[ keybindings ] {{{
 bindkey -v
+bindkey '^[Oc'   forward-word #for normal shell
+bindkey '^[Od'   backward-word
 #for screen
 bindkey '^[[1~'  beginning-of-line
 bindkey '^[[4~'  end-of-line
@@ -95,8 +97,6 @@ bindkey '^[[3~'  delete-char
 bindkey '^[[2~'  overwrite-mode
 bindkey '^[OC'   forward-word #for tmux
 bindkey '^[OD'   backward-word
-bindkey '^[Oc'   forward-word #for normal shell
-bindkey '^[Od'   backward-word
 bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^?'     backward-delete-char
 bindkey '^['     vi-cmd-mode

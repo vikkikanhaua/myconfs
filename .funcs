@@ -72,7 +72,7 @@ open() {
 
 # take a timestamped screenshot 
 shot(){
-  scrot -q 90 -t 20 -cd 3 "$HOME/Pictures/screenshots/desktop_$(date +%y%m%d_%H%M).png"
+  scrot -q 90 -t 20 -cd 3 "$HOME/pictures/screenshots/desktop_$(date +%y%m%d_%H%M).png"
 }
 
 # auto send an attachment from CLI 
@@ -148,7 +148,7 @@ daemon_status() {
 fmail() {
   local -A counts; local i
          
-  for i in "${MAILDIR:-${HOME}/Mail}"/**/new/*
+  for i in "${MAILDIR:-${HOME}/mail}"/**/new/*
     { (( counts[${i:h:h:t}]++ )) }
   for i in ${(k)counts}
   { print -n ${i//\[Gmail\]./}: $counts[$i]' ' }

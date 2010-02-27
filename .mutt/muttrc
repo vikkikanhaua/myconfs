@@ -4,7 +4,7 @@
 
 set mbox_type           = Maildir
 set mbox                = +mbox
-set folder              = ~/Mail
+set folder              = ~/mail
 set spoolfile           = +INBOX
 set header_cache        = ~/.mutt/cache/headers
 set message_cachedir    = ~/.mutt/cache/bodies

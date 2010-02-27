@@ -19,7 +19,7 @@ theme.font      = "Profont 8"
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
 theme.fg_focus  = "#63AFAF"
-theme.fg_urgent = "#CC9393"
+theme.fg_urgent = "#CD9393"
 theme.bg_normal = "#3F3F3F"
 theme.bg_focus  = "#3F3F3F"
 theme.bg_urgent = theme.bg_normal
@@ -33,8 +33,8 @@ theme.border_marked = theme.fg_urgent
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus  = theme.bg_normal
-theme.titlebar_bg_normal = theme.bg_normal
+-- theme.titlebar_bg_focus  = theme.bg_normal
+-- theme.titlebar_bg_normal = theme.bg_normal
 -- theme.titlebar_[normal|focus]
 -- }}}
 
@@ -50,7 +50,7 @@ theme.border_widget    = theme.bg_normal
 -- }}}
 
 -- {{{ Mouse finder
-theme.mouse_finder_color = theme.fg_urgent
+-- theme.mouse_finder_color = theme.fg_urgent
 -- theme.mouse_finder_[timeout|animate_timeout|radius|factor]
 -- }}}
 
