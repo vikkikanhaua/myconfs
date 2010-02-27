@@ -357,6 +357,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "c",                    function () awful.util.spawn("chromium", false) end),
   awful.key({ modkey,           }, "d",                    function () awful.util.spawn("eject -T", false) end),
   awful.key({ modkey,           }, "f",                    function () awful.util.spawn("favsong", false) end),
+  awful.key({ modkey,           }, "m",                    function () awful.util.spawn("aumix -v 80", false) end),
   awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
   awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),
   awful.key({ modkey, "Control" }, "b",                    function () awful.util.spawn("favsong -b", false) end),

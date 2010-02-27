@@ -111,7 +111,6 @@ autoload -Uz compinit complist zutil colors
 compinit
 colors
 
-
 set-title () {
   builtin echo -ne "\ek$*\e\\"
 }
