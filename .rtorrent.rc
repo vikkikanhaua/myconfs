@@ -18,7 +18,7 @@ download_rate = 200
 upload_rate = 20
 
 # Default directory to save the downloaded torrents.
-directory = ~/torrents/.running
+directory = ~/downloads/torrents/.running
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
@@ -29,9 +29,8 @@ session = ~/.session
 # deleted.
 schedule = watch_directory,300,900,"load=~/downloads/*.torrent"
 #schedule = untied_directory,5,5,stop_untied=
-#system.method.set_key = event.download.finished,d.close=,"d.erase="
 
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,~/torrents/"
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,~/downloads/torrents/"
 system.method.set_key = event.download.finished,notifyme,"execute=naughty,$d.get_name="
 
 # Close torrents when diskspace is low.

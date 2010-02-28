@@ -163,75 +163,78 @@ hi SpellLocal guisp=#7cac7c guifg=#9ccc9c
 " Entering Kurt zone
 if &t_Co > 255
     hi Boolean         ctermfg=181
-    hi Character       ctermfg=181   cterm=bold
+    hi Character       ctermfg=181                   cterm=bold
     hi Comment         ctermfg=108
-    hi Conditional     ctermfg=223   cterm=bold
-    hi Constant        ctermfg=181   cterm=bold
+    hi Conditional     ctermfg=223                   cterm=bold
+    hi Constant        ctermfg=181                   cterm=bold
     hi Cursor          ctermfg=233   ctermbg=109     cterm=bold
-    hi Debug           ctermfg=181   cterm=bold
-    hi Define          ctermfg=223   cterm=bold
+    hi Debug           ctermfg=181                   cterm=bold
+    hi Define          ctermfg=223                   cterm=bold
     hi Delimiter       ctermfg=245
     hi DiffAdd         ctermfg=66    ctermbg=237     cterm=bold
     hi DiffChange      ctermbg=236
     hi DiffDelete      ctermfg=236   ctermbg=238
     hi DiffText        ctermfg=217   ctermbg=237     cterm=bold
-    hi Directory       ctermfg=188   cterm=bold
-    hi ErrorMsg        ctermfg=115   ctermbg=236     cterm=bold
-    hi Exception       ctermfg=249   cterm=bold
+    hi Directory       ctermfg=188                   cterm=bold
+    hi ErrorMsg        ctermfg=9     ctermbg=none    cterm=bold
+    hi Exception       ctermfg=249                   cterm=bold
     hi Float           ctermfg=251
     hi FoldColumn      ctermfg=109   ctermbg=238
     hi Folded          ctermfg=109   ctermbg=238
     hi Function        ctermfg=228
-    hi Identifier      ctermfg=223
-    hi IncSearch       ctermbg=228   ctermfg=238
-    hi Keyword         ctermfg=223   cterm=bold
-    hi Label           ctermfg=187   cterm=underline
-    hi LineNr          ctermfg=248   ctermbg=235
-    hi Macro           ctermfg=223   cterm=bold
-    hi ModeMsg         ctermfg=223   cterm=none
-    hi MoreMsg         ctermfg=15    cterm=bold
-    hi Number          ctermfg=116
+    hi Identifier      ctermfg=230
+    hi IncSearch       ctermfg=238   ctermbg=228
+    hi Keyword         ctermfg=222                  cterm=bold
+    hi Label           ctermfg=187                  cterm=underline
+    hi LineNr          ctermfg=238
+    hi Macro           ctermfg=223                  cterm=bold
+    hi ModeMsg         ctermfg=230
+    hi MoreMsg         ctermfg=15                   cterm=bold
+    hi Number          ctermfg=157
     hi Operator        ctermfg=230
-    hi PreCondit       ctermfg=180   cterm=bold
-    hi PreProc         ctermfg=223   cterm=bold
-    hi Question        ctermfg=15    cterm=bold
-    hi Repeat          ctermfg=223   cterm=bold
+    hi PreCondit       ctermfg=180                  cterm=bold
+    hi PreProc         ctermfg=223                  cterm=bold
+    hi Question        ctermfg=15                   cterm=bold
+    hi Repeat          ctermfg=223                  cterm=bold
     hi Search          ctermfg=230   ctermbg=236
-    hi SpecialChar     ctermfg=181   cterm=bold
-    hi SpecialComment  ctermfg=108   cterm=bold
+    hi SpecialChar     ctermfg=181                  cterm=bold
+    hi SpecialComment  ctermfg=108                  cterm=bold
     hi Special         ctermfg=181
     hi SpecialKey      ctermfg=151
-    hi Statement       ctermfg=187   ctermbg=234     cterm=none
+    hi Statement       ctermfg=187
     hi StatusLine      ctermfg=236   ctermbg=186
     hi StatusLineNC    ctermfg=235   ctermbg=108
-    hi StorageClass    ctermfg=249   cterm=bold
+    hi StorageClass    ctermfg=249                  cterm=bold
     hi String          ctermfg=174
-    hi Structure       ctermfg=229   cterm=bold
-    hi Tag             ctermfg=181   cterm=bold
-    hi Title           ctermfg=7     ctermbg=234     cterm=bold
-    hi Todo            ctermfg=108   ctermbg=234     cterm=bold
-    hi Typedef         ctermfg=253   cterm=bold
-    hi Type            ctermfg=187   cterm=bold
-    hi Underlined      ctermfg=188   ctermbg=234     cterm=bold
+    hi Structure       ctermfg=229                  cterm=bold
+    hi Tag             ctermfg=181                  cterm=bold
+    hi TabLine         ctermfg=100   ctermbg=none   cterm=none
+    hi TabLineFill     ctermfg=100   ctermbg=none   cterm=none
+    hi TabLineSel      ctermfg=220                  cterm=none
+    hi Title           ctermfg=7     ctermbg=234    cterm=bold
+    hi Todo            ctermfg=108   ctermbg=234    cterm=bold
+    hi Typedef         ctermfg=253                  cterm=bold
+    hi Type            ctermfg=187                  cterm=bold
+    hi Underlined      ctermfg=188   ctermbg=234    cterm=bold
     hi VertSplit       ctermfg=236   ctermbg=65
-    hi VisualNOS       ctermfg=236   ctermbg=210     cterm=bold
-    hi WarningMsg      ctermfg=15    ctermbg=236     cterm=bold
-    hi WildMenu        ctermbg=236   ctermfg=194     cterm=bold
-    hi CursorLine      ctermbg=236   cterm=none
+    hi Visual          ctermfg=236   ctermbg=210    cterm=bold
+    hi WarningMsg      ctermfg=15    ctermbg=236    cterm=bold
+    hi WildMenu        ctermbg=236   ctermfg=194    cterm=bold
+    hi CursorLine      ctermbg=236
 
     " spellchecking, always "bright" background
-    hi SpellLocal ctermfg=14  ctermbg=237
-    hi SpellBad   ctermfg=9   ctermbg=237
-    hi SpellCap   ctermfg=12  ctermbg=237
-    hi SpellRare  ctermfg=13  ctermbg=237
+    hi SpellLocal      ctermfg=14    ctermbg=237
+    hi SpellBad        ctermfg=9     ctermbg=237
+    hi SpellCap        ctermfg=12    ctermbg=237
+    hi SpellRare       ctermfg=13    ctermbg=237
 
     " pmenu
-    hi PMenu      ctermfg=248  ctermbg=0
-    hi PMenuSel   ctermfg=223 ctermbg=235
+    hi PMenu           ctermfg=248   ctermbg=0
+    hi PMenuSel        ctermfg=223   ctermbg=235
 
     if exists("g:zenburn_high_Contrast")
-        hi Normal ctermfg=188 ctermbg=234
-        hi NonText         ctermfg=238
+        hi Normal ctermfg=188 ctermbg=none
+        hi NonText ctermfg=238
 
         if exists("g:zenburn_color_also_Ignore")
             hi Ignore          ctermfg=238
@@ -259,7 +262,7 @@ if &t_Co > 255
         hi warningmsg      ctermbg=236
         hi wildmenu        ctermbg=236
         hi NonText         ctermfg=240
-        
+
         if exists("g:zenburn_color_also_Ignore")
             hi Ignore          ctermfg=240
         endif

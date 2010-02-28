@@ -124,7 +124,7 @@ preexec () {
 
 precmd () { 
   [[ $? -eq 0 ]] && color=green || color=red
-  export PROMPT="`echo "[%{${fg_bold[green]}%} %~ %{${reset_color}%}]-[%{${fg_bold[red]}%} %n%{${reset_color}%}@%{${fg_bold[blue]}%}%m %{${reset_color}%}]-[%{${fg_bold[cyan]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${fg[$color]}%}>>%{${reset_color}%}"` "
+  export PROMPT="`echo "[%{${fg_bold[green]}%} %~ %{${reset_color}%}]-[%{${fg[yellow]}%} %n%{${reset_color}%}@%{${fg_bold[blue]}%}%m %{${reset_color}%}]-[%{${fg_bold[cyan]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${fg[$color]}%}>>%{${reset_color}%}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 

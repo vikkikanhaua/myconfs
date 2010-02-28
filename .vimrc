@@ -3,16 +3,18 @@
 "
 """"""""""""
 
-
+" Main options {{{ 
 if $TERM == "linux"
   set t_Co=16
   colorscheme slate
 else
+  set list listchars=tab:\➜\ ,trail:·,nbsp:-
   set t_Co=256
-  colorscheme ir_black 
+  colorscheme zencustom
 endif
 
-" Main options {{{ 
+let g:zenburn_high_Contrast = 1
+
 set nocompatible
 set autoindent
 set backspace=indent,eol,start
@@ -77,7 +79,7 @@ map ; :
 map <space> za
 
 " Tab operations
-nmap t :tabnew<cr>
+nmap t :tabnew
 nmap <Leader>k :tabnext<cr>
 nmap <Leader>j :tabprevious<cr>
 " }}}
