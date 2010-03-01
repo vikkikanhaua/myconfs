@@ -63,7 +63,7 @@ hi Typedef         ctermfg=253                  cterm=bold
 hi Type            ctermfg=187                  cterm=bold
 hi Underlined      ctermfg=188   ctermbg=234    cterm=bold
 hi VertSplit       ctermfg=236   ctermbg=65
-hi Visual          ctermfg=236   ctermbg=210    cterm=bold
+hi Visual          ctermfg=210   ctermbg=236    cterm=bold
 hi WarningMsg      ctermfg=15    ctermbg=none   cterm=bold
 hi WildMenu        ctermbg=236   ctermfg=194    cterm=bold
 hi CursorLine      ctermbg=236

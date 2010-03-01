@@ -30,7 +30,7 @@ session = ~/.session
 schedule = watch_directory,300,900,"load=~/downloads/*.torrent"
 #schedule = untied_directory,5,5,stop_untied=
 
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,~/downloads/torrents/"
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/downloads/torrents/;d.set_directory=~/downloads/torrents/"
 system.method.set_key = event.download.finished,notifyme,"execute=naughty,$d.get_name="
 
 # Close torrents when diskspace is low.

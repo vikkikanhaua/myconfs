@@ -28,7 +28,7 @@ set mouse=v
 set nobackup
 set hlsearch
 set nomousehide
-set wrap
+set nowrap
 set number
 set ruler
 set shiftwidth=2

@@ -8,7 +8,7 @@ require("vicious")
 require("teardrop")
 -- }}}
 
--- {{{ Variable definitions
+-- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/zenburn.lua")
 
@@ -36,6 +36,35 @@ layouts = {
 }
 -- }}}   
 
+-- {{{ calendar
+local calendar = nil
+local offset = 0
+
+function remove_calendar()
+  if calendar ~= nil then
+    naughty.destroy(calendar)
+    calendar = nil
+    offset = 0
+  end
+end
+
+function add_calendar(inc_offset)
+  local save_offset = offset
+  remove_calendar()
+  offset = save_offset + inc_offset
+  local datespec = os.date("*t")
+  datespec = datespec.year * 12 + datespec.month - 1 + offset
+  datespec = (datespec % 12 + 1) .. " " .. math.floor(datespec / 12)
+  local cal = awful.util.pread("cal -s " .. datespec)
+  cal = string.gsub(cal, "^%s*(.-)%s*$", "%1")
+  calendar = naughty.notify({
+    text = string.format('<span font="%s">%s</span>', beautiful.font, "    "..cal),
+    timeout = 0, hover_timeout = nil,
+    width = 132,
+  })
+end
+-- }}}
+
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 8
 naughty.config.presets.normal.font             = beautiful.font or "Verdana 8"
@@ -47,7 +76,7 @@ naughty.config.presets.normal.border_color     = beautiful.border_focus or '#535
 naughty.config.presets.normal.border_width     = 1
 -- }}}
 
--- {{{ Tags
+-- {{{ tags
 -- Define a tag table which will hold all screen tags.
 tags = {
   names  = { "sys", "web", "term", "media", "code" },
@@ -60,7 +89,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- {{{ Wibox
+-- {{{ wibox
 
 -- {{{ defaults
 spacer    = widget({ type = "textbox"  })
@@ -142,6 +171,12 @@ dateicon = widget({ type = "imagebox" })
 dateicon.image = image(beautiful.widget_date)
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
+datewidget:buttons(awful.util.table.join(
+  awful.button({ }, 1, function () add_calendar(0) end),
+  awful.button({ }, 3, function () remove_calendar() end),
+  awful.button({ }, 4, function () add_calendar(-1) end),
+  awful.button({ }, 5, function () add_calendar(1) end)
+))
 -- Register widget
 vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d</span>, %H:%M', 61)
 -- }}}
@@ -300,7 +335,7 @@ end
 
 -- }}}
 
--- {{{ Key bindings
+-- {{{ key bindings
 globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
@@ -421,7 +456,7 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
+-- {{{ rules
 awful.rules.rules = {
   { rule = { },
     properties = { border_width = beautiful.border_width,
@@ -445,7 +480,7 @@ awful.rules.rules = {
 }
 -- }}}
 
--- {{{ Signals
+-- {{{ signals
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
   -- Add titlebar to floaters, but remove those from rule callback

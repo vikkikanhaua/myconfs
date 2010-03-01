@@ -70,11 +70,6 @@ open() {
   fi
 }
 
-# take a timestamped screenshot 
-shot(){
-  scrot -q 90 -t 20 -cd 3 "$HOME/pictures/screenshots/desktop_$(date +%y%m%d_%H%M).png"
-}
-
 # auto send an attachment from CLI 
 send() {
   if [ $# -ne 2 ]; then
