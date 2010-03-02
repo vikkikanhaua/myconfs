@@ -32,7 +32,7 @@ mixer-channel=Master
 # autoq=100
 # vf=pp=de,hqdn3d
 
-# Fix A/V sync problems. *
+# Fix A/V sync problems.
 mc=0.2
 autosync=30
 
