@@ -111,6 +111,18 @@ autoload -Uz compinit complist zutil colors
 compinit
 colors
 
+# {{{ colors
+reset="%{${reset_color}%}"
+red="%{${fg[red]}%}"
+red_b="%{${fg_bold[red]}%}"
+green="%{${fg[green]}%}"
+green_b="%{${fg_bold[green]}%}"
+yellow="%{${fg[yellow]}%}"
+yellow_b="%{${fg_bold[yellow]}%}"
+cyan="%{${fg[cyan]}%}"
+cyan_b="%{${fg_bold[cyan]}%}"
+# }}}
+
 set-title () {
   builtin echo -ne "\ek$*\e\\"
 }
@@ -123,8 +135,8 @@ preexec () {
 }
 
 precmd () { 
-  [[ $? -eq 0 ]] && color=green || color=red
-  export PROMPT="`echo "[%{${fg_bold[green]}%} %~ %{${reset_color}%}]-[%{${fg[yellow]}%} %n%{${reset_color}%}@%{${fg_bold[blue]}%}%m %{${reset_color}%}]-[%{${fg_bold[cyan]}%} $(history | tail -1 | awk '{print $2}') %{${reset_color}%}]\n%{${fg[$color]}%}>>%{${reset_color}%}"` "
+  [[ $? -eq 0 ]] && color=$green || color=$red
+  export PROMPT="`echo "|${red_b}---${reset}>${green_b} %1~ ${reset}<${red_b}---${reset}|${yellow} %T ${reset}|${red_b}---${reset}>${cyan} $(history | tail -1 | awk '{print $2}') ${reset}<${red_b}---${reset}|\n\\\`${color}-${reset}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 

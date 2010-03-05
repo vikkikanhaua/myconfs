@@ -116,7 +116,7 @@ message_delay_time = "2"
 ## Note: colors can be nested.
 ##
 #
-song_list_format = "{$3[%l]$9}{$4 %t $9}$R[{$5%b$9} // {$5%a$9}]"
+song_list_format = "{$3[%l]$9}{$2 %t $9}$R[{$5%b$9} // {$5%a$9}]"
 #
 #song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
 #
@@ -367,13 +367,13 @@ empty_tag_color = "red"
 #
 header_window_color = "default"
 #
-volume_color = "white"
+volume_color = "red"
 #
-state_line_color = "white"
+state_line_color = "green"
 #
 state_flags_color = "red"
 #
-main_window_color = "white"
+main_window_color = "blue"
 #
 color1 = "white"
 #
@@ -381,7 +381,7 @@ color2 = "green"
 #
 main_window_highlight_color = "white"
 #
-progressbar_color = "white"
+progressbar_color = "green"
 #
 statusbar_color = "default"
 #

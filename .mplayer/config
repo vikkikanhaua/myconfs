@@ -95,8 +95,3 @@ subfont-text-scale=3.0
 
 # Set autoscale coefficient. (default: 6)
 subfont-osd-scale=2.6
-
-[gnome-mplayer]
-msglevel=all=5
-vo=vdpau
-ao=alsa

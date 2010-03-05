@@ -100,7 +100,7 @@ separator.image = image(beautiful.widget_sep)
 
 -- {{{ top
 
--- {{{ creation of widgets 
+-- {{{ creation of widgets
 
 -- {{{ File system usage  
 fsicon = widget({ type = "imagebox" })
@@ -140,8 +140,8 @@ upicon.image = image(beautiful.widget_netup)
 netwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_netdn_widget ..'">${ppp0 down_kb}</span> <span color="'
-  .. beautiful.fg_netup_widget ..'">${ppp0 up_kb}</span>', 3)
+  .. beautiful.fg_netdn_widget .. '">${ppp0 down_kb}</span> <span color="'
+  .. beautiful.fg_netup_widget .. '">${ppp0 up_kb}</span>', 3)
 -- }}}
 
 -- {{{ Volume level
@@ -216,7 +216,7 @@ for s = 1, screen.count() do
   -- Create the wibox
   top_wibox[s] = awful.wibox({ 
     screen = s,
-    fg = beautiful.fg_normal, height = 12, 
+    fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
     border_width = beautiful.border_width,
@@ -243,7 +243,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- }}} 
+-- }}}
 
 -- {{{ bottom
 
@@ -266,9 +266,9 @@ mpdwidget = widget({ type = 'textbox' })
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args[1] == 'Stopped' then
-      return '<span color="brown">mpd stopped</span>'
+      return '<span color="#d2691e">mpd stopped</span>'
     else
-      return '<span color="#fea63c">'.. args[1] ..'</span>'
+      return '<span color="#fea63c">' .. args[1] .. '</span>'
     end
   end)
 -- }}}
@@ -286,10 +286,12 @@ vicious.register(uptimewidget, vicious.widgets.uptime,
 updatewidget = widget({ type = 'textbox' })
 vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
-    if args[1] <= 50 then
-      return '<span color="#88a175">'..args[1]..' pkg(s)</span> to upgrade'
+    if args[1] == 0 then
+      return 'pacman is <span color="#88a175">happy</span>'
+    elseif args[1] >= 20 and args[1] <= 50 then
+      return 'pacman is <span color="#d2691e">sad</span> (' .. args[1] .. ')'
     else
-      return '<span color="red">'..args[1]..' pkg(s)</span> to upgrade'
+      return 'pacman is now <span color="red">angry</span> (' .. args[1] .. ')'
     end
   end, 3600, 'Arch')
 -- }}}
@@ -307,8 +309,8 @@ for s = 1, screen.count() do
 
   -- Create the wibox
   bottom_wibox[s] = awful.wibox({ screen = s,
-             fg = beautiful.fg_normal, 
-             bg = beautiful.bg_normal, 
+             fg = beautiful.fg_normal,
+             bg = beautiful.bg_normal,
              border_color = beautiful.border_focus,
              border_width = beautiful.border_width,
              height = 12,
@@ -319,13 +321,13 @@ for s = 1, screen.count() do
   bottom_wibox[s].widgets = {
     {
       spacer, updatewidget, spacer,
-      separator, spacer, hdd.sda, spacer, 
+      separator, spacer, hdd.sda, spacer,
       separator, spacer, hdd.sdb, spacer, separator,
       spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
     spacer, uptimewidget, spacer,
-    separator,spacer, mpdwidget, spacer, separator,
+    separator, spacer, mpdwidget, spacer, separator,
     layout = awful.widget.layout.horizontal.rightleft
   }
 end
