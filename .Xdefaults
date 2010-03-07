@@ -12,7 +12,7 @@
 *cursorBlink    : false
 *dynamicColors  : on
 *jumpScroll     : true
- 
+
 *perl-ext-common : default,matcher
 *perl-lib        : /usr/lib/*perl/
 *urlLauncher     : /usr/bin/firefox
@@ -29,6 +29,7 @@
 #include "/home/vikki/.xcolors/jwr.xcolors"
 !#include "/home/vikki/.xcolors/jwr2.xcolors"
 !#include "/home/vikki/.xcolors/merged.xcolors"
+!#include "/home/vikki/.xcolors/molokai.xcolors"
 !#include "/home/vikki/.xcolors/n0tch2k brown.xcolors"
 !#include "/home/vikki/.xcolors/n0tch2k grey.xcolors"
 !#include "/home/vikki/.xcolors/sepia.xcolors"

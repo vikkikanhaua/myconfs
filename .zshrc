@@ -47,6 +47,10 @@ setopt   longlistjobs
 setopt   autoresume pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt BG_NICE HUP autoparamslash
+
+autoload -Uz compinit complist zutil colors
+compinit
+colors
 # }}}
 
 # ---[ exports ] {{{
@@ -107,11 +111,7 @@ bindkey '^[[5~'  .undefined-key
 bindkey '^[[6~'  .undefined-key
 #  }}}
 
-autoload -Uz compinit complist zutil colors
-compinit
-colors
-
-# {{{ colors
+# ---[ colors ] {{{
 reset="%{${reset_color}%}"
 red="%{${fg[red]}%}"
 red_b="%{${fg_bold[red]}%}"
@@ -122,6 +122,8 @@ yellow_b="%{${fg_bold[yellow]}%}"
 cyan="%{${fg[cyan]}%}"
 cyan_b="%{${fg_bold[cyan]}%}"
 # }}}
+
+#---[ misc. functions ] {{{
 
 set-title () {
   builtin echo -ne "\ek$*\e\\"
@@ -136,13 +138,14 @@ preexec () {
 
 precmd () { 
   [[ $? -eq 0 ]] && color=$green || color=$red
-  export PROMPT="`echo "|${red_b}---${reset}>${green_b} %1~ ${reset}<${red_b}---${reset}|${yellow} %T ${reset}|${red_b}---${reset}>${cyan} $(history | tail -1 | awk '{print $2}') ${reset}<${red_b}---${reset}|\n\\\`${color}-${reset}"` "
+  export PROMPT="`echo "|${red_b} %1~ ${reset}|${yellow} %M ${reset}|${cyan} $(history | tail -1 | awk '{print $2}') ${reset}|\n${color}>${reset}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
     set-title $TITLE
   fi
 }
+# }}}
 
 # ---[ login manager ] {{{
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx &> /dev/null }

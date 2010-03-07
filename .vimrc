@@ -67,7 +67,7 @@ nnoremap q? <Nop>
 " diff
 nnoremap <Leader>u :diffupdate<cr>
 nnoremap <Leader>g :diffget<cr>
-nnoremap <Leader>p :diffput<cr> 
+nnoremap <Leader>p :diffput<cr>
 
 " comment/uncomment a visual block
 vmap ,c :call CommentLines()<CR>

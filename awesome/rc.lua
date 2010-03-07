@@ -385,7 +385,7 @@ globalkeys = awful.util.table.join(
   awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("amixer -q set Master toggle", false) end),
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("aumix -v+6", false) end),
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
-  awful.key({                   }, "XF86Mail",             function () awful.util.spawn("mpc --no-status toggle", false) end),
+  awful.key({                   }, "XF86Mail",             function () awful.util.spawn("ncmpcpp toggle", false) end),
   awful.key({                   }, "Print",                function () awful.util.spawn("scrot screenie-%H-%M-%d-%b.png -q 100", false) end),
   awful.key({ modkey,           }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
   awful.key({ modkey,           }, "End",                  function () awful.util.spawn_with_shell("sudo shutdown -h now", false) end),
@@ -398,9 +398,9 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
   awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),
   awful.key({ modkey, "Control" }, "b",                    function () awful.util.spawn("favsong -b", false) end),
-  awful.key({ modkey, "Control" }, "s",                    function () awful.util.spawn("mpc --no-status stop", false) end),
-  awful.key({ modkey, "Control" }, "Left",                 function () awful.util.spawn("mpc --no-status prev", false) end),
-  awful.key({ modkey, "Control" }, "Right",                function () awful.util.spawn("mpc --no-status next", false) end)
+  awful.key({ modkey, "Control" }, "s",                    function () awful.util.spawn("ncmpcpp stop", false) end),
+  awful.key({ modkey, "Control" }, "Left",                 function () awful.util.spawn("ncmpcpp prev", false) end),
+  awful.key({ modkey, "Control" }, "Right",                function () awful.util.spawn("ncmpcpp next", false) end)
 )
 
 clientkeys = awful.util.table.join(
