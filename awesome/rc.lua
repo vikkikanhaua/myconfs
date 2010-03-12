@@ -50,6 +50,10 @@ end
 
 function add_calendar(inc_offset)
   local save_offset = offset
+  if inc_offset == 0 and calendar ~= nil then
+    remove_calendar()
+    return
+  end
   remove_calendar()
   offset = save_offset + inc_offset
   local datespec = os.date("*t")
@@ -173,7 +177,6 @@ dateicon.image = image(beautiful.widget_date)
 datewidget = widget({ type = "textbox" })
 datewidget:buttons(awful.util.table.join(
   awful.button({ }, 1, function () add_calendar(0) end),
-  awful.button({ }, 3, function () remove_calendar() end),
   awful.button({ }, 4, function () add_calendar(-1) end),
   awful.button({ }, 5, function () add_calendar(1) end)
 ))

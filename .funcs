@@ -168,7 +168,6 @@ pushrepo() {
     git status
     git commit -a -m "last commit"
     git push
-    echo "==> [DONE]"
   else
     echo "==> repo up-to-date"
   fi

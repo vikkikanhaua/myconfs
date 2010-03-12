@@ -16,7 +16,6 @@ alias irc="weechat-curses"
 alias rs="rsync -vhru"
 alias px="chmod +x"
 alias !="sudo"
-alias map="nmap -p1-65535 `myip`"
 alias lst='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sort -rn | cut -d- -f2-'
 alias feeds="newsbeuter"
 alias ping="ping -c5"
