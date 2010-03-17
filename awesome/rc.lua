@@ -10,7 +10,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/zenburn.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/zenburn.lua")
 
 -- This is used later as the default terminal and editor to run.
 editor = os.getenv("EDITOR") or "vim"
@@ -106,7 +106,25 @@ separator.image = image(beautiful.widget_sep)
 
 -- {{{ creation of widgets
 
--- {{{ File system usage  
+-- {{{ CPU usage
+-- cpuicon = widget({ type = "imagebox" })
+-- cpuicon.image = image(beautiful.widget_cpu)
+-- Initialize widgets
+-- cpugraph  = awful.widget.graph()
+-- Graph properties
+-- cpugraph:set_width(40)
+-- cpugraph:set_height(12)
+-- cpugraph:set_background_color(beautiful.fg_off_widget)
+-- cpugraph:set_color(beautiful.fg_end_widget)
+-- cpugraph:set_gradient_angle(0)
+-- cpugraph:set_gradient_colors({ beautiful.fg_end_widget,
+--    beautiful.fg_center_widget, beautiful.fg_widget
+-- })
+-- Register widgets
+-- vicious.register(cpugraph, vicious.widgets.cpu, "$1")
+-- }}}
+
+-- {{{ File system usage
 fsicon = widget({ type = "imagebox" })
 fsicon.image = image(beautiful.widget_fs)
 -- Initialize widgets
@@ -124,16 +142,16 @@ for _, w in pairs(fs) do
   w:set_color(beautiful.fg_widget)
   w:set_gradient_colors({ beautiful.fg_widget,
      beautiful.fg_center_widget, beautiful.fg_end_widget
-  }) 
+  })
 end
 -- caching
-vicious.enable_caching(vicious.widgets.fs)
+vicious.cache(vicious.widgets.fs)
 -- Register widgets
 vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",       599)
 vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",   599)
 vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 vicious.register(fs.t, vicious.widgets.fs, "${/mnt/tv used_p}", 599)
--- }}} 
+-- }}}
 
 -- {{{ Network usage
 dnicon = widget({ type = "imagebox" })
@@ -164,10 +182,10 @@ volbar:set_color(beautiful.fg_widget)
 volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
 }) -- Enable caching
-vicious.enable_caching(vicious.widgets.volume)
+vicious.cache(vicious.widgets.volume)
 -- Register widgets
-vicious.register(volbar,    vicious.widgets.volume, "$1",  2, "Master")
-vicious.register(volwidget, vicious.widgets.volume, "$1%", 2, "Master")
+vicious.register(volbar,    vicious.widgets.volume, "$1", 2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, "$2", 2, "Master")
 -- }}}
 
 -- {{{ Date and time
@@ -238,7 +256,8 @@ for s = 1, screen.count() do
     separator, volwidget, spacer, volbar.widget, volicon, 
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
-    separator, upicon, netwidget, dnicon, 
+--     separator, cpugraph.widget, spacer, cpuicon,
+    separator, upicon, netwidget, dnicon,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
@@ -268,10 +287,10 @@ mpdwidget = widget({ type = 'textbox' })
 -- register & custom o/p fn
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
-    if   args[1] == 'Stopped' then
+    if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
     else
-      return '<span color="#fea63c">' .. args[1] .. '</span>'
+      return '<span color="#fea63c">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}
@@ -283,7 +302,7 @@ vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
     return string.format('uptime <span color="#66aabb">%2dd %02d:%02d</span>', args[1], args[2], args[3])
   end, 61)
--- }}} 
+-- }}}
 
 -- {{{ pkg updates
 updatewidget = widget({ type = 'textbox' })
@@ -291,7 +310,7 @@ vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
     if args[1] == 0 then
       return 'pacman is <span color="#88a175">happy</span>'
-    elseif args[1] >= 20 and args[1] <= 50 then
+    elseif args[1] <= 50 then
       return 'pacman is <span color="#d2691e">sad</span> (' .. args[1] .. ')'
     else
       return 'pacman is now <span color="red">angry</span> (' .. args[1] .. ')'
