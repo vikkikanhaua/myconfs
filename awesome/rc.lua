@@ -10,7 +10,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/zenburn.lua")
+beautiful.init(awful.util.getdir("config") .. "/zenburn.lua")
 
 -- This is used later as the default terminal and editor to run.
 editor = os.getenv("EDITOR") or "vim"
