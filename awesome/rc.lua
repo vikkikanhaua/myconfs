@@ -12,10 +12,8 @@ require("teardrop")
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/zenburn.lua")
 
--- This is used later as the default terminal and editor to run.
-editor = os.getenv("EDITOR") or "vim"
+-- This is used later as the default terminal to run.
 terminal = "urxvtc"
-editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -26,17 +24,17 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
-  awful.layout.suit.floating,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
-  awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.magnifier
+  awful.layout.suit.floating,           --1
+  awful.layout.suit.tile,               --2
+  awful.layout.suit.tile.bottom,        --3
+  awful.layout.suit.tile.top,           --4
+  awful.layout.suit.max,                --5
+  awful.layout.suit.max.fullscreen,     --6
+  awful.layout.suit.magnifier           --7
 }
 -- }}}   
 
--- {{{ calendar
+-- {{{ calendar function
 local calendar = nil
 local offset = 0
 
@@ -253,7 +251,7 @@ for s = 1, screen.count() do
       layout = awful.widget.layout.horizontal.leftright
     },
     spacer, datewidget, spacer, dateicon,
-    separator, volwidget, spacer, volbar.widget, volicon, 
+    separator, volwidget, spacer, volbar.widget, volicon,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
 --     separator, cpugraph.widget, spacer, cpuicon,
@@ -315,7 +313,7 @@ vicious.register(updatewidget, vicious.widgets.pkg,
     else
       return 'pacman is now <span color="red">angry</span> (' .. args[1] .. ')'
     end
-  end, 3600, 'Arch')
+  end, 3607, 'Arch')
 -- }}}
 
 -- }}}
@@ -364,7 +362,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
   -- Drop-down terminal
-  awful.key({ modkey,           }, "s",      function () teardrop(terminal, "bottom", "right", 700, .40) end),
+  awful.key({ modkey,           }, "s",      function () teardrop(terminal, "center", "center", 700, .40) end),
 
   awful.key({ modkey,           }, "Tab",    function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
   awful.key({ modkey, "Shift"   }, "Tab",    function () awful.client.focus.byidx(-1) if client.focus then client.focus:raise() end end),
@@ -395,10 +393,20 @@ globalkeys = awful.util.table.join(
   -- Prompt
   awful.key({ modkey            }, "p",      function () mypromptbox[mouse.screen]:run() end),
   awful.key({ modkey            }, "x",      function ()
-                                               awful.prompt.run({ prompt = "Run Lua code: " },
+                                               awful.prompt.run({ prompt = "run lua code: " },
                                                mypromptbox[mouse.screen].widget,
                                                awful.util.eval, nil,
                                                awful.util.getdir("cache") .. "/history_eval")
+                                             end),
+
+  awful.key({                   }, "F12",    function ()
+                                               awful.prompt.run({ prompt = "web search: " },
+                                               mypromptbox[mouse.screen].widget,
+                                               function (command)
+                                                 awful.util.spawn("firefox 'http://yubnub.org/parser/parse?command="..command.."'", false)
+                                                 -- Switch to the web tag, where Firefox is, in this case tag 2
+                                                 if tags[mouse.screen][2] then awful.tag.viewonly(tags[mouse.screen][2]) end
+                                               end)
                                              end),
 
   -- custom apps keys

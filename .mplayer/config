@@ -29,8 +29,8 @@ ao=alsa
 mixer-channel=Master
 
 # Post Processing
-# autoq=100
-# vf=pp=de,hqdn3d
+autoq=100
+vf=pp=de,hqdn3d
 
 # Fix A/V sync problems.
 mc=0.2

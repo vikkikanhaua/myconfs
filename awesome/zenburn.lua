@@ -18,8 +18,8 @@ theme.font      = "Profont 8"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
-theme.fg_focus  = "#63AFAF"
-theme.fg_urgent = "#CD9393"
+theme.fg_focus  = "#F0DFAF"
+theme.fg_urgent = "#CC9393"
 theme.bg_normal = "#3F3F3F"
 theme.bg_focus  = "#3F3F3F"
 theme.bg_urgent = theme.bg_normal
@@ -138,6 +138,7 @@ theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.confdir .. "/icons/titlebar/maximized_normal_inactive.png"
 -- }}}
+--
 -- }}}
 
 

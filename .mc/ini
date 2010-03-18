@@ -8,7 +8,7 @@ pause_after_run=0
 shell_patterns=1
 auto_save_setup=0
 auto_menu=0
-use_internal_view=0
+use_internal_view=1
 use_internal_edit=0
 clear_before_exec=1
 mix_all_files=0
@@ -81,7 +81,7 @@ editor_line_state=0
 editor_simple_statusbar=0
 editor_check_new_line=0
 mcview_remember_file_position=0
-auto_fill_mkdir_name=1
+auto_fill_mkdir_name=0
 reverse_files_only=1
 copymove_persistent_attr=1
 select_flags=6
@@ -89,6 +89,10 @@ editor_backup_extension=~
 skin=vik
 keymap=mc.keymap
 auto_save_setup_panels=0
+
+confirm_history_cleanup=1
+editor_show_right_margin=0
+mcview_eof=
 
 [Layout]
 equal_split=0
@@ -112,6 +116,10 @@ display_codepage=UTF-8
 
 find_ignore_dirs=
 source_codepage=UTF-8
+
+timeformat_recent=%b %e %H:%M
+timeformat_old=%b %e  %Y
+autodetect_codeset=
 
 [Colors]
 base_color=
