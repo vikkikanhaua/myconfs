@@ -2,7 +2,7 @@
 [default]
 ###############################
 #
-really-quiet="0"
+really-quiet="1"
 lirc="0"
 input=file="/home/vikki/.mplayer/mplayer_fifo"
 #
@@ -29,8 +29,8 @@ ao=alsa
 mixer-channel=Master
 
 # Post Processing
-autoq=100
-vf=pp=de,hqdn3d
+# autoq=100
+# vf=pp=de,hqdn3d
 
 # Fix A/V sync problems.
 mc=0.2

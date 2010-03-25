@@ -197,7 +197,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d</span>, %H:%M', 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d %b</span>, %H:%M', 61)
 -- }}}
 
 --{{{ mail
@@ -420,11 +420,10 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
   awful.key({ modkey,           }, "End",                  function () awful.util.spawn_with_shell("sudo shutdown -h now", false) end),
   awful.key({ modkey,           }, "Home",                 function () awful.util.spawn_with_shell("sudo shutdown -r now", false) end),
-  awful.key({ modkey,           }, "a",                    function () awful.util.spawn("apvlv", false) end),
+  awful.key({ modkey,           }, "a",                    function () awful.util.spawn("evince", false) end),
   awful.key({ modkey,           }, "c",                    function () awful.util.spawn("chromium", false) end),
   awful.key({ modkey,           }, "d",                    function () awful.util.spawn("eject -T", false) end),
   awful.key({ modkey,           }, "f",                    function () awful.util.spawn("favsong", false) end),
-  awful.key({ modkey,           }, "m",                    function () awful.util.spawn("aumix -v 80", false) end),
   awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
   awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),
   awful.key({ modkey, "Control" }, "b",                    function () awful.util.spawn("favsong -b", false) end),
