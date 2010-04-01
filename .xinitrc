@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"
 

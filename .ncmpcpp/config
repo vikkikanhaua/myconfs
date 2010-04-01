@@ -221,7 +221,7 @@ autocenter_mode = "no"
 #
 centered_cursor = "yes"
 #
-progressbar_look = "-)"
+progressbar_look = "━╼"
 #
 default_place_to_search_in = "database" (database/playlist)
 #

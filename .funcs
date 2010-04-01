@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+cd() {
+  builtin cd "$@"; ls
+}
+
 # extract depending on extension 
 x() {    
   [ $# -lt 1 ] && return 1

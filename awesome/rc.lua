@@ -147,8 +147,8 @@ vicious.cache(vicious.widgets.fs)
 -- Register widgets
 vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",       599)
 vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",   599)
-vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 vicious.register(fs.t, vicious.widgets.fs, "${/mnt/tv used_p}", 599)
+vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 -- }}}
 
 -- {{{ Network usage
@@ -252,7 +252,7 @@ for s = 1, screen.count() do
     },
     spacer, datewidget, spacer, dateicon,
     separator, volwidget, spacer, volbar.widget, volicon,
-    separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
+    separator, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
 --     separator, cpugraph.widget, spacer, cpuicon,
     separator, upicon, netwidget, dnicon,
@@ -288,7 +288,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
     else
-      return '<span color="#fea63c">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
+      return '<span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}
@@ -416,13 +416,14 @@ globalkeys = awful.util.table.join(
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("aumix -v+6", false) end),
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
   awful.key({                   }, "XF86Mail",             function () awful.util.spawn("ncmpcpp toggle", false) end),
-  awful.key({                   }, "Print",                function () awful.util.spawn("scrot screenie-%H-%M-%d-%b.png -q 100", false) end),
+  awful.key({                   }, "Print",                function () awful.util.spawn("scrot screenie-%H-%M-%S-%d-%b.png -q 100", false) end),
   awful.key({ modkey,           }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
   awful.key({ modkey,           }, "End",                  function () awful.util.spawn_with_shell("sudo shutdown -h now", false) end),
   awful.key({ modkey,           }, "Home",                 function () awful.util.spawn_with_shell("sudo shutdown -r now", false) end),
   awful.key({ modkey,           }, "a",                    function () awful.util.spawn("evince", false) end),
   awful.key({ modkey,           }, "c",                    function () awful.util.spawn("chromium", false) end),
   awful.key({ modkey,           }, "d",                    function () awful.util.spawn("eject -T", false) end),
+  awful.key({ modkey,           }, "i",                    function () awful.util.spawn("inkscape", false) end),
   awful.key({ modkey,           }, "f",                    function () awful.util.spawn("favsong", false) end),
   awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
   awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),

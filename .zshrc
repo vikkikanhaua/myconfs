@@ -115,6 +115,8 @@ bindkey '^[[6~'  .undefined-key
 reset="%{${reset_color}%}"
 red="%{${fg[red]}%}"
 red_b="%{${fg_bold[red]}%}"
+blue="%{${fg[blue]}%}"
+blue_b="%{${fg_bold[blue]}%}"
 green="%{${fg[green]}%}"
 green_b="%{${fg_bold[green]}%}"
 yellow="%{${fg[yellow]}%}"
@@ -139,7 +141,7 @@ preexec () {
 
 precmd () { 
   [[ $? -eq 0 ]] && color=$green || color=$red
-  export PROMPT="`echo "|${yellow_b} %M ${reset}|${red_b} %y ${reset}|${green_b} %1~ ${reset}|${cyan} $(history | tail -1 | awk '{print $2}') ${reset}|\n${color}>${reset}"` "
+  export PROMPT="`echo "| ${blue_b}%n${reset}@${yellow_b}%M${reset} | ${red_b}%y${reset} | ${green_b}%3d${reset} | ${cyan}$(history | tail -1 | awk '{print $2}')${reset} |\n${color}>>${reset}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
