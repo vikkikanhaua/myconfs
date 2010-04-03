@@ -1,5 +1,7 @@
-*font           : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
-*boldFont       : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
+!*font           : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+!*boldFont       : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
+*font           : -gohu-gohufont-medium-*-*-*-11-*-*-*-*-*-iso8859-*
+*boldFont       : -gohu-gohufont-bold-*-*-*-11-*-*-*-*-*-iso8859-*
 *transparent    : true
 *scrollBar      : false
 *secondaryScroll: true

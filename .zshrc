@@ -141,7 +141,7 @@ preexec () {
 
 precmd () { 
   [[ $? -eq 0 ]] && color=$green || color=$red
-  export PROMPT="`echo "| ${blue_b}%n${reset}@${yellow_b}%M${reset} | ${red_b}%y${reset} | ${green_b}%3d${reset} | ${cyan}$(history | tail -1 | awk '{print $2}')${reset} |\n${color}>>${reset}"` "
+  export PROMPT="`echo "| ${blue_b}%n${reset}@${yellow_b}%M${reset} | ${red}%y${reset} | ${green_b}%3d${reset} | ${cyan}$(history | tail -1 | awk '{print $2}')${reset} |\n${color}>>${reset}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
