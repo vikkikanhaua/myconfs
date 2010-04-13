@@ -169,7 +169,6 @@ volicon = widget({ type = "imagebox" })
 volicon.image = image(beautiful.widget_vol)
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
-volwidget = widget({ type = "textbox" })
 -- Progressbar properties
 volbar:set_width(10)
 volbar:set_height(12)
@@ -183,7 +182,6 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
 vicious.cache(vicious.widgets.volume)
 -- Register widgets
 vicious.register(volbar,    vicious.widgets.volume, "$1", 2, "Master")
-vicious.register(volwidget, vicious.widgets.volume, "$2", 2, "Master")
 -- }}}
 
 -- {{{ Date and time
@@ -251,10 +249,9 @@ for s = 1, screen.count() do
       layout = awful.widget.layout.horizontal.leftright
     },
     spacer, datewidget, spacer, dateicon,
-    separator, volwidget, spacer, volbar.widget, volicon,
+    separator, volbar.widget, spacer, volicon,
     separator, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
---     separator, cpugraph.widget, spacer, cpuicon,
     separator, upicon, netwidget, dnicon,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
@@ -412,7 +409,7 @@ globalkeys = awful.util.table.join(
   -- custom apps keys
   awful.key({                   }, "XF86Search",           function () awful.util.spawn("firefox", false) end),
   awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("slock", false) end),
-  awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("amixer -q set Master toggle", false) end),
+  awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("mute", false) end),
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("aumix -v+6", false) end),
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
   awful.key({                   }, "XF86Mail",             function () awful.util.spawn("ncmpcpp toggle", false) end),

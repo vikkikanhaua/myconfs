@@ -128,6 +128,7 @@ cyan_b="%{${fg_bold[cyan]}%}"
 #---[ misc. functions ] {{{
 
 compdef _pacman clyde=pacman
+
 set-title () {
   builtin echo -ne "\ek$*\e\\"
 }
