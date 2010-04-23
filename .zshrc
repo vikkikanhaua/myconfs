@@ -154,3 +154,5 @@ precmd () {
 # ---[ login manager ] {{{
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx &> /dev/null }
 # }}}
+#
+fortune | cowsay
