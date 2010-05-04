@@ -1,10 +1,10 @@
 eval "`dircolors -b`"
-alias ls='ls --color=auto -vh'
-alias ll='ls --color=auto -vhl'
-alias la='ls --color=auto -vhA'
-alias grep='grep -i --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias ls='ls --color=always -vhF'
+alias ll='ls -l'
+alias la='ls -A'
+alias grep='grep -i --color=always'
+alias fgrep='fgrep --color=always'
+alias egrep='egrep --color=always'
 alias df="df -h"
 alias du="du -sh"
 alias m="ncmpcpp"
@@ -20,12 +20,11 @@ alias lst='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sor
 alias feeds="newsbeuter"
 alias ping="ping -c5"
 alias mcd="sudo mount /dev/sr0 /media/cd"
-alias auth="cat /var/log/auth.log | grep command | tail -n 20"
 alias tmux="tmux attach"
 alias alwayson="xset s off; xset -dpms"
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
-alias cdc='cd ~; clear'
+alias cdc='cd; clear'
 alias svim='sudoedit'
 alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
 alias motd="cat /etc/motd"

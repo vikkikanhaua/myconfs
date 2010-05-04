@@ -89,7 +89,7 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 
 set alias_format        = "%4n %t %-20a %r"
 set attribution         = "On %d, %n wrote:"
-set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-20.20F | %s"
+set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-20.20F │ %s"
 set status_format       = "-[ %r ]-[ %v ]---[ %f ]--[ Msgs: %m, %l%?n?, New: %n?%?d?, Del: %d?%?t?, Tag: %t? %?p? --- %p waiting to send ?]--%>-[ %s ]-[ %P ]-"
 set forward_format      = "fwd: %s"
 # }}}

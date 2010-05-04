@@ -10,7 +10,7 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
-# feh --bg-scale "~/pictures/$(ls ~/pictures | sort -R | line)"
+# feh --bg-fill "~/pictures/$(ls ~/pictures | sort -R | line)"
 
 eval `cat ~/.fehbg`
 

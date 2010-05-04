@@ -142,7 +142,7 @@ preexec () {
 
 precmd () { 
   [[ $? -eq 0 ]] && color=$green || color=$red
-  export PROMPT="`echo "(${green_b}$(history | tail -1 | awk '{print $2}')${reset}) ${yellow_b}%1~${reset} ${color}>>${reset}"` "
+  export PROMPT="`echo "(${green_b}$(history | tail -1 | awk '{print $2}')${reset}) ${yellow_b}%1d${reset} ${color}>>${reset}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/} 
@@ -155,4 +155,4 @@ precmd () {
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx &> /dev/null }
 # }}}
 #
-fortune | cowsay
+#fortune | cowsay

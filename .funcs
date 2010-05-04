@@ -1,11 +1,11 @@
 #!/bin/zsh
 
 cd() {
-  builtin cd "$@"; ls
+  builtin cd "$@"; ls;
 }
 
-# extract depending on extension 
-x() {    
+# extract depending on extension
+x() {
   [ $# -lt 1 ] && return 1
   for file in "$@"; do
     case "$file" in
@@ -23,7 +23,7 @@ x() {
   done
 }
 
-# make a thumb %20 the size of a pic 
+# make a thumb %20 the size of a pic
 thumbit() {
   for pic in "$@"; do
     case "$pic" in
@@ -37,7 +37,7 @@ thumbit() {
   done
 }
 
-# grep by paragraph 
+# grep by paragraph
 grepp() {
   if [ $# -ne 2 ]; then
     echo "usage: grepp [term] [file]"
@@ -46,7 +46,7 @@ grepp() {
   fi
 }
 
-# recursively fix dir/file permissions on a given directory 
+# recursively fix dir/file permissions on a given directory
 fix() {
   if [ -d "$1" ]; then
     find "$1" -type d -exec chmod 755 {} \;
@@ -56,7 +56,7 @@ fix() {
   fi
 }
 
-# manage services 
+# manage services
 service() {
   if [ $# -lt 2 ]; then
     echo "usage: service [service] [stop|start|restart]"
@@ -65,7 +65,7 @@ service() {
   fi
 }
 
-# open a GUI app from CLI 
+# open a GUI app from CLI
 open() {
   if [ -z $1 ]; then
     echo "usage: open [application]"
@@ -74,7 +74,7 @@ open() {
   fi
 }
 
-# auto send an attachment from CLI 
+# auto send an attachment from CLI
 send() {
   if [ $# -ne 2 ]; then
     echo "usage: send [file] [recipient]"
@@ -82,11 +82,6 @@ send() {
     echo "Auto-sent from linux. Please see attached." | mutt -s "File Attached" -a $1 -- $2
   fi
 }
-
-# simple calculator 
-calc() {
-  echo "scale=3; $*" | bc
-} 
 
 # find simplified
 seek()  {
@@ -162,9 +157,6 @@ google() {
   $BROWSER "$URL" &> /dev/null
 } 
 
-# get file & directory count
-files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }
-
 # push git repo
 pushrepo() {
   pushd ${HOME}/mydocs/myconfs &> /dev/null
@@ -184,5 +176,14 @@ pacexe() {
     [ ! -d $ARG ] && [ -x $ARG ] && echo $ARG;
   done
 }
+
+# get ip of an interface
+getip() {
+  /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}'
+}
+
+# get file & directory count
+files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }
+
 # fold functions in vim
 # vim:foldmarker={,}
