@@ -195,7 +195,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d %b</span>, %H:%M', 61)
+vicious.register(datewidget, vicious.widgets.date, '%a %d %b,<span color="#d2691e"> %H:%M</span>', 61)
 -- }}}
 
 --{{{ mail
@@ -277,6 +277,17 @@ vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautif
 vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}°C</span>', 59)
 -- }}}
 
+-- diskio {{{
+-- initialize
+dio = {
+  sda = widget({ type = "textbox" }),
+  sdb = widget({ type = "textbox" })
+}
+-- register
+vicious.register(dio.sda, vicious.widgets.dio, '${read_mb} ${write_mb}' , 2, "sda")
+vicious.register(dio.sdb, vicious.widgets.dio, '${read_mb} ${write_mb}' , 2, "sdb")
+-- }}}
+
 -- mpd {{{
 mpdwidget = widget({ type = 'textbox' })
 -- register & custom o/p fn
@@ -285,7 +296,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
     else
-      return '<span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
+      return ' <span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}
@@ -339,8 +350,10 @@ for s = 1, screen.count() do
     {
       spacer, updatewidget, spacer,
       separator, spacer, hdd.sda, spacer,
-      separator, spacer, hdd.sdb, spacer, separator,
-      spacer, mypromptbox[s],
+      dio.sda,   spacer,
+      separator, spacer, hdd.sdb, spacer,
+      dio.sdb,   spacer,
+      separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
     spacer, uptimewidget, spacer,

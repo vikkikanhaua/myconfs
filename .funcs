@@ -141,12 +141,12 @@ daemon_status() {
 # mail stats
 fmail() {
   local -A counts; local i
-         
+
   for i in "${MAILDIR:-${HOME}/mail}"/**/new/*
     { (( counts[${i:h:h:t}]++ )) }
   for i in ${(k)counts}
   { print -n ${i//\[Gmail\]./}: $counts[$i]' ' }
-} 
+}
 
 # go to google for anything
 google() {
@@ -173,14 +173,12 @@ pushrepo() {
 # find binary provided by a package
 pacexe() {
   for ARG in $(pacman -Qql $1); do
-    [ ! -d $ARG ] && [ -x $ARG ] && echo $ARG;
+    [[ ! -d $ARG ]] && [[ -x $ARG ]] && echo $ARG;
   done
 }
 
 # get ip of an interface
-getip() {
-  /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}'
-}
+getip() { /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}' }
 
 # get file & directory count
 files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }

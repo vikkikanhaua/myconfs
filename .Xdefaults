@@ -1,24 +1,29 @@
-*font           : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
-*boldFont       : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
-*transparent    : false
-*scrollBar      : false
-*secondaryScroll: true
-*pointerBlank   : true
-*urgentOnBell   : true
-*modifier       : alt
-*shading        : 70
-*fading         : 15
-*saveLines      : 10000
-*cursorBlink    : false
-*dynamicColors  : on
-*jumpScroll     : true
+*font            : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-*
+*boldFont        : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
+*title           : Terminal
+*buffered        : true
+*transparent     : true
+*scrollBar       : false
+*secondaryScroll : true
+*pointerBlank    : true
+*urgentOnBell    : true
+*modifier        : alt
+*shading         : 100
+*fading          : 15
+*saveLines       : 10000
+*cursorBlink     : false
+*dynamicColors   : on
+*jumpScroll      : true
 
 *perl-ext-common : default,matcher
 *perl-lib        : /usr/lib/*perl/
 *urlLauncher     : /usr/bin/firefox
-*matcher.button  : 1 
+*matcher.button  : 1
 
-*cursorColor: #80724e
+*cursorColor     : #80724e
+*cursorColor2    : #fff
+*cursorUnderline : true
+*underlineColor  : #66aabb
 
 !#include "/home/vikki/.xcolors/allblue.xcolors"
 !#include "/home/vikki/.xcolors/arthur.xcolors"
@@ -26,7 +31,7 @@
 !#include "/home/vikki/.xcolors/digerati.xcolors"
 !#include "/home/vikki/.xcolors/hornet.xcolors"
 !#include "/home/vikki/.xcolors/justin.xcolors"
-!#include "/home/vikki/.xcolors/jwr.xcolors"
+#include "/home/vikki/.xcolors/jwr.xcolors"
 !#include "/home/vikki/.xcolors/jwr2.xcolors"
 !#include "/home/vikki/.xcolors/merged.xcolors"
 !#include "/home/vikki/.xcolors/molokai.xcolors"
@@ -40,4 +45,4 @@
 !#include "/home/vikki/.xcolors/trapd00r.xcolors"
 !#include "/home/vikki/.xcolors/vikas.xcolors"
 !#include "/home/vikki/.xcolors/warm.xcolors"
-#include "/home/vikki/.xcolors/zenburn.xcolors"
+!#include "/home/vikki/.xcolors/zenburn.xcolors"
