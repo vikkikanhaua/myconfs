@@ -296,7 +296,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
     else
-      return ' <span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
+      return '<span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}

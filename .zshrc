@@ -6,21 +6,21 @@ zstyle ':completion::prefix-1:*' completer _complete
 zstyle ':completion:incremental:*' completer _complete _correct
 zstyle ':completion:predict:*' completer _complete
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
- 
+
 # Expand partial paths
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
- 
+
 # Separate matches into groups
 zstyle ':completion:*:matches' group 'yes'
- 
+
 # Describe each match group.
 zstyle ':completion:*:descriptions' format "==[ %d%b ]"
- 
+
 # Messages/warnings format
 zstyle ':completion:*:messages' format '==[ %d%u%b ]'
 zstyle ':completion:*:warnings' format '==[ no match for: %d%u%b ]'
- 
+
 # Describe options in full
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -136,17 +136,17 @@ set-title () {
 
 preexec () {
   if [[ -n $STY ]]; then
-    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/} 
+    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/}
     set-title $TITLE
   fi
 }
 
-precmd () { 
+precmd () {
   [[ $? -eq 0 ]] && color=$green || color=$red_b
   export PROMPT="`echo "| ${cyan}%1d${reset} |${yellow_b} %m ${reset}| ${red_b}$(history | tail -1 | awk '{print $2}')${reset} |\n${color}>>${reset}"` "
 
   if [[ -n $STY ]]; then
-    TITLE=${0/#*\/} 
+    TITLE=${0/#*\/}
     set-title $TITLE
   fi
 }

@@ -3,8 +3,8 @@
 "
 """"""""""""
 
-" Main options {{{ 
-if $TERM == "linux"
+" Main options {{{
+if $TERM == "linux" || $TERM == "rxvt-unicode"
   set t_Co=16
   colorscheme slate
 else
@@ -17,35 +17,38 @@ let g:zenburn_high_Contrast = 1
 
 set nocompatible
 set autoindent
-set backspace=indent,eol,start
 set expandtab
-set foldmethod=syntax
-set history=50
 set incsearch
 set ignorecase
 set smartcase
-set mouse=v
 set nobackup
 set hlsearch
-set nomousehide
 set nowrap
 set number
+set confirm
 set ruler
-set shiftwidth=2
-set shortmess=a
 set showmode
 set showcmd
-set showtabline=1
 set smartindent
 set smarttab
+set linebreak
 set title
 set vb t_vb=
+set shiftwidth=2
+set showtabline=1
+set laststatus=2
+set shortmess=a
+set history=50
+set updatetime=500
+set mouse=nvcr
+set foldmethod=syntax
+set formatoptions=tcroqn1
+set backspace=indent,eol,start
 set wildmode=list:longest,full
 
 syntax on
 filetype plugin indent on
 " }}}
-
 " Folding stuffs {{{
 if has ('folding')
   set foldenable
@@ -54,7 +57,6 @@ if has ('folding')
   set foldcolumn=0
 endif
 " }}}
-
 " Keymaps {{{
 " unmap annoying keys
 nnoremap q: <Nop>
@@ -70,7 +72,7 @@ nnoremap <Leader>g :diffget<cr>
 nnoremap <Leader>p :diffput<cr>
 
 " comment/uncomment a visual block
-vmap ,c :call CommentLines()<CR>
+vmap <Leader>c :call CommentLines()<CR>
 
 " macro key
 :nnoremap <F2> @q
@@ -78,12 +80,16 @@ vmap ,c :call CommentLines()<CR>
 map ; :
 map <space> za
 
-" Tab operations
-nmap t :tabnew
-nmap <Leader>k :tabnext<cr>
-nmap <Leader>j :tabprevious<cr>
-" }}}
+" Tab indents code in visual mode
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
+" Tab controls
+map <Leader><Tab> :tabnew
+map <Leader>o     :tabnext<CR>
+map <Leader>a     :tabprevious<CR>
+
+" }}}
 " Autocommands {{{
 if has('autocmd')
   let python_highlight_all = 1
@@ -92,9 +98,12 @@ if has('autocmd')
   let lua_fold = 1
   let lua_version = 5
   let lua_subversion = 1
-  
+
   " html
   au Filetype html,xml,xsl set spell
+
+  " Remove trailing whitespace
+  au BufWritePre * :call setline(1, map(getline(1, "$"), 'substitute(v:val, "\\s\\+$", "","")'))
 
   " set the title string
   au BufEnter * let &titlestring = "vim: " . substitute(expand("%:p"), $HOME, "~", '')
@@ -143,8 +152,7 @@ if has('autocmd')
   au FileType text   setlocal textwidth=72
 endif
 " }}}
-
-" Functions {{{ 
+" Functions {{{
 function! SetStatusLine()
     let l:s1="%-3.3n\\ %f\\ %h%m%r%w"
     let l:s2="[%{strlen(&filetype)?&filetype:'?'},\\ %{&encoding},\\ %{&fileformat}]"
@@ -153,26 +161,26 @@ function! SetStatusLine()
 endfunction
 
 function! RestoreCursorPos()
-  if expand("<afile>:p:h") !=? $TEMP 
-    if line("'\"") > 1 && line("'\"") <= line("$") 
-      let line_num = line("'\"") 
-      let b:doopenfold = 1 
-      if (foldlevel(line_num) > foldlevel(line_num - 1)) 
-        let line_num = line_num - 1 
-        let b:doopenfold = 2 
-      endif 
-      execute line_num 
-    endif 
+  if expand("<afile>:p:h") !=? $TEMP
+    if line("'\"") > 1 && line("'\"") <= line("$")
+      let line_num = line("'\"")
+      let b:doopenfold = 1
+      if (foldlevel(line_num) > foldlevel(line_num - 1))
+        let line_num = line_num - 1
+        let b:doopenfold = 2
+      endif
+      execute line_num
+    endif
   endif
 endfunction
 
 function! OpenFoldOnRestore()
-  if exists("b:doopenfold") 
+  if exists("b:doopenfold")
     execute "normal zv"
     if(b:doopenfold > 1)
       execute "+".1
     endif
-    unlet b:doopenfold 
+    unlet b:doopenfold
   endif
 endfunction
 
@@ -203,11 +211,11 @@ endfunction
 
 command -nargs=+ MapToggle call MapToggle(<f-args>)
 
-MapToggle <F4> foldenable 
-MapToggle <F5> number 
-MapToggle <F6> spell 
-MapToggle <F7> paste 
-MapToggle <F8> hlsearch 
-MapToggle <F9> wrap 
+MapToggle <F4> foldenable
+MapToggle <F5> number
+MapToggle <F6> spell
+MapToggle <F7> paste
+MapToggle <F8> hlsearch
+MapToggle <F9> wrap
 
 " }}}

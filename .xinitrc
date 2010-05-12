@@ -16,6 +16,8 @@ eval `cat ~/.fehbg`
 
 urxvtd -q -f -o &
 
+remuco-mpd &
+
 # xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
