@@ -48,7 +48,7 @@ hi SpecialComment  ctermfg=108                  cterm=bold
 hi Special         ctermfg=181
 hi SpecialKey      ctermfg=151
 hi Statement       ctermfg=186
-hi StatusLine      ctermfg=235   ctermbg=172
+hi StatusLine      ctermfg=232   ctermbg=241
 hi StatusLineNC    ctermfg=235   ctermbg=208
 hi StorageClass    ctermfg=249                  cterm=bold
 hi String          ctermfg=174

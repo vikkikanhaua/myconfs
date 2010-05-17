@@ -4,13 +4,13 @@
 """"""""""""
 
 " Main options {{{
-if $TERM == "linux" || $TERM == "rxvt-unicode"
-  set t_Co=16
-  colorscheme slate
-else
+if $TERM =~ "-256color"
   set list listchars=tab:\➜\ ,trail:·,nbsp:-
   set t_Co=256
   colorscheme zencustom
+else
+  set t_Co=16
+  colorscheme slate
 endif
 
 let g:zenburn_high_Contrast = 1

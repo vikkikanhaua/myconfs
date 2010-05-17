@@ -20,12 +20,10 @@ alias lst='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sor
 alias feeds="newsbeuter"
 alias ping="ping -c5"
 alias mcd="sudo mount /dev/sr0 /media/cd"
-alias tmux="tmux attach"
 alias alwayson="xset s off; xset -dpms"
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias cdc='cd; clear'
 alias svim='sudoedit'
 alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
-alias motd="cat /etc/motd"
 alias packer="packer --auronly"

@@ -29,7 +29,7 @@ termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 backtick 1 1800 1800 bday
 
 sorendition '= dY'
-hardstatus alwayslastline '%{= B}//%{= W}%H%{= B}/%{= W}%n%{= B}/%{= W}%t %= %{= B}//%{= W}%d %M %C%{= B}/%{= W}%1`%{= B}//'
+hardstatus alwayslastline '%{= B}//%{= W}%H%{= B}/%{= W}%n%{= B}/%{= W}%t %= %{= B}// %{= W}%1`%{= B} //'
 
 # Banish screen 0, it sucks {{{
 bind c screen 1
