@@ -14,31 +14,34 @@ msgwait 3                          # Display msgs for N seconds
 altscreen on                       # Enable alternate screen support
 defbce on                          # Erase background with current background color
 bell_msg ""                      # For urgency hints
+setenv LC_CTYPE en_US.UTF-8
+term rxvt-256color
 
 # }}}
 
-
 # Define terminal capabilities {{{
 
-terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # }}}
 
 backtick 1 1800 1800 bday
-backtick 2 1800 1800 down
-backtick 3 1800 1800 up
 
-hardstatus alwayslastline "%{= dd}%-w%{C}%n %t%{-}%+w %=%{= dR}%{-}%{G}[ %2` ][ %3` ][ %1` ]%{-}"
-
+sorendition '= dY'
+hardstatus alwayslastline '%{= B}//%{= W}%H%{= B}/%{= W}%n%{= B}/%{= W}%t %= %{= B}//%{= W}%d %M %C%{= B}/%{= W}%1`%{= B}//'
 
 # Banish screen 0, it sucks {{{
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
+
+# find the nearest shell
+bind s select zsh
+
 screen -t torrents 1 rtorrent
 screen -t zsh 2 zsh
 # }}}
-
 
 # Keybinds {{{
 
@@ -56,6 +59,5 @@ screen -t zsh 2 zsh
 bindkey -k F1 command
 
 # }}}
-
 
 # vim:foldlevel=0

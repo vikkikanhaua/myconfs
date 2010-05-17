@@ -32,7 +32,7 @@ layouts = {
   awful.layout.suit.max.fullscreen,     --6
   awful.layout.suit.magnifier           --7
 }
--- }}}   
+-- }}}
 
 -- {{{ calendar function
 local calendar = nil
@@ -231,7 +231,7 @@ for s = 1, screen.count() do
   mytasklist[s] = awful.widget.tasklist(function(c) return awful.widget.tasklist.label.focused(c, s) end)
 
   -- Create the wibox
-  top_wibox[s] = awful.wibox({ 
+  top_wibox[s] = awful.wibox({
     screen = s,
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,

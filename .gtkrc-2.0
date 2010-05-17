@@ -1,4 +1,4 @@
 include ".themes/Dust/gtk-2.0/gtkrc"
 
-gtk-icon-theme-name = "ALLBLACK"
+gtk-icon-theme-name = "B&W"
 gtk-menu-popup-delay = 0

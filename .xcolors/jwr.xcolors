@@ -1,5 +1,5 @@
-*foreground: #DDEEDD
-*background: #1C1C1C
+*foreground:  #dcdccc
+*background:  rgba:0000/0000/0000/dddd
 *color0: #222222
 *color8: #454545
 *color1: #9E5641

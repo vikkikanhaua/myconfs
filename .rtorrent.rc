@@ -4,7 +4,7 @@
 
 # Maximum and minimum number of peers to connect to per torrent.
 min_peers = 10
-max_peers = 100
+max_peers = 90
 
 # Same as above but for seeding completed torrents (-1 = same as downloading)
 min_peers_seed = 1

@@ -2,7 +2,7 @@
 *boldFont        : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-*
 *title           : Terminal
 *buffered        : true
-*transparent     : true
+*transparent     : false
 *scrollBar       : false
 *secondaryScroll : true
 *pointerBlank    : true
