@@ -15,11 +15,11 @@ alias wget="wget -c"
 alias irc="irssi"
 alias rs="rsync -vhru"
 alias px="chmod +x"
-alias !="sudo"
 alias lst='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sort -rn | cut -d- -f2-'
 alias feeds="newsbeuter"
 alias ping="ping -c5"
 alias mcd="sudo mount /dev/sr0 /media/cd"
+alias ucd="sudo umount /media/cd"
 alias alwayson="xset s off; xset -dpms"
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
@@ -27,3 +27,32 @@ alias cdc='cd; clear'
 alias svim='sudoedit'
 alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
 alias packer="packer --auronly"
+alias !="sudo"
+
+# filetypes
+local MEDV=mplayer
+local IMGV=feh
+local PDFV=evince
+alias -s mov=$MEDV
+alias -s avi=$MEDV
+alias -s wmv=$MEDV
+alias -s mkv=$MEDV
+alias -s mp4=$MEDV
+alias -s mp3=$MEDV
+alias -s mpg=$MEDV
+alias -s mpeg=$MEDV
+alias -s gif=$IMGV
+alias -s jpg=$IMGV
+alias -s jpeg=$IMGV
+alias -s svg=$IMGV
+alias -s png=$IMGV
+alias -s pdf=$PDFV
+alias -s html=$BROWSER
+alias -s htm=$BROWSER
+alias -s org=$BROWSER
+alias -s com=$BROWSER
+alias -s net=$BROWSER
+alias -s no=$BROWSER
+alias -s uk=$BROWSER
+alias -s us=$BROWSER
+alias -s se=$BROWSER

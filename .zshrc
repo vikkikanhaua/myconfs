@@ -99,8 +99,6 @@ bindkey '^[[8~'  end-of-line
 bindkey '^[[7~'  beginning-of-line
 bindkey '^[[3~'  delete-char
 bindkey '^[[2~'  overwrite-mode
-bindkey '^[OC'   forward-word #for tmux
-bindkey '^[OD'   backward-word
 bindkey '^r'     .history-incremental-pattern-search-backward
 bindkey '^?'     backward-delete-char
 bindkey '^['     vi-cmd-mode
