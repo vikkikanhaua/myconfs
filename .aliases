@@ -5,29 +5,31 @@ alias la='ls -A'
 alias grep='grep -i --color=always'
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
-alias df="df -h"
-alias du="du -sh"
-alias m="ncmpcpp"
-alias cp="nocorrect cp -viru"
-alias mv="nocorrect mv -viu"
-alias rm="nocorrect rm -vr"
-alias wget="wget -c"
-alias irc="irssi"
-alias rs="rsync -vhru"
-alias px="chmod +x"
+alias mkdir='mkdir -p'
+alias df='df -h'
+alias du='du -sh'
+alias m='ncmpcpp'
+alias cp='nocorrect cp -viru'
+alias mv='nocorrect mv -viu'
+alias rm='nocorrect rm -vr'
+alias wget='wget -c'
+alias irc='irssi'
+alias rs='rsync -vhru'
+alias px='chmod +x'
 alias lst='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sort -rn | cut -d- -f2-'
-alias feeds="newsbeuter"
-alias ping="ping -c5"
-alias mcd="sudo mount /dev/sr0 /media/cd"
-alias ucd="sudo umount /media/cd"
-alias alwayson="xset s off; xset -dpms"
+alias feeds='newsbeuter'
+alias ping='ping -c5'
+alias mcd='sudo mount /dev/sr0 /media/cd'
+alias ucd='sudo umount /media/cd'
+alias alwayson='xset s off; xset -dpms'
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
-alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias cdc='cd; clear'
+alias reload='source ~/.zshrc'
 alias svim='sudoedit'
-alias chkhdd="grep 'sector' /var/log/errors.log | cut -d ' ' -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log"
-alias packer="packer --auronly"
-alias !="sudo"
+alias chkhdd='grep "sector" /var/log/errors.log | cut -d " " -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log'
+alias packer='packer --auronly'
+alias !='sudo'
 
 # filetypes
 local MEDV=mplayer
@@ -44,7 +46,7 @@ alias -s mpeg=$MEDV
 alias -s gif=$IMGV
 alias -s jpg=$IMGV
 alias -s jpeg=$IMGV
-alias -s svg=$IMGV
+alias -s svg=inkview
 alias -s png=$IMGV
 alias -s pdf=$PDFV
 alias -s html=$BROWSER
