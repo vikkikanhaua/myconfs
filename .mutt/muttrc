@@ -34,6 +34,7 @@ set sig_dashes
 set askcc
 set delete
 set wrap_search
+set sendmail_wait       = -1    # don't wait for sending... to complete
 set confirmcreate       = yes
 set use_from            = yes
 set envelope_from       = yes
@@ -64,7 +65,7 @@ mailboxes +INBOX +mc +arch-announce +arch-general +aur-general +arch-dev-pub +xm
 # }}}
 
 ##
-# Enriched messages {{{ 
+# Enriched messages {{{
 #####
 
 auto_view text/html                                               # view html automatically
@@ -86,12 +87,21 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 ##
 # Different Formats {{{
 #####
+#
+#set alias_format        = "%4n %t %-20a %r"
+#set attribution         = "On %d, %n wrote:"
+#set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-20.20F │ %s"
+#set status_format       = "-[ %r ]-[ %v ]---[ %f ]--[ Msgs: %m, %l%?n?, New: %n?%?d?, Del: %d?%?t?, Tag: %t? %?p? --- %p waiting to send ?]--%>-[ %s ]-[ %P ]-"
+#set forward_format      = "fwd: %s"
 
+# from jason ryan
+set date_format         = "%d/%m/%y at %I:%M%P"
+set index_format        = "%4C [%Z]   %D  •  %-35.35F %s %> %c"
+set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusbar
+set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
+set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?u?%u unread, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"
 set alias_format        = "%4n %t %-20a %r"
-set attribution         = "On %d, %n wrote:"
-set index_format        = "%4C [%Z] %[%d/%b at %H:%M]  %-5.5c  %-20.20F │ %s"
-set status_format       = "-[ %r ]-[ %v ]---[ %f ]--[ Msgs: %m, %l%?n?, New: %n?%?d?, Del: %d?%?t?, Tag: %t? %?p? --- %p waiting to send ?]--%>-[ %s ]-[ %P ]-"
-set forward_format      = "fwd: %s"
+
 # }}}
 
 ##
@@ -103,10 +113,33 @@ set signature           = ~/.mutt/mysig
 set alias_file          = ~/.mutt/aliases.muttrc
 set mailcap_path        = ~/.mutt/mailcap.muttrc
 
-source ~/.mutt/colors.muttrc 
+#source ~/.mutt/colors.muttrc
+source ~/.mutt/jwr_colors.muttrc
 source ~/.mutt/aliases.muttrc
 source ~/.mutt/sidebar.muttrc
 #source /etc/Muttrc.gpg.dist
+# }}}
+
+##
+# bindings {{{
+#####
+
+bind pager q            exit
+bind pager /            search
+bind pager <up>         previous-line
+bind pager <down>       next-line
+bind pager k            previous-line
+bind pager j            next-line
+bind pager gg           top
+bind pager G            bottom
+bind index gg           first-entry
+bind index G            last-entry
+bind pager K            previous-undeleted
+bind pager J            next-undeleted
+bind index K            previous-unread
+bind index J            next-unread
+bind index U            undelete-thread
+bind index,pager R      group-reply
 # }}}
 
 ##
@@ -121,6 +154,4 @@ macro index Z   "<shell-escape>/usr/bin/offlineimap <enter>" "sync IMAP"
 macro index D   "<save-message>+trash<enter>"   "move message to the trash"
 macro index S   "<save-message>+spam<enter>"    "mark message as spam"
 macro index,pager b '<enter-command>toggle sidebar_visible<enter>'
-# bindings
-bind  index U  undelete-thread
 # }}}
