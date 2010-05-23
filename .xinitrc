@@ -10,9 +10,7 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
-# feh --bg-fill "~/pictures/$(ls ~/pictures | sort -R | line)"
-
-eval `cat ~/.fehbg`
+# eval `cat ~/.fehbg`
 
 urxvtd -q -f -o &
 
@@ -21,5 +19,7 @@ remuco-mpd &
 # xsetroot -cursor_name left_ptr &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
+
+feh --bg-scale "$HOME/pictures/$(ls $HOME/pictures | sort -R | line)"
 
 exec awesome

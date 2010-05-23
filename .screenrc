@@ -10,7 +10,7 @@ defscrollback 10000                # Remember a lot
 nonblock on                        # Block input from hung applications
 defutf8 on                         # Always use utf8
 defflow off                        # Turn off flow-control
-msgwait 3                          # Display msgs for N seconds
+msgwait 5                          # Display msgs for N seconds
 altscreen on                       # Enable alternate screen support
 defbce on                          # Erase background with current background color
 bell_msg ""                      # For urgency hints
@@ -30,7 +30,7 @@ backtick 1 1800 1800 bday
 backtick 2 1800 1800 cat ${HOME}/.weather
 
 sorendition '= dY'
-hardstatus alwayslastline '%{= B}//%{= W}%H%{= B}/%{= W}%n%{= B}/%{= W}%t %= %{= B}// %{= W}%2`%{= B} / %{= W}%1`%{= B} //'
+hardstatus alwayslastline '%{= kB}//%{= Y}%H%{= B}/%{= Y}%n%{= B}/%{= Y}%t %= %{= B}// %{= Y}%2`%{= B} / %{= Y}%1`%{= B} //'
 
 # Banish screen 0, it sucks {{{
 bind c screen 1

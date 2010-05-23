@@ -84,6 +84,8 @@ map <space> za
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
+cmap w!! %!sudo tee > /dev/null %
+
 " Tab controls
 map <Leader><Tab> :tabnew
 map <Leader>o     :tabnext<CR>
