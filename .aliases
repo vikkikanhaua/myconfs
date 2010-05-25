@@ -1,6 +1,5 @@
 eval "`dircolors -b`"
-alias ls='ls --color=always -vhF'
-alias ll='ls -l'
+alias !='sudo'
 alias la='ls -A'
 alias grep='grep -i --color=always'
 alias fgrep='fgrep --color=always'
@@ -23,37 +22,13 @@ alias mcd='sudo mount /dev/sr0 /media/cd'
 alias ucd='sudo umount /media/cd'
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
-alias cdc='cd; clear'
-alias reload='source ~/.zshrc'
 alias svim='sudoedit'
-alias chkhdd='grep "sector" /var/log/errors.log | cut -d " " -f 10-12 | uniq; echo; grep "PreFailure" /var/log/daemon.log'
 alias packer='packer --auronly'
-alias !='sudo'
+alias ss="source ~/.zshrc"
 
 # filetypes
-local MEDV=mplayer
-local IMGV=feh
-local PDFV=evince
-alias -s mov=$MEDV
-alias -s avi=$MEDV
-alias -s wmv=$MEDV
-alias -s mkv=$MEDV
-alias -s mp4=$MEDV
-alias -s mp3=$MEDV
-alias -s mpg=$MEDV
-alias -s mpeg=$MEDV
-alias -s gif=$IMGV
-alias -s jpg=$IMGV
-alias -s jpeg=$IMGV
+alias -s pdf=evince
 alias -s svg=inkview
-alias -s png=$IMGV
-alias -s pdf=$PDFV
-alias -s html=$BROWSER
-alias -s htm=$BROWSER
-alias -s org=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
-alias -s no=$BROWSER
-alias -s uk=$BROWSER
-alias -s us=$BROWSER
-alias -s se=$BROWSER
+alias -s {mov,avi,wmv,mkv,mp4,mp3,mpg,mpeg}=mplayer
+alias -s {gif,jpg,jpeg,png}=feh
+alias -s {html,htm,org,com,net,no,uk,us.se}=firefox

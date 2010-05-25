@@ -22,8 +22,8 @@
 
 *cursorColor     : #80724e
 *cursorColor2    : #fff
-*cursorUnderline : true
-*underlineColor  : #66aabb
+!*cursorUnderline : true
+!*underlineColor  : #66aabb
 
 !#include "/home/vikki/.xcolors/allblue.xcolors"
 !#include "/home/vikki/.xcolors/arthur.xcolors"
