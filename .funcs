@@ -111,7 +111,7 @@ seek()  {
           ;;
     esac
   fi
-} 
+}
 
 # daemon statuses
 daemon_status() {
@@ -155,7 +155,7 @@ google() {
   local URL="http://www.google.com/search?q=${term// /+}"
 
   $BROWSER "$URL" &> /dev/null
-} 
+}
 
 # push git repo
 pushrepo() {

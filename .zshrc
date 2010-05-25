@@ -61,7 +61,7 @@ export PAGER="less -winm"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export VISUAL=$EDITOR
-export PATH=$PATH:~/.bin
+export PATH=~/.bin:$PATH
 export STARDICT_DATA_DIR=${HOME}/.stardict
 
 # for colored man pages

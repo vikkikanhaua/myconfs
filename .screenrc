@@ -30,7 +30,8 @@ backtick 1 1800 1800 bday
 backtick 2 1800 1800 cat ${HOME}/.weather
 
 sorendition '= dY'
-hardstatus alwayslastline '%{= kB}//%{= Y}%H%{= B}/%{= Y}%n%{= B}/%{= Y}%t %= %{= B}// %{= Y}%2`%{= B} / %{= Y}%1`%{= B} //'
+hardstatus alwayslastline '%{= B}//%{= W}%H%{= B}/%{= W}%n%{= B}/%{= W}%t %= %{= B}// %{= W}%2`%{= B} / %{= W}%1`%{= B} //'
+# hardstatus alwayslastline "%{=bu kg}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b kc}((%n %t))%{= kw}%?%+Lw%?%= %{=bu kg})(%D %Y.%m.%d %0C%A)"
 
 # Banish screen 0, it sucks {{{
 bind c screen 1
