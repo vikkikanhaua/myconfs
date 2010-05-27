@@ -10,16 +10,14 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
-# eval `cat ~/.fehbg`
-
 urxvtd -q -f -o &
 
 remuco-mpd &
 
-# xsetroot -cursor_name left_ptr &
-
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-feh --bg-scale "$HOME/pictures/$(ls $HOME/pictures | sort -R | line)"
+# eval `cat ~/.fehbg`
+
+xsetroot -bg "#121212" -mod 3 3
 
 exec awesome

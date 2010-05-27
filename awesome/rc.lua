@@ -39,11 +39,9 @@ local calendar = nil
 local offset = 0
 
 function remove_calendar()
-  if calendar ~= nil then
-    naughty.destroy(calendar)
-    calendar = nil
-    offset = 0
-  end
+  naughty.destroy(calendar)
+  calendar = nil
+  offset = 0
 end
 
 function add_calendar(inc_offset)
@@ -67,13 +65,28 @@ function add_calendar(inc_offset)
 end
 -- }}}
 
+-- {{{ mpd cover art
+local coverart_nf
+function coverart()
+  if coverart_nf ~= nil then
+    naughty.destroy(coverart_nf)
+    coverart_nf = nil
+    return
+  end
+  local img = awful.util.pread("cover_art")
+  local ico = image(img)
+  local txt = awful.util.pread("mpdinfo")
+  coverart_nf = naughty.notify({icon = ico, icon_size = 100, text = txt, timeout = 0})
+end
+-- }}}
+
 -- {{{ naughty configuration
-naughty.config.presets.normal.timeout          = 8
+naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = beautiful.font or "Verdana 8"
 naughty.config.presets.normal.icon_size        = 16
 naughty.config.presets.normal.ontop            = true
-naughty.config.presets.normal.fg               = beautiful.fg_focus or '#fea63c'
-naughty.config.presets.normal.bg               = beautiful.bg_focus or '#535d6c'
+naughty.config.presets.normal.fg               = '#fea63c'
+naughty.config.presets.normal.bg               = '#1a1a1a'
 naughty.config.presets.normal.border_color     = beautiful.border_focus or '#535d6c'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
@@ -545,8 +558,24 @@ client.add_signal("manage", function (c, startup)
   end
 end)
 
+-- {{{ mpd cover art
+naughty_default_position = "top_right"
+naughty_coverart_position = "bottom_right"
+
+mpdwidget:add_signal("mouse::enter", function()
+  naughty.config.presets.normal.position = naughty_coverart_position
+  coverart()
+end)
+
+mpdwidget:add_signal("mouse::leave", function()
+  naughty.config.presets.normal.position = naughty_default_position
+  coverart()
+end)
+-- }}}
+
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 -- {{{ Arrange signal handler
 for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
   local clients = awful.client.visible(s)
@@ -560,4 +589,5 @@ for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
 end)
 end
 -- }}}
+
 -- }}}

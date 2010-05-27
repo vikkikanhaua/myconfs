@@ -1,5 +1,7 @@
 eval "`dircolors -b`"
 alias !='sudo'
+alias ls='ls --color=always -hvF'
+alias ll='ls -l'
 alias la='ls -A'
 alias grep='grep -i --color=always'
 alias fgrep='fgrep --color=always'
