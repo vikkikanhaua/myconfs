@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 cd() {
-  builtin cd "$@"; ls;
+  builtin cd "$@"; lsp;
 }
 
 # extract depending on extension
