@@ -73,7 +73,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 export GREP_COLORS="38;5;230:sl=38;5;240:cs=38;5;100:mt=38;5;161:fn=38;5;197:ln=38;5;212:bn=38;5;44:se=38;5;166"
 export LS_COLORS="*.h=38;5;81:*.rb=38;5;192:*.c=38;5;110:*.diff=42;38:*.yml=38;5;208:*.PL=38;5;178:*.csv=38;5;136:tw=38;5;003:*.chm=38;5;144:*.bin=38;5;249:*.sms=38;5;33:*.pdf=38;5;203:*.cbz=38;5;140:*.cbr=38;5;140:*.nes=38;5;160:*.mpg=38;5;38:*.ts=38;5;39:*.sfv=38;5;191:*.m3u=38;5;172:*.txt=38;5;192:*.log=38;5;190:*.bash=38;5;173:*.swp=38;5;241:*.swo=38;5;*.theme=109m:*.zsh=38;5;173:*.nfo=38;5;113:mi=38;5;124::or=38;5;160:ex=38;5;197:ln=target:pi=38;5;126:ow=38;5;208:di=38;5;33:*.pm=38;5;197:*.pl=38;5;107:*.sh=38;5;243:*.patch=45;37:*.tar=38;5;118:*.tar.gz=38;5;118:*.zip=38;5;11::*.rar=38;5;11:*.tgz=38;5;11:*.7z=38;5;11:*.mp3=38;5;173:*.flac=38;5;166:*.mkv=38;5;115:*.avi=38;5;114:*.wmv=38;5;113:*.jpg=38;5;66:*.jpeg=38;5;67:*.png=38;5;68:*.pacnew=38;5;33"
-
 # }}}
 
 # ---[ sourced files ] {{{
@@ -110,7 +109,7 @@ bindkey '^[[5~'  .undefined-key
 bindkey '^[[6~'  .undefined-key
 #  }}}
 
-#---[ misc. functions ] {{{
+#---[ misc. functions + PROMPT ] {{{
 
 compdef _pacman clyde=pacman
 
@@ -127,7 +126,7 @@ preexec () {
 
 precmd () {
   [[ $? -eq 0 ]] && color="%{\e[38;5;28m%}" || color="%{\e[38;5;160m%}"
-  export PROMPT="`builtin echo "%{\e[38;5;3m%}%n%{\e[38;5;231m%}@%{\e[38;5;9m%}%m%{\e[38;5;231m%} : %{\e[38;5;136m%}%y%{\e[38;5;23m%} -> %{\e[38;5;208m%}%d %{\e[38;5;231m%}($color$(history | tail -1 | awk '{print $2}')%{\e[38;5;231m%})\n->%{\e[0m%}"` "
+  export PROMPT="`builtin echo "%{\e[38;5;3m%}%n%{\e[38;5;231m%}@%{\e[38;5;9m%}%m%{\e[38;5;231m%}:%{\e[38;5;136m%}%y%{\e[38;5;23m%} -> %{\e[38;5;208m%}%d %{\e[38;5;231m%}($color$(history | tail -1 | awk '{print $2}')%{\e[38;5;231m%})\n->%{\e[0m%}"` "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/}

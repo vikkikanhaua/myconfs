@@ -60,8 +60,8 @@ hdr_order from: to: cc: subject:                  # and in this order
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc
-mailboxes +INBOX +mc +arch-announce +arch-general +aur-general +arch-dev-pub +xmonad +drafts +sent +spam +trash +archive
+subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel
+mailboxes +INBOX +mc +arch-announce +arch-general +aur-general +arch-dev-pub +awesome +awesome-devel +xmonad +drafts +sent +spam +trash +archive
 # }}}
 
 ##
