@@ -12,8 +12,6 @@ fi
 
 urxvtd -q -f -o &
 
-remuco-mpd &
-
 setxkbmap -option terminate:ctrl_alt_bksp &
 
 # eval `cat ~/.fehbg`

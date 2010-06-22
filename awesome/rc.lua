@@ -10,7 +10,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/zenburn.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal to run.
 terminal = "urxvtc"
