@@ -10,7 +10,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/byte/theme.lua")
 
 -- This is used later as the default terminal to run.
 terminal = "urxvtc"
@@ -58,7 +58,7 @@ function add_calendar(inc_offset)
   local cal = awful.util.pread("cal -s " .. datespec)
   cal = string.gsub(cal, "^%s*(.-)%s*$", "%1")
   calendar = naughty.notify({
-    text = string.format('<span font="%s">%s</span>', beautiful.font, "    "..cal),
+    text = string.format('%s', "    "..cal),
     timeout = 0, hover_timeout = nil,
     width = 132,
   })
@@ -82,12 +82,12 @@ end
 
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 5
-naughty.config.presets.normal.font             = beautiful.font or "Verdana 8"
+naughty.config.presets.normal.font             = "Profont 8"
 naughty.config.presets.normal.icon_size        = 16
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#fea63c'
 naughty.config.presets.normal.bg               = '#1a1a1a'
-naughty.config.presets.normal.border_color     = beautiful.border_focus or '#535d6c'
+naughty.config.presets.normal.border_color     = '#535d6c'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
 
@@ -108,9 +108,9 @@ end
 
 -- {{{ defaults
 spacer    = widget({ type = "textbox"  })
-separator = widget({ type = "imagebox" })
+separator = widget({ type = "textbox" })
 spacer.text     = " "
-separator.image = image(beautiful.widget_sep)
+separator.text  = "|"
 -- }}}
 
 -- {{{ top
@@ -136,8 +136,6 @@ separator.image = image(beautiful.widget_sep)
 -- }}}
 
 -- {{{ File system usage
-fsicon = widget({ type = "imagebox" })
-fsicon.image = image(beautiful.widget_fs)
 -- Initialize widgets
 fs = {
   r = awful.widget.progressbar(),  h = awful.widget.progressbar(),
@@ -165,10 +163,6 @@ vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 -- }}}
 
 -- {{{ Network usage
-dnicon = widget({ type = "imagebox" })
-upicon = widget({ type = "imagebox" })
-dnicon.image = image(beautiful.widget_net)
-upicon.image = image(beautiful.widget_netup)
 -- Initialize widget
 netwidget = widget({ type = "textbox" })
 -- Register widget
@@ -178,8 +172,6 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
 -- }}}
 
 -- {{{ Volume level
-volicon = widget({ type = "imagebox" })
-volicon.image = image(beautiful.widget_vol)
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
@@ -198,8 +190,6 @@ vicious.register(volbar,    vicious.widgets.volume, "$1", 2, "Master")
 -- }}}
 
 -- {{{ Date and time
-dateicon = widget({ type = "imagebox" })
-dateicon.image = image(beautiful.widget_date)
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
 datewidget:buttons(awful.util.table.join(
@@ -212,10 +202,8 @@ vicious.register(datewidget, vicious.widgets.date, '%a %d %b,<span color="#d2691
 -- }}}
 
 --{{{ mail
-mailicon = widget({ type = "imagebox" })
-mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/INBOX"})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1 new", 113, {"/home/vikki/mail/INBOX"})
 --}}}
 
 -- {{{ systray
@@ -224,7 +212,6 @@ mysystray = widget({ type = "systray" })
 
 -- {{{ Create a wibox for each screen and add it
 top_wibox = {}
-mylayoutbox = {}
 mytaglist = {}
 mytasklist = {}
 -- }}}
@@ -233,9 +220,8 @@ mytasklist = {}
 
 -- {{{  add each widget
 for s = 1, screen.count() do
+  awful.screen.padding( screen[s], {top = 1, bottom = 1} )
   -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-  -- We need one layoutbox per screen.
-  mylayoutbox[s] = awful.widget.layoutbox(s)
 
   -- Create a taglist widget
   mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
@@ -246,7 +232,7 @@ for s = 1, screen.count() do
   -- Create the wibox
   top_wibox[s] = awful.wibox({
     screen = s,
-    fg = beautiful.fg_normal, height = 12,
+    fg = beautiful.fg_normal, height = 13,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
     border_width = beautiful.border_width,
@@ -256,16 +242,15 @@ for s = 1, screen.count() do
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
     {
-      spacer, mytaglist[s],
-      separator, spacer, mylayoutbox[s],
+      spacer, mytaglist[s], spacer,
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, datewidget, spacer, dateicon,
-    separator, volbar.widget, spacer, volicon,
-    separator, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
-    separator, mailwidget, spacer, mailicon,
-    separator, upicon, netwidget, dnicon,
+    spacer, spacer, datewidget, spacer,
+    separator, spacer, volbar.widget, spacer,
+    separator, spacer, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer,
+    separator, spacer, mailwidget, spacer,
+    separator, spacer, netwidget, spacer,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
@@ -286,8 +271,8 @@ hdd = {
   sdb = widget({ type = "textbox" })
 }
 -- register
-vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}°C</span>', 53)
-vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}°C</span>', 59)
+vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}C</span>', 53)
+vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}C</span>', 59)
 -- }}}
 
 -- diskio {{{
@@ -354,22 +339,20 @@ for s = 1, screen.count() do
              bg = beautiful.bg_normal,
              border_color = beautiful.border_focus,
              border_width = beautiful.border_width,
-             height = 12,
+             height = 13,
              position = "bottom"
            })
 
   -- Add widgets to the wibox - order matters
   bottom_wibox[s].widgets = {
     {
-      spacer, updatewidget, spacer,
-      separator, spacer, hdd.sda, spacer,
-      dio.sda,   spacer,
-      separator, spacer, hdd.sdb, spacer,
-      dio.sdb,   spacer,
+      spacer,    spacer, updatewidget, spacer,
+      separator, spacer, hdd.sda, spacer, dio.sda, spacer,
+      separator, spacer, hdd.sdb, spacer, dio.sdb, spacer,
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, uptimewidget, spacer,
+    spacer, spacer, uptimewidget, spacer,
     separator, spacer, mpdwidget, spacer, separator,
     layout = awful.widget.layout.horizontal.rightleft
   }
