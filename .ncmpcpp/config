@@ -208,10 +208,21 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## - r - column will be right aligned
 ## - E - if tag is empty, empty tag marker won't be displayed
 ##
+## You can also:
+##
+## - give a column custom name by putting it after attributes,
+##   separated with character ':', e.g. {lr:Length} gives you
+##   right aligned column of lengths named "Length".
+##
+## - define sequence of tags, that have to be displayed in case
+##   predecessor is empty in a way similar to the one in classic
+##   song format, i.e. using '|' character, e.g. {a|c|p:Owner}
+##   creates column named "Owner" that tries to display artist
+##   tag and then composer and performer if previous ones are
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-#song_columns_list_format = "(7f)[green]{l} (25)[cyan]{a} (40)[]{t} (30)[red]{b}"
+song_columns_list_format = "(7f)[green]{lr} (25)[cyan]{a} (40)[]{t} (30)[red]{b}"
 #
 ##### various settings #####
 #
@@ -225,6 +236,10 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 #execute_on_song_change = ""
 #
 #playlist_show_remaining_time = "no"
+#
+#playlist_shorten_total_times = "no"
+#
+playlist_separate_albums = "no"
 #
 playlist_display_mode = "classic" (classic/columns)
 #

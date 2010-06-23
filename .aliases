@@ -1,4 +1,4 @@
-eval "`dircolors -b`"
+eval "`dircolors`"
 alias !='sudo'
 alias ls='ls --color=always -hvF'
 alias ll='ls -l'

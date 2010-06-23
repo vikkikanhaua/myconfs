@@ -116,8 +116,6 @@ separator.text  = "|"
 -- {{{ top
 
 -- {{{ CPU usage
--- cpuicon = widget({ type = "imagebox" })
--- cpuicon.image = image(beautiful.widget_cpu)
 -- Initialize widgets
 -- cpugraph  = awful.widget.graph()
 -- Graph properties
@@ -196,7 +194,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d %b</span>, %H:%M', 61)
+vicious.register(datewidget, vicious.widgets.date, '%a %d %b, %H:%M', 61)
 -- }}}
 
 --{{{ mail
@@ -241,6 +239,8 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
+    elseif args["{state}"] == 'Pause' then
+      return '__<span color="#659fdb">' .. args["{Title}"] .. '</span> by <span color="#659fdb">' .. args["{Artist}"] .. '</span>__'
     else
       return '<span color="#659fdb">' .. args["{Title}"] .. '</span> by <span color="#659fdb">' .. args["{Artist}"] .. '</span>'
     end
@@ -252,7 +252,7 @@ uptimewidget = widget({ type = 'textbox' })
 uptimewidget.align = 'right'
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('up:<span color="#659fdb">%2dd %02dh %02dm</span>', args[1], args[2], args[3])
+    return string.format('%1dd %02dh %02dm', args[1], args[2], args[3])
   end, 61)
 -- }}}
 
@@ -320,8 +320,9 @@ for s = 1, screen.count() do
     },
     spacer, spacer, datewidget, spacer,
     separator, spacer, volbar.widget, spacer,
-    separator, spacer, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer,
+    separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer,
     separator, spacer, mailwidget, spacer,
+--    separator, spacer, cpugraph, spacer,
     separator, spacer, netwidget, spacer,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
