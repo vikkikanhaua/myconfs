@@ -115,8 +115,6 @@ separator.text  = "|"
 
 -- {{{ top
 
--- {{{ creation of widgets
-
 -- {{{ CPU usage
 -- cpuicon = widget({ type = "imagebox" })
 -- cpuicon.image = image(beautiful.widget_cpu)
@@ -198,7 +196,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '%a %d %b,<span color="#d2691e"> %H:%M</span>', 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="#d6d6d6">%a %d %b</span>, %H:%M', 61)
 -- }}}
 
 --{{{ mail
@@ -210,59 +208,9 @@ vicious.register(mailwidget, vicious.widgets.mdir, "$1 new", 113, {"/home/vikki/
 mysystray = widget({ type = "systray" })
 -- }}}
 
--- {{{ Create a wibox for each screen and add it
-top_wibox = {}
-mytaglist = {}
-mytasklist = {}
--- }}}
-
---  }}}
-
--- {{{  add each widget
-for s = 1, screen.count() do
-  awful.screen.padding( screen[s], {top = 1, bottom = 1} )
-  -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-
-  -- Create a taglist widget
-  mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
-
-  -- Create a tasklist widget
-  mytasklist[s] = awful.widget.tasklist(function(c) return awful.widget.tasklist.label.focused(c, s) end)
-
-  -- Create the wibox
-  top_wibox[s] = awful.wibox({
-    screen = s,
-    fg = beautiful.fg_normal, height = 13,
-    bg = beautiful.bg_normal,
-    border_color = beautiful.border_focus,
-    border_width = beautiful.border_width,
-    position = "top"
-  })
-
-  -- Add widgets to the wibox - order matters
-  top_wibox[s].widgets = {
-    {
-      spacer, mytaglist[s], spacer,
-      separator, spacer,
-      layout = awful.widget.layout.horizontal.leftright
-    },
-    spacer, spacer, datewidget, spacer,
-    separator, spacer, volbar.widget, spacer,
-    separator, spacer, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer,
-    separator, spacer, mailwidget, spacer,
-    separator, spacer, netwidget, spacer,
-    separator, s == 1 and mysystray or nil,
-    mytasklist[s],
-    layout = awful.widget.layout.horizontal.rightleft
-  }
-end
--- }}}
-
 -- }}}
 
 -- {{{ bottom
-
--- {{{ creation of widgets
 
 -- hddtemp {{{
 -- initialize
@@ -294,7 +242,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">mpd stopped</span>'
     else
-      return '<span color="#66aabb">' .. args["{Title}"] .. '</span> by <span color="#fea63c">' .. args["{Artist}"] .. '</span>'
+      return '<span color="#659fdb">' .. args["{Title}"] .. '</span> by <span color="#659fdb">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}
@@ -304,7 +252,7 @@ uptimewidget = widget({ type = 'textbox' })
 uptimewidget.align = 'right'
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('system up:<span color="#66aabb">%2dd %02dh %02dm</span>', args[1], args[2], args[3])
+    return string.format('up:<span color="#659fdb">%2dd %02dh %02dm</span>', args[1], args[2], args[3])
   end, 61)
 -- }}}
 
@@ -313,7 +261,7 @@ updatewidget = widget({ type = 'textbox' })
 vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
     if args[1] == 0 then
-      return 'pacman is <span color="#88a175">happy</span>'
+      return 'pacman is <span color="#659fdb">happy</span>'
     elseif args[1] <= 50 then
       return 'pacman is <span color="#d2691e">sad</span> (' .. args[1] .. ')'
     else
@@ -324,26 +272,62 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 
 -- }}}
 
--- wibox created
+-- {{{ Create a wibox for each screen and add it
+top_wibox = {}
 bottom_wibox = {}
+mytaglist = {}
+mytasklist = {}
 mypromptbox = {}
+-- }}}
 
--- {{{ add each widget
+-- {{{  add each widget
 for s = 1, screen.count() do
+  awful.screen.padding( screen[s], {top = 1, bottom = 1} )
+
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
 
+  -- Create a taglist widget
+  mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
+
+  -- Create a tasklist widget
+  mytasklist[s] = awful.widget.tasklist(function(c) return awful.widget.tasklist.label.focused(c, s) end)
+
   -- Create the wibox
+  top_wibox[s] = awful.wibox({
+    screen = s,
+    fg = beautiful.fg_normal, height = 13,
+    bg = beautiful.bg_normal,
+    border_color = beautiful.border_focus,
+    border_width = beautiful.border_width,
+    position = "top"
+  })
+
   bottom_wibox[s] = awful.wibox({ screen = s,
-             fg = beautiful.fg_normal,
-             bg = beautiful.bg_normal,
-             border_color = beautiful.border_focus,
-             border_width = beautiful.border_width,
-             height = 13,
-             position = "bottom"
-           })
+    fg = beautiful.fg_normal, height = 13,
+    bg = beautiful.bg_normal,
+    border_color = beautiful.border_focus,
+    border_width = beautiful.border_width,
+    position = "bottom"
+  })
 
   -- Add widgets to the wibox - order matters
+  top_wibox[s].widgets = {
+    {
+      spacer, mytaglist[s], spacer,
+      separator, spacer,
+      layout = awful.widget.layout.horizontal.leftright
+    },
+    spacer, spacer, datewidget, spacer,
+    separator, spacer, volbar.widget, spacer,
+    separator, spacer, fs.s.widget, fs.t.widget, fs.h.widget, fs.r.widget, spacer,
+    separator, spacer, mailwidget, spacer,
+    separator, spacer, netwidget, spacer,
+    separator, s == 1 and mysystray or nil,
+    mytasklist[s],
+    layout = awful.widget.layout.horizontal.rightleft
+  }
+
   bottom_wibox[s].widgets = {
     {
       spacer,    spacer, updatewidget, spacer,
@@ -357,8 +341,6 @@ for s = 1, screen.count() do
     layout = awful.widget.layout.horizontal.rightleft
   }
 end
--- }}}
-
 -- }}}
 
 -- }}}

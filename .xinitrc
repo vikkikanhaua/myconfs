@@ -14,8 +14,8 @@ urxvtd -q -f -o &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-# eval `cat ~/.fehbg`
+eval `cat ~/.fehbg`
 
-xsetroot -bg "#121212" -mod 3 3
+# xsetroot -bg "#121212" -mod 3 3
 
 exec awesome
