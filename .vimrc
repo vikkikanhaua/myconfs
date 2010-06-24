@@ -13,8 +13,6 @@ else
   colorscheme slate
 endif
 
-let g:zenburn_high_Contrast = 1
-
 set nocompatible
 set autoindent
 set expandtab

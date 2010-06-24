@@ -25,7 +25,7 @@ hi ErrorMsg        ctermfg=9     ctermbg=none    cterm=bold
 hi Exception       ctermfg=249                   cterm=bold
 hi Float           ctermfg=251
 hi FoldColumn      ctermfg=109   ctermbg=238
-hi Folded          ctermfg=109   ctermbg=238
+hi Folded          ctermfg=109   ctermbg=234
 hi Function        ctermfg=228
 hi Identifier      ctermfg=230
 hi IncSearch       ctermfg=238   ctermbg=228

@@ -110,25 +110,40 @@ end
 spacer    = widget({ type = "textbox"  })
 separator = widget({ type = "textbox" })
 spacer.text     = " "
-separator.text  = "|"
+separator.text  = '<span color="grey40">|</span>'
 -- }}}
 
 -- {{{ top
 
 -- {{{ CPU usage
 -- Initialize widgets
--- cpugraph  = awful.widget.graph()
+cpugraph  = awful.widget.graph()
 -- Graph properties
--- cpugraph:set_width(40)
--- cpugraph:set_height(12)
--- cpugraph:set_background_color(beautiful.fg_off_widget)
--- cpugraph:set_color(beautiful.fg_end_widget)
--- cpugraph:set_gradient_angle(0)
--- cpugraph:set_gradient_colors({ beautiful.fg_end_widget,
---    beautiful.fg_center_widget, beautiful.fg_widget
--- })
+cpugraph:set_width(40)
+cpugraph:set_height(12)
+cpugraph:set_background_color(beautiful.fg_off_widget)
+cpugraph:set_color(beautiful.fg_end_widget)
+cpugraph:set_gradient_angle(0)
+cpugraph:set_gradient_colors({ beautiful.fg_end_widget,
+   beautiful.fg_center_widget, beautiful.fg_widget
+})
 -- Register widgets
--- vicious.register(cpugraph, vicious.widgets.cpu, "$1")
+vicious.register(cpugraph, vicious.widgets.cpu, "$1")
+-- }}}
+
+-- {{{ Memory usage
+-- Initialize widget
+membar = awful.widget.progressbar()
+-- Pogressbar properties
+membar:set_vertical(true)
+membar:set_height(12)
+membar:set_width(10)
+membar:set_border_color(beautiful.border_widget)
+membar:set_background_color(beautiful.fg_off_widget)
+membar:set_gradient_colors({ beautiful.fg_widget,
+   beautiful.fg_center_widget, beautiful.fg_end_widget
+}) -- Register widget
+vicious.register(membar, vicious.widgets.mem, "$1", 13)
 -- }}}
 
 -- {{{ File system usage
@@ -158,15 +173,6 @@ vicious.register(fs.t, vicious.widgets.fs, "${/mnt/tv used_p}", 599)
 vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 -- }}}
 
--- {{{ Network usage
--- Initialize widget
-netwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_netdn_widget .. '">${ppp0 down_kb}</span> <span color="'
-  .. beautiful.fg_netup_widget .. '">${ppp0 up_kb}</span>', 3)
--- }}}
-
 -- {{{ Volume level
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
@@ -182,7 +188,7 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
 }) -- Enable caching
 vicious.cache(vicious.widgets.volume)
 -- Register widgets
-vicious.register(volbar,    vicious.widgets.volume, "$1", 2, "Master")
+vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 -- }}}
 
 -- {{{ Date and time
@@ -219,17 +225,6 @@ hdd = {
 -- register
 vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}C</span>', 53)
 vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}C</span>', 59)
--- }}}
-
--- diskio {{{
--- initialize
-dio = {
-  sda = widget({ type = "textbox" }),
-  sdb = widget({ type = "textbox" })
-}
--- register
-vicious.register(dio.sda, vicious.widgets.dio, '${read_mb} ${write_mb}' , 2, "sda")
-vicious.register(dio.sdb, vicious.widgets.dio, '${read_mb} ${write_mb}' , 2, "sdb")
 -- }}}
 
 -- mpd {{{
@@ -282,7 +277,7 @@ mypromptbox = {}
 
 -- {{{  add each widget
 for s = 1, screen.count() do
-  awful.screen.padding( screen[s], {top = 1, bottom = 1} )
+  awful.screen.padding( screen[s], {top = 1, bottom = 2} )
 
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -322,8 +317,8 @@ for s = 1, screen.count() do
     separator, spacer, volbar.widget, spacer,
     separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer,
     separator, spacer, mailwidget, spacer,
---    separator, spacer, cpugraph, spacer,
-    separator, spacer, netwidget, spacer,
+    separator, spacer, cpugraph.widget, spacer,
+    separator, spacer, membar.widget, spacer,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
@@ -332,8 +327,8 @@ for s = 1, screen.count() do
   bottom_wibox[s].widgets = {
     {
       spacer,    spacer, updatewidget, spacer,
-      separator, spacer, hdd.sda, spacer, dio.sda, spacer,
-      separator, spacer, hdd.sdb, spacer, dio.sdb, spacer,
+      separator, spacer, hdd.sda, spacer,
+      separator, spacer, hdd.sdb, spacer,
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
