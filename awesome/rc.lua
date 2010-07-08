@@ -110,7 +110,7 @@ end
 spacer    = widget({ type = "textbox"  })
 separator = widget({ type = "textbox" })
 spacer.text     = " "
-separator.text  = '<span color="grey40">|</span>'
+separator.text  = '<span color="grey25">|</span>'
 -- }}}
 
 -- {{{ top
@@ -120,7 +120,7 @@ separator.text  = '<span color="grey40">|</span>'
 cpugraph  = awful.widget.graph()
 -- Graph properties
 cpugraph:set_width(40)
-cpugraph:set_height(12)
+cpugraph:set_height(10)
 cpugraph:set_background_color(beautiful.fg_off_widget)
 cpugraph:set_color(beautiful.fg_end_widget)
 cpugraph:set_gradient_angle(0)
@@ -136,7 +136,7 @@ vicious.register(cpugraph, vicious.widgets.cpu, "$1")
 membar = awful.widget.progressbar()
 -- Pogressbar properties
 membar:set_vertical(true)
-membar:set_height(12)
+membar:set_height(10)
 membar:set_width(10)
 membar:set_border_color(beautiful.border_widget)
 membar:set_background_color(beautiful.fg_off_widget)
@@ -155,7 +155,7 @@ fs = {
 -- Progressbar properties
 for _, w in pairs(fs) do
   w:set_width(6)
-  w:set_height(12)
+  w:set_height(10)
   w:set_vertical(true)
   w:set_background_color(beautiful.fg_off_widget)
   w:set_border_color(beautiful.border_widget)
@@ -178,7 +178,7 @@ vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
 volbar:set_width(10)
-volbar:set_height(12)
+volbar:set_height(10)
 volbar:set_vertical(true)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_border_color(beautiful.border_widget)
