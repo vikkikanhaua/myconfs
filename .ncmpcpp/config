@@ -222,7 +222,7 @@ song_window_title_format = "{%b - }{%t}|{%f}"
 ## E.g. {lr} will give you right aligned column of lengths.
 ##
 #
-song_columns_list_format = "(7f)[green]{lr} (25)[cyan]{a} (40)[]{t} (30)[red]{b}"
+song_columns_list_format = "(7f)[cyan]{lr} (25)[red]{a} (40)[]{t} (30)[black]{b}"
 #
 ##### various settings #####
 #
