@@ -1,3 +1,5 @@
+-- Awesome configuration, using awesome 3.4.6 on Arch GNU/Linux
+
 -- {{{ libraries
 require("awful")
 require("awful.autofocus")
@@ -10,7 +12,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/byte/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal to run.
 terminal = "urxvtc"
@@ -83,11 +85,10 @@ end
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = "Profont 8"
-naughty.config.presets.normal.icon_size        = 16
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#fea63c'
-naughty.config.presets.normal.bg               = '#1a1a1a'
-naughty.config.presets.normal.border_color     = '#535d6c'
+naughty.config.presets.normal.bg               = '#3f3f3f'
+naughty.config.presets.normal.border_color     = '#6f6f6f'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
 
@@ -108,19 +109,21 @@ end
 
 -- {{{ defaults
 spacer    = widget({ type = "textbox"  })
-separator = widget({ type = "textbox" })
+separator = widget({ type = "imagebox" })
 spacer.text     = " "
-separator.text  = '<span color="grey25">|</span>'
+separator.image = image(beautiful.widget_sep)
 -- }}}
 
 -- {{{ top
 
 -- {{{ CPU usage
+cpuicon       = widget({ type = "imagebox" })
+cpuicon.image = image(beautiful.widget_cpu)
 -- Initialize widgets
 cpugraph  = awful.widget.graph()
 -- Graph properties
 cpugraph:set_width(40)
-cpugraph:set_height(10)
+cpugraph:set_height(11)
 cpugraph:set_background_color(beautiful.fg_off_widget)
 cpugraph:set_color(beautiful.fg_end_widget)
 cpugraph:set_gradient_angle(0)
@@ -132,11 +135,13 @@ vicious.register(cpugraph, vicious.widgets.cpu, "$1")
 -- }}}
 
 -- {{{ Memory usage
+memicon       = widget({ type = "imagebox" })
+memicon.image = image(beautiful.widget_mem)
 -- Initialize widget
 membar = awful.widget.progressbar()
 -- Pogressbar properties
 membar:set_vertical(true)
-membar:set_height(10)
+membar:set_height(11)
 membar:set_width(10)
 membar:set_border_color(beautiful.border_widget)
 membar:set_background_color(beautiful.fg_off_widget)
@@ -147,6 +152,8 @@ vicious.register(membar, vicious.widgets.mem, "$1", 13)
 -- }}}
 
 -- {{{ File system usage
+fsicon       = widget({ type = "imagebox" })
+fsicon.image = image(beautiful.widget_fs)
 -- Initialize widgets
 fs = {
   r = awful.widget.progressbar(),  h = awful.widget.progressbar(),
@@ -155,7 +162,7 @@ fs = {
 -- Progressbar properties
 for _, w in pairs(fs) do
   w:set_width(6)
-  w:set_height(10)
+  w:set_height(11)
   w:set_vertical(true)
   w:set_background_color(beautiful.fg_off_widget)
   w:set_border_color(beautiful.border_widget)
@@ -174,11 +181,13 @@ vicious.register(fs.s, vicious.widgets.fs, "${/stuff used_p}",  599)
 -- }}}
 
 -- {{{ Volume level
+volicon       = widget({ type = "imagebox" })
+volicon.image = image(beautiful.widget_vol)
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
 volbar:set_width(10)
-volbar:set_height(10)
+volbar:set_height(11)
 volbar:set_vertical(true)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_border_color(beautiful.border_widget)
@@ -192,6 +201,8 @@ vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 -- }}}
 
 -- {{{ Date and time
+dateicon       = widget({ type = "imagebox" })
+dateicon.image = image(beautiful.widget_date)
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
 datewidget:buttons(awful.util.table.join(
@@ -204,8 +215,10 @@ vicious.register(datewidget, vicious.widgets.date, '%a %d %b, %H:%M', 61)
 -- }}}
 
 --{{{ mail
+mailicon       = widget({ type = "imagebox" })
+mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1 new", 113, {"/home/vikki/mail/INBOX"})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/INBOX"})
 --}}}
 
 -- {{{ systray
@@ -267,7 +280,7 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 
 -- }}}
 
--- {{{ Create a wibox for each screen and add it
+-- {{{ lists and boxes
 top_wibox = {}
 bottom_wibox = {}
 mytaglist = {}
@@ -277,7 +290,7 @@ mypromptbox = {}
 
 -- {{{  add each widget
 for s = 1, screen.count() do
-  awful.screen.padding( screen[s], {top = 1, bottom = 2} )
+--   awful.screen.padding( screen[s], {top = 1, bottom = 2} )
 
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -291,7 +304,7 @@ for s = 1, screen.count() do
   -- Create the wibox
   top_wibox[s] = awful.wibox({
     screen = s,
-    fg = beautiful.fg_normal, height = 13,
+    fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
     border_width = beautiful.border_width,
@@ -299,7 +312,7 @@ for s = 1, screen.count() do
   })
 
   bottom_wibox[s] = awful.wibox({ screen = s,
-    fg = beautiful.fg_normal, height = 13,
+    fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
     border_width = beautiful.border_width,
@@ -309,16 +322,16 @@ for s = 1, screen.count() do
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
     {
-      spacer, mytaglist[s], spacer,
+      spacer, mytaglist[s],
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, spacer, datewidget, spacer,
-    separator, spacer, volbar.widget, spacer,
-    separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer,
-    separator, spacer, mailwidget, spacer,
-    separator, spacer, cpugraph.widget, spacer,
-    separator, spacer, membar.widget, spacer,
+    spacer, datewidget, spacer, dateicon,
+    separator, volbar.widget, spacer, volicon,
+    separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
+    separator, mailwidget, spacer, mailicon,
+    separator, membar.widget, spacer, memicon,
+    separator, cpugraph.widget, spacer, cpuicon,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
@@ -326,13 +339,13 @@ for s = 1, screen.count() do
 
   bottom_wibox[s].widgets = {
     {
-      spacer,    spacer, updatewidget, spacer,
-      separator, spacer, hdd.sda, spacer,
-      separator, spacer, hdd.sdb, spacer,
+      spacer, updatewidget,
+      separator, spacer, hdd.sda,
+      separator, spacer, hdd.sdb,
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, spacer, uptimewidget, spacer,
+    spacer, uptimewidget, spacer,
     separator, spacer, mpdwidget, spacer, separator,
     layout = awful.widget.layout.horizontal.rightleft
   }

@@ -4,7 +4,7 @@
 *boldFont        : -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
 *title           : terminal
 *buffered        : true
-*transparent     : true
+*transparent     : false
 *scrollBar       : false
 *secondaryScroll : true
 *pointerBlank    : true
@@ -34,7 +34,7 @@
 !#include "/home/vikki/.xcolors/digerati.xcolors"
 !#include "/home/vikki/.xcolors/hornet.xcolors"
 !#include "/home/vikki/.xcolors/justin.xcolors"
-#include "/home/vikki/.xcolors/jwr.xcolors"
+!#include "/home/vikki/.xcolors/jwr.xcolors"
 !#include "/home/vikki/.xcolors/jwr2.xcolors"
 !#include "/home/vikki/.xcolors/merged.xcolors"
 !#include "/home/vikki/.xcolors/molokai.xcolors"
@@ -48,7 +48,7 @@
 !#include "/home/vikki/.xcolors/trapd00r.xcolors"
 !#include "/home/vikki/.xcolors/vikas.xcolors"
 !#include "/home/vikki/.xcolors/warm.xcolors"
-!#include "/home/vikki/.xcolors/zenburn.xcolors"
+#include "/home/vikki/.xcolors/zenburn.xcolors"
 ! }}}
 
 ! {{{ Xfontsel properties

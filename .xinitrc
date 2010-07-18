@@ -14,8 +14,8 @@ urxvtd -q -f -o &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-eval `cat ~/.fehbg`
-
 remuco-mpd &
+
+feh --bg-scale "${HOME}/pictures/$(ls ~/pictures | sort -R | line)"
 
 exec awesome
