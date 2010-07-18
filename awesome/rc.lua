@@ -86,7 +86,7 @@ end
 naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = "Profont 8"
 naughty.config.presets.normal.ontop            = true
-naughty.config.presets.normal.fg               = '#fea63c'
+naughty.config.presets.normal.fg               = '#f0dfaf'
 naughty.config.presets.normal.bg               = '#3f3f3f'
 naughty.config.presets.normal.border_color     = '#6f6f6f'
 naughty.config.presets.normal.border_width     = 1
@@ -123,7 +123,7 @@ cpuicon.image = image(beautiful.widget_cpu)
 cpugraph  = awful.widget.graph()
 -- Graph properties
 cpugraph:set_width(40)
-cpugraph:set_height(11)
+cpugraph:set_height(12)
 cpugraph:set_background_color(beautiful.fg_off_widget)
 cpugraph:set_color(beautiful.fg_end_widget)
 cpugraph:set_gradient_angle(0)
@@ -141,7 +141,7 @@ memicon.image = image(beautiful.widget_mem)
 membar = awful.widget.progressbar()
 -- Pogressbar properties
 membar:set_vertical(true)
-membar:set_height(11)
+membar:set_height(12)
 membar:set_width(10)
 membar:set_border_color(beautiful.border_widget)
 membar:set_background_color(beautiful.fg_off_widget)
@@ -162,7 +162,7 @@ fs = {
 -- Progressbar properties
 for _, w in pairs(fs) do
   w:set_width(6)
-  w:set_height(11)
+  w:set_height(12)
   w:set_vertical(true)
   w:set_background_color(beautiful.fg_off_widget)
   w:set_border_color(beautiful.border_widget)
@@ -187,7 +187,7 @@ volicon.image = image(beautiful.widget_vol)
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
 volbar:set_width(10)
-volbar:set_height(11)
+volbar:set_height(12)
 volbar:set_vertical(true)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_border_color(beautiful.border_widget)
@@ -246,11 +246,11 @@ mpdwidget = widget({ type = 'textbox' })
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args["{state}"] == 'Stop' then
-      return '<span color="#d2691e">mpd stopped</span>'
+      return '<span color="#d2691e">not playing</span>'
     elseif args["{state}"] == 'Pause' then
-      return '__<span color="#659fdb">' .. args["{Title}"] .. '</span> by <span color="#659fdb">' .. args["{Artist}"] .. '</span>__'
+      return '__<span color="#f0dfaf">' .. args["{Title}"] .. '</span> by <span color="#f0dfaf">' .. args["{Artist}"] .. '</span>__'
     else
-      return '<span color="#659fdb">' .. args["{Title}"] .. '</span> by <span color="#659fdb">' .. args["{Artist}"] .. '</span>'
+      return '<span color="#f0dfaf">' .. args["{Title}"] .. '</span> by <span color="#f0dfaf">' .. args["{Artist}"] .. '</span>'
     end
   end)
 -- }}}
@@ -322,7 +322,7 @@ for s = 1, screen.count() do
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
     {
-      spacer, mytaglist[s],
+      mytaglist[s],
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
