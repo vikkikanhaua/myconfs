@@ -194,8 +194,7 @@ volbar:set_border_color(beautiful.border_widget)
 volbar:set_color(beautiful.fg_widget)
 volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
-}) -- Enable caching
-vicious.cache(vicious.widgets.volume)
+})
 -- Register widgets
 vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 -- }}}
@@ -235,6 +234,8 @@ hdd = {
   sda = widget({ type = "textbox" }),
   sdb = widget({ type = "textbox" })
 }
+-- caching
+vicious.cache(vicious.widgets.hddtemp)
 -- register
 vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}C</span>', 53)
 vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}C</span>', 59)
