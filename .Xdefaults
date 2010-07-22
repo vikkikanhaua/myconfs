@@ -4,13 +4,13 @@
 *boldFont        : -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
 *title           : terminal
 *buffered        : true
-*transparent     : false
+*transparent     : true
 *scrollBar       : false
 *secondaryScroll : true
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 70
+*shading         : 20
 *fading          : 15
 *saveLines       : 10000
 *cursorBlink     : false

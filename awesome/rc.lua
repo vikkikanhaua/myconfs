@@ -270,7 +270,7 @@ updatewidget = widget({ type = 'textbox' })
 vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
     if args[1] == 0 then
-      return 'pacman is <span color="#659fdb">happy</span>'
+      return 'pacman is <span color="#88a175">happy</span>'
     elseif args[1] <= 50 then
       return 'pacman is <span color="#d2691e">sad</span> (' .. args[1] .. ')'
     else

@@ -61,7 +61,7 @@ hdr_order from: to: cc: subject:                  # and in this order
 #####
 
 subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel
-mailboxes +INBOX +facebook +mc +arch-announce +arch-general +aur-general +arch-dev-pub +awesome +awesome-devel +xmonad +drafts +sent +spam +trash +archive
+mailboxes +INBOX +facebook +arch-general +aur-general +arch-dev-pub +awesome +awesome-devel +arch-announce +mc +xmonad +sent +drafts +spam +trash +archive
 # }}}
 
 ##
