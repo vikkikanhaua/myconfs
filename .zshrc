@@ -60,7 +60,7 @@ export PAGER="less -winm"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export VISUAL=$EDITOR
-export PATH=~/.bin:$PATH
+export PATH=~/.bin:/usr/share/perl5/vendor_perl/auto/share/dist/Cope:$PATH
 export STARDICT_DATA_DIR=${HOME}/.stardict
 
 # for colored man pages

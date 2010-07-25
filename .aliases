@@ -1,7 +1,7 @@
 eval "`dircolors`"
 alias !='sudo'
-alias ls='ls --color=always -hvF'
-alias ll='ls -l'
+alias ls='ls --color=always -hv --indicator-style=file-type --group-directories-first --time-style=full-iso'
+alias ll='ls -lo'
 alias la='ls -A'
 alias grep='grep -i --color=always'
 alias fgrep='fgrep --color=always'

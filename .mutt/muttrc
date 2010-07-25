@@ -113,7 +113,6 @@ set signature           = ~/.mutt/mysig
 set alias_file          = ~/.mutt/aliases.muttrc
 set mailcap_path        = ~/.mutt/mailcap.muttrc
 
-#source ~/.mutt/colors.muttrc
 source ~/.mutt/jwr_colors.muttrc
 source ~/.mutt/aliases.muttrc
 source ~/.mutt/sidebar.muttrc
