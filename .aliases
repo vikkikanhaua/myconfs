@@ -1,4 +1,3 @@
-eval "`dircolors`"
 alias !='sudo'
 alias ls='ls --color=always -hv --indicator-style=file-type --group-directories-first --time-style=full-iso'
 alias ll='ls -lo'
