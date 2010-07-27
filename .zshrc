@@ -1,4 +1,4 @@
-# {{{ ---[ Completion ]
+# ---[ Completion ] {{{
 # :completion:<func>:<completer>:<command>:<argument>:<tag>
 # Expansion options
 zstyle ':completion:*' completer _complete _prefix
@@ -26,7 +26,7 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 # }}}
 
-# ---[ misc options ]---------------------------------------------------- {{{
+# ---[ misc options ] {{{
 # General
 setopt   ALWAYS_TO_END NO_BEEP CLOBBER
 setopt   AUTO_CD CD_ABLE_VARS MULTIOS CORRECT_ALL
@@ -108,8 +108,6 @@ bindkey '^[[6~'  .undefined-key
 #  }}}
 
 #---[ misc. functions + PROMPT ] {{{
-
-compdef _pacman clyde=pacman
 
 set-title () {
   builtin echo -ne "\ek$*\e\\"
