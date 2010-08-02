@@ -133,10 +133,8 @@ bind pager gg           top
 bind pager G            bottom
 bind index gg           first-entry
 bind index G            last-entry
-bind pager K            previous-undeleted
-bind pager J            next-undeleted
-bind index K            previous-unread
-bind index J            next-unread
+bind index,pager K      previous-unread
+bind index,pager J      next-unread
 bind index U            undelete-thread
 bind index,pager R      group-reply
 # }}}

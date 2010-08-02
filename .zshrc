@@ -122,7 +122,7 @@ preexec () {
 
 precmd () {
   [[ $? -eq 0 ]] && color="%{\e[38;5;28m%}" || color="%{\e[38;5;160m%}"
-  export PROMPT="`builtin echo "%{\e[38;5;3m%}%n%{\e[38;5;231m%}@%{\e[38;5;9m%}%m%{\e[38;5;231m%}:%{\e[38;5;136m%}%y%{\e[38;5;23m%} -> %{\e[38;5;208m%}%d %{\e[38;5;231m%}($color$(history | tail -1 | awk '{print $2}')%{\e[38;5;231m%})\n->%{\e[0m%}"` "
+  export PROMPT="`builtin echo "${color}➜ %{\e[38;5;166m%}%1d%{\e[0m%}"`   "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/}
