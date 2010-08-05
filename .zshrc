@@ -122,7 +122,7 @@ preexec () {
 
 precmd () {
   [[ $? -eq 0 ]] && color="%{\e[38;5;28m%}" || color="%{\e[38;5;160m%}"
-  export PROMPT="`builtin echo "${color}➜ %{\e[38;5;166m%}%1d%{\e[0m%}"`   "
+  export PROMPT="`builtin echo "${color}➜   %{\e[38;5;166m%}%1d%{\e[0m%}"`  "
 
   if [[ -n $STY ]]; then
     TITLE=${0/#*\/}
