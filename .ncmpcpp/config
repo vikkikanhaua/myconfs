@@ -253,7 +253,7 @@ incremental_seeking = "yes"
 #
 seek_time = "5"
 #
-autocenter_mode = "no"
+autocenter_mode = "yes"
 #
 centered_cursor = "yes"
 #
