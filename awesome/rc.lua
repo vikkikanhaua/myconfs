@@ -29,10 +29,10 @@ layouts = {
   awful.layout.suit.floating,           --1
   awful.layout.suit.tile,               --2
   awful.layout.suit.tile.bottom,        --3
-  awful.layout.suit.tile.top,           --4
-  awful.layout.suit.max,                --5
-  awful.layout.suit.max.fullscreen,     --6
-  awful.layout.suit.magnifier           --7
+  awful.layout.suit.max,                --4
+  awful.layout.suit.max.fullscreen,     --5
+  awful.layout.suit.magnifier,          --6
+  awful.layout.suit.fair.horizontal     --7
 }
 -- }}}
 
@@ -75,10 +75,9 @@ function coverart()
     coverart_nf = nil
     return
   end
-  local img = awful.util.pread("cover_art")
-  local ico = image(img)
+  local img = image(awful.util.pread("cover_art"))
   local txt = awful.util.pread("mpdinfo")
-  coverart_nf = naughty.notify({icon = ico, icon_size = 100, text = txt, timeout = 0})
+  coverart_nf = naughty.notify({icon = img, icon_size = 100, text = txt, timeout = 0})
 end
 -- }}}
 
@@ -96,7 +95,7 @@ naughty.config.presets.normal.border_width     = 1
 -- Define a tag table which will hold all screen tags.
 tags = {
   names  = { "sys", "web", "term", "media", "code" },
-  layout = { layouts[3], layouts[7], layouts[5], layouts[1], layouts[2]
+  layout = { layouts[3], layouts[6], layouts[4], layouts[1], layouts[2]
 }}
 
 for s = 1, screen.count() do
@@ -286,6 +285,7 @@ top_wibox = {}
 bottom_wibox = {}
 mytaglist = {}
 mytasklist = {}
+mylayoutbox = {}
 mypromptbox = {}
 -- }}}
 
@@ -295,6 +295,10 @@ for s = 1, screen.count() do
 
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+
+  -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+  -- We need one layoutbox per screen.
+  mylayoutbox[s] = awful.widget.layoutbox(s)
 
   -- Create a taglist widget
   mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
@@ -324,10 +328,11 @@ for s = 1, screen.count() do
   top_wibox[s].widgets = {
     {
       mytaglist[s],
+      separator, spacer, mylayoutbox[s],
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, datewidget, spacer, dateicon,
+    separator, datewidget, spacer, dateicon,
     separator, volbar.widget, spacer, volicon,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
