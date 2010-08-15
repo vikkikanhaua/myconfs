@@ -248,9 +248,9 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return '<span color="#d2691e">not playing</span>'
     elseif args["{state}"] == 'Pause' then
-      return '__<span color="#f0dfaf">' .. args["{Title}"] .. '</span> - <span color="#f0dfaf">' .. args["{Artist}"] .. '</span>__'
+      return '__<span color="#f0dfaf">' .. args["{Artist}"] .. '</span> - <span color="#f0dfaf">' .. args["{Title}"] .. '</span>__'
     else
-      return '<span color="#f0dfaf">' .. args["{Title}"] .. '</span> - <span color="#f0dfaf">' .. args["{Artist}"] .. '</span>'
+      return '<span color="#f0dfaf">' .. args["{Artist}"] .. '</span> - <span color="#f0dfaf">' .. args["{Title}"] .. '</span>'
     end
   end)
 -- }}}
@@ -291,7 +291,7 @@ mypromptbox = {}
 
 -- {{{  add each widget
 for s = 1, screen.count() do
---   awful.screen.padding( screen[s], {top = 1, bottom = 2} )
+  -- awful.screen.padding( screen[s], {top = 1, bottom = 1} )
 
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -312,7 +312,7 @@ for s = 1, screen.count() do
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
-    border_width = beautiful.border_width,
+--    border_width = beautiful.border_width,
     position = "top"
   })
 
@@ -320,7 +320,7 @@ for s = 1, screen.count() do
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
-    border_width = beautiful.border_width,
+--    border_width = beautiful.border_width,
     position = "bottom"
   })
 
@@ -332,7 +332,7 @@ for s = 1, screen.count() do
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
-    separator, datewidget, spacer, dateicon,
+    spacer,    datewidget, spacer, dateicon,
     separator, volbar.widget, spacer, volicon,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
@@ -494,7 +494,7 @@ root.keys(globalkeys)
 -- {{{ rules
 awful.rules.rules = {
   { rule = { },
-    properties = { border_width = beautiful.border_width,
+    properties = { --border_width = beautiful.border_width,
                    border_color = beautiful.border_normal,
                    focus = true,
                    size_hints_honor = false,

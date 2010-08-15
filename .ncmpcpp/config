@@ -17,7 +17,7 @@ mpd_connection_timeout = "5"
 #
 mpd_crossfade_time = "3"
 #
-#mpd_communication_mode = "polling" (polling/notifications)
+mpd_communication_mode = "notifications" (polling/notifications)
 #
 ##### music visualizer #####
 ##
@@ -391,7 +391,7 @@ allow_physical_directories_deletion = "no"
 ## - 1 - lyricsplugin.com
 ##
 #
-#lyrics_database = "1"
+lyrics_database = "1"
 #
 external_editor = "vim"
 #
