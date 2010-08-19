@@ -43,7 +43,6 @@ bind s select zsh
 
 # screen -t torrents 1 rtorrent
 screen -t zsh 1
-screen -t zsh 2
 # }}}
 
 # Keybinds {{{
