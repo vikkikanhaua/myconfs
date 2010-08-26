@@ -14,7 +14,7 @@ urxvtd -q -f -o &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
-remuco-mpd &
+# remuco-mpd &
 
 # feh --bg-scale "${HOME}/pictures/$(ls ~/pictures | sort -R | line)"
 
