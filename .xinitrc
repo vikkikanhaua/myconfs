@@ -16,7 +16,7 @@ setxkbmap -option terminate:ctrl_alt_bksp &
 
 # remuco-mpd &
 
-# feh --bg-scale "${HOME}/pictures/$(ls ~/pictures | sort -R | line)"
+# feh --bg-scale "${HOME}/pictures/1920x/$(ls ~/pictures/1920x | sort -R | line)"
 
 eval `cat ${HOME}/.fehbg`
 

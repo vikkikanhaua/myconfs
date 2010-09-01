@@ -73,10 +73,12 @@ function coverart()
   if coverart_nf ~= nil then
     naughty.destroy(coverart_nf)
     coverart_nf = nil
+    naughty.config.presets.normal.position = "top_right"
     return
   end
   local img = image(awful.util.pread("cover_art"))
   local txt = awful.util.pread("mpdinfo")
+  naughty.config.presets.normal.position = "bottom_right"
   coverart_nf = naughty.notify({icon = img, icon_size = 100, text = txt, timeout = 0})
 end
 -- }}}
@@ -86,7 +88,7 @@ naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = "Profont 8"
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
-naughty.config.presets.normal.bg               = '#3f3f3f'
+naughty.config.presets.normal.bg               = '#3f3f3f88'
 naughty.config.presets.normal.border_color     = '#6f6f6f'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
@@ -291,8 +293,6 @@ mypromptbox = {}
 
 -- {{{  add each widget
 for s = 1, screen.count() do
-  -- awful.screen.padding( screen[s], {top = 1, bottom = 1} )
-
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
 
@@ -312,7 +312,7 @@ for s = 1, screen.count() do
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
---    border_width = beautiful.border_width,
+    border_width = beautiful.border_width,
     position = "top"
   })
 
@@ -320,19 +320,19 @@ for s = 1, screen.count() do
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
---    border_width = beautiful.border_width,
+    border_width = beautiful.border_width,
     position = "bottom"
   })
 
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
     {
-      mytaglist[s],
+      spacer, mytaglist[s],
       separator, spacer, mylayoutbox[s],
       separator, spacer,
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer,    datewidget, spacer, dateicon,
+    spacer, spacer, datewidget, spacer, dateicon,
     separator, volbar.widget, spacer, volicon,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
@@ -345,13 +345,13 @@ for s = 1, screen.count() do
 
   bottom_wibox[s].widgets = {
     {
-      spacer, updatewidget,
+      spacer, spacer, updatewidget,
       separator, spacer, hdd.sda,
       separator, spacer, hdd.sdb,
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, uptimewidget, spacer,
+    spacer, spacer, uptimewidget, spacer,
     separator, spacer, mpdwidget, spacer, separator,
     layout = awful.widget.layout.horizontal.rightleft
   }
@@ -365,7 +365,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
   -- Drop-down terminal
-  awful.key({ modkey,           }, "s",      function () teardrop(terminal, "center", "center", 700, .40) end),
+  awful.key({ modkey,           }, "s",      function () teardrop(terminal, "center", "center", 1200, .40) end),
 
   awful.key({ modkey,           }, "Tab",    function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
   awful.key({ modkey, "Shift"   }, "Tab",    function () awful.client.focus.byidx(-1) if client.focus then client.focus:raise() end end),
@@ -428,6 +428,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "d",                    function () awful.util.spawn("eject -T", false) end),
   awful.key({ modkey,           }, "i",                    function () awful.util.spawn("inkscape", false) end),
   awful.key({ modkey,           }, "f",                    function () awful.util.spawn("favsong", false) end),
+  awful.key({ modkey,           }, "z",                    function () coverart() end),
   awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
   awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),
   awful.key({ modkey, "Control" }, "b",                    function () awful.util.spawn("favsong -b", false) end),
@@ -537,21 +538,6 @@ client.add_signal("manage", function (c, startup)
     end
   end
 end)
-
--- {{{ mpd cover art
-naughty_default_position = "top_right"
-naughty_coverart_position = "bottom_right"
-
-mpdwidget:add_signal("mouse::enter", function()
-  naughty.config.presets.normal.position = naughty_coverart_position
-  coverart()
-end)
-
-mpdwidget:add_signal("mouse::leave", function()
-  naughty.config.presets.normal.position = naughty_default_position
-  coverart()
-end)
--- }}}
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

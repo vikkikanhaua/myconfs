@@ -97,8 +97,8 @@ mcview_eof=
 quick_search_case_sensitive=2
 
 [Layout]
-equal_split=0
-first_panel_size=45
+equal_split=1
+first_panel_size=47
 message_visible=0
 keybar_visible=0
 xterm_title=0
@@ -129,6 +129,9 @@ screen=
 color_terminals=
 
 rxvt-256color=
+
+[HotlistConfig]
+expanded_view_of_groups=0
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
