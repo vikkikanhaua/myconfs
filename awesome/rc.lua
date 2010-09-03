@@ -115,7 +115,7 @@ spacer.text     = " "
 separator.image = image(beautiful.widget_sep)
 -- }}}
 
--- {{{ top
+-- {{{ widgets
 
 -- {{{ CPU usage
 cpuicon       = widget({ type = "imagebox" })
@@ -211,7 +211,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '%a %d %b, %H:%M', 61)
+vicious.register(datewidget, vicious.widgets.date, '%a %d %b, <span color="#f0dfaf">%H:%M</span>', 61)
 -- }}}
 
 --{{{ mail
@@ -220,14 +220,6 @@ mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
 vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/INBOX"})
 --}}}
-
--- {{{ systray
-mysystray = widget({ type = "systray" })
--- }}}
-
--- }}}
-
--- {{{ bottom
 
 -- hddtemp {{{
 -- initialize
@@ -238,8 +230,8 @@ hdd = {
 -- caching
 vicious.cache(vicious.widgets.hddtemp)
 -- register
-vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="'.. beautiful.fg_center_widget ..'">${/dev/sda}C</span>', 53)
-vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="'.. beautiful.fg_center_widget ..'">${/dev/sdb}C</span>', 59)
+vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="#f0dfaf">${/dev/sda}C</span>', 53)
+vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="#f0dfaf">${/dev/sdb}C</span>', 59)
 -- }}}
 
 -- mpd {{{
@@ -248,9 +240,9 @@ mpdwidget = widget({ type = 'textbox' })
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args["{state}"] == 'Stop' then
-      return '<span color="#d2691e">not playing</span>'
+      return '<span color="#d2691e">mpd not playing</span>'
     elseif args["{state}"] == 'Pause' then
-      return '__<span color="#f0dfaf">' .. args["{Artist}"] .. '</span> - <span color="#f0dfaf">' .. args["{Title}"] .. '</span>__'
+      return '__<span color="#fea63c">' .. args["{Artist}"] .. '</span> - <span color="#fea63c">' .. args["{Title}"] .. '</span>__'
     else
       return '<span color="#f0dfaf">' .. args["{Artist}"] .. '</span> - <span color="#f0dfaf">' .. args["{Title}"] .. '</span>'
     end
@@ -280,11 +272,14 @@ vicious.register(updatewidget, vicious.widgets.pkg,
   end, 3607, 'Arch')
 -- }}}
 
+-- {{{ systray
+mysystray = widget({ type = "systray" })
+-- }}}
+
 -- }}}
 
 -- {{{ lists and boxes
 top_wibox = {}
-bottom_wibox = {}
 mytaglist = {}
 mytasklist = {}
 mylayoutbox = {}
@@ -316,43 +311,26 @@ for s = 1, screen.count() do
     position = "top"
   })
 
-  bottom_wibox[s] = awful.wibox({ screen = s,
-    fg = beautiful.fg_normal, height = 12,
-    bg = beautiful.bg_normal,
-    border_color = beautiful.border_focus,
-    border_width = beautiful.border_width,
-    position = "bottom"
-  })
-
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
     {
-      spacer, mytaglist[s],
+      spacer, uptimewidget, spacer,
+      separator, spacer, mytaglist[s],
       separator, spacer, mylayoutbox[s],
-      separator, spacer,
+      separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer, spacer, datewidget, spacer, dateicon,
+    spacer,    spacer, datewidget, spacer, dateicon,
     separator, volbar.widget, spacer, volicon,
+    separator, hdd.sdb, spacer, separator, hdd.sda, spacer,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
     separator, mailwidget, spacer, mailicon,
     separator, membar.widget, spacer, memicon,
     separator, cpugraph.widget, spacer, cpuicon,
+    separator, spacer, updatewidget, spacer,
+    separator, spacer, mpdwidget, spacer,
     separator, s == 1 and mysystray or nil,
     mytasklist[s],
-    layout = awful.widget.layout.horizontal.rightleft
-  }
-
-  bottom_wibox[s].widgets = {
-    {
-      spacer, spacer, updatewidget,
-      separator, spacer, hdd.sda,
-      separator, spacer, hdd.sdb,
-      separator, spacer, mypromptbox[s],
-      layout = awful.widget.layout.horizontal.leftright
-    },
-    spacer, spacer, uptimewidget, spacer,
-    separator, spacer, mpdwidget, spacer, separator,
     layout = awful.widget.layout.horizontal.rightleft
   }
 end
