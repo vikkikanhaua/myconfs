@@ -8,6 +8,7 @@ require("beautiful")
 require("naughty")
 require("vicious")
 require("teardrop")
+-- require("sqlite3")
 -- }}}
 
 -- {{{ variable definitions
@@ -73,15 +74,20 @@ function coverart()
   if coverart_nf ~= nil then
     naughty.destroy(coverart_nf)
     coverart_nf = nil
-    naughty.config.presets.normal.position = "top_right"
     return
   end
   local img = image(awful.util.pread("cover_art"))
   local txt = awful.util.pread("mpdinfo")
-  naughty.config.presets.normal.position = "bottom_right"
   coverart_nf = naughty.notify({icon = img, icon_size = 100, text = txt, timeout = 0})
 end
 -- }}}
+
+-- function hook_rss_newsbeuter()
+--     db = sqlite3.open("/home/vikki/.newsbeuter/cache.db")
+--     row = db:first_irow("SELECT COUNT(*) FROM rss_item WHERE unread=1;")
+--     rss.text = "Unread items: " .. row[1]
+--     db:close()
+-- end
 
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 5
@@ -218,7 +224,7 @@ vicious.register(datewidget, vicious.widgets.date, '%a %d %b, <span color="#f0df
 mailicon       = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/INBOX"})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/inbox"})
 --}}}
 
 -- hddtemp {{{
@@ -272,6 +278,8 @@ vicious.register(updatewidget, vicious.widgets.pkg,
   end, 3607, 'Arch')
 -- }}}
 
+-- rss = widget({ type = 'textbox' })
+
 -- {{{ systray
 mysystray = widget({ type = "systray" })
 -- }}}
@@ -320,7 +328,7 @@ for s = 1, screen.count() do
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer,    spacer, datewidget, spacer, dateicon,
+    spacer,    datewidget, spacer, dateicon,
     separator, volbar.widget, spacer, volicon,
     separator, hdd.sdb, spacer, separator, hdd.sda, spacer,
     separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
@@ -519,6 +527,7 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- awful.hooks.timer.register(60,hook_rss_newsbeuter)
 
 -- {{{ Arrange signal handler
 for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
