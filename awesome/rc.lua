@@ -8,7 +8,6 @@ require("beautiful")
 require("naughty")
 require("vicious")
 require("teardrop")
--- require("sqlite3")
 -- }}}
 
 -- {{{ variable definitions
@@ -81,13 +80,6 @@ function coverart()
   coverart_nf = naughty.notify({icon = img, icon_size = 100, text = txt, timeout = 0})
 end
 -- }}}
-
--- function hook_rss_newsbeuter()
---     db = sqlite3.open("/home/vikki/.newsbeuter/cache.db")
---     row = db:first_irow("SELECT COUNT(*) FROM rss_item WHERE unread=1;")
---     rss.text = "Unread items: " .. row[1]
---     db:close()
--- end
 
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 5
@@ -277,8 +269,6 @@ vicious.register(updatewidget, vicious.widgets.pkg,
     end
   end, 3607, 'Arch')
 -- }}}
-
--- rss = widget({ type = 'textbox' })
 
 -- {{{ systray
 mysystray = widget({ type = "systray" })
@@ -481,7 +471,7 @@ root.keys(globalkeys)
 -- {{{ rules
 awful.rules.rules = {
   { rule = { },
-    properties = { --border_width = beautiful.border_width,
+    properties = { border_width = beautiful.border_width,
                    border_color = beautiful.border_normal,
                    focus = true,
                    size_hints_honor = false,
@@ -527,7 +517,6 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- awful.hooks.timer.register(60,hook_rss_newsbeuter)
 
 -- {{{ Arrange signal handler
 for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
