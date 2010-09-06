@@ -471,8 +471,7 @@ root.keys(globalkeys)
 -- {{{ rules
 awful.rules.rules = {
   { rule = { },
-    properties = { border_width = beautiful.border_width,
-                   border_color = beautiful.border_normal,
+    properties = { border_color = beautiful.border_normal,
                    focus = true,
                    size_hints_honor = false,
                    keys = clientkeys,
