@@ -252,7 +252,7 @@ uptimewidget = widget({ type = 'textbox' })
 uptimewidget.align = 'right'
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('%1dd %02dh %02dm', args[1], args[2], args[3])
+    return string.format('%1dd %02dh %02dm <span color="#f0dfaf"> %.2f %.2f %.2f</span>', args[1], args[2], args[3], args[4], args[5], args[6])
   end, 61)
 -- }}}
 
