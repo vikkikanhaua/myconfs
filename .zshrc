@@ -89,6 +89,8 @@ fi
 bindkey -v
 bindkey '^[Oc'   forward-word                   #for normal shell
 bindkey '^[Od'   backward-word
+bindkey '^[OC'   forward-word                   #for tmux
+bindkey '^[OD'   backward-word
 bindkey '^[[1~'  beginning-of-line              #for screen
 bindkey '^[[4~'  end-of-line
 bindkey '^[[7~'  beginning-of-line              #for rxvt
@@ -105,27 +107,10 @@ bindkey '^[[5~'  .undefined-key
 bindkey '^[[6~'  .undefined-key
 #  }}}
 
-#---[ misc. functions + PROMPT ] {{{
-
-set-title () {
-  builtin echo -ne "\ek$*\e\\"
-}
-
-preexec () {
-  if [[ -n $STY ]]; then
-    TITLE=${$(echo $3 | sed -r 's/^sudo ([^ ]*) .*/#\1/;tx;s/^([^ ]*) +.*/\1/;s/^([^ ]*)$/\1/;:x;q')/#*\/}
-    set-title $TITLE
-  fi
-}
-
+#---[ PROMPT ] {{{
 precmd () {
   [[ $? -eq 0 ]] && color="%{\e[38;5;28m%}" || color="%{\e[38;5;160m%}"
   export PROMPT="`builtin echo "${color}➜   %{\e[38;5;166m%}%1d%{\e[0m%}"`  "
-
-  if [[ -n $STY ]]; then
-    TITLE=${0/#*\/}
-    set-title $TITLE
-  fi
 }
 # }}}
 
