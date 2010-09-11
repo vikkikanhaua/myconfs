@@ -31,7 +31,7 @@ backtick 1 1800 1800 bday
 backtick 2 1800 1800 cat ${HOME}/.weather
 
 sorendition '= dY'
-hardstatus alwayslastline '%{= M}%H%{W} | %{= B}%l%{W} | %{G}%1`%{W} | %{C}%2` %= %{= w}%-w%{+b r}%n*%t%{-b r}%{w}%+w'
+hardstatus alwayslastline '%{= M}%H%{W} | %{= B}%l%{W} | %{G}%1`%{W} | %{C}%2` %= %{= w}%-Lw%{+b r}%n*%f %t%{-b r}%{w}%+Lw'
 
 # Banish screen 0, it sucks {{{
 bind c screen 1
