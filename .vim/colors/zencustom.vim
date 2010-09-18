@@ -28,7 +28,7 @@ hi FoldColumn      ctermfg=109   ctermbg=238
 hi Folded          ctermfg=109   ctermbg=234
 hi Function        ctermfg=228
 hi Identifier      ctermfg=230
-hi IncSearch       ctermfg=238   ctermbg=228
+hi IncSearch       ctermfg=215   ctermbg=234
 hi Keyword         ctermfg=222                  cterm=bold
 hi Label           ctermfg=187                  cterm=underline
 hi LineNr          ctermfg=238
@@ -42,7 +42,7 @@ hi PreCondit       ctermfg=180                  cterm=bold
 hi PreProc         ctermfg=222                  cterm=bold
 hi Question        ctermfg=15                   cterm=bold
 hi Repeat          ctermfg=223                  cterm=bold
-hi Search          ctermfg=230   ctermbg=236
+hi Search          ctermfg=167   ctermbg=234
 hi SpecialChar     ctermfg=181                  cterm=bold
 hi SpecialComment  ctermfg=108                  cterm=bold
 hi Special         ctermfg=181

@@ -12,7 +12,7 @@ require("teardrop")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/byte/theme.lua")
 
 -- This is used later as the default terminal to run.
 terminal = "urxvtc"
@@ -108,9 +108,9 @@ end
 
 -- {{{ defaults
 spacer    = widget({ type = "textbox"  })
-separator = widget({ type = "imagebox" })
+separator = widget({ type = "textbox" })
 spacer.text     = " "
-separator.image = image(beautiful.widget_sep)
+separator.text  = "|"
 -- }}}
 
 -- {{{ widgets
@@ -195,7 +195,16 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
 })
 -- Register widgets
-vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
+vicious.register(volbar, vicious.widgets.volume,
+  function (widgets, args)
+    if args[1] == 0 then
+      volicon.image = image(beautiful.widget_vol_mute)
+      return 0
+    else
+      volicon.image = image(beautiful.widget_vol)
+      return args[1]
+    end
+  end, 2, "Master")
 -- }}}
 
 -- {{{ Date and time
@@ -209,14 +218,23 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '%a %d %b, <span color="#f0dfaf">%H:%M</span>', 61)
+vicious.register(datewidget, vicious.widgets.date, '%a %d %b, %H:%M', 61)
 -- }}}
 
 --{{{ mail
 mailicon       = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
 mailwidget = widget({ type = 'textbox' })
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 113, {"/home/vikki/mail/inbox"})
+vicious.register(mailwidget, vicious.widgets.mdir,
+  function (widget, args)
+    if args[1] == 0 then
+      mailicon.image = image(beautiful.widget_mail)
+      return 0
+    else
+      mailicon.image = image(beautiful.widget_mail_new)
+      return args[1]
+    end
+  end, 113, {"/home/vikki/mail/inbox"})
 --}}}
 
 -- hddtemp {{{
@@ -228,8 +246,8 @@ hdd = {
 -- caching
 vicious.cache(vicious.widgets.hddtemp)
 -- register
-vicious.register(hdd.sda, vicious.widgets.hddtemp, 'sda <span color="#f0dfaf">${/dev/sda}C</span>', 53)
-vicious.register(hdd.sdb, vicious.widgets.hddtemp, 'sdb <span color="#f0dfaf">${/dev/sdb}C</span>', 59)
+vicious.register(hdd.sda, vicious.widgets.hddtemp, '<span color="#659fdb">sda</span> ${/dev/sda}C', 53)
+vicious.register(hdd.sdb, vicious.widgets.hddtemp, '<span color="#659fdb">sdb</span> ${/dev/sdb}C', 59)
 -- }}}
 
 -- mpd {{{
@@ -238,11 +256,11 @@ mpdwidget = widget({ type = 'textbox' })
 vicious.register(mpdwidget, vicious.widgets.mpd,
   function (widget, args)
     if   args["{state}"] == 'Stop' then
-      return '<span color="#d2691e">mpd not playing</span>'
+      return
     elseif args["{state}"] == 'Pause' then
-      return '<span color="#fea63c">' .. args["{Artist}"] .. '</span> - <span color="#fea63c">' .. args["{Title}"] .. '</span>'
+      return '| <span color="#fea63c">' .. args["{Artist}"] .. '</span> - <span color="#fea63c">' .. args["{Title}"] .. '</span>'
     else
-      return '<span color="#f0dfaf">' .. args["{Artist}"] .. '</span> - <span color="#f0dfaf">' .. args["{Title}"] .. '</span>'
+      return '| <span color="#659fdb">' .. args["{Artist}"] .. '</span> - <span color="#659fdb">' .. args["{Title}"] .. '</span>'
     end
   end)
 -- }}}
@@ -256,15 +274,20 @@ vicious.register(uptimewidget, vicious.widgets.uptime,
 -- }}}
 
 -- {{{ pkg updates
-updatewidget = widget({ type = 'textbox' })
+updateicon    = widget({ type = "imagebox" })
+updatewidget  = widget({ type = 'textbox' })
+updateicon.image = image(beautiful.widget_pacman)
 vicious.register(updatewidget, vicious.widgets.pkg,
   function (widget, args)
     if args[1] == 0 then
-      return 'pacman is <span color="#88a175">happy</span>'
-    elseif args[1] <= 50 then
-      return 'pacman is <span color="#d2691e">sad</span> (' .. args[1] .. ')'
+      updateicon.image = image(beautiful.widget_pacman)
+      return 0
+    elseif args[1] <= 30 then
+      updateicon.image = image(beautiful.widget_pacman_new)
+      return args[1]
     else
-      return 'pacman is now <span color="red">angry</span> (' .. args[1] .. ')'
+      updateicon.image = image(beautiful.widget_pacman_new_more)
+      return args[1]
     end
   end, 3607, 'Arch')
 -- }}}
@@ -304,7 +327,6 @@ for s = 1, screen.count() do
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
     border_color = beautiful.border_focus,
-    border_width = beautiful.border_width,
     position = "top"
   })
 
@@ -312,21 +334,21 @@ for s = 1, screen.count() do
   top_wibox[s].widgets = {
     {
       spacer, uptimewidget, spacer,
-      separator, spacer, mytaglist[s],
-      separator, spacer, mylayoutbox[s],
+      separator, spacer, mytaglist[s], spacer,
+      mylayoutbox[s], spacer,
       separator, spacer, mypromptbox[s],
       layout = awful.widget.layout.horizontal.leftright
     },
-    spacer,    datewidget, spacer, dateicon,
-    separator, volbar.widget, spacer, volicon,
-    separator, hdd.sdb, spacer, separator, hdd.sda, spacer,
-    separator, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon,
-    separator, mailwidget, spacer, mailicon,
-    separator, membar.widget, spacer, memicon,
-    separator, cpugraph.widget, spacer, cpuicon,
-    separator, spacer, updatewidget, spacer,
-    separator, spacer, mpdwidget, spacer,
-    separator, s == 1 and mysystray or nil,
+    spacer,    datewidget, spacer, dateicon, spacer,
+    separator, spacer, volbar.widget, spacer, volicon, spacer,
+    separator, spacer, hdd.sdb, spacer, separator, spacer, hdd.sda, spacer,
+    separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon, spacer,
+    separator, spacer, mailwidget, spacer, mailicon, spacer,
+    separator, spacer, membar.widget, spacer, memicon, spacer,
+    separator, spacer, cpugraph.widget, spacer, cpuicon, spacer,
+    separator, spacer, updatewidget, spacer, updateicon, spacer,
+    separator, spacer, mpdwidget,
+    s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
   }
