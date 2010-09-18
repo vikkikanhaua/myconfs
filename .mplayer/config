@@ -57,7 +57,7 @@ slang=en
 #=====================
 
 # Find subtitle files. (1: load all subs containing movie name)
-sub-fuzziness=1
+sub-fuzziness=0
 
 # Set font.
 font=/usr/share/fonts/TTF/ttf-inconsolata.otf
