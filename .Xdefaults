@@ -1,7 +1,5 @@
-!*font            : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
-!*boldFont        : -xos4-terminus-*-*-*-*-12-*-*-*-*-*-iso8859-*
-*font            : -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
-*boldFont        : -*-profont-*-*-*-*-11-*-*-*-*-*-iso8859-*
+*font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
+*boldFont        : -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*
 *title           : terminal
 *buffered        : true
 *transparent     : true
