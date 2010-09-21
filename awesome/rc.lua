@@ -8,7 +8,7 @@ require("beautiful")
 require("naughty")
 require("vicious")
 require("teardrop")
-require("aware")
+-- require("aware")
 -- }}}
 
 -- {{{ variable definitions
@@ -294,8 +294,8 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 -- }}}
 
 -- {{{ rssbox
-rssbox = widget({ type = "textbox" })
-aware.register(rssbox, { "http://news.google.com/news?pz=1&hdlOnly=1&cf=all&ned=in&hl=en&topic=po&output=rss" })
+-- rssbox = widget({ type = "textbox" })
+-- aware.register(rssbox, { "http://rss.feedsportal.com/c/32569/f/491734/index.rss" }) -- http://www.h-online.com/grand-atom.xml, http://rss.feedsportal.com/c/32569/f/491734/index.rss
 -- }}}
 
 -- {{{ systray
@@ -336,12 +336,12 @@ for s = 1, screen.count() do
     position = "top"
   })
 
-  bottom_wibox[s] = awful.wibox({
-    screen = s,
-    fg = beautiful.fg_normal, height = 12,
-    bg = beautiful.bg_normal,
-    position = "bottom"
-  })
+--  bottom_wibox[s] = awful.wibox({
+--    screen = s,
+--    fg = beautiful.fg_normal, height = 12,
+--    bg = beautiful.bg_normal,
+--    position = "bottom"
+--  })
 
   -- Add widgets to the wibox - order matters
   top_wibox[s].widgets = {
@@ -366,10 +366,10 @@ for s = 1, screen.count() do
     layout = awful.widget.layout.horizontal.rightleft
   }
 
-  bottom_wibox[s].widgets = {
-    spacer, rssbox, spacer,
-    layout = awful.widget.layout.horizontal.leftright
-  }
+--  bottom_wibox[s].widgets = {
+--    spacer, rssbox, spacer,
+--    layout = awful.widget.layout.horizontal.leftright
+--  }
 end
 -- }}}
 
