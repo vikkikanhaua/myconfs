@@ -8,6 +8,7 @@ require("beautiful")
 require("naughty")
 require("vicious")
 require("teardrop")
+require("aware")
 -- }}}
 
 -- {{{ variable definitions
@@ -292,6 +293,11 @@ vicious.register(updatewidget, vicious.widgets.pkg,
   end, 3607, 'Arch')
 -- }}}
 
+-- {{{ rssbox
+rssbox = widget({ type = "textbox" })
+aware.register(rssbox, { "http://news.google.com/news?pz=1&hdlOnly=1&cf=all&ned=in&hl=en&topic=po&output=rss" })
+-- }}}
+
 -- {{{ systray
 mysystray = widget({ type = "systray" })
 -- }}}
@@ -300,6 +306,7 @@ mysystray = widget({ type = "systray" })
 
 -- {{{ lists and boxes
 top_wibox = {}
+bottom_wibox = {}
 mytaglist = {}
 mytasklist = {}
 mylayoutbox = {}
@@ -326,8 +333,14 @@ for s = 1, screen.count() do
     screen = s,
     fg = beautiful.fg_normal, height = 12,
     bg = beautiful.bg_normal,
-    border_color = beautiful.border_focus,
     position = "top"
+  })
+
+  bottom_wibox[s] = awful.wibox({
+    screen = s,
+    fg = beautiful.fg_normal, height = 12,
+    bg = beautiful.bg_normal,
+    position = "bottom"
   })
 
   -- Add widgets to the wibox - order matters
@@ -351,6 +364,11 @@ for s = 1, screen.count() do
     s == 1 and mysystray or nil,
     mytasklist[s],
     layout = awful.widget.layout.horizontal.rightleft
+  }
+
+  bottom_wibox[s].widgets = {
+    spacer, rssbox, spacer,
+    layout = awful.widget.layout.horizontal.leftright
   }
 end
 -- }}}
