@@ -7,7 +7,7 @@ require("awful.rules")
 require("beautiful")
 require("naughty")
 require("vicious")
-require("teardrop")
+require("scratch")
 -- require("aware")
 -- }}}
 
@@ -379,12 +379,13 @@ end
 globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-  -- Drop-down terminal
-  awful.key({ modkey,           }, "s",      function () teardrop(terminal, "center", "center", 1200, .40) end),
+  -- scratchpad
+  awful.key({                   }, "F12",    function () scratch.drop(terminal, "center", "center", 1200, .40) end),
+  awful.key({ modkey            }, "s",      function () scratch.pad.toggle() end),
 
-  awful.key({ modkey,           }, "Tab",    function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
+  awful.key({ modkey            }, "Tab",    function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
   awful.key({ modkey, "Shift"   }, "Tab",    function () awful.client.focus.byidx(-1) if client.focus then client.focus:raise() end end),
-  awful.key({ modkey,           }, "j",      function () awful.client.focus.history.previous() if client.focus then client.focus:raise() end end),
+  awful.key({ modkey            }, "j",      function () awful.client.focus.history.previous() if client.focus then client.focus:raise() end end),
 
   -- Layout manipulation
   awful.key({ modkey, "Shift"   }, "j",      function () awful.client.swap.byidx(  1)    end),
@@ -392,20 +393,20 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Control" }, "j",      function () awful.screen.focus_relative( 1) end),
   awful.key({ modkey, "Control" }, "k",      function () awful.screen.focus_relative(-1) end),
 
-  awful.key({ modkey,           }, "u",      awful.client.urgent.jumpto),
+  awful.key({ modkey            }, "u",      awful.client.urgent.jumpto),
 
   -- Standard program
-  awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+  awful.key({ modkey            }, "Return", function () awful.util.spawn(terminal) end),
   awful.key({ modkey, "Control" }, "r",      awesome.restart),
   awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
-  awful.key({ modkey,           }, "l",      function () awful.tag.incmwfact( 0.05)    end),
+  awful.key({ modkey            }, "l",      function () awful.tag.incmwfact( 0.05)    end),
   awful.key({ modkey,           }, "h",      function () awful.tag.incmwfact(-0.05)    end),
   awful.key({ modkey, "Shift"   }, "h",      function () awful.tag.incnmaster( 1)      end),
   awful.key({ modkey, "Shift"   }, "l",      function () awful.tag.incnmaster(-1)      end),
   awful.key({ modkey, "Control" }, "h",      function () awful.tag.incncol( 1)         end),
   awful.key({ modkey, "Control" }, "l",      function () awful.tag.incncol(-1)         end),
-  awful.key({ modkey,           }, "space",  function () awful.layout.inc(layouts,  1) end),
+  awful.key({ modkey            }, "space",  function () awful.layout.inc(layouts,  1) end),
   awful.key({ modkey, "Shift"   }, "space",  function () awful.layout.inc(layouts, -1) end),
 
   -- Prompt
@@ -417,7 +418,7 @@ globalkeys = awful.util.table.join(
                                                awful.util.getdir("cache") .. "/history_eval")
                                              end),
 
-  awful.key({                   }, "F12",    function ()
+  awful.key({ modkey            }, "F12",    function ()
                                                awful.prompt.run({ prompt = "web search: " },
                                                mypromptbox[mouse.screen].widget,
                                                function (command)
@@ -435,17 +436,17 @@ globalkeys = awful.util.table.join(
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
   awful.key({                   }, "XF86Mail",             function () awful.util.spawn("ncmpcpp toggle", false) end),
   awful.key({                   }, "Print",                function () awful.util.spawn("scrot screenie-%H-%M-%S-%d-%b.png -q 100", false) end),
-  awful.key({ modkey,           }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
-  awful.key({ modkey,           }, "End",                  function () awful.util.spawn_with_shell("sudo shutdown -h now", false) end),
-  awful.key({ modkey,           }, "Home",                 function () awful.util.spawn_with_shell("sudo shutdown -r now", false) end),
-  awful.key({ modkey,           }, "a",                    function () awful.util.spawn("evince", false) end),
-  awful.key({ modkey,           }, "c",                    function () awful.util.spawn("chromium", false) end),
-  awful.key({ modkey,           }, "d",                    function () awful.util.spawn("eject -T", false) end),
-  awful.key({ modkey,           }, "i",                    function () awful.util.spawn("inkscape", false) end),
-  awful.key({ modkey,           }, "f",                    function () awful.util.spawn("favsong", false) end),
-  awful.key({ modkey,           }, "z",                    function () coverart() end),
-  awful.key({ modkey,           }, "o",                    function () awful.util.spawn("ooffice", false) end),
-  awful.key({ modkey,           }, "r",                    function () awful.util.spawn("ranwall", false) end),
+  awful.key({ modkey            }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
+  awful.key({ modkey            }, "End",                  function () awful.util.spawn_with_shell("sudo shutdown -h now", false) end),
+  awful.key({ modkey            }, "Home",                 function () awful.util.spawn_with_shell("sudo shutdown -r now", false) end),
+  awful.key({ modkey            }, "a",                    function () awful.util.spawn("evince", false) end),
+  awful.key({ modkey            }, "c",                    function () awful.util.spawn("chromium", false) end),
+  awful.key({ modkey            }, "e",                    function () awful.util.spawn("eject -T", false) end),
+  awful.key({ modkey            }, "i",                    function () awful.util.spawn("inkscape", false) end),
+  awful.key({ modkey            }, "f",                    function () awful.util.spawn("favsong", false) end),
+  awful.key({ modkey            }, "z",                    function () coverart() end),
+  awful.key({ modkey            }, "o",                    function () awful.util.spawn("ooffice", false) end),
+  awful.key({ modkey            }, "r",                    function () awful.util.spawn("ranwall", false) end),
   awful.key({ modkey, "Control" }, "b",                    function () awful.util.spawn("favsong -b", false) end),
   awful.key({ modkey, "Control" }, "s",                    function () awful.util.spawn("ncmpcpp stop", false) end),
   awful.key({ modkey, "Control" }, "Left",                 function () awful.util.spawn("ncmpcpp prev", false) end),
@@ -453,7 +454,8 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-  awful.key({ modkey,           }, "b",      function (c) c.fullscreen = not c.fullscreen  end),
+  awful.key({ modkey            }, "d",      function (c) scratch.pad.set(c, 0.70, 0.70) end),
+  awful.key({ modkey            }, "b",      function (c) c.fullscreen = not c.fullscreen  end),
   awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
   awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
   awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end)

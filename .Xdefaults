@@ -1,5 +1,5 @@
 *font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
-*boldFont        : -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*
+*boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 *title           : terminal
 *buffered        : true
 *transparent     : true
@@ -38,6 +38,7 @@
 !#include "/home/vikki/.xcolors/molokai.xcolors"
 !#include "/home/vikki/.xcolors/n0tch2k brown.xcolors"
 !#include "/home/vikki/.xcolors/n0tch2k grey.xcolors"
+#include "/home/vikki/.xcolors/sicsnape.xcolors"
 !#include "/home/vikki/.xcolors/sepia.xcolors"
 !#include "/home/vikki/.xcolors/square.xcolors"
 !#include "/home/vikki/.xcolors/tango.xcolors"
@@ -46,5 +47,5 @@
 !#include "/home/vikki/.xcolors/trapd00r.xcolors"
 !#include "/home/vikki/.xcolors/vikas.xcolors"
 !#include "/home/vikki/.xcolors/warm.xcolors"
-#include "/home/vikki/.xcolors/zenburn.xcolors"
+!#include "/home/vikki/.xcolors/zenburn.xcolors"
 ! }}}
