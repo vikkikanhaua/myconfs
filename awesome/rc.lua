@@ -84,7 +84,7 @@ end
 
 -- {{{ naughty configuration
 naughty.config.presets.normal.timeout          = 5
-naughty.config.presets.normal.font             = "Profont 8"
+naughty.config.presets.normal.font             = beautiful.font
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
 naughty.config.presets.normal.bg               = '#3f3f3f88'
