@@ -1,2 +1,0 @@
-DrawIt.vba: call delete('/home/vikki/.vim/plugin/DrawItPlugin.vim')|call delete('/home/vikki/.vim/plugin/cecutil.vim')|call delete('/home/vikki/.vim/autoload/DrawIt.vim')|call delete('/home/vikki/.vim/doc/DrawIt.txt')
-zenburn.vba: call delete('/home/vikki/.vim/colors/zenburn.vim')

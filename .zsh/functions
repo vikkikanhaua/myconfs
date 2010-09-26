@@ -177,6 +177,10 @@ pacexe() {
   done
 }
 
+zsh_stats() { history | awk '{print $2}' | sort | uniq -c | sort -rn | head }
+
+mk() { mkdir -p "$1"; cd "$1" }
+
 # get ip of an interface
 getip() { /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}' }
 
