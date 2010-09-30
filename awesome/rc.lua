@@ -87,7 +87,7 @@ naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = beautiful.font
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
-naughty.config.presets.normal.bg               = '#3f3f3f88'
+naughty.config.presets.normal.bg               = '#3f3f3f'
 naughty.config.presets.normal.border_color     = '#6f6f6f'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
@@ -219,7 +219,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '%a %d %b, %H:%M', 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="#cccd05">%a %d %b, %H:%M</span>', 61)
 -- }}}
 
 --{{{ mail
@@ -259,9 +259,9 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return
     elseif args["{state}"] == 'Pause' then
-      return '| <span color="#fea63c">' .. args["{Artist}"] .. '</span> - <span color="#fea63c">' .. args["{Title}"] .. '</span>'
+      return '| <span color="#f8072e">' .. args["{Artist}"] .. '</span> - <span color="#f8072e">' .. args["{Title}"] .. '</span>'
     else
-      return '| <span color="#659fdb">' .. args["{Artist}"] .. '</span> - <span color="#659fdb">' .. args["{Title}"] .. '</span>'
+      return '| <span color="#5bde58">' .. args["{Artist}"] .. '</span> - <span color="#5bde58">' .. args["{Title}"] .. '</span>'
     end
   end)
 -- }}}
@@ -270,7 +270,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
 uptimewidget = widget({ type = 'textbox' })
 vicious.register(uptimewidget, vicious.widgets.uptime,
   function (widget, args)
-    return string.format('%1dd %02dh %02dm', args[1], args[2], args[3])
+    return string.format('<span color="#f8b009">%1dd %02dh %02dm</span>', args[1], args[2], args[3])
   end, 61)
 -- }}}
 
