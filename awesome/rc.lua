@@ -13,7 +13,7 @@ require("scratch")
 
 -- {{{ variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/byte/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/vikas/theme.lua")
 
 -- This is used later as the default terminal to run.
 terminal = "urxvtc"
@@ -122,10 +122,10 @@ cpuicon.image = image(beautiful.widget_cpu)
 -- Initialize widgets
 cpugraph  = awful.widget.graph()
 -- Graph properties
-cpugraph:set_width(40)
+cpugraph:set_width(50)
 cpugraph:set_height(12)
 cpugraph:set_background_color(beautiful.fg_off_widget)
-cpugraph:set_color(beautiful.fg_end_widget)
+cpugraph:set_color(beautiful.fg_widget)
 cpugraph:set_gradient_angle(0)
 cpugraph:set_gradient_colors({ beautiful.fg_end_widget,
    beautiful.fg_center_widget, beautiful.fg_widget
@@ -138,17 +138,10 @@ vicious.register(cpugraph, vicious.widgets.cpu, "$1")
 memicon       = widget({ type = "imagebox" })
 memicon.image = image(beautiful.widget_mem)
 -- Initialize widget
-membar = awful.widget.progressbar()
--- Pogressbar properties
-membar:set_vertical(true)
-membar:set_height(12)
-membar:set_width(10)
-membar:set_border_color(beautiful.border_widget)
-membar:set_background_color(beautiful.fg_off_widget)
-membar:set_gradient_colors({ beautiful.fg_widget,
-   beautiful.fg_center_widget, beautiful.fg_end_widget
-}) -- Register widget
-vicious.register(membar, vicious.widgets.mem, "$1", 13)
+memwidget     = widget({ type = "textbox" })
+vicious.cache(vicious.widgets.mem)
+-- Register widget
+vicious.register(memwidget, vicious.widgets.mem, '$2<span color="grey50">MiB</span>', 11)
 -- }}}
 
 -- {{{ File system usage
@@ -165,7 +158,7 @@ for _, w in pairs(fs) do
   w:set_height(12)
   w:set_vertical(true)
   w:set_background_color(beautiful.fg_off_widget)
-  w:set_border_color(beautiful.border_widget)
+  w:set_border_color(beautiful.bg_widget)
   w:set_color(beautiful.fg_widget)
   w:set_gradient_colors({ beautiful.fg_widget,
      beautiful.fg_center_widget, beautiful.fg_end_widget
@@ -186,9 +179,9 @@ volicon.image = image(beautiful.widget_vol)
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
-volbar:set_width(10)
+volbar:set_width(50)
 volbar:set_height(12)
-volbar:set_vertical(true)
+volbar:set_vertical(false):set_ticks(true):set_ticks_size(2)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_border_color(beautiful.border_widget)
 volbar:set_color(beautiful.fg_widget)
@@ -357,7 +350,7 @@ for s = 1, screen.count() do
     separator, spacer, hdd.sdb, spacer, separator, spacer, hdd.sda, spacer,
     separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon, spacer,
     separator, spacer, mailwidget, spacer, mailicon, spacer,
-    separator, spacer, membar.widget, spacer, memicon, spacer,
+    separator, spacer, memwidget, spacer, memicon, spacer,
     separator, spacer, cpugraph.widget, spacer, cpuicon, spacer,
     separator, spacer, updatewidget, spacer, updateicon, spacer,
     separator, spacer, mpdwidget,

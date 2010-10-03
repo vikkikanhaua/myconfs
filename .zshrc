@@ -104,7 +104,7 @@ bindkey '^[[6~'  .undefined-key
 #---[ PROMPT ] {{{
 precmd () {
   [[ $? -eq 0 ]] && color="%{[38;5;28m%}" || color="%{[38;5;160m%}"
-  export PROMPT="`builtin echo " %{[1;38;5;167m%}%1d  ${color}➜%{[0m%}"`  "
+  export PROMPT="`builtin echo " %{[1;38;5;167m%}%2d  ${color}➜%{[0m%}"`  "
 }
 # }}}
 
