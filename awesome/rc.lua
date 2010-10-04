@@ -87,7 +87,7 @@ naughty.config.presets.normal.timeout          = 5
 naughty.config.presets.normal.font             = beautiful.font
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
-naughty.config.presets.normal.bg               = '#3f3f3f'
+naughty.config.presets.normal.bg               = '#1a1a1a'
 naughty.config.presets.normal.border_color     = '#6f6f6f'
 naughty.config.presets.normal.border_width     = 1
 -- }}}
