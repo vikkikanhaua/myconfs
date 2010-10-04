@@ -10,15 +10,10 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
-${HOME}/.bin/dzonky &
-
 urxvtd -q -f -o &
 
 setxkbmap -option terminate:ctrl_alt_bksp &
 
 eval `cat ${HOME}/.fehbg`
 
-# xsetroot -cursor_name left_ptr &
-
 exec awesome
-# exec xmonad

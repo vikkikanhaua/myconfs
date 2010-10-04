@@ -56,7 +56,7 @@ myManageHook = (composeAll . concat $
   where
     -- names
     myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
-    myFloatsT = ["Downloads", "Add-ons"]
+    myFloatsT = ["Downloads", "Add-ons", "Preferences"]
     myWebs    = ["Navigator", "Firefox", "Google-chrome", "Chromium", "Namoroka"]
 
 myFocusFollowsMouse :: Bool
@@ -205,7 +205,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 12 -w 800 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 12 -w 700 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd
