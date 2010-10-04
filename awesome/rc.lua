@@ -141,7 +141,7 @@ memicon.image = image(beautiful.widget_mem)
 memwidget     = widget({ type = "textbox" })
 vicious.cache(vicious.widgets.mem)
 -- Register widget
-vicious.register(memwidget, vicious.widgets.mem, '$2<span color="grey50">M</span>', 11)
+vicious.register(memwidget, vicious.widgets.mem, '$2M', 11)
 -- }}}
 
 -- {{{ File system usage
