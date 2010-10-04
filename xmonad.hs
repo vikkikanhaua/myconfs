@@ -8,7 +8,7 @@ import XMonad.Operations
 
 -- Hooks --
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageHelpers 
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 
@@ -37,7 +37,7 @@ import Data.Char
 import System.Exit
 
 -- default declaraions
-myFont               = "-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*"
+myFont               = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
 myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
@@ -55,18 +55,18 @@ myManageHook = (composeAll . concat $
 
   where
     -- names
-    myFloats  = ["Gimp","MPlayer","Vlc","Zenity","VirtualBox","Xmessage","Save As","XFontSel","feh"]
-    myFloatsT = ["Downloads","Add-ons","Shiretoko Preferences","About Shiretoko"]
-    myWebs    = ["Navigator","Shiretoko","Firefox","Uzbl","Google-chrome","Chromium","Namoroka"]
-    
+    myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
+    myFloatsT = ["Downloads", "Add-ons"]
+    myWebs    = ["Navigator", "Firefox", "Google-chrome", "Chromium", "Namoroka"]
+
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
 myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#ddeedd"
+myFocusedBorderColor = "#659fdb"
 
 borderWidth' :: Dimension
-borderWidth' = 2
+borderWidth' = 1
 
 myXPConfig :: XPConfig
 myXPConfig = defaultXPConfig
@@ -76,7 +76,7 @@ myXPConfig = defaultXPConfig
   , fgHLight    = lightTextColor
   , bgHLight    = lightBackgroundColor
   , position    = Bottom
-  , height      = 16
+  , height      = 14
   , historySize = 100
   , borderColor = lightBackgroundColor
   }
@@ -87,14 +87,14 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
   where
     -- height, width as % screensize
-    h = 0.32
-    w = 0.65
+    h = 0.40
+    w = 0.70
 
-    t = 0.64
-    l = 0.35
+    t = 0.25
+    l = 0.15
 
 -- custom pp
-myPP h = defaultPP 
+myPP h = defaultPP
   { ppCurrent = wrap "^fg(#fea63c)^bg(#382d22)" "^fg()^bg()" . pad
   , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
   , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
@@ -105,24 +105,23 @@ myPP h = defaultPP
       (\x -> case x of
         "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm) "
         "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm) "
-        "Accordion" -> "Accordion "
-        "Simple Float" -> "float "
+        "Accordion" -> "accordion "
         "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm) "
       )
-  , ppTitle = dzenColor "#fffff0" "" . shorten 450
+  , ppTitle = dzenColor "#659fdb" "" . shorten 450
   , ppOutput = hPutStrLn h
   }
 
   where
     -- filter out NSP
-    noScratchPad ws = if ws == "NSP" then "" else pad ws    
+    noScratchPad ws = if ws == "NSP" then "" else pad ws
     namedOnly ws = if any (`elem` ws) ['a'..'z'] then pad ws else ""
 
 -- layout list
-myLayout = avoidStruts 
+myLayout = avoidStruts
            $ smartBorders
            $ onWorkspace "main" Accordion
-           $ onWorkspaces ["web","term"] Full 
+           $ onWorkspaces ["web","term"] Full
            $ Mirror tiled ||| tiled ||| Full ||| Accordion
   where
     -- default tiling algorithm partitions the screen into two panes
@@ -144,27 +143,26 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((0,                       0x1008ff2f),             spawn "slock")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
-      , ((modMask,                  xK_a     ),             spawn "apvlv")
+      , ((modMask,                  xK_a     ),             spawn "evince")
       , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
-      , ((controlMask,       	    xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")    
-      , ((modMask .|. controlMask,  xK_Left  ),             spawn "mpc --no-status prev")
-      , ((0,                       0x1008ff19),             spawn "mpc --no-status toggle")
+      , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")
+      , ((modMask .|. controlMask,  xK_Left  ),             spawn "ncmpcpp prev")
+      , ((0,                       0x1008ff19),             spawn "ncmpcpp toggle")
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
-      , ((modMask .|. controlMask,  xK_s     ),             spawn "mpc --no-status stop")
-      , ((modMask .|. controlMask,  xK_Right ),             spawn "mpc --no-status next")
-      , ((modMask .|. controlMask,  xK_r     ),             spawn "mpc --no-status random")
+      , ((modMask .|. controlMask,  xK_s     ),             spawn "ncmpcpp stop")
+      , ((modMask .|. controlMask,  xK_Right ),             spawn "ncmpcpp next")
       , ((0,                       0x1008ff11),             spawn "aumix -v-6")
       , ((0,                       0x1008ff13),             spawn "aumix -v+6")
-      , ((0,                       0x1008ff12),             spawn "amixer set Master toggle")
-      , ((0,                       0x1008ff1b),             spawn "firefox") 
-      , ((modMask,                  xK_c     ),             spawn "chromium") 
+      , ((0,                       0x1008ff12),             spawn "mute")
+      , ((0,                       0x1008ff1b),             spawn "firefox")
+      , ((modMask,                  xK_c     ),             spawn "chromium")
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
-      , ((modMask,                  xK_f     ),             spawn "favsong") 
-      , ((modMask,                  xK_d     ),             spawn "eject -T") 
+      , ((modMask,                  xK_f     ),             spawn "favsong")
+      , ((modMask,                  xK_e     ),             spawn "eject -T")
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
-      
+
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
 
@@ -175,8 +173,8 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 -- floating layer stuff
       , ((modMask,               xK_t     ),                withFocused $ windows . W.sink)
-      , ((modMask,               xK_s     ),                scratchPad)
-      
+      , ((0,                     xK_F12   ),                scratchPad)
+
 -- focus
       , ((modMask,               xK_Tab   ),                windows W.focusDown)
       , ((modMask .|. shiftMask, xK_Tab   ),                windows W.focusUp)
@@ -206,18 +204,18 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
-      
-statusBarCmd1 = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 14 -w 670 -e '' -fn '-*-terminus-*-r-normal-*-12-120-*-*-*-*-iso8859-*' -ta l"
 
-main = do 
-	bar <- spawnPipe statusBarCmd1 
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 12 -w 800 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+
+main = do
+	bar <- spawnPipe statusBarCmd
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook = myManageHook
           	   , workspaces = ["main","web","term","media","else"]
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar
-          	   , modMask = mod4Mask    -- Rebind Mod to the Windows key
+          	   , modMask = mod4Mask
           	   , normalBorderColor  = myNormalBorderColor
           	   , focusedBorderColor = myFocusedBorderColor
                    , terminal           = myTerminal
