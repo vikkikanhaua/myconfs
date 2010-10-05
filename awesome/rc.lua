@@ -1,4 +1,4 @@
--- Awesome configuration, using awesome 3.4.6 on Arch GNU/Linux
+-- Awesome configuration, using awesome 3.4.8 on Arch GNU/Linux
 
 -- {{{ libraries
 require("awful")
@@ -325,8 +325,9 @@ for s = 1, screen.count() do
   top_wibox[s] = awful.wibox({
     screen = s,
     fg = beautiful.fg_normal, height = 12,
-    bg = beautiful.bg_normal,
-    position = "top"
+    bg = beautiful.bg_normal, position = "top",
+    border_color = beautiful.border_focus,
+    border_width = beautiful.border_width
   })
 
 --  bottom_wibox[s] = awful.wibox({
