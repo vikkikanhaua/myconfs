@@ -183,7 +183,6 @@ volbar:set_width(50)
 volbar:set_height(12)
 volbar:set_vertical(false):set_ticks(true):set_ticks_size(2)
 volbar:set_background_color(beautiful.fg_off_widget)
-volbar:set_border_color(beautiful.border_widget)
 volbar:set_color(beautiful.fg_widget)
 volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
@@ -523,6 +522,7 @@ awful.rules.rules = {
     properties = { floating = true, tag = tags[1][4], switchtotag = true } },
   { rule = { class = "Vlc" },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } }
+
 }
 -- }}}
 
