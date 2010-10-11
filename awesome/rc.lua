@@ -447,11 +447,12 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-  awful.key({ modkey            }, "d",      function (c) scratch.pad.set(c, 0.70, 0.70) end),
+  awful.key({ modkey            }, "d",      function (c) scratch.pad.set(c, 0.70, 0.70)   end),
   awful.key({ modkey            }, "b",      function (c) c.fullscreen = not c.fullscreen  end),
   awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-  awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-  awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end)
+  awful.key({ modkey, "Shift"   }, "s",      function (c) c.sticky = not c.sticky          end),
+  awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+  awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     )
 )
 
 -- Compute the maximum number of digit we need, limited to 9

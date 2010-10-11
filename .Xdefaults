@@ -23,8 +23,9 @@
 
 *cursorColor     : #80724e
 *cursorColor2    : #fff
-!*cursorUnderline : true
-!*underlineColor  : #66aabb
+*cursorUnderline : true
+*underlineColor  : #cd5c5c
+*colorUL         : #fea63c
 
 ! {{{ colorschemes
 !#include "/home/vikki/.xcolors/allblue.xcolors"

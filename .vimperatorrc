@@ -1,6 +1,6 @@
 "2.1 (created: 2009/05/21 13:13:06)
 
-set "editor=urxvtc -e vim"
+set "editor=urxvtc -e vim -f"
 set guioptions=rb
 set runtimepath=/home/vikki/.vimperator
 set titlestring=Firefox
