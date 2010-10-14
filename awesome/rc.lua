@@ -211,7 +211,7 @@ datewidget:buttons(awful.util.table.join(
   awful.button({ }, 5, function () add_calendar(1) end)
 ))
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span color="#cccd05">%a %d %b, %H:%M</span>', 61)
+vicious.register(datewidget, vicious.widgets.date, '<span color="khaki">%a %d %b, %H:%M</span>', 61)
 -- }}}
 
 --{{{ mail
@@ -447,8 +447,9 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-  awful.key({ modkey            }, "d",      function (c) scratch.pad.set(c, 0.70, 0.70)   end),
   awful.key({ modkey            }, "b",      function (c) c.fullscreen = not c.fullscreen  end),
+  awful.key({ modkey            }, "d",      function (c) scratch.pad.set(c, 0.70, 0.70)   end),
+  awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
   awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
   awful.key({ modkey, "Shift"   }, "s",      function (c) c.sticky = not c.sticky          end),
   awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),

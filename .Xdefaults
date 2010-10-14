@@ -25,7 +25,7 @@
 *cursorColor2    : #fff
 *cursorUnderline : true
 *underlineColor  : #cd5c5c
-*colorUL         : #fea63c
+*colorUL         : khaki
 
 ! {{{ colorschemes
 !#include "/home/vikki/.xcolors/allblue.xcolors"
