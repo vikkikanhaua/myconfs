@@ -88,7 +88,7 @@ naughty.config.presets.normal.font             = beautiful.font
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
 naughty.config.presets.normal.bg               = '#1a1a1a'
-naughty.config.presets.normal.border_color     = '#6f6f6f'
+naughty.config.presets.normal.border_color     = beautiful.border_focus
 naughty.config.presets.normal.border_width     = 1
 -- }}}
 
@@ -290,6 +290,10 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 -- aware.register(rssbox, { "http://rss.feedsportal.com/c/32569/f/491734/index.rss" }) -- http://www.h-online.com/grand-atom.xml, http://rss.feedsportal.com/c/32569/f/491734/index.rss
 -- }}}
 
+-- {{{ ip box
+-- ipbox = widget({ type = "textbox" })
+-- }}}
+
 -- {{{ systray
 mysystray = widget({ type = "systray" })
 -- }}}
@@ -353,6 +357,7 @@ for s = 1, screen.count() do
     separator, spacer, memwidget, spacer, memicon, spacer,
     separator, spacer, cpugraph.widget, spacer, cpuicon, spacer,
     separator, spacer, updatewidget, spacer, updateicon, spacer,
+--    separator, spacer, ipbox, spacer,
     separator, spacer, mpdwidget,
     s == 1 and mysystray or nil,
     mytasklist[s],
@@ -507,8 +512,7 @@ root.keys(globalkeys)
 -- {{{ rules
 awful.rules.rules = {
   { rule = { },
-    properties = { border_color = beautiful.border_normal,
-                   focus = true,
+    properties = { focus = true,
                    size_hints_honor = false,
                    keys = clientkeys,
                    buttons = clientbuttons } },
@@ -531,18 +535,12 @@ awful.rules.rules = {
 -- {{{ signals
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
-  -- Add titlebar to floaters, but remove those from rule callback
-  --if awful.client.floating.get(c)
-  --or awful.layout.get(c.screen) == awful.layout.suit.floating then
-  --  if   c.titlebar then awful.titlebar.remove(c)
-  --  else awful.titlebar.add(c, {modkey = modkey}) end
-  --end
+  if awful.client.floating.get(c) or awful.layout.get(c.screen) == awful.layout.suit.floating then
+    c.border_width = beautiful.border_width
+    c.border_color = beautiful.border_focus
+  end
 
   if not startup then
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- awful.client.setslave(c)
-
     -- Put windows in a smart way, only if they does not set an initial position.
     if not c.size_hints.user_position and not c.size_hints.program_position then
         awful.placement.no_overlap(c)
@@ -550,9 +548,6 @@ client.add_signal("manage", function (c, startup)
     end
   end
 end)
-
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- {{{ Arrange signal handler
 for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
