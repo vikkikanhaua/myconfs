@@ -378,7 +378,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
   -- scratchpad
-  awful.key({                   }, "F12",    function () scratch.drop(terminal, "center", "center", 1200, .40) end),
+  awful.key({                   }, "F12",    function () scratch.drop(terminal .. " -name scratch", "center", "center", 1200, .40) end),
   awful.key({ modkey            }, "s",      function () scratch.pad.toggle() end),
 
   awful.key({ modkey            }, "Tab",    function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
@@ -395,6 +395,7 @@ globalkeys = awful.util.table.join(
 
   -- Standard program
   awful.key({ modkey            }, "Return", function () awful.util.spawn(terminal) end),
+  awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal .. " -name main") end),
   awful.key({ modkey, "Control" }, "r",      awesome.restart),
   awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
@@ -516,34 +517,32 @@ awful.rules.rules = {
                    size_hints_honor = false,
                    keys = clientkeys,
                    buttons = clientbuttons } },
+  { rule = { instance = "main" },
+    properties = { floating = true,
+    border_color = beautiful.border_focus,
+    border_width = beautiful.border_width }, callback = awful.placement.centered },
+  { rule = { instance = "scratch" },
+    properties = { border_color = beautiful.border_focus,
+    border_width = beautiful.border_width } },
   { rule = { class = "XFontSel" },
-    properties = { floating = true } },
-  { rule = { class = "aumix" },
     properties = { floating = true } },
   { rule = { name = "Downloads" },
     properties = { floating = true } },
-  { rule = { class = "Namoroka" },
+  { rule = { name = "Firefox" },
     properties = { tag = tags[1][2], switchtotag = true } },
   { rule = { class = "MPlayer" },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } },
   { rule = { class = "Vlc" },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } }
-
 }
 -- }}}
 
 -- {{{ signals
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
-  if awful.client.floating.get(c) or awful.layout.get(c.screen) == awful.layout.suit.floating then
-    c.border_width = beautiful.border_width
-    c.border_color = beautiful.border_focus
-  end
-
   if not startup then
     -- Put windows in a smart way, only if they does not set an initial position.
     if not c.size_hints.user_position and not c.size_hints.program_position then
-        awful.placement.no_overlap(c)
         awful.placement.no_offscreen(c)
     end
   end

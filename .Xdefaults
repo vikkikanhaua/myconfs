@@ -1,15 +1,15 @@
 *font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 *boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 *title           : terminal
-*geometry        : 250x80
 *buffered        : true
+*main*geometry   : 290x75
 *transparent     : true
 *scrollBar       : false
 *secondaryScroll : true
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 25
+*shading         : 40
 *fading          : 15
 *saveLines       : 10000
 *cursorBlink     : false
