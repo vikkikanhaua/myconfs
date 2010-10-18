@@ -528,7 +528,7 @@ awful.rules.rules = {
     properties = { floating = true } },
   { rule = { name = "Downloads" },
     properties = { floating = true } },
-  { rule = { name = "Firefox" },
+  { rule = { class = "Namoroka" },
     properties = { tag = tags[1][2], switchtotag = true } },
   { rule = { class = "MPlayer" },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } },
