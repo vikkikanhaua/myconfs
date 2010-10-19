@@ -429,7 +429,7 @@ globalkeys = awful.util.table.join(
 
   -- custom apps keys
   awful.key({                   }, "XF86Search",           function () awful.util.spawn("firefox", false) end),
-  awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("alock -bg none -auth pam", false) end),
+  awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("alock -auth md5:file=/home/vikki/mydocs/passphrase", false) end),
   awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("mute", false) end),
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("aumix -v+6", false) end),
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
@@ -517,22 +517,19 @@ awful.rules.rules = {
                    size_hints_honor = false,
                    keys = clientkeys,
                    buttons = clientbuttons } },
-  { rule = { name = "Downloads" },
-    properties = { floating = true } },
   { rule = { instance = "main" },
     properties = { floating = true,
     border_color = beautiful.border_focus,
-    border_width = beautiful.border_width }, callback = awful.placement.centered },
+    border_width = beautiful.border_width },
+    callback = awful.placement.centered },
   { rule = { instance = "scratch" },
     properties = { border_color = beautiful.border_focus,
     border_width = beautiful.border_width } },
   { rule = { instance = "Navigator" },
     properties = { tag = tags[1][2], switchtotag = true } },
-  { rule = { class = "XFontSel" },
+  { rule_any = { class = { "XFontSel", "Gimp" }, name = { "Downloads" } },
     properties = { floating = true } },
-  { rule = { class = "MPlayer" },
-    properties = { floating = true, tag = tags[1][4], switchtotag = true } },
-  { rule = { class = "Vlc" },
+  { rule_any = { class = { "MPlayer", "Vlc" } },
     properties = { floating = true, tag = tags[1][4], switchtotag = true } }
 }
 -- }}}
