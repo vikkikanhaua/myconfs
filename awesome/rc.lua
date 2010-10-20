@@ -68,6 +68,15 @@ function add_calendar(inc_offset)
 end
 -- }}}
 
+-- {{{ showip
+local function showip(format, iface)
+    local f = io.popen("ifconfig " .. iface .. " | awk '/inet addr/ {print $2}' | awk -F: '{print $2}'")
+    local value = f:read("*l")
+    f:close()
+    return '<span color="#d2b48c">' .. value .. '</span>'
+end
+-- }}}
+
 -- {{{ mpd cover art
 local coverart_nf
 function coverart()
@@ -291,7 +300,8 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 -- }}}
 
 -- {{{ ip box
--- ipbox = widget({ type = "textbox" })
+ipbox = widget({ type = "textbox" })
+vicious.register(ipbox, showip, "", 301, "ppp0")
 -- }}}
 
 -- {{{ systray
@@ -354,10 +364,10 @@ for s = 1, screen.count() do
     separator, spacer, hdd.sdb, spacer, separator, spacer, hdd.sda, spacer,
     separator, spacer, fs.t.widget, fs.s.widget, fs.h.widget, fs.r.widget, spacer, fsicon, spacer,
     separator, spacer, mailwidget, spacer, mailicon, spacer,
+    separator, spacer, updatewidget, spacer, updateicon, spacer,
     separator, spacer, memwidget, spacer, memicon, spacer,
     separator, spacer, cpugraph.widget, spacer, cpuicon, spacer,
-    separator, spacer, updatewidget, spacer, updateicon, spacer,
---    separator, spacer, ipbox, spacer,
+    separator, spacer, ipbox, spacer,
     separator, spacer, mpdwidget,
     s == 1 and mysystray or nil,
     mytasklist[s],
