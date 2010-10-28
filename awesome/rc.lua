@@ -71,9 +71,13 @@ end
 -- {{{ showip
 local function showip(format, iface)
     local f = io.popen("ifconfig " .. iface .. " | awk '/inet addr/ {print $2}' | awk -F: '{print $2}'")
-    local value = f:read("*l")
+    local ip = f:read("*l")
     f:close()
-    return '<span color="#d2b48c">' .. value .. '</span>'
+    if ip ~= nil then
+      return '<span color="#d2b48c">' .. ip .. '</span>'
+    else
+      return '<span color="red">network down</span>'
+    end
 end
 -- }}}
 
@@ -301,7 +305,7 @@ vicious.register(updatewidget, vicious.widgets.pkg,
 
 -- {{{ ip box
 ipbox = widget({ type = "textbox" })
-vicious.register(ipbox, showip, "", 301, "ppp0")
+vicious.register(ipbox, showip, "", 67, "ppp0")
 -- }}}
 
 -- {{{ systray

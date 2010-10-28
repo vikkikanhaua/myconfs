@@ -35,7 +35,7 @@ set askcc
 set delete
 set wrap_search
 set reverse_alias
-set sendmail_wait       = -1    # don't wait for sending... to complete
+set sendmail_wait       = -1   # don't wait for sending... to complete
 set confirmcreate       = yes
 set use_from            = yes
 set envelope_from       = yes

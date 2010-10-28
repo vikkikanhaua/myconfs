@@ -3,14 +3,14 @@
 *title           : terminal
 *buffered        : true
 *main*geometry   : 290x75
-*transparent     : true
+*transparent     : false
 *scrollBar       : false
 *secondaryScroll : true
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 40
-*fading          : 15
+!*shading         : 40
+!*fading          : 15
 *saveLines       : 10000
 *cursorBlink     : false
 *dynamicColors   : on
