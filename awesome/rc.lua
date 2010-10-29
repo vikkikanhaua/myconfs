@@ -203,7 +203,7 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
 -- Register widgets
 vicious.register(volbar, vicious.widgets.volume,
   function (widgets, args)
-    if args[1] == 0 then
+    if args[2] == "off" then
       volicon.image = image(beautiful.widget_vol_mute)
       return 0
     else
@@ -444,9 +444,9 @@ globalkeys = awful.util.table.join(
   -- custom apps keys
   awful.key({                   }, "XF86Search",           function () awful.util.spawn("firefox", false) end),
   awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("alock -auth md5:file=/home/vikki/mydocs/passphrase", false) end),
-  awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("mute", false) end),
-  awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("aumix -v+6", false) end),
-  awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("aumix -v-6", false) end),
+  awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("amixer -q set Master toggle", false) end),
+  awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 2+", false) end),
+  awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 2-", false) end),
   awful.key({                   }, "XF86Mail",             function () awful.util.spawn("ncmpcpp toggle", false) end),
   awful.key({                   }, "Print",                function () awful.util.spawn("scrot screenie-%H-%M-%S-%d-%b.png -q 100", false) end),
   awful.key({ modkey            }, "XF86Mail",             function () awful.util.spawn_with_shell("echo pause > ~/.mplayer/mplayer_fifo", false) end),
