@@ -205,7 +205,7 @@ vicious.register(volbar, vicious.widgets.volume,
   function (widgets, args)
     if args[2] == "off" then
       volicon.image = image(beautiful.widget_vol_mute)
-      return 0
+      return args[1]
     else
       volicon.image = image(beautiful.widget_vol)
       return args[1]
@@ -342,9 +342,7 @@ for s = 1, screen.count() do
   top_wibox[s] = awful.wibox({
     screen = s,
     fg = beautiful.fg_normal, height = 12,
-    bg = beautiful.bg_normal, position = "top",
-    border_color = beautiful.border_focus,
-    border_width = beautiful.border_width
+    bg = beautiful.bg_normal, position = "top"
   })
 
 --  bottom_wibox[s] = awful.wibox({

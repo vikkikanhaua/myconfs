@@ -345,7 +345,7 @@ screen_switcher_mode = "sequence: 2 -> 3"
 ##
 #startup_screen = "2"
 #
-jump_to_now_playing_song_at_start = "yes"
+jump_to_now_playing_song_at_start = "no"
 #
 ask_before_clearing_main_playlist = "no"
 #

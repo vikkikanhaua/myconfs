@@ -102,7 +102,7 @@ set alias_format        = "%4n %t %-20a %r"
 #####
 
 set tmpdir              = ~/.mutt/temp
-set signature           = ~/.mutt/mysig
+set signature           = ~/.mutt/signature
 set alias_file          = ~/.mutt/aliases.muttrc
 set mailcap_path        = ~/.mutt/mailcap.muttrc
 

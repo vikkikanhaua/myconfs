@@ -25,8 +25,8 @@ alias ucd='sudo umount /media/cd'
 alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WINDOW_ROLE\|WM_CLASS"'
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias svim='sudoedit'
-alias packer='packer --auronly'
-alias ss="source ~/.zshrc"
+alias ss='source ~/.zshrc'
+alias t='todo.sh -a'
 
 # filetypes
 alias -s pdf=evince
