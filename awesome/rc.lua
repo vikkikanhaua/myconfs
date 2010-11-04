@@ -193,10 +193,11 @@ volicon.image = image(beautiful.widget_vol)
 volbar    = awful.widget.progressbar()
 -- Progressbar properties
 volbar:set_width(50)
-volbar:set_height(12)
+volbar:set_height(10)
 volbar:set_vertical(false):set_ticks(true):set_ticks_size(2)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_color(beautiful.fg_widget)
+volbar:set_border_color(beautiful.border_widget)
 volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
 })
@@ -441,7 +442,7 @@ globalkeys = awful.util.table.join(
 
   -- custom apps keys
   awful.key({                   }, "XF86Search",           function () awful.util.spawn("firefox", false) end),
-  awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("alock -auth md5:file=/home/vikki/mydocs/passphrase", false) end),
+  awful.key({                   }, "XF86Sleep",            function () awful.util.spawn("alock -auth md5:file=/home/vikki/docs/passphrase", false) end),
   awful.key({                   }, "XF86AudioMute",        function () awful.util.spawn("amixer -q set Master toggle", false) end),
   awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 2+", false) end),
   awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 2-", false) end),

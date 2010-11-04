@@ -140,7 +140,7 @@ google() {
 
 # push git repo
 pushrepo() {
-  pushd ${HOME}/mydocs/myconfs &> /dev/null
+  pushd ${HOME}/docs/myconfs &> /dev/null
   if [[ $(git status | wc -l) -ne 2 ]]; then
     git status
     git commit -a -m "last commit"

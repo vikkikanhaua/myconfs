@@ -105,9 +105,11 @@ bindkey '^[[6~'  .undefined-key
 #---[ PROMPT ] {{{
 precmd () {
   [[ $? -eq 0 ]] && color="%{[38;5;28m%}" || color="%{[38;5;160m%}"
-  [[ -n "$RANGER" ]] && export RPROMPT="(in ranger)"
 
-  export PROMPT="`builtin echo "%{[1;38;5;167m%}%2d  ${color}➜%{[0m%}"`  "
+  export PROMPT="${color}$%{[0m%} "
+  export RPROMPT="%{[38;5;167m%}%2~%{[0m%}"
+
+  [[ -n "$RANGER" ]] && export RPROMPT="$RPROMPT (in ranger)"
 }
 # }}}
 
