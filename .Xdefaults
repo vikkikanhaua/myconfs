@@ -26,29 +26,22 @@
 *underlineColor  : #cd5c5c
 *colorUL         : khaki
 
-! {{{ colorschemes
-!#include "/home/vikki/.xcolors/allblue.xcolors"
-!#include "/home/vikki/.xcolors/arthur.xcolors"
-!#include "/home/vikki/.xcolors/b52.xcolors"
-!#include "/home/vikki/.xcolors/digerati.xcolors"
-!#include "/home/vikki/.xcolors/hornet.xcolors"
-!#include "/home/vikki/.xcolors/india.xcolors"
-!#include "/home/vikki/.xcolors/justin.xcolors"
-!#include "/home/vikki/.xcolors/jwr.xcolors"
-!#include "/home/vikki/.xcolors/jwr2.xcolors"
-!#include "/home/vikki/.xcolors/merged.xcolors"
-!#include "/home/vikki/.xcolors/molokai.xcolors"
-!#include "/home/vikki/.xcolors/n0tch2k brown.xcolors"
-!#include "/home/vikki/.xcolors/n0tch2k grey.xcolors"
-!#include "/home/vikki/.xcolors/sicsnape.xcolors"
-!#include "/home/vikki/.xcolors/sepia.xcolors"
-!#include "/home/vikki/.xcolors/shiva.xcolors"
-!#include "/home/vikki/.xcolors/square.xcolors"
-!#include "/home/vikki/.xcolors/tango.xcolors"
-#include "/home/vikki/.xcolors/taters.xcolors"
-!#include "/home/vikki/.xcolors/thayer.xcolors"
-!#include "/home/vikki/.xcolors/trapd00r.xcolors"
-!#include "/home/vikki/.xcolors/vikas.xcolors"
-!#include "/home/vikki/.xcolors/warm.xcolors"
-!#include "/home/vikki/.xcolors/zenburn.xcolors"
-! }}}
+! colorscheme
+*foreground      :#ddeedd
+*background      :#000000
+*color0          :#1c1c1c
+*color8          :#4D4D4D
+*color1          :#cd5c5c
+*color9          :#a52a2a
+*color2          :#b7ce42
+*color10         :#bde077
+*color3          :#fea63c
+*color11         :#ffe863
+*color4          :#66aabb
+*color12         :#aaccbb
+*color5          :#b7416e
+*color13         :#bb4466
+*color6          :#5e7175
+*color14         :#a3babf
+*color7          :#6c887a
+*color15         :#ddeedd
