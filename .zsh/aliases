@@ -27,6 +27,7 @@ alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias svim='sudoedit'
 alias ss='source ~/.zshrc'
 alias t='todo.sh -a'
+alias feeds='newsbeuter'
 
 # filetypes
 alias -s pdf=evince

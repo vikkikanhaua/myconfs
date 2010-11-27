@@ -10,10 +10,14 @@ if ( cp /dev/null "$errorlog" 2> /dev/null ); then
 fi
 # }}}
 
-urxvtd -q -f -o &
+urxvtd -q -f -o
 
-setxkbmap -option terminate:ctrl_alt_bksp &
+setxkbmap -option terminate:ctrl_alt_bksp
 
-eval `cat ${HOME}/.fehbg`
+nvidia-settings --load-config-only
+
+# eval `cat ${HOME}/.fehbg`
+
+ranwall
 
 exec awesome

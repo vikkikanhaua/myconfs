@@ -1,4 +1,4 @@
-include ".themes/Dust/gtk-2.0/gtkrc"
-
-gtk-icon-theme-name = "B&W"
+gtk-theme-name="terminus"
+gtk-font-name="montecarlo 8"
+gtk-icon-theme-name = "ACYL"
 gtk-menu-popup-delay = 0

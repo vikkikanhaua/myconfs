@@ -1,4 +1,3 @@
-
 [default]
 ###############################
 #
@@ -12,11 +11,8 @@ input=file="/home/vikki/.mplayer/mplayer_fifo"
 #======
 
 # Set video driver.
-# vo=vdpau:deint=4,gl:yuv=2:force-pbo
-# vc=ffh264vdpau,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffodivxvdpau,
-
-# Use double-buffering. (Recommended for xv with SUB/OSD usage)
-double=yes
+vo=vdpau
+vc=ffh264,ffmpeg12,ffwmv3,ffvc1,ffodivx,
 
 #======
 # Audio
