@@ -38,7 +38,7 @@ import System.Exit
 
 -- default declaraions
 myFont               = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
-myTerminal           = "urxvtc"
+myTerminal           = "urxvtc -name main"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
 lightTextColor       = "#fffff0"
@@ -51,13 +51,15 @@ myManageHook = (composeAll . concat $
   [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
   , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
   , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
+  , [resource  =? i                 --> doCenterFloat    |  i    <- myFloatsI ]
   ]) <+> manageDocks <+> manageScratchPad
 
   where
     -- names
     myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
     myFloatsT = ["Downloads", "Add-ons", "Preferences"]
-    myWebs    = ["Navigator", "Firefox", "Google-chrome", "Chromium", "Namoroka"]
+    myFloatsI = ["main"]
+    myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
@@ -108,7 +110,6 @@ myPP h = defaultPP
         "Accordion" -> "accordion "
         "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm) "
       )
-  , ppTitle = dzenColor "#659fdb" "" . shorten 450
   , ppOutput = hPutStrLn h
   }
 
@@ -140,7 +141,7 @@ myLayout = avoidStruts
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
        [((modMask,                  xK_Return),             spawn myTerminal)
-      , ((0,                       0x1008ff2f),             spawn "slock")
+      , ((0,                       0x1008ff2f),             spawn "alock -auth md5:file=/home/vikki/docs/passphrase")
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_a     ),             spawn "evince")
@@ -153,9 +154,9 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
       , ((modMask .|. controlMask,  xK_s     ),             spawn "ncmpcpp stop")
       , ((modMask .|. controlMask,  xK_Right ),             spawn "ncmpcpp next")
-      , ((0,                       0x1008ff11),             spawn "aumix -v-6")
-      , ((0,                       0x1008ff13),             spawn "aumix -v+6")
-      , ((0,                       0x1008ff12),             spawn "mute")
+      , ((0,                       0x1008ff11),             spawn "amixer -q set Master 2-")
+      , ((0,                       0x1008ff13),             spawn "amixer -q set Master 2+")
+      , ((0,                       0x1008ff12),             spawn "amixer -q set Master toggle")
       , ((0,                       0x1008ff1b),             spawn "firefox")
       , ((modMask,                  xK_c     ),             spawn "chromium")
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
@@ -205,7 +206,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#fffff0' -h 12 -w 700 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd

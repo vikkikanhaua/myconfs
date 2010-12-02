@@ -16,8 +16,12 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 nvidia-settings --load-config-only
 
-# eval `cat ${HOME}/.fehbg`
+xsetroot -cursor_name left_ptr
 
-ranwall
+conky -c ~/.conky/conkyrc
 
-exec awesome
+eval `cat ${HOME}/.fehbg`
+
+# ranwall
+
+exec xmonad
