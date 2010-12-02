@@ -159,7 +159,7 @@ settings_table = {
         max=100,
         bg_colour=ring_background_color,
         bg_alpha=ring_background_alpha,
-        fg_colour=ring_foreground_color2,
+        fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
         x=1150, y=1030,
         radius=40,

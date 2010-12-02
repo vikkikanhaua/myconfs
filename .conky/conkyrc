@@ -47,7 +47,6 @@ lua_load ~/.conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
-${if_mpd_playing}${execi 5 cover_art}${image /tmp/cover.jpg -p 1819,738 -s 100x100 -n}${endif}
 ${font Digital Readout Thick Upright:size=18}
 ${goto  130}${time %A}                                                      ${color3}${goto 860}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 960}updates ${color}${execi 3601 pacman -Qu | wc -l}
 ${goto  125}${time %d %B} ${goto 285}${color3}${time %H}${color2}${time %M} ${color3}${goto 860}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 960}mail    ${color}${new_mails /home/vikki/mail/inbox}
