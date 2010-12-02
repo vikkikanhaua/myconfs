@@ -49,9 +49,9 @@ lua_draw_hook_pre ring_stats
 TEXT
 ${font Digital Readout Thick Upright:size=18}
 ${goto  130}${time %A}                                                      ${color3}${goto 860}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 960}updates ${color}${execi 3601 pacman -Qu | wc -l}
-${goto  125}${time %d %B} ${goto 285}${color3}${time %H}${color2}${time %M} ${color3}${goto 860}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 960}mail    ${color}${new_mails /home/vikki/mail/inbox}
-${voffset 8}                           ${goto 390}${color}cpu               ${color3}${goto 860}gpu ${color}${nvidia temp}C
-${voffset -27}                         ${goto 500}${color}mem
-${voffset -27}                         ${goto 610}${color}disk
-${voffset -27}                         ${goto 750}${color}${mixer}
-${voffset -27}                         ${goto 1160}${color}${mpd_smart}
+${goto  125}${time %d %B} ${goto 287}${color3}${time %H}${color2}${time %M} ${color3}${goto 860}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 960}mail    ${color}${new_mails /home/vikki/mail/inbox}
+${voffset 8}              ${goto 390}${color}cpu                            ${color3}${goto 860}gpu ${color}${nvidia temp}C
+${voffset -27}            ${goto 500}${color}mem
+${voffset -27}            ${goto 610}${color}disk
+${voffset -27}            ${goto 750}${color}${mixer}
+${voffset -27}            ${goto 1160}${color}${mpd_smart}
