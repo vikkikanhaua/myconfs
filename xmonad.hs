@@ -18,9 +18,11 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Scratchpad
 
 -- Layout --
+import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
-import XMonad.Layout.Accordion
+import XMonad.Layout.CenteredMaster
+import XMonad.Layout.SimpleFloat
 import XMonad.Layout.ResizableTile
 
 -- Extra --
@@ -51,7 +53,7 @@ myManageHook = (composeAll . concat $
   [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
   , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
   , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
-  , [resource  =? i                 --> doCenterFloat    |  i    <- myFloatsI ]
+  , [resource  =? i                 --> doSideFloat NC   |  i    <- myFloatsI ]
   ]) <+> manageDocks <+> manageScratchPad
 
   where
@@ -77,8 +79,8 @@ myXPConfig = defaultXPConfig
   , fgColor     = textColor
   , fgHLight    = lightTextColor
   , bgHLight    = lightBackgroundColor
-  , position    = Bottom
-  , height      = 14
+  , position    = Top
+  , height      = 12
   , historySize = 100
   , borderColor = lightBackgroundColor
   }
@@ -103,13 +105,15 @@ myPP h = defaultPP
   , ppSep = ""
   , ppUrgent = wrap "^fg(#000000)^bg(#cd5c5c)" "^fg()^bg()" . dzenStrip
   , ppWsSep = ""
-  , ppLayout = dzenColor "grey30" "" .
+  , ppLayout = dzenColor "grey60" "" .
       (\x -> case x of
-        "Tall" -> "^i(/home/vikki/.xmonad/dzen/tall.xbm) "
-        "Mirror Tall" -> "^i(/home/vikki/.xmonad/dzen/mtall.xbm) "
-        "Accordion" -> "accordion "
-        "Full" -> "^i(/home/vikki/.xmonad/dzen/full.xbm) "
+        "Tall"        -> " |-,-| "
+        "Mirror Tall" -> " |_,_| "
+        "Grid"        -> " |+,+| "
+        "Full"        -> " |   | "
+        "Simple Float"-> " float "
       )
+  , ppTitle  = map toLower
   , ppOutput = hPutStrLn h
   }
 
@@ -121,9 +125,10 @@ myPP h = defaultPP
 -- layout list
 myLayout = avoidStruts
            $ smartBorders
-           $ onWorkspace "main" Accordion
-           $ onWorkspaces ["web","term"] Full
-           $ Mirror tiled ||| tiled ||| Full ||| Accordion
+           $ onWorkspace "main" simpleFloat
+           $ onWorkspace "web"  ( centerMaster Grid )
+           $ onWorkspace "term" Full
+           $ Mirror tiled ||| tiled ||| Grid ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled      = Tall nmaster delta ratio
@@ -162,6 +167,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
       , ((modMask,                  xK_f     ),             spawn "favsong")
       , ((modMask,                  xK_e     ),             spawn "eject -T")
+      , ((modMask,                  xK_u     ),             spawn "urxvtc")
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
 
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
@@ -206,7 +212,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -y 1068 -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd
