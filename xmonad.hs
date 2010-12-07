@@ -53,7 +53,7 @@ myManageHook = (composeAll . concat $
   [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
   , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
   , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
-  , [resource  =? i                 --> doSideFloat NC   |  i    <- myFloatsI ]
+  , [resource  =? i                 --> doSideFloat SC   |  i    <- myFloatsI ]
   ]) <+> manageDocks <+> manageScratchPad
 
   where
@@ -174,33 +174,34 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
 
 -- layouts
-      , ((modMask,               xK_space ),                sendMessage NextLayout)
-      , ((modMask .|. shiftMask, xK_space ),                setLayout $ XMonad.layoutHook conf)
-      , ((modMask,               xK_b     ),                sendMessage ToggleStruts)
+      , ((modMask,               xK_space    ),             sendMessage NextLayout)
+      , ((modMask .|. shiftMask, xK_space    ),             setLayout $ XMonad.layoutHook conf)
+      , ((modMask,               xK_b        ),             sendMessage ToggleStruts)
 
 -- floating layer stuff
-      , ((modMask,               xK_t     ),                withFocused $ windows . W.sink)
-      , ((0,                     xK_F12   ),                scratchPad)
+      , ((modMask,               xK_t        ),             withFocused $ windows . W.sink)
+      , ((0,                     xK_F12      ),             scratchPad)
 
 -- focus
-      , ((modMask,               xK_Tab   ),                windows W.focusDown)
-      , ((modMask .|. shiftMask, xK_Tab   ),                windows W.focusUp)
-      , ((modMask,               xK_m     ),                windows W.focusMaster)
+      , ((modMask,               xK_Tab      ),             windows W.focusDown)
+      , ((modMask .|. shiftMask, xK_Tab      ),             windows W.focusUp)
+      , ((modMask,               xK_m        ),             windows W.focusMaster)
+      , ((modMask,               xK_BackSpace),             focusUrgent)
 
 -- swapping
-      , ((modMask .|. shiftMask, xK_Return),                windows W.shiftMaster)
-      , ((modMask .|. shiftMask, xK_j     ),                windows W.swapDown  )
-      , ((modMask .|. shiftMask, xK_k     ),                windows W.swapUp    )
+      , ((modMask .|. shiftMask, xK_Return   ),             windows W.shiftMaster)
+      , ((modMask .|. shiftMask, xK_j        ),             windows W.swapDown  )
+      , ((modMask .|. shiftMask, xK_k        ),             windows W.swapUp    )
 
 -- increase or decrease number of windows in the master area
-      , ((modMask              , xK_comma ),                sendMessage (IncMasterN 1))
-      , ((modMask              , xK_period),                sendMessage (IncMasterN (-1)))
+      , ((modMask              , xK_comma    ),             sendMessage (IncMasterN 1))
+      , ((modMask              , xK_period   ),             sendMessage (IncMasterN (-1)))
 
 -- resizing
-      , ((modMask,               xK_h     ),                sendMessage Shrink)
-      , ((modMask,               xK_l     ),                sendMessage Expand)
-      , ((modMask .|. shiftMask, xK_q     ),                io (exitWith ExitSuccess))
-      , ((modMask,               xK_q     ),                broadcastMessage ReleaseResources >> restart "xmonad" True)
+      , ((modMask,               xK_h        ),             sendMessage Shrink)
+      , ((modMask,               xK_l        ),             sendMessage Expand)
+      , ((modMask .|. shiftMask, xK_q        ),             io (exitWith ExitSuccess))
+      , ((modMask,               xK_q        ),             broadcastMessage ReleaseResources >> restart "xmonad" True)
      ]
      ++
 -- mod-[1..9] %! Switch to workspace N
@@ -212,7 +213,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -y 1068 -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd

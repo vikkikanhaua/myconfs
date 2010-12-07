@@ -20,7 +20,7 @@ conky_background_color = 0x151515
 conky_background_alpha = 0
 
 ring_background_color  = 0x424242
-ring_background_alpha  = 0.9
+ring_background_alpha  = 1
 ring_foreground_color  = 0x86c113
 ring_foreground_color2 = 0x1994d1
 ring_foreground_color3 = 0xaa0000
@@ -35,7 +35,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=310, y=1010,
+        x=310, y=70,
         radius=40,
         thickness=5,
         start_angle=0,
@@ -49,7 +49,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=430, y=1010,
+        x=430, y=70,
         radius=40,
         thickness=5,
         start_angle=-90,
@@ -63,7 +63,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=430, y=1010,
+        x=430, y=70,
         radius=34,
         thickness=5,
         start_angle=-90,
@@ -77,7 +77,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=540, y=1010,
+        x=540, y=70,
         radius=40,
         thickness=5,
         start_angle=-90,
@@ -91,7 +91,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=1010,
+        x=660, y=70,
         radius=40,
         thickness=4,
         start_angle=-90,
@@ -105,7 +105,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=1010,
+        x=660, y=70,
         radius=34,
         thickness=5,
         start_angle=-90,
@@ -119,7 +119,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=1010,
+        x=660, y=70,
         radius=28,
         thickness=5,
         start_angle=-90,
@@ -133,7 +133,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=1010,
+        x=660, y=70,
         radius=22,
         thickness=5,
         start_angle=-90,
@@ -147,7 +147,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=780, y=1010,
+        x=780, y=70,
         radius=40,
         thickness=5,
         start_angle=-90,
@@ -161,7 +161,7 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=1150, y=1010,
+        x=1150, y=70,
         radius=40,
         thickness=5,
         start_angle=-180,

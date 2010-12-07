@@ -16,7 +16,7 @@ text_buffer_size 2048
 
 own_window no
 
-alignment bottom_left
+alignment top_left
 gap_x 0
 gap_y 0
 
@@ -47,7 +47,7 @@ lua_load ~/.conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
+
                                                                                                                                               ${color3}${goto 860}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 960}updates ${color}${execi 3601 pacman -Qu | wc -l}    ${goto 1210}${color3}mpd ${color}${mpd_status} ${goto 1350}${color3}repeat ${color}${mpd_repeat} ${goto 1460}${color3}random ${color}${mpd_random}
 ${goto  125}${time %A}    ${goto 287}${color3}${time %H}${color2}${time %M}                                                                   ${color3}${goto 860}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 960}mail    ${color}${new_mails /home/vikki/mail/inbox}
 ${goto  125}${time %d %B}                                                   ${goto 390}cpu ${goto 500}mem ${goto 610}disk ${goto 750}${mixer} ${color3}${goto 860}gpu ${color}${nvidia temp}C                                                                              ${goto 1160}${color}${mpd_smart}
-
