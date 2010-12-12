@@ -16,10 +16,6 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 nvidia-settings --load-config-only
 
-# xsetroot -cursor_name left_ptr
-
-# eval `cat ${HOME}/.fehbg`
-
-ranwall
+eval `cat ${HOME}/.fehbg`
 
 exec awesome

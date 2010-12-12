@@ -96,7 +96,7 @@ end
 -- }}}
 
 -- {{{ naughty configuration
-naughty.config.presets.normal.timeout          = 5
+naughty.config.presets.normal.timeout          = 8
 naughty.config.presets.normal.font             = beautiful.font
 naughty.config.presets.normal.ontop            = true
 naughty.config.presets.normal.fg               = '#f0dfaf'
@@ -123,8 +123,8 @@ end
 -- {{{ defaults
 spacer    = widget({ type = "textbox"  })
 separator = widget({ type = "textbox" })
-spacer.text     = " "
-separator.text  = "|"
+spacer.text     = ' '
+separator.text  = '<span color="grey40">|</span>'
 -- }}}
 
 -- {{{ widgets
@@ -265,9 +265,9 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
     if   args["{state}"] == 'Stop' then
       return
     elseif args["{state}"] == 'Pause' then
-      return '| <span color="#f8072e">' .. args["{Artist}"] .. '</span> - <span color="#f8072e">' .. args["{Title}"] .. '</span>'
+      return ' <span color="#f8072e">' .. args["{Artist}"] .. '</span> - <span color="#f8072e">' .. args["{Title}"] .. '</span>'
     else
-      return '| <span color="#5bde58">' .. args["{Artist}"] .. '</span> - <span color="#5bde58">' .. args["{Title}"] .. '</span>'
+      return ' <span color="#5bde58">' .. args["{Artist}"] .. '</span> - <span color="#5bde58">' .. args["{Title}"] .. '</span>'
     end
   end)
 -- }}}
