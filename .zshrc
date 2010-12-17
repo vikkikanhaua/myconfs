@@ -54,7 +54,6 @@ compinit
 
 # ---[ exports ] {{{
 export HISTFILE=~/.zsh_history
-export TERM="rxvt-256color"
 export BROWSER="firefox"
 export EDITOR="vim"
 export PAGER="less -winm"

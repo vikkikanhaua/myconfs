@@ -407,8 +407,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey            }, "u",      awful.client.urgent.jumpto),
 
   -- Standard program
-  awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
-  awful.key({ modkey            }, "Return", function () awful.util.spawn(terminal .. " -name main") end),
+  awful.key({ modkey            }, "Return", function () awful.util.spawn(terminal) end),
   awful.key({ modkey, "Control" }, "r",      awesome.restart),
   awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
@@ -530,14 +529,12 @@ awful.rules.rules = {
                    size_hints_honor = false,
                    keys = clientkeys,
                    buttons = clientbuttons } },
-  { rule = { instance = "main" },
-    properties = { floating = true,
-    border_color = beautiful.border_focus,
-    border_width = beautiful.border_width },
-    callback = awful.placement.centered },
   { rule = { instance = "scratch" },
     properties = { border_color = beautiful.border_focus,
     border_width = beautiful.border_width } },
+  { rule = { instance = "DTA" },
+    properties = { floating = true },
+    callback = awful.placement.centered },
   { rule = { instance = "Navigator" },
     properties = { tag = tags[1][2], switchtotag = true } },
   { rule_any = { class = { "XFontSel", "Gimp" }, name = { "Downloads" } },
@@ -553,7 +550,8 @@ client.add_signal("manage", function (c, startup)
   if not startup then
     -- Put windows in a smart way, only if they does not set an initial position.
     if not c.size_hints.user_position and not c.size_hints.program_position then
-        awful.placement.no_offscreen(c)
+      awful.placement.no_overlap(c)
+      awful.placement.no_offscreen(c)
     end
   end
 end)

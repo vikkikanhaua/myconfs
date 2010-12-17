@@ -2,7 +2,7 @@
 *boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 *title           : terminal
 *buffered        : true
-*main*geometry   : 290x75
+*geometry        : 200x45
 *transparent     : true
 *scrollBar       : false
 *secondaryScroll : true
