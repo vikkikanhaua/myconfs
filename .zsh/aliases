@@ -28,6 +28,7 @@ alias svim='sudoedit'
 alias ss='source ~/.zshrc'
 alias t='todo.sh -a'
 alias feeds='newsbeuter'
+alias packer='packer --auronly'
 
 # filetypes
 alias -s pdf=evince

@@ -39,8 +39,8 @@ import Data.Char
 import System.Exit
 
 -- default declaraions
-myFont               = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
-myTerminal           = "urxvtc -name main"
+myFont               = "-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1"
+myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#c0c0a0"
 lightTextColor       = "#fffff0"
@@ -53,14 +53,12 @@ myManageHook = (composeAll . concat $
   [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
   , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
   , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
-  , [resource  =? i                 --> doSideFloat SC   |  i    <- myFloatsI ]
   ]) <+> manageDocks <+> manageScratchPad
 
   where
     -- names
     myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
     myFloatsT = ["Downloads", "Add-ons", "Preferences"]
-    myFloatsI = ["main"]
     myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
 
 myFocusFollowsMouse :: Bool
@@ -79,7 +77,7 @@ myXPConfig = defaultXPConfig
   , fgColor     = textColor
   , fgHLight    = lightTextColor
   , bgHLight    = lightBackgroundColor
-  , position    = Top
+  , position    = Bottom
   , height      = 12
   , historySize = 100
   , borderColor = lightBackgroundColor
@@ -107,13 +105,13 @@ myPP h = defaultPP
   , ppWsSep = ""
   , ppLayout = dzenColor "grey60" "" .
       (\x -> case x of
-        "Tall"        -> " |-,-| "
-        "Mirror Tall" -> " |_,_| "
-        "Grid"        -> " |+,+| "
-        "Full"        -> " |   | "
-        "Simple Float"-> " float "
+        "Tall"        -> "|-,-| "
+        "Mirror Tall" -> "|_,_| "
+        "Grid"        -> "|+,+| "
+        "Full"        -> "|   | "
+        "Simple Float"-> "float "
       )
-  , ppTitle  = map toLower
+  , ppTitle  = map toLower . shorten 430
   , ppOutput = hPutStrLn h
   }
 
@@ -167,7 +165,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
       , ((modMask,                  xK_f     ),             spawn "favsong")
       , ((modMask,                  xK_e     ),             spawn "eject -T")
-      , ((modMask,                  xK_u     ),             spawn "urxvtc")
+      , ((modMask,                  xK_x     ),             spawn "xterm")
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
 
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
@@ -213,7 +211,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -h 12 -e '' -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 12 -e '' -fn '-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd
