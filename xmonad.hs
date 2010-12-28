@@ -111,7 +111,7 @@ myPP h = defaultPP
         "Full"        -> "|   | "
         "Simple Float"-> "float "
       )
-  , ppTitle  = map toLower . shorten 430
+  , ppTitle  = map toLower . shorten 70
   , ppOutput = hPutStrLn h
   }
 

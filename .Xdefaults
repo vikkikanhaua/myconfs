@@ -9,7 +9,7 @@
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 20
+*shading         : 40
 *saveLines       : 10000
 *cursorBlink     : false
 *dynamicColors   : on
