@@ -1,5 +1,5 @@
 alias !='sudo'
-alias ls='ls --color=always -hv --indicator-style=file-type --group-directories-first --time-style=full-iso'
+alias ls='ls --color=always -hv --indicator-style=file-type --group-directories-first --time-style=long-iso'
 alias ll='ls -lo'
 alias la='ls -A'
 alias grep='grep -i --color=always'

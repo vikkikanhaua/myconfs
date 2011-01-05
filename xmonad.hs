@@ -89,7 +89,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
   where
     -- height, width as % screensize
-    h = 0.40
+    h = 0.435
     w = 0.70
 
     t = 0.25
@@ -211,7 +211,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 12 -e '' -fn '-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn '-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1' -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd
