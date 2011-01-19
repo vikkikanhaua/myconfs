@@ -2,6 +2,8 @@
 ###############################
 #
 really-quiet="0"
+msgcolor="1"
+msgmodule="1"
 lirc="0"
 input=file="/home/vikki/.mplayer/mplayer_fifo"
 #
@@ -56,7 +58,7 @@ slang=en
 sub-fuzziness=0
 
 # Set font.
-font=/usr/share/fonts/TTF/ttf-inconsolata.otf
+font="Inconsolata"
 
 # Set font encoding.
 subfont-encoding=unicode

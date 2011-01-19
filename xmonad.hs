@@ -27,6 +27,7 @@ import XMonad.Layout.ResizableTile
 
 -- Extra --
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CycleRecentWS
 import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
@@ -97,28 +98,28 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 -- custom pp
 myPP h = defaultPP
-  { ppCurrent = wrap "^fg(#fea63c)^bg(#382d22)" "^fg()^bg()" . pad
+  { ppCurrent = wrap "^fg(#fea63c)" "^fg()"
   , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
   , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
-  , ppSep = ""
-  , ppUrgent = wrap "^fg(#000000)^bg(#cd5c5c)" "^fg()^bg()" . dzenStrip
-  , ppWsSep = ""
+  , ppSep = " "
+  , ppUrgent = wrap "^fg(#cd5c5c)" "^fg()" . dzenStrip
+  , ppWsSep = " "
   , ppLayout = dzenColor "grey60" "" .
       (\x -> case x of
-        "Tall"        -> "|-,-| "
-        "Mirror Tall" -> "|_,_| "
-        "Grid"        -> "|+,+| "
-        "Full"        -> "|   | "
-        "Simple Float"-> "float "
+        "Tall"        -> "|-,-|"
+        "Mirror Tall" -> "|_,_|"
+        "Grid"        -> "|+,+|"
+        "Full"        -> "|   |"
+        "Simple Float"-> "float"
       )
-  , ppTitle  = map toLower . shorten 70
+  , ppTitle  = shorten 70
   , ppOutput = hPutStrLn h
   }
 
   where
     -- filter out NSP
-    noScratchPad ws = if ws == "NSP" then "" else pad ws
-    namedOnly ws = if any (`elem` ws) ['a'..'z'] then pad ws else ""
+    noScratchPad ws = if ws == "NSP" then "" else ws
+    namedOnly ws = if any (`elem` ws) ['a'..'z'] then ws else ""
 
 -- layout list
 myLayout = avoidStruts
@@ -151,7 +152,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
       , ((modMask,                  xK_o     ),             spawn "ooffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
-      , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%d-%b.png -q 100")
+      , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%S-%d-%b.png -q 100")
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "ncmpcpp prev")
       , ((0,                       0x1008ff19),             spawn "ncmpcpp toggle")
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
@@ -169,6 +170,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
 
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
+      , ((modMask,                  xK_Escape),             toggleWS)
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
 
 -- layouts

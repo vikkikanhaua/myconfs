@@ -163,7 +163,7 @@ zsh_stats() { history | awk '{print $2}' | sort | uniq -c | sort -rn | head }
 mk() { mkdir -p "$1"; cd "$1" }
 
 # get ip of an interface
-getip() { /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}' }
+getip() { /sbin/ifconfig ${1:-ppp0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}' }
 
 # get file & directory count
 files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }
