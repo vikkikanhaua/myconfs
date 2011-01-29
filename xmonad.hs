@@ -48,12 +48,13 @@ lightTextColor       = "#fffff0"
 backgroundColor      = "#304520"
 lightBackgroundColor = "#456030"
 urgentColor          = "#ffc000"
+myBitmapsPath        = "/home/vikki/.xmonad/dzen/"
 
 -- custom managehook
 myManageHook = (composeAll . concat $
-  [ [className =? c                 --> doShift "web"    |  c    <- myWebs    ] -- move webs to web
-  , [className =? c                 --> doCenterFloat    |  c    <- myFloats  ] -- float my floats classes
-  , [title     =? t                 --> doCenterFloat    |  t    <- myFloatsT ] -- float my floats titles
+  [ [className =? c  --> moveTo 1       |  c  <- myWebs   ] -- move webs to web
+  , [className =? c  --> doCenterFloat  |  c  <- myFloats ] -- float my floats classes
+  , [title     =? t  --> doCenterFloat  |  t  <- myFloatsT] -- float my floats titles
   ]) <+> manageDocks <+> manageScratchPad
 
   where
@@ -61,6 +62,7 @@ myManageHook = (composeAll . concat $
     myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
     myFloatsT = ["Downloads", "Add-ons", "Preferences"]
     myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
+    moveTo i  = doF . W.shift $ if i == -1 then last myWorkspaces else myWorkspaces !! i
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
@@ -96,6 +98,19 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 0.25
     l = 0.15
 
+-- Workspaces
+myWorkspaces =
+   [
+      wrapBitmap "arch_10x10.xbm",
+      wrapBitmap "dish.xbm",
+      wrapBitmap "fox.xbm",
+      wrapBitmap "shroom.xbm",
+      wrapBitmap "scorpio.xbm"
+   ]
+
+   where
+      wrapBitmap bitmap = "^p(5)^i(" ++ myBitmapsPath ++ bitmap ++ ")^p(5)"
+
 -- custom pp
 myPP h = defaultPP
   { ppCurrent = wrap "^fg(#fea63c)" "^fg()"
@@ -106,13 +121,13 @@ myPP h = defaultPP
   , ppWsSep = " "
   , ppLayout = dzenColor "grey60" "" .
       (\x -> case x of
-        "Tall"        -> "|-,-|"
-        "Mirror Tall" -> "|_,_|"
-        "Grid"        -> "|+,+|"
-        "Full"        -> "|   |"
-        "Simple Float"-> "float"
+        "Tall"        -> wrapBitmap "tall.xbm"
+        "Mirror Tall" -> wrapBitmap "mtall.xbm"
+        "Grid"        -> wrapBitmap "grid.xbm"
+        "Full"        -> wrapBitmap "full.xbm"
+        "Simple Float"-> wrapBitmap "<>"
       )
-  , ppTitle  = shorten 70
+  , ppTitle  = shorten 82
   , ppOutput = hPutStrLn h
   }
 
@@ -120,26 +135,30 @@ myPP h = defaultPP
     -- filter out NSP
     noScratchPad ws = if ws == "NSP" then "" else ws
     namedOnly ws = if any (`elem` ws) ['a'..'z'] then ws else ""
+    wrapBitmap bitmap = "^p(5)^i(" ++ myBitmapsPath ++ bitmap ++ ")^p(5)"
 
 -- layout list
 myLayout = avoidStruts
            $ smartBorders
-           $ onWorkspace "main" simpleFloat
-           $ onWorkspace "web"  ( centerMaster Grid )
-           $ onWorkspace "term" Full
+           $ onWorkspace ( ws 0 ) simpleFloat
+           $ onWorkspace ( ws 1 ) ( centerMaster Grid )
+           $ onWorkspace ( ws 2 ) Full
            $ Mirror tiled ||| tiled ||| Grid ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled      = Tall nmaster delta ratio
+    tiled   = Tall nmaster delta ratio
 
     -- The default number of windows in the master pane
-    nmaster    = 1
+    nmaster = 1
 
     -- Default proportion of screen occupied by master pane
-    ratio      = 1/2
+    ratio   = 1/2
 
     -- Percent of screen to increment by when resizing panes
-    delta      = 3/100
+    delta   = 3/100
+
+    -- Workspace name resolution
+    ws i    = if i == -1 then last myWorkspaces else myWorkspaces !! i
 
 -- custom keys
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
@@ -150,7 +169,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
       , ((modMask,                  xK_a     ),             spawn "evince")
       , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
-      , ((modMask,                  xK_o     ),             spawn "ooffice")
+      , ((modMask,                  xK_o     ),             spawn "libreoffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
       , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%S-%d-%b.png -q 100")
       , ((modMask .|. controlMask,  xK_Left  ),             spawn "ncmpcpp prev")
@@ -213,14 +232,14 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn '-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1' -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn " ++ myFont ++ " -ta l"
 
 main = do
 	bar <- spawnPipe statusBarCmd
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook = myManageHook
-          	   , workspaces = ["main","web","term","media","else"]
+          	   , workspaces = myWorkspaces
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar
           	   , modMask = mod4Mask

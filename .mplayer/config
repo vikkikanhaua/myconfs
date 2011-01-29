@@ -57,9 +57,6 @@ slang=en
 # Find subtitle files. (1: load all subs containing movie name)
 sub-fuzziness=0
 
-# Set font.
-font="Inconsolata"
-
 # Set font encoding.
 subfont-encoding=unicode
 
