@@ -117,7 +117,7 @@ myPP h = defaultPP
   , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
   , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
   , ppSep = " "
-  , ppUrgent = wrap "^fg(#cd5c5c)" "^fg()" . dzenStrip
+  , ppUrgent = wrap "^fg(#cd5c5c)" "^fg()"
   , ppWsSep = " "
   , ppLayout = dzenColor "grey60" "" .
       (\x -> case x of
@@ -177,9 +177,9 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
       , ((modMask .|. controlMask,  xK_s     ),             spawn "ncmpcpp stop")
       , ((modMask .|. controlMask,  xK_Right ),             spawn "ncmpcpp next")
-      , ((0,                       0x1008ff11),             spawn "amixer -q set Master 2-")
-      , ((0,                       0x1008ff13),             spawn "amixer -q set Master 2+")
-      , ((0,                       0x1008ff12),             spawn "amixer -q set Master toggle")
+      , ((0,                       0x1008ff11),             spawn "amixer -q set 'Master Front' 2-")
+      , ((0,                       0x1008ff13),             spawn "amixer -q set 'Master Front' 2+")
+      , ((0,                       0x1008ff12),             spawn "amixer -q set 'Master Front' toggle")
       , ((0,                       0x1008ff1b),             spawn "firefox")
       , ((modMask,                  xK_c     ),             spawn "chromium")
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
