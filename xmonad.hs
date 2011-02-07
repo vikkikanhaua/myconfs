@@ -43,16 +43,15 @@ import System.Exit
 myFont               = "-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1"
 myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
-textColor            = "#c0c0a0"
-lightTextColor       = "#fffff0"
-backgroundColor      = "#304520"
-lightBackgroundColor = "#456030"
-urgentColor          = "#ffc000"
+textColor            = "#f1f1f1"
+lightTextColor       = "#fea63c"
+backgroundColor      = "#1a1a1a"
+lightBackgroundColor = "grey20"
 myBitmapsPath        = "/home/vikki/.xmonad/dzen/"
 
 -- custom managehook
 myManageHook = (composeAll . concat $
-  [ [className =? c  --> moveTo 1       |  c  <- myWebs   ] -- move webs to web
+  [ [className =? c  --> doShift "web"  |  c  <- myWebs   ] -- move webs to web
   , [className =? c  --> doCenterFloat  |  c  <- myFloats ] -- float my floats classes
   , [title     =? t  --> doCenterFloat  |  t  <- myFloatsT] -- float my floats titles
   ]) <+> manageDocks <+> manageScratchPad
@@ -62,7 +61,6 @@ myManageHook = (composeAll . concat $
     myFloats  = ["Gimp", "MPlayer", "Vlc", "Xmessage", "Save As", "XFontSel", "feh"]
     myFloatsT = ["Downloads", "Add-ons", "Preferences"]
     myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
-    moveTo i  = doF . W.shift $ if i == -1 then last myWorkspaces else myWorkspaces !! i
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
@@ -80,8 +78,8 @@ myXPConfig = defaultXPConfig
   , fgColor     = textColor
   , fgHLight    = lightTextColor
   , bgHLight    = lightBackgroundColor
-  , position    = Bottom
-  , height      = 12
+  , position    = Top
+  , height      = 20
   , historySize = 100
   , borderColor = lightBackgroundColor
   }
@@ -98,36 +96,23 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 0.25
     l = 0.15
 
--- Workspaces
-myWorkspaces =
-   [
-      wrapBitmap "arch_10x10.xbm",
-      wrapBitmap "dish.xbm",
-      wrapBitmap "fox.xbm",
-      wrapBitmap "shroom.xbm",
-      wrapBitmap "scorpio.xbm"
-   ]
-
-   where
-      wrapBitmap bitmap = "^p(5)^i(" ++ myBitmapsPath ++ bitmap ++ ")^p(5)"
-
 -- custom pp
 myPP h = defaultPP
-  { ppCurrent = wrap "^fg(#fea63c)" "^fg()"
-  , ppHidden = wrap "^fg(#66aabb)" "^fg()" . noScratchPad
-  , ppHiddenNoWindows = wrap "^fg(grey40)" "^fg()" . namedOnly
+  { ppCurrent = wrap "^fg(#f1f1f1)" "^fg()"
+  , ppHidden = wrap "^fg(#659fdb)" "^fg()" . noScratchPad
+  , ppHiddenNoWindows = wrap "^fg(grey30)" "^fg()" . namedOnly
   , ppSep = " "
-  , ppUrgent = wrap "^fg(#cd5c5c)" "^fg()"
+  , ppUrgent = wrap "^fg(red)" "^fg()" . dzenStrip
   , ppWsSep = " "
-  , ppLayout = dzenColor "grey60" "" .
+  , ppLayout = dzenColor "grey40" "" .
       (\x -> case x of
         "Tall"        -> wrapBitmap "tall.xbm"
         "Mirror Tall" -> wrapBitmap "mtall.xbm"
         "Grid"        -> wrapBitmap "grid.xbm"
         "Full"        -> wrapBitmap "full.xbm"
-        "Simple Float"-> wrapBitmap "<>"
+        "Simple Float"->            "<>"
       )
-  , ppTitle  = shorten 82
+  , ppTitle  = wrap "^fg(#fea63c)" "^fg()" . shorten 70
   , ppOutput = hPutStrLn h
   }
 
@@ -135,14 +120,14 @@ myPP h = defaultPP
     -- filter out NSP
     noScratchPad ws = if ws == "NSP" then "" else ws
     namedOnly ws = if any (`elem` ws) ['a'..'z'] then ws else ""
-    wrapBitmap bitmap = "^p(5)^i(" ++ myBitmapsPath ++ bitmap ++ ")^p(5)"
+    wrapBitmap bitmap = "^i(" ++ myBitmapsPath ++ bitmap ++ ")"
 
 -- layout list
 myLayout = avoidStruts
            $ smartBorders
-           $ onWorkspace ( ws 0 ) simpleFloat
-           $ onWorkspace ( ws 1 ) ( centerMaster Grid )
-           $ onWorkspace ( ws 2 ) Full
+           $ onWorkspace " main" simpleFloat
+           $ onWorkspace "web"   ( centerMaster Grid )
+           $ onWorkspace "term"  Full
            $ Mirror tiled ||| tiled ||| Grid ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
@@ -156,9 +141,6 @@ myLayout = avoidStruts
 
     -- Percent of screen to increment by when resizing panes
     delta   = 3/100
-
-    -- Workspace name resolution
-    ws i    = if i == -1 then last myWorkspaces else myWorkspaces !! i
 
 -- custom keys
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
@@ -239,7 +221,7 @@ main = do
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook = myManageHook
-          	   , workspaces = myWorkspaces
+          	   , workspaces = [" main","web","term","media","else"]
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar
           	   , modMask = mod4Mask
