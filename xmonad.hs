@@ -18,7 +18,6 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Scratchpad
 
 -- Layout --
-import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.CenteredMaster
@@ -40,7 +39,7 @@ import Data.Char
 import System.Exit
 
 -- default declaraions
-myFont               = "-artwiz-snap-normal-r-normal--10-100-75-75-p-90-iso8859-1"
+myFont               = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
 myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#f1f1f1"
@@ -108,12 +107,11 @@ myPP h = defaultPP
       (\x -> case x of
         "Tall"        -> wrapBitmap "tall.xbm"
         "Mirror Tall" -> wrapBitmap "mtall.xbm"
-        "Grid"        -> wrapBitmap "grid.xbm"
         "Full"        -> wrapBitmap "full.xbm"
         "Simple Float"->            "<>"
       )
-  , ppTitle  = wrap "^fg(#fea63c)" "^fg()" . shorten 70
-  , ppOutput = hPutStrLn h
+  , ppTitle  = wrap "^fg(#fea63c)" "^fg()" . shorten 75
+  , ppOutput = hPutStrLn h . pad
   }
 
   where
@@ -125,10 +123,9 @@ myPP h = defaultPP
 -- layout list
 myLayout = avoidStruts
            $ smartBorders
-           $ onWorkspace " main" simpleFloat
-           $ onWorkspace "web"   ( centerMaster Grid )
-           $ onWorkspace "term"  Full
-           $ Mirror tiled ||| tiled ||| Grid ||| Full
+           $ onWorkspace  "main" simpleFloat
+           $ onWorkspaces ["web", "term"]  Full
+           $ Mirror tiled ||| tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -221,7 +218,7 @@ main = do
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook = myManageHook
-          	   , workspaces = [" main","web","term","media","else"]
+          	   , workspaces = ["main","web","term","media","else"]
           	   , layoutHook = myLayout
           	   , logHook = dynamicLogWithPP $ myPP bar
           	   , modMask = mod4Mask

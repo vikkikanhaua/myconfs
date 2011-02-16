@@ -12,13 +12,15 @@ fi
 
 urxvtd -q -f -o
 
-setxkbmap -option terminate:ctrl_alt_bksp
+tmux start-server
+
+eval `cat ${HOME}/.fehbg`
 
 xsetroot -cursor_name left_ptr
 
 nvidia-settings --load-config-only
 
-eval `cat ${HOME}/.fehbg`
+setxkbmap -option terminate:ctrl_alt_bksp
 
 dzonky
 
