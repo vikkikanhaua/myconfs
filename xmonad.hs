@@ -164,6 +164,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
       , ((modMask,                  xK_f     ),             spawn "favsong")
       , ((modMask,                  xK_e     ),             spawn "eject -T")
+      , ((modMask,                  xK_u     ),             spawn "devmon -c; notify DEVICE SAFE TO REMOVE")
       , ((modMask,                  xK_x     ),             spawn "xterm")
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
 
@@ -213,19 +214,24 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn " ++ myFont ++ " -ta l"
 
+startup :: X ()
+startup = do
+          spawn "devmon -g --exec-on-drive \"notify %f mounted on %d\" --exec-on-disc \"notify DISC mounted on %d\""
+
 main = do
 	bar <- spawnPipe statusBarCmd
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
-                   { manageHook = myManageHook
-          	   , workspaces = ["main","web","term","media","else"]
-          	   , layoutHook = myLayout
-          	   , logHook = dynamicLogWithPP $ myPP bar
-          	   , modMask = mod4Mask
+                   { manageHook         = myManageHook
+          	   , workspaces         = ["main","web","term","media","else"]
+          	   , layoutHook         = myLayout
+          	   , logHook            = dynamicLogWithPP $ myPP bar
+                   , startupHook        = startup
+          	   , modMask            = mod4Mask
           	   , normalBorderColor  = myNormalBorderColor
           	   , focusedBorderColor = myFocusedBorderColor
                    , terminal           = myTerminal
           	   , focusFollowsMouse  = myFocusFollowsMouse
-          	   , keys = keys'
+          	   , keys               = keys'
           	   }
 -- END

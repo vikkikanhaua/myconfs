@@ -24,4 +24,4 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 dzonky
 
-exec xmonad
+exec ck-launch-session xmonad
