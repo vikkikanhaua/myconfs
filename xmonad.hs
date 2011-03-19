@@ -200,7 +200,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,               xK_h        ),             sendMessage Shrink)
       , ((modMask,               xK_l        ),             sendMessage Expand)
       , ((modMask .|. shiftMask, xK_q        ),             myExit)
-      , ((modMask,               xK_q        ),             broadcastMessage ReleaseResources >> restart "xmonad" True)
+      , ((modMask,               xK_q        ),             myRestart)
      ]
      ++
 -- mod-[1..9] %! Switch to workspace N
@@ -212,6 +212,8 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
       myExit     = spawn "kill `pgrep devmon`" >> io (exitWith ExitSuccess)
+      myRestart  = spawn "kill `pgrep devmon`" >> broadcastMessage ReleaseResources >> restart "xmonad" True
+
 
 statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn " ++ myFont ++ " -ta l"
 
