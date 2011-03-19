@@ -265,7 +265,7 @@ centered_cursor = "yes"
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-progressbar_look = "-0"
+progressbar_look = "-0-"
 #
 default_place_to_search_in = "database" (database/playlist)
 #

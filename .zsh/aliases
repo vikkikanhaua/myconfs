@@ -26,13 +26,12 @@ alias xp='echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\"" && xprop | grep "WM_WIND
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias svim='sudoedit'
 alias ss='source ~/.zshrc'
-alias t='todo.sh -a'
 alias feeds='newsbeuter'
 
 #package mgmt
 alias install='sudo powerpill -S'
 alias uninstall='sudo pacman -Rsn'
-alias search='packer -Ss'
+alias search='yaourt -Ss'
 alias pacls='pacman -Ql'
 alias aur='packer --auronly -S'
 alias update='yaourt -Syu'
@@ -40,6 +39,6 @@ alias update='yaourt -Syu'
 # filetypes
 alias -s pdf=evince
 alias -s svg=inkview
-alias -s {mov,avi,wmv,mkv,mp4,mp3,mpg,mpeg}=mplayer
+alias -s {mov,avi,wmv,mkv,mp4,mp3,mpg,mpeg,flac}=mplayer
 alias -s {gif,jpg,jpeg,png}=feh
 alias -s {html,htm,org,com,net,no,uk,us.se}=firefox

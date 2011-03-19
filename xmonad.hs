@@ -62,7 +62,7 @@ myManageHook = (composeAll . concat $
     myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
 
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = False
+myFocusFollowsMouse = True
 
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#659fdb"
@@ -151,11 +151,11 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_o     ),             spawn "libreoffice")
       , ((modMask,                  xK_r     ),             spawn "ranwall")
       , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%S-%d-%b.png -q 100")
-      , ((modMask .|. controlMask,  xK_Left  ),             spawn "ncmpcpp prev")
-      , ((0,                       0x1008ff19),             spawn "ncmpcpp toggle")
+      , ((modMask,                  xK_Left  ),             spawn "mpc -q prev")
+      , ((0,                       0x1008ff19),             spawn "mpc -q toggle")
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
-      , ((modMask .|. controlMask,  xK_s     ),             spawn "ncmpcpp stop")
-      , ((modMask .|. controlMask,  xK_Right ),             spawn "ncmpcpp next")
+      , ((modMask,                  xK_s     ),             spawn "mpc -q stop")
+      , ((modMask,                  xK_Right ),             spawn "mpc -q next")
       , ((0,                       0x1008ff11),             spawn "amixer -q set 'Master Front' 2-")
       , ((0,                       0x1008ff13),             spawn "amixer -q set 'Master Front' 2+")
       , ((0,                       0x1008ff12),             spawn "amixer -q set 'Master Front' toggle")
@@ -199,7 +199,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- resizing
       , ((modMask,               xK_h        ),             sendMessage Shrink)
       , ((modMask,               xK_l        ),             sendMessage Expand)
-      , ((modMask .|. shiftMask, xK_q        ),             io (exitWith ExitSuccess))
+      , ((modMask .|. shiftMask, xK_q        ),             myExit)
       , ((modMask,               xK_q        ),             broadcastMessage ReleaseResources >> restart "xmonad" True)
      ]
      ++
@@ -211,6 +211,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     where
       scratchPad = scratchpadSpawnActionTerminal myTerminal
+      myExit     = spawn "kill `pgrep devmon`" >> io (exitWith ExitSuccess)
 
 statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn " ++ myFont ++ " -ta l"
 

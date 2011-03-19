@@ -62,7 +62,7 @@ hdr_order from: to: cc: subject:                  # and in this order
 #####
 
 subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel
-mailboxes =inbox =facebook =aur-general =arch-general =arch-dev-pub =awesome =awesome-devel =arch-announce =mc =xmonad =sent_mail =drafts =starred =spam =trash =all_mail
+mailboxes =inbox =sent_mail =facebook =aur-general =arch-general =arch-dev-pub =awesome =awesome-devel =arch-announce =mc =xmonad =drafts
 # }}}
 
 ##
@@ -90,7 +90,7 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 #####
 
 set date_format         = "%d/%m/%y at %I:%M%P"
-set index_format        = "%4C [%Z]  %D  •  %-45.45F %s %> %c"
+set index_format        = "%4C [%Z]  %D  •  %-45.45L %s %> %c"
 set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusbar
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"
@@ -140,7 +140,5 @@ macro index B   "<limit>~b " "search message bodies"
 macro index I   "<change-folder>!<enter>" "go to Inbox"
 macro index P   "<pipe-message>cat > ~/" "save message as"
 macro index Z   "<shell-escape>/usr/bin/offlineimap <enter>" "sync IMAP"
-macro index D   "<save-message>+trash<enter>" "move message to trash"
-macro index S   "<save-message>+spam<enter>" "mark & move message to spam"
-macro index,pager b '<enter-command>toggle sidebar_visible<enter>'
+macro index b   "<enter-command>toggle sidebar_visible<enter>"
 # }}}

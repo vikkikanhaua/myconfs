@@ -16,12 +16,12 @@
   color index      brightblack   default "~u"
 
 # uncolor certain messages
-uncolor index "~P"
-uncolor index "~C @.com"
-uncolor index "~N ~u"
-uncolor index "~N !~u"
-uncolor index "~T"
-uncolor index "~D"
+uncolor index      "~P"
+uncolor index      "~C @.com"
+uncolor index      "~N ~u"
+uncolor index      "~N !~u"
+uncolor index      "~T"
+uncolor index      "~D"
 
 # and recolor them appropriately
   color index      brightblack   default "~P"
