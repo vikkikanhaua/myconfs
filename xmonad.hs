@@ -39,7 +39,7 @@ import Data.Char
 import System.Exit
 
 -- default declaraions
-myFont               = "-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*"
+myFont               = "-*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*"
 myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#f1f1f1"
