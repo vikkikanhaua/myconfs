@@ -154,7 +154,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                  xK_Left  ),             spawn "mpc -q prev")
       , ((0,                       0x1008ff19),             spawn "mpc -q toggle")
       , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
-      , ((modMask,                  xK_s     ),             spawn "mpc -q stop")
+      , ((modMask,                  xK_Down  ),             spawn "mpc -q stop")
       , ((modMask,                  xK_Right ),             spawn "mpc -q next")
       , ((0,                       0x1008ff11),             spawn "amixer -q set 'Master Front' 2-")
       , ((0,                       0x1008ff13),             spawn "amixer -q set 'Master Front' 2+")

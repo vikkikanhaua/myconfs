@@ -1,5 +1,5 @@
 *font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
-*boldFont        : -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*
+*boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 *title           : terminal
 *buffered        : true
 *geometry        : 200x45

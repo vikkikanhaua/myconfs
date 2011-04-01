@@ -22,6 +22,10 @@ nvidia-settings --load-config-only
 
 setxkbmap -option terminate:ctrl_alt_bksp
 
-dzonky
+# dzonky
 
-exec ck-launch-session xmonad
+conky -c ~/.conky/conkyrc
+
+# exec ck-launch-session xmonad
+#
+exec ck-launch-session subtle

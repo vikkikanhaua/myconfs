@@ -29,7 +29,7 @@ session = ~/.session
 schedule = watch_directory,10,10,"load=~/downloads/*.torrent,d.delete_tied="
 
 system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/downloads/torrents/;d.set_directory=~/downloads/torrents/"
-system.method.set_key = event.download.finished,notify_me,"execute=notify,$d.get_name=, [DONE]"
+system.method.set_key = event.download.finished,notify_me,"execute=notify-send,$d.get_name="
 
 # Set the IP filter file, requires full path.
 ip_filter = /home/vikki/downloads/psplist.txt

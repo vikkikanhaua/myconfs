@@ -29,11 +29,10 @@ alias ss='source ~/.zshrc'
 alias feeds='newsbeuter'
 
 #package mgmt
-alias install='sudo powerpill -S'
+alias install='sudo pacman -S'
 alias uninstall='sudo pacman -Rsn'
 alias search='yaourt -Ss'
 alias pacls='pacman -Ql'
-alias aur='packer --auronly -S'
 alias update='yaourt -Syu'
 
 # filetypes

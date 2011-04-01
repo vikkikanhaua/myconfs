@@ -1,19 +1,20 @@
---[[
-Ring Meters by londonali1010 (2009)
+--[[    Background by londonali1010 (2009)
+  VinDSL Background Hack (2010-2011)
 
-This script draws percentage meters as rings. It is fully customisable; all options are described in the script.
+This script draws a background to the Conky window. It covers the whole of the Conky window, but you can specify rounded corners, if you wish.
 
-IMPORTANT: if you are using the 'cpu' function, it will cause a segmentation fault if it tries to draw a ring straight away. The if statement on line 145 uses a delay to make sure that this doesn't happen. It calculates the length of the delay by the number of updates since Conky started. Generally, a value of 5s is long enough, so if you update Conky every 1s, use update_num > 5 in that if statement (the default). If you only update Conky every 2s, you should change it to update_num > 3; conversely if you update Conky every 0.5s, you should use update_num > 10. ALSO, if you change your Conky, is it best to use "killall conky; conky" to update it, otherwise the update_num will not be reset and you will get an error.
-
-To call this script in Conky, use the following (assuming that you save this script to ~/scripts/rings.lua):
-    lua_load ~/scripts/rings-v1.2.1.lua
-    lua_draw_hook_pre ring_stats
+To call this script in Conky, use (assuming you have saved this script to ~/scripts/):
+  lua_load ~/scripts/draw_bg.lua
+  lua_draw_hook_pre draw_bg
 
 Changelog:
-+ v1.2.1 -- Fixed minor bug that caused script to crash if conky_parse() returns a nil value (20.10.2009)
-+ v1.2 -- Added option for the ending angle of the rings (07.10.2009)
-+ v1.1 -- Added options for the starting angle of the rings, and added the "max" variable, to allow for variables that output a numerical value rather than a percentage (29.09.2009)
-+ v1.0 -- Original release (28.09.2009)
+  + v3.0        VinDSL Hack (01.28.2011) Killed memory leak.
+  + v2.4        VinDSL Hack (01.25.2011) Declared all variables in local.
+  + v2.3        VinDSL Hack (12.31.2010) Added shading example(s).
+  + v2.2        VinDSL Hack (12.30.2010) Cleaned up the code a bit.
+  + v2.1        VinDSL Hack (12.24.2010) Added cairo destroy function(s).
+  + v2.0        VinDSL Hack (12.21.2010) Added height adjustment variable.
+  + v1.0        Original release (07.10.2009)
 ]]
 
 conky_background_color = 0x151515
@@ -35,8 +36,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=310, y=70,
-        radius=40,
+        x=300, y=1025,
+        radius=50,
         thickness=5,
         start_angle=0,
         end_angle=360
@@ -49,8 +50,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=430, y=70,
-        radius=40,
+        x=430, y=1025,
+        radius=50,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -63,8 +64,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=430, y=70,
-        radius=34,
+        x=430, y=1025,
+        radius=44,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -77,8 +78,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=540, y=70,
-        radius=40,
+        x=560, y=1025,
+        radius=50,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -91,8 +92,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=70,
-        radius=40,
+        x=680, y=1025,
+        radius=50,
         thickness=4,
         start_angle=-90,
         end_angle=180
@@ -105,8 +106,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=70,
-        radius=34,
+        x=680, y=1025,
+        radius=44,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -119,8 +120,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=70,
-        radius=28,
+        x=680, y=1025,
+        radius=38,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -133,22 +134,22 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color2,
         fg_alpha=ring_foreground_alpha,
-        x=660, y=70,
-        radius=22,
+        x=680, y=1025,
+        radius=32,
         thickness=5,
         start_angle=-90,
         end_angle=180
     },
     {
-        name='mixer',
-        arg='',
+        name='execi 3',
+        arg='amixer get "Master Front" | egrep -o "[0-9]+%" | line | tr -d "%"',
         max=100,
         bg_colour=ring_background_color,
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=780, y=70,
-        radius=40,
+        x=800, y=1025,
+        radius=50,
         thickness=5,
         start_angle=-90,
         end_angle=180
@@ -161,8 +162,8 @@ settings_table = {
         bg_alpha=ring_background_alpha,
         fg_colour=ring_foreground_color,
         fg_alpha=ring_foreground_alpha,
-        x=1150, y=70,
-        radius=40,
+        x=1170, y=1025,
+        radius=50,
         thickness=5,
         start_angle=-180,
         end_angle=90
@@ -171,7 +172,9 @@ settings_table = {
 
 require 'cairo'
 
-function rgb_to_r_g_b(colour,alpha)
+local cr = nil
+
+local function rgb_to_r_g_b(colour,alpha)
     return ((colour / 0x10000) % 0x100) / 255., ((colour / 0x100) % 0x100) / 255., (colour % 0x100) / 255., alpha
 end
 
@@ -227,4 +230,5 @@ function conky_ring_stats()
             setup_rings(cr,settings_table[i])
         end
     end
+    cairo_destroy(cr)
 end

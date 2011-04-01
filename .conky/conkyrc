@@ -16,8 +16,8 @@ text_buffer_size 2048
 
 own_window no
 
-alignment top_left
-gap_x 0
+alignment bottom_left
+gap_x 125
 gap_y 0
 
 minimum_size 800
@@ -30,15 +30,14 @@ draw_graph_borders yes
 
 # -- Text settings -- #
 use_xft yes
-xftfont Digital Readout Thick Upright:size=18
+xftfont XXII ARABIAN\-ONENIGHTSTAND:size=18
 xftalpha 0.4
 
 uppercase no
 
-color1 cdcdcd
+color1 834040
 color2 86c113
 color3 1994d1
-color4 aa0000
 
 default_color EEEEEE
 
@@ -47,7 +46,6 @@ lua_load ~/.conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
-
-                                                                                                                                              ${color3}${goto 860}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 960}updates ${color}${execi 3601 pacman -Qu | wc -l}    ${goto 1210}${color3}mpd ${color}${mpd_status} ${goto 1350}${color3}repeat ${color}${mpd_repeat} ${goto 1460}${color3}random ${color}${mpd_random}
-${goto  125}${time %A}    ${goto 287}${color3}${time %H}${color2}${time %M}                                                                   ${color3}${goto 860}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 960}mail    ${color}${new_mails /home/vikki/mail/inbox}
-${goto  125}${time %d %B}                                                   ${goto 390}cpu ${goto 500}mem ${goto 610}disk ${goto 750}${mixer} ${color3}${goto 860}gpu ${color}${nvidia temp}C                                                                              ${goto 1160}${color}${mpd_smart}
+${uptime_short}                                                                                                              ${color3}${goto 870}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 970}cpu  ${color}${hwmon temp 1}C                     ${goto 1230}${color3}mpd ${color}${mpd_status} ${goto 1380}${color3}repeat ${color}${mpd_repeat} ${goto 1500}${color3}random ${color}${mpd_random}
+${time %A}    ${goto 275}${color3}${time %H}${color2}${time %M}                                                              ${color3}${goto 870}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 970}mobo ${color}${hwmon temp 2}C
+${time %d %B}                                                   ${goto 390}cpu ${goto 510}mem ${goto 630}disk ${goto 765}vol ${color3}${goto 870}gpu ${color}${nvidia temp}C      ${color3}${goto 970}mail  ${color}${new_mails /home/vikki/mail/inbox} ${goto 1180}${color}${mpd_smart}
