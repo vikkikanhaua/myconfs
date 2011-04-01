@@ -40,7 +40,8 @@ set :outline  , 2
 #
 
 screen 1 do
-  top [ :notify, :title, :spacer, :views ]
+  arch = Subtlext::Icon.new("/home/vikki/.config/subtle/icons/arch_10x10.xbm")
+  top [ arch, :title, :spacer, :views ]
 end
 
 # }}}
@@ -74,7 +75,7 @@ color :views_bg,        "#1a1a1a"
 color :views_border,    "#303030"
 
 # Colors of sublets
-color :sublets_fg,      "#999999"
+color :sublets_fg,      "#659fdb"
 color :sublets_bg,      "#1a1a1a"
 color :sublets_border,  "#303030"
 
@@ -303,21 +304,11 @@ end
 
 # }}}
 
-# == Sublets {{{
-#
-
-sublet :notify do
-  foreground   "#659fbd"
-  highlight    "red"
-end
-
-# }}}
-
 # == Hooks {{{
 #
 
 on :start do
-  system("devmon -g --exec-on-drive 'notify-send \"%f mounted on %d\"' &")
+  system("devmon -g --exec-on-drive 'notify %f mounted on %d' &")
 end
 
 on :exit do
