@@ -139,6 +139,6 @@ macro index h   "c?" "view folders"
 macro index B   "<limit>~b " "search message bodies"
 macro index I   "<change-folder>!<enter>" "go to Inbox"
 macro index P   "<pipe-message>cat > ~/" "save message as"
-macro index Z   "<shell-escape>/usr/bin/offlineimap <enter>" "sync IMAP"
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q<enter>" "sync IMAP"
 macro index b   "<enter-command>toggle sidebar_visible<enter>"
 # }}}

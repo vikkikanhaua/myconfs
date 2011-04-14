@@ -24,7 +24,7 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 # dzonky
 
-conky -c ~/.conky/conkyrc
+conky -c ~/.conky/conkyrc_new
 
 # exec ck-launch-session xmonad
 #
