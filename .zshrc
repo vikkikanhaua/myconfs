@@ -10,6 +10,8 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Expand partial paths
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 
 # Separate matches into groups
 zstyle ':completion:*:matches' group 'yes'

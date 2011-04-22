@@ -19,20 +19,15 @@ end
 # == Options {{{
 #
 
-set :border   , 0
 set :step     , 5
 set :snap     , 10
 set :gravity  , :center_1
 set :urgent   , true
 set :resize   , false
-set :strut    , [ 0, 0, 0, 0 ]
 
 set :font     , "xft:MonteCarlo"
 
-set :gap      , 0
-set :padding  , [ 0, 0, 0, 0 ]
 set :separator, "|"
-set :outline  , 2
 
 # }}}
 
@@ -49,48 +44,63 @@ end
 # == Colors {{{
 #
 
-# Colors of focus window title
-color :title_fg,        "#cdad00"
-color :title_bg,        "#1a1a1a"
-color :title_border,    "#303030"
+style :title do
+  foreground  "#cdad00"
+  background  "#1a1a1a"
+  border_top  "#303030", 2
+  padding     0, 3, 0, 3
+end
 
-# Colors of the active views
-color :focus_fg,        "#cdad00"
-color :focus_bg,        "#1a1a1a"
-color :focus_border,    "#303030"
+style :focus do
+  foreground  "#757575"
+  background  "#1a1a1a"
+  border_top  "#cdad00", 2
+  padding     0, 3, 0, 3
+end
 
-# Colors of urgent window titles and views
-color :urgent_fg,       "#000000"
-color :urgent_bg,       "#cd5c5c"
-color :urgent_border,   "#303030"
+style :urgent do
+  foreground  "#757575"
+  background  "#1a1a1a"
+  border_top  "#fea63c", 2
+  padding     0, 3, 0, 3
+end
 
-# Colors of occupied views (views with clients)
-color :occupied_fg,     "#659fbd"
-color :occupied_bg,     "#1a1a1a"
-color :occupied_border, "#303030"
+style :occupied do
+  foreground  "#757575"
+  background  "#1a1a1a"
+  border_top  "#659fbd", 2
+  padding     0, 3, 0, 3
+end
 
-# Color of view buttons
-color :views_fg,        "#757575"
-color :views_bg,        "#1a1a1a"
-color :views_border,    "#303030"
+style :views do
+  foreground  "#757575"
+  background  "#1a1a1a"
+  border_top  "#303030", 2
+  padding     0, 3, 0, 3
+end
 
-# Colors of sublets
-color :sublets_fg,      "#659fdb"
-color :sublets_bg,      "#1a1a1a"
-color :sublets_border,  "#303030"
+style :sublets do
+  foreground  "#659fdb"
+  background  "#1a1a1a"
+  border      "#303030", 2
+  padding     0, 3, 0, 3
+end
 
-# Border colors of active/inactive windows
-color :client_active,   "#303030"
-color :client_inactive, "#202020"
+style :separator do
+  background  "#1a1a1a"
+  foreground  "#757575"
+  padding     0, 3, 0, 3
+end
 
-# Background colors of panels
-color :panel,           "#1a1a1a"
+style :clients do
+  active      "#303030"
+  inactive    "#202020"
+end
 
-# Color of the stipple (if enabled)
-color :stipple,         "#757575"
-
-# Color of the separator
-color :separator,       "#757575"
+style :subtle do
+  panel       "#1a1a1a"
+  stipple     "#757575"
+end
 
 # }}}
 
@@ -102,7 +112,7 @@ gravity :top,            [   0,   0, 100,  50 ]
 gravity :top_right,      [ 100,   0,  50,  50 ]
 gravity :left,           [   0,   0,  50, 100 ]
 gravity :center,         [   0,   0, 100, 100 ]
-gravity :center_1,       [  50,  30,  90,  75 ]
+gravity :center_1,       [  50,  25,  90,  75 ]
 gravity :right,          [ 100,   0,  50, 100 ]
 gravity :bottom_left,    [   0, 100,  50,  50 ]
 gravity :bottom_left33,  [   0, 100,  50,  30 ]
