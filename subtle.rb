@@ -35,8 +35,8 @@ set :separator, "|"
 #
 
 screen 1 do
-  arch = Subtlext::Icon.new("/home/vikki/.config/subtle/icons/arch_10x10.xbm")
-  top [ arch, :title, :spacer, :views ]
+  subtle = Subtlext::Icon.new("/home/vikki/.config/subtle/icons/subtle1.xbm")
+  top [ subtle, :title, :spacer, :views ]
 end
 
 # }}}
@@ -45,61 +45,66 @@ end
 #
 
 style :title do
-  foreground  "#cdad00"
-  background  "#1a1a1a"
-  border_top  "#303030", 2
-  padding     0, 3, 0, 3
+  foreground     "#f1f1f1"
+  background     "#1a1a1a"
+  border_top     "#cdad00", 2
+  border_bottom  "#cdad00", 2
+  padding        0, 3, 0, 3
 end
 
 style :focus do
-  foreground  "#757575"
-  background  "#1a1a1a"
-  border_top  "#cdad00", 2
-  padding     0, 3, 0, 3
+  foreground     "#f1f1f1"
+  background     "#1a1a1a"
+  border_top     "#cdad00", 2
+  border_bottom  "#cdad00", 2
+  padding        0, 3, 0, 3
 end
 
 style :urgent do
-  foreground  "#757575"
-  background  "#1a1a1a"
-  border_top  "#fea63c", 2
-  padding     0, 3, 0, 3
+  foreground     "#cd5c5c"
+  background     "#1a1a1a"
+  border_top     "#cd5c5c", 2
+  border_bottom  "#cd5c5c", 2
+  padding        0, 3, 0, 3
 end
 
 style :occupied do
-  foreground  "#757575"
-  background  "#1a1a1a"
-  border_top  "#659fbd", 2
-  padding     0, 3, 0, 3
+  foreground     "#659fbd"
+  background     "#1a1a1a"
+  border_top     "#659fbd", 2
+  border_bottom  "#659fbd", 2
+  padding        0, 3, 0, 3
 end
 
 style :views do
-  foreground  "#757575"
-  background  "#1a1a1a"
-  border_top  "#303030", 2
-  padding     0, 3, 0, 3
+  foreground     "#757575"
+  background     "#1a1a1a"
+  border_top     "#303030", 2
+  border_bottom  "#303030", 2
+  padding        0, 3, 0, 3
 end
 
 style :sublets do
-  foreground  "#659fdb"
-  background  "#1a1a1a"
-  border      "#303030", 2
-  padding     0, 3, 0, 3
+  foreground     "#fea63c"
+  background     "#1a1a1a"
+  border         "#303030", 0
+  padding        0, 3, 0, 3
 end
 
 style :separator do
-  background  "#1a1a1a"
-  foreground  "#757575"
-  padding     0, 3, 0, 3
+  background     "#1a1a1a"
+  foreground     "#757575"
+  padding        0, 3, 0, 3
 end
 
 style :clients do
-  active      "#303030"
-  inactive    "#202020"
+  active         "#303030"
+  inactive       "#202020"
 end
 
 style :subtle do
-  panel       "#1a1a1a"
-  stipple     "#757575"
+  panel          "#1a1a1a"
+  stipple        "#757575"
 end
 
 # }}}

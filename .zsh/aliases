@@ -27,6 +27,7 @@ alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias svim='sudoedit'
 alias ss='source ~/.zshrc'
 alias feeds='newsbeuter'
+alias alsi="alsi -l -y"
 
 #package mgmt
 alias install='sudo pacman -S'
