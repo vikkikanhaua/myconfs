@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 cd() {
-  builtin cd "$@"; ll; builtin echo;
+  builtin cd "$@"; l; builtin echo;
 }
 
 # make a thumb %20 the size of a pic

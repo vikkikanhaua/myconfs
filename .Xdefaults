@@ -9,7 +9,7 @@
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 40
+*shading         : 100
 *saveLines       : 10000
 *cursorBlink     : false
 *dynamicColors   : on
@@ -27,14 +27,15 @@
 ! colorscheme
 *foreground      : #ddeedd
 *background      : #000000
+
 *color0          : #1c1c1c
 *color8          : #4D4D4D
 *color1          : #cd5c5c
 *color9          : #a52a2a
 *color2          : #b7ce42
 *color10         : #bde077
-*color3          : #fea63c
-*color11         : #ffe863
+*color3          : #ffe863
+*color11         : #fea63c
 *color4          : #66aabb
 *color12         : #aaccbb
 *color5          : #b7416e

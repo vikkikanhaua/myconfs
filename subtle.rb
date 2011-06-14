@@ -4,11 +4,9 @@
 #
 
 begin
-  require "#{ENV["HOME"]}/.config/subtle/subtle-contrib/ruby/launcher.rb"
   require "#{ENV["HOME"]}/.config/subtle/subtle-contrib/ruby/selector.rb"
   require "#{ENV["HOME"]}/.config/subtle/subtle-contrib/ruby/merger.rb"
 
-  Subtle::Contrib::Launcher.fonts = "xft:MonteCarlo"
   Subtle::Contrib::Selector.font  = "xft:MonteCarlo"
   Subtle::Contrib::Merger.font    = "xft:MonteCarlo"
 rescue LoadError
@@ -29,14 +27,15 @@ set :font     , "xft:MonteCarlo"
 
 set :separator, "|"
 
+set :wmname   , "LG3D"
+
 # }}}
 
 # == Screen {{{
 #
 
 screen 1 do
-  subtle = Subtlext::Icon.new("/home/vikki/.config/subtle/icons/subtle1.xbm")
-  top [ subtle, :title, :spacer, :views ]
+  top [ :title, :spacer, :views ]
 end
 
 # }}}
@@ -45,61 +44,49 @@ end
 #
 
 style :title do
-  foreground     "#f1f1f1"
+  foreground     "#cdad00"
   background     "#1a1a1a"
-  border_top     "#cdad00", 2
-  border_bottom  "#cdad00", 2
   padding        0, 3, 0, 3
 end
 
 style :focus do
-  foreground     "#f1f1f1"
+  foreground     "#cdad00"
   background     "#1a1a1a"
-  border_top     "#cdad00", 2
-  border_bottom  "#cdad00", 2
   padding        0, 3, 0, 3
 end
 
 style :urgent do
   foreground     "#cd5c5c"
   background     "#1a1a1a"
-  border_top     "#cd5c5c", 2
-  border_bottom  "#cd5c5c", 2
   padding        0, 3, 0, 3
 end
 
 style :occupied do
   foreground     "#659fbd"
   background     "#1a1a1a"
-  border_top     "#659fbd", 2
-  border_bottom  "#659fbd", 2
   padding        0, 3, 0, 3
 end
 
 style :views do
   foreground     "#757575"
   background     "#1a1a1a"
-  border_top     "#303030", 2
-  border_bottom  "#303030", 2
   padding        0, 3, 0, 3
 end
 
 style :sublets do
   foreground     "#fea63c"
   background     "#1a1a1a"
-  border         "#303030", 0
   padding        0, 3, 0, 3
 end
 
 style :separator do
   background     "#1a1a1a"
   foreground     "#757575"
-  padding        0, 3, 0, 3
 end
 
 style :clients do
-  active         "#303030"
-  inactive       "#202020"
+  active         "#303030", 1
+  inactive       "#202020", 1
 end
 
 style :subtle do
@@ -112,23 +99,23 @@ end
 # == Gravities {{{
 #
 
-gravity :top_left,       [   0,   0,  50,  50 ]
-gravity :top,            [   0,   0, 100,  50 ]
-gravity :top_right,      [ 100,   0,  50,  50 ]
-gravity :left,           [   0,   0,  50, 100 ]
-gravity :center,         [   0,   0, 100, 100 ]
-gravity :center_1,       [  50,  25,  90,  75 ]
-gravity :right,          [ 100,   0,  50, 100 ]
-gravity :bottom_left,    [   0, 100,  50,  50 ]
-gravity :bottom_left33,  [   0, 100,  50,  30 ]
-gravity :bottom,         [   0, 100, 100,  50 ]
-gravity :bottom_right,   [ 100, 100,  50,  50 ]
-gravity :bottom_right33, [ 100, 100,  50,  30 ]
+gravity :top_left,       [  0,  0,  50,  50 ]
+gravity :top,            [  0,  0, 100,  50 ]
+gravity :top_right,      [ 50,  0,  50,  50 ]
+gravity :left,           [  0,  0,  50, 100 ]
+gravity :center,         [  0,  0, 100, 100 ]
+gravity :center_1,       [  2,  2,  96,  80 ]
+gravity :right,          [ 50,  0,  50, 100 ]
+gravity :bottom_left,    [  0, 50,  50,  50 ]
+gravity :bottom_left33,  [  0, 50,  50,  30 ]
+gravity :bottom,         [  0, 50, 100,  50 ]
+gravity :bottom_right,   [ 50, 50,  50,  50 ]
+gravity :bottom_right33, [ 50, 50,  50,  30 ]
 
 # Gimp
-gravity :gimp_image,     [  50,  50,  80, 100 ]
-gravity :gimp_toolbox,   [   0,   0,  10, 100 ]
-gravity :gimp_dock,      [ 100,   0,  10, 100 ]
+gravity :gimp_image,     [ 10,  0,  80, 100 ]
+gravity :gimp_toolbox,   [  0,  0,  10, 100 ]
+gravity :gimp_dock,      [ 90,  0,  10, 100 ]
 
 # }}}
 
@@ -190,10 +177,6 @@ grab "W-KP_3",      [ :bottom_right33, :bottom_right ]
 
 # Contrib {{{
 #
-grab "W-p" do
-  Subtle::Contrib::Launcher.run
-end
-
 grab "W-m" do
   Subtle::Contrib::Merger.run
 end
@@ -220,25 +203,30 @@ end
 grab "W-Return"            , "urxvtc"
 grab "XF86Sleep"           , "alock -auth md5:file=/home/vikki/docs/passphrase"
 grab "XF86Search"          , "firefox"
-grab "XF86AudioRaiseVolume", "amixer -q set 'Master Front' 2+"
-grab "XF86AudioLowerVolume", "amixer -q set 'Master Front' 2-"
-grab "XF86AudioMute"       , "amixer -q set 'Master Front' toggle"
+grab "XF86AudioRaiseVolume", "amixer -q set 'Front' 2+"
+grab "XF86AudioLowerVolume", "amixer -q set 'Front' 2-"
+grab "XF86AudioMute"       , "amixer -q set 'Front' toggle"
 grab "XF86Mail"            , "mpc -q toggle"
 grab "W-Down"              , "mpc -q stop"
 grab "W-Right"             , "mpc -q next"
 grab "W-Left"              , "mpc -q prev"
-grab "W-a"                 , "evince"
+grab "W-a"                 , "zathura"
 grab "W-b"                 , "favsong -b"
 grab "W-c"                 , "chromium"
-grab "W-e"                 , "eject -T"
+grab "W-e"                 , "eject -T /dev/sr0"
 grab "W-f"                 , "favsong"
 grab "W-o"                 , "libreoffice"
-grab "W-u"                 , "devmon -c; notify DEVICE SAFE TO REMOVE"
+grab "W-p"                 , "dmenu_run -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
 grab "W-w"                 , "ranwall"
 grab "W-x"                 , "xterm"
 grab "W-XF86Mail"          , "echo pause > ~/.mplayer/mplayer_fifo"
 grab "W-Home"              , "sudo shutdown -r now"
 grab "W-End"               , "sudo shutdown -h now"
+
+# Using 5.1 channels is quite a pain
+grab "W-XF86AudioRaiseVolume", "amixer -q set 'Surround' 2+"
+grab "W-XF86AudioLowerVolume", "amixer -q set 'Surround' 2-"
+grab "W-XF86AudioMute"       , "amixer -q set 'Surround' toggle"
 
 # }}}
 

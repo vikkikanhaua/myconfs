@@ -14,7 +14,7 @@ urxvtd -q -f -o
 
 tmux start-server
 
-eval `cat ${HOME}/.fehbg`
+sh ${HOME}/.fehbg
 
 xsetroot -cursor_name left_ptr
 
