@@ -153,12 +153,12 @@ grab "W-t",         :WindowFloat
 grab "W-space",     :WindowFull
 grab "W-s",         :WindowStick
 grab "W-r",         :WindowRaise
-grab "W-l",         :WindowLower
+grab "W-n",         :WindowLower
 
-grab "A-Left",      :WindowLeft
-grab "A-Down",      :WindowDown
-grab "A-Up",        :WindowUp
-grab "A-Right",     :WindowRight
+grab "W-h", :WindowLeft
+grab "W-j", :WindowDown
+grab "W-k", :WindowUp
+grab "W-l", :WindowRight
 
 grab "W-S-c",       :WindowKill
 
