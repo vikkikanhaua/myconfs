@@ -87,6 +87,7 @@ end
 style :clients do
   active         "#303030", 1
   inactive       "#202020", 1
+  width          250
 end
 
 style :subtle do
@@ -219,6 +220,7 @@ grab "W-o"                 , "libreoffice"
 grab "W-p"                 , "dmenu_run -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
 grab "W-w"                 , "ranwall"
 grab "W-x"                 , "xterm"
+grab "W-XF86Search"        , "luakit"
 grab "W-XF86Mail"          , "echo pause > ~/.mplayer/mplayer_fifo"
 grab "W-Home"              , "sudo shutdown -r now"
 grab "W-End"               , "sudo shutdown -h now"
@@ -241,7 +243,7 @@ tag "terms" do
 end
 
 tag "browser" do
-  match   "uzbl|opera|firefox|navigator|chromium"
+  match   "uzbl|luakit|firefox|navigator|chromium"
   gravity :center_1
 end
 
