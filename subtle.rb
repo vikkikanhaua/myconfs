@@ -23,7 +23,7 @@ set :gravity  , :center_1
 set :urgent   , true
 set :resize   , false
 
-set :font     , "xft:MonteCarlo"
+set :font     , "-*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 set :separator, "|"
 
@@ -87,7 +87,7 @@ end
 style :clients do
   active         "#303030", 1
   inactive       "#202020", 1
-  width          250
+  width          235
 end
 
 style :subtle do
@@ -105,7 +105,7 @@ gravity :top,            [  0,  0, 100,  50 ]
 gravity :top_right,      [ 50,  0,  50,  50 ]
 gravity :left,           [  0,  0,  50, 100 ]
 gravity :center,         [  0,  0, 100, 100 ]
-gravity :center_1,       [  2,  2,  96,  80 ]
+gravity :center_1,       [  2,  2,  96,  84 ]
 gravity :right,          [ 50,  0,  50, 100 ]
 gravity :bottom_left,    [  0, 50,  50,  50 ]
 gravity :bottom_left33,  [  0, 50,  50,  30 ]
@@ -217,7 +217,7 @@ grab "W-c"                 , "chromium"
 grab "W-e"                 , "eject -T /dev/sr0"
 grab "W-f"                 , "favsong"
 grab "W-o"                 , "libreoffice"
-grab "W-p"                 , "dmenu_run -fn '-*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
+grab "W-p"                 , "dmenu_run -fn '-*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
 grab "W-w"                 , "ranwall"
 grab "W-x"                 , "xterm"
 grab "W-XF86Search"        , "luakit"
