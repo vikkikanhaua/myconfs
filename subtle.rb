@@ -46,37 +46,37 @@ end
 style :title do
   foreground     "#cdad00"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :focus do
   foreground     "#cdad00"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :urgent do
   foreground     "#cd5c5c"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :occupied do
   foreground     "#659fbd"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :views do
   foreground     "#757575"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :sublets do
   foreground     "#fea63c"
   background     "#1a1a1a"
-  padding        0, 3, 0, 3
+  padding        1, 3, 2, 3
 end
 
 style :separator do
@@ -105,7 +105,7 @@ gravity :top,            [  0,  0, 100,  50 ]
 gravity :top_right,      [ 50,  0,  50,  50 ]
 gravity :left,           [  0,  0,  50, 100 ]
 gravity :center,         [  0,  0, 100, 100 ]
-gravity :center_1,       [  2,  2,  96,  84 ]
+gravity :center_1,       [  2,  2,  96,  82 ]
 gravity :right,          [ 50,  0,  50, 100 ]
 gravity :bottom_left,    [  0, 50,  50,  50 ]
 gravity :bottom_left33,  [  0, 50,  50,  30 ]
@@ -202,6 +202,7 @@ end
 # User Programs {{{
 #
 grab "W-Return"            , "urxvtc"
+grab "Print"               , "scrot screenie_%H%M%S_%d%b.png -q 80"
 grab "XF86Sleep"           , "alock -auth md5:file=/home/vikki/docs/passphrase"
 grab "XF86Search"          , "firefox"
 grab "XF86AudioRaiseVolume", "amixer -q set 'Front' 2+"

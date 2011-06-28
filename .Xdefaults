@@ -1,5 +1,8 @@
+!*font            : -jmk-neep alt-medium-*-normal-*-11-*-*-*-*-*-iso8859-*
+!*boldFont        : -jmk-neep alt-medium-*-normal-*-11-*-*-*-*-*-iso8859-*
 !*font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 !*boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
+
 *font            : -*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*
 *boldFont        : -*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*
 *title           : terminal
@@ -19,7 +22,7 @@
 
 *perl-ext-common : default,matcher
 *perl-lib        : /usr/lib/*perl/
-*urlLauncher     : firefox
+*urlLauncher     : /usr/bin/luakit
 *matcher.button  : 1
 
 *cursorColor     : #80724e
