@@ -22,7 +22,7 @@
 
 *perl-ext-common : default,matcher
 *perl-lib        : /usr/lib/*perl/
-*urlLauncher     : /usr/bin/luakit
+*urlLauncher     : firefox
 *matcher.button  : 1
 
 *cursorColor     : #80724e
