@@ -89,8 +89,8 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 # Different Formats {{{
 #####
 
-set date_format         = "%d/%m/%y at %I:%M%P"
-set index_format        = "%4C [%Z]  %D  •  %-20.20L %s %> %c"
+set date_format         = "%H:%M (%d/%m/%y)"
+set index_format        = "%4C [%Z]  %D | %-25.25L | %-70.70s %> %c"
 set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusbar
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"

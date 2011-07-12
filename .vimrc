@@ -5,7 +5,7 @@
 
 " Main options {{{
 if $TERM =~ "256"
-  set list listchars=tab:\➜\ ,trail:.,nbsp:-
+  set list listchars=tab:\➜\ ,trail:·,nbsp:-
   set t_Co=256
   colorscheme zencustom
 else

@@ -8,4 +8,4 @@ out_to_console yes
 update_interval 1
 
 TEXT
-${if_up ppp0}^fg(\#a0522d)${addr ppp0}^fg()${else}^fg(red)n/w down^fg()${endif}|${cpu}|${hwmon temp 1}C|${hwmon temp 2}C|${mem}|${new_mails /home/vikki/mail/inbox}|${fs_free /home}|${fs_free /mnt/tv}|${fs_free /stuff}|${hddtemp /dev/sda}|${hddtemp /dev/sdb}|${execi 67 nvidia-settings -tq gpucoretemp}|${texeci 1 amixer get "Front" | egrep -o "[0-9]+%" | line}|${time %a %d %b, %H:%M}${if_match "$mpd_status" == "Playing"}|^fg(\#cdad00)${mpd_smart}${else}|^fg(grey30)${mpd_status}${endif}^fg()
+${if_up ppp0}^fg(\#a0522d)${addr ppp0}^fg()${else}^fg(red)n/w down^fg()${endif}|${cpu}|${hwmon temp 1}C|${hwmon temp 2}C|${mem}|${new_mails /home/vikki/mail/inbox}|${fs_free /home}|${fs_free /mnt/tv}|${fs_free /stuff}|${hddtemp /dev/sda}|${hddtemp /dev/sdb}|${nvidia temp}|${mixer}|${time %a %d %b, %H:%M}${if_match "$mpd_status" == "Playing"}|^fg(\#cdad00)${mpd_smart}${else}|^fg(grey30)${mpd_status}${endif}^fg()

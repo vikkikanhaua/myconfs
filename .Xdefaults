@@ -3,8 +3,8 @@
 !*font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 !*boldFont        : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 
-*font            : -*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*
-*boldFont        : -*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*
+*font            : -*-tamsyn-medium-*-*-*-11-*-*-*-*-*-*-*
+*boldFont        : -*-tamsyn-medium-*-*-*-11-*-*-*-*-*-*-*
 *title           : terminal
 *buffered        : true
 *geometry        : 200x45
@@ -14,7 +14,7 @@
 *pointerBlank    : true
 *urgentOnBell    : true
 *modifier        : alt
-*shading         : 100
+*shading         : 20
 *saveLines       : 10000
 *cursorBlink     : false
 *dynamicColors   : on

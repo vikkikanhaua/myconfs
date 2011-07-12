@@ -1,4 +1,7 @@
 # Author::  Vikas Kanhaua
+#
+
+font = "-*-tamsyn-medium-*-*-*-11-*-*-*-*-*-*-*"
 
 # == Contrib Import {{{
 #
@@ -7,8 +10,8 @@ begin
   require "#{ENV["HOME"]}/.config/subtle/subtle-contrib/ruby/selector.rb"
   require "#{ENV["HOME"]}/.config/subtle/subtle-contrib/ruby/merger.rb"
 
-  Subtle::Contrib::Selector.font  = "xft:MonteCarlo"
-  Subtle::Contrib::Merger.font    = "xft:MonteCarlo"
+  Subtle::Contrib::Selector.font  = "#{font}"
+  Subtle::Contrib::Merger.font    = "#{font}"
 rescue LoadError
 end
 
@@ -23,7 +26,7 @@ set :gravity  , :center_1
 set :urgent   , true
 set :resize   , false
 
-set :font     , "-*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*"
+set :font     , "#{font}"
 
 set :separator, "|"
 
@@ -44,39 +47,39 @@ end
 #
 
 style :title do
-  foreground     "#cdad00"
+  foreground     "#f1f1f1"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :focus do
   foreground     "#cdad00"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :urgent do
   foreground     "#cd5c5c"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :occupied do
   foreground     "#659fbd"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :views do
   foreground     "#757575"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :sublets do
   foreground     "#fea63c"
   background     "#1a1a1a"
-  padding        1, 3, 2, 3
+  padding        0, 3, 0, 3
 end
 
 style :separator do
@@ -105,7 +108,7 @@ gravity :top,            [  0,  0, 100,  50 ]
 gravity :top_right,      [ 50,  0,  50,  50 ]
 gravity :left,           [  0,  0,  50, 100 ]
 gravity :center,         [  0,  0, 100, 100 ]
-gravity :center_1,       [  2,  2,  96,  82 ]
+gravity :center_1,       [  2,  3,  96,  80 ]
 gravity :right,          [ 50,  0,  50, 100 ]
 gravity :bottom_left,    [  0, 50,  50,  50 ]
 gravity :bottom_left33,  [  0, 50,  50,  30 ]
@@ -218,10 +221,9 @@ grab "W-c"                 , "chromium"
 grab "W-e"                 , "eject -T /dev/sr0"
 grab "W-f"                 , "favsong"
 grab "W-o"                 , "libreoffice"
-grab "W-p"                 , "dmenu_run -fn '-*-tamsyn-medium-*-*-*-12-*-*-*-*-*-*-*' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
+grab "W-p"                 , "dmenu_run -fn '#{font}' -nb '#1a1a1a' -nf '#cdad00' -sb '#1a1a1a' -sf '#f1f1f1'"
 grab "W-w"                 , "ranwall"
 grab "W-x"                 , "xterm"
-grab "W-XF86Search"        , "luakit"
 grab "W-XF86Mail"          , "echo pause > ~/.mplayer/mplayer_fifo"
 grab "W-Home"              , "sudo shutdown -r now"
 grab "W-End"               , "sudo shutdown -h now"
@@ -240,12 +242,10 @@ grab "W-XF86AudioMute"       , "amixer -q set 'Surround' toggle"
 
 tag "terms" do
   match   "xterm|[u]?rxvt"
-  gravity :center_1
 end
 
 tag "browser" do
   match   "uzbl|luakit|firefox|navigator|chromium"
-  gravity :center_1
 end
 
 tag "media" do
@@ -314,7 +314,7 @@ end
 #
 
 on :start do
-  system("devmon -g --exec-on-drive 'notify %f mounted on %d' &")
+  system("devmon -g -s &")
 end
 
 on :exit do
