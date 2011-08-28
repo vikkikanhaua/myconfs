@@ -255,7 +255,8 @@ tag "media" do
 end
 
 tag "office" do
-  match   "libreoffice"
+  match   "libreoffice|zathura"
+  stick   true
 end
 
 # Gimp
