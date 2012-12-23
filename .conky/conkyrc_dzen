@@ -2,10 +2,19 @@ background no
 total_run_times 0
 use_spacer none
 short_units yes
-out_to_x no
-out_to_console yes
+if_up_strictness address
 
 update_interval 1
+update_interval_on_battery 30
 
 TEXT
-${if_up ppp0}^fg(\#a0522d)${addr ppp0}^fg()${else}^fg(red)n/w down^fg()${endif}|${cpu}|${hwmon temp 1}C|${hwmon temp 2}C|${mem}|${new_mails /home/vikki/mail/inbox}|${fs_free /home}|${fs_free /mnt/tv}|${fs_free /stuff}|${hddtemp /dev/sda}|${hddtemp /dev/sdb}|${nvidia temp}|${mixer}|${time %a %d %b, %H:%M}${if_match "$mpd_status" == "Playing"}|^fg(\#cdad00)${mpd_smart}${else}|^fg(grey30)${mpd_status}${endif}^fg()
+| ${if_up wlan0}${addr wlan0} @ ${wireless_essid wlan0}${else}^fg(red)wifi down^fg()${endif} \
+${if_up tun0}^fg(khaki)\#vpn ^fg()${endif}\
+${if_up eth0}^fg(khaki)\#eth ^fg()${endif}\
+${if_up ppp0}^fg(khaki)\#ppp ^fg()${endif}\
+| ${battery_short} \
+| ${hwmon temp 1}C \
+| ${mem} \
+| ${new_mails /home/vikki/mail/inbox} \
+| ${fs_free /home} @ ${hddtemp /dev/sda}C \
+| ^fg(\#659fbd)${time %a %d %b, %H:%M}^fg() |

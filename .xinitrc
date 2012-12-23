@@ -1,5 +1,7 @@
 #!/bin/bash
 
+FONT="-*-tamsyn-medium-*-normal-*-9-*-*-*-*-*-*-*"
+
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"
 
@@ -12,20 +14,22 @@ fi
 
 urxvtd -q -f -o
 
-tmux start-server
+# tmux start-server
 
 sh ${HOME}/.fehbg
 
-xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr # -mod 3 3 -bg "#1a1a1a"
 
-nvidia-settings --load-config-only
+#set statusbar
+#while true; do
+#  xsetroot -name "$(statusbar.sh)"
+#  sleep 30s
+#done &
 
 setxkbmap -option terminate:ctrl_alt_bksp
 
-# dzonky
+conky -c ~/.conky/conkyrc_dzen | dzen2 -e '' -x 700 -h 14 -fn "$FONT" -ta 'r' -bg '#1a1a1a' -fg 'white' &
 
-conky -c ~/.conky/conkyrc_new
+numlockx
 
-# exec ck-launch-session xmonad
-#
-exec ck-launch-session subtle
+exec xmonad

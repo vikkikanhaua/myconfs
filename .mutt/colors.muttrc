@@ -6,7 +6,7 @@
   color normal     white         default
 
 # main colors
-  color status     brightgreen   brightblack
+  color status     brightgreen   default
   color indicator  brightgreen   default
   color tree       red           default
   color error      brightred     default
@@ -40,7 +40,7 @@ uncolor index      "~D"
 
 # message bodies
   color attachment brightblack   default
-  color search     red           brightblack
+  color search     red           default
   color signature  cyan          default
   color tilde      blue          default
 

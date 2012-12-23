@@ -105,14 +105,14 @@ bindkey '^[[6~'  .undefined-key
 
 #---[ PROMPT ] {{{
 precmd () {
-  [[ $? -eq 0 ]] && color="%{[38;5;28m%}" || color="%{[38;5;160m%}"
+  [[ $? -eq 0 ]] && color="%{[1;32m%}" || color="%{[1;31m%}"
 
   export PROMPT=" %{[0;34m%}%~${color} $%{[0m%} "
 
-  [[ -n "$RANGER" ]] && export RPROMPT="(in ranger)"
+  [[ -n "$RANGER_LEVEL" ]] && export RPROMPT="(in ranger; level=$RANGER_LEVEL)"
 }
 # }}}
 
 # ---[ login manager ] {{{
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx &> /dev/null }
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx -- vt1 &> /dev/null }
 # }}}

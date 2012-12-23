@@ -5,12 +5,11 @@
 
 " Main options {{{
 if $TERM =~ "256"
-  set list listchars=tab:\➜\ ,trail:·,nbsp:-
   set t_Co=256
   colorscheme zencustom
 else
   set t_Co=16
-  colorscheme slate
+  colorscheme default
 endif
 
 set nocompatible
@@ -103,7 +102,7 @@ if has('autocmd')
   au Filetype html,xml,xsl set spell
 
   " Remove trailing whitespace
-  au BufWritePre * :call setline(1, map(getline(1, "$"), 'substitute(v:val, "\\s\\+$", "","")'))
+  " au BufWritePre * :call setline(1, map(getline(1, "$"), 'substitute(v:val, "\\s\\+$", "","")'))
 
   " set the title string
   au BufEnter * let &titlestring = "vim: " . substitute(expand("%:p"), $HOME, "~", '')

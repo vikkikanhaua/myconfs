@@ -39,7 +39,7 @@ import Data.Char
 import System.Exit
 
 -- default declaraions
-myFont               = "-*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*"
+myFont               = "-*-tamsyn-medium-*-normal-*-9-*-*-*-*-*-*-*"
 myTerminal           = "urxvtc"
 focusColor           = "#60ff45"
 textColor            = "#f1f1f1"
@@ -62,7 +62,7 @@ myManageHook = (composeAll . concat $
     myWebs    = ["Navigator", "Firefox", "Chromium", "Namoroka"]
 
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#659fdb"
@@ -78,7 +78,7 @@ myXPConfig = defaultXPConfig
   , fgHLight    = lightTextColor
   , bgHLight    = lightBackgroundColor
   , position    = Top
-  , height      = 20
+  , height      = 12
   , historySize = 100
   , borderColor = lightBackgroundColor
   }
@@ -89,28 +89,28 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
   where
     -- height, width as % screensize
-    h = 0.435
-    w = 0.70
+    h = 0.65
+    w = 0.80
 
-    t = 0.25
-    l = 0.15
+    t = 0.15
+    l = 0.10
 
 -- custom pp
 myPP h = defaultPP
-  { ppCurrent = wrap "^fg(#f1f1f1)" "^fg()"
+  { ppCurrent = wrap "^fg(white)" "^fg()"
   , ppHidden = wrap "^fg(#659fdb)" "^fg()" . noScratchPad
   , ppHiddenNoWindows = wrap "^fg(grey30)" "^fg()" . namedOnly
   , ppSep = " "
   , ppUrgent = wrap "^fg(red)" "^fg()" . dzenStrip
   , ppWsSep = " "
-  , ppLayout = dzenColor "grey40" "" .
+  , ppLayout = dzenColor "khaki" "" .
       (\x -> case x of
-        "Tall"        -> wrapBitmap "tall.xbm"
-        "Mirror Tall" -> wrapBitmap "mtall.xbm"
-        "Full"        -> wrapBitmap "full.xbm"
-        "Simple Float"->            "<>"
+        "Tall"          -> "t"
+        "Mirror Tall"   -> "m"
+        "Full"          -> "f"
+        "Simple Float"  -> "<>"
       )
-  , ppTitle  = wrap "^fg(#fea63c)" "^fg()" . shorten 75
+  , ppTitle  = wrap "^fg(#fea63c)" "^fg()" . shorten 70
   , ppOutput = hPutStrLn h . pad
   }
 
@@ -118,7 +118,7 @@ myPP h = defaultPP
     -- filter out NSP
     noScratchPad ws = if ws == "NSP" then "" else ws
     namedOnly ws = if any (`elem` ws) ['a'..'z'] then ws else ""
-    wrapBitmap bitmap = "^i(" ++ myBitmapsPath ++ bitmap ++ ")"
+    -- wrapBitmap bitmap = "^i(" ++ myBitmapsPath ++ bitmap ++ ")"
 
 -- layout list
 myLayout = avoidStruts
@@ -142,34 +142,32 @@ myLayout = avoidStruts
 -- custom keys
 keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
-       [((modMask,                  xK_Return),             spawn myTerminal)
-      , ((0,                       0x1008ff2f),             spawn "alock -auth md5:file=/home/vikki/docs/passphrase")
+       [((modMask,                  xK_Escape),             spawn myTerminal)
       , ((modMask,                  xK_Home  ),             spawn "sudo shutdown -r now")
       , ((modMask,                  xK_End   ),             spawn "sudo shutdown -h now")
-      , ((modMask,                  xK_a     ),             spawn "evince")
+      , ((modMask,                  xK_a     ),             spawn "zathura")
+      , ((modMask,                  xK_d     ),             spawn "blank-toggle")
       , ((modMask,                  xK_g     ),             goToSelected defaultGSConfig)
+      , ((modMask,                  xK_i     ),             spawn "alock -auth md5:file=/home/vikki/docs/passphrase")
       , ((modMask,                  xK_o     ),             spawn "libreoffice")
-      , ((modMask,                  xK_r     ),             spawn "ranwall")
+      , ((modMask,                  xK_w     ),             spawn "ranwall")
       , ((0,                        xK_Print ),             spawn "scrot screenie-%H-%M-%S-%d-%b.png -q 100")
-      , ((modMask,                  xK_Left  ),             spawn "mpc -q prev")
-      , ((0,                       0x1008ff19),             spawn "mpc -q toggle")
-      , ((modMask,                 0x1008ff19),             spawn "echo pause > ~/.mplayer/mplayer_fifo")
-      , ((modMask,                  xK_Down  ),             spawn "mpc -q stop")
-      , ((modMask,                  xK_Right ),             spawn "mpc -q next")
-      , ((0,                       0x1008ff11),             spawn "amixer -q set 'Master Front' 2-")
-      , ((0,                       0x1008ff13),             spawn "amixer -q set 'Master Front' 2+")
-      , ((0,                       0x1008ff12),             spawn "amixer -q set 'Master Front' toggle")
-      , ((0,                       0x1008ff1b),             spawn "firefox")
+      , ((modMask,                  xK_Left  ),             spawn "mocp -r")
+      , ((modMask,                  xK_Right ),             spawn "mocp -f")
+      , ((modMask,                  xK_Down  ),             spawn "mocp -G")
+      , ((0,                       0x1008ff11),             spawn "amixer -q set 'Master' 2-; volstatus.sh")
+      , ((0,                       0x1008ff13),             spawn "amixer -q set 'Master' 2+; volstatus.sh")
+      , ((0,                       0x1008ff12),             spawn "amixer -q set 'Master' toggle; volstatus.sh")
+      , ((modMask,                  xK_v     ),             spawn "volstatus.sh")
       , ((modMask,                  xK_c     ),             spawn "chromium")
-      , ((modMask .|. controlMask,  xK_b     ),             spawn "favsong -b")
-      , ((modMask,                  xK_f     ),             spawn "favsong")
-      , ((modMask,                  xK_e     ),             spawn "eject -T")
-      , ((modMask,                  xK_u     ),             spawn "devmon -c; notify DEVICE SAFE TO REMOVE")
+      , ((modMask,                  xK_f     ),             spawn "firefox")
+      , ((modMask,                  xK_e     ),             spawn "eject /dev/sr0")
+      , ((modMask,                  xK_u     ),             spawn "devmon -c")
       , ((modMask,                  xK_x     ),             spawn "xterm")
       , ((modMask .|. shiftMask,    xK_c     ),             kill)
 
       , ((modMask,                  xK_z     ),             viewEmptyWorkspace)
-      , ((modMask,                  xK_Escape),             toggleWS)
+--      , ((modMask,                  xK_Escape),             toggleWS)
       , ((modMask,                  xK_p     ),             shellPrompt myXPConfig)
 
 -- layouts
@@ -215,18 +213,18 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       myRestart  = spawn "kill `pgrep devmon`" >> broadcastMessage ReleaseResources >> restart "xmonad" True
 
 
-statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 650 -h 20 -e '' -fn " ++ myFont ++ " -ta l"
+statusBarCmd = "dzen2 -bg '#1a1a1a' -fg '#f1f1f1' -w 700 -h 14 -e '' -fn " ++ myFont ++ " -ta l"
 
 startup :: X ()
 startup = do
-          spawn "devmon -g --exec-on-drive \"notify %f mounted on %d\" --exec-on-disc \"notify DISC mounted on %d\""
+          spawn "devmon -g -s"
 
 main = do
 	bar <- spawnPipe statusBarCmd
         xmonad $ withUrgencyHook NoUrgencyHook
                $ defaultConfig
                    { manageHook         = myManageHook
-          	   , workspaces         = ["main","web","term","media","else"]
+          	   , workspaces         = ["main","web","term","media"]
           	   , layoutHook         = myLayout
           	   , logHook            = dynamicLogWithPP $ myPP bar
                    , startupHook        = startup

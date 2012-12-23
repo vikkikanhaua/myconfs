@@ -61,8 +61,9 @@ hdr_order from: to: cc: subject:                  # and in this order
 # Mailboxes & lists {{{
 #####
 
-subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel
-mailboxes =inbox =sent_mail =facebook =aur-general =arch-general =arch-dev-pub =arch-announce =mc =drafts =awesome =awesome-devel =xmonad
+# subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel xda
+mailboxes =inbox =sent_mail =unix_tips
+# =facebook =aur-general =arch-general =arch-dev-pub =arch-announce =mc =drafts =awesome =awesome-devel =xmonad =instructables =xda
 # }}}
 
 ##
@@ -77,11 +78,11 @@ alternative_order text/plain text/enriched text/html              # save html fo
 # Pager options {{{
 #####
 
-set pager_stop                                                  # don't go to next message automatically
-set menu_scroll                                                 # scroll in menus
-set smart_wrap                                                  # don't split words
-set pager_index_lines   = 10                                    # number of index lines to show
-set pager_context       = 5                                     # number of context lines to show
+set pager_stop                                                     # don't go to next message automatically
+set menu_scroll                                                    # scroll in menus
+set smart_wrap                                                     # don't split words
+set pager_index_lines   = 10                                       # number of index lines to show
+set pager_context       = 5                                        # number of context lines to show
 set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot quote blocks
 # }}}
 
@@ -89,8 +90,8 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 # Different Formats {{{
 #####
 
-set date_format         = "%H:%M (%d/%m/%y)"
-set index_format        = "%4C [%Z]  %D | %-25.25L | %-70.70s %> %c"
+set date_format         = "%H:%M (%m/%d/%y)"
+set index_format        = "%4C [%Z]  %D | %-25.25L | %-65.65s %> %c"
 set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusbar
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"
@@ -139,7 +140,7 @@ macro index h   "c?" "view folders"
 macro index B   "<limit>" "search message bodies"
 macro index I   "<change-folder>!<enter>" "go to Inbox"
 macro index P   "<pipe-message>cat > ~/" "save message as"
-macro index Z   "<shell-escape>/usr/bin/offlineimap -q<enter>" "sync IMAP"
+macro index Z   "<shell-escape>offlineimap -q -u TTYUI<enter>" "sync IMAP"
 macro index b   "<enter-command>toggle sidebar_visible<enter>"
 macro index \Cr "<tag-pattern>all<enter><tag-prefix><clear-flag>N<untag-pattern>all<enter>" "mark all as read"
 # }}}
