@@ -32,4 +32,4 @@ ${goto 135}Arch  : ${machine}                       ${goto 360}FAN : ${hwmon fan
 
 ${image ~/.conky/icons/Background.png -p 0,75}
 
-${font JackInput:size=16}${goto 135}${cpugraph cpu1 22,250 00ff00 ff0000 -t} ${color 1994d1}${goto 420}${time %H:%M, %A %d %b}${color fea63c}  ${goto 830}Uptime: ${uptime_short} ${color cd5c5c} ${goto 1115}Vol: ${mixer}% ${color 86c113} ${goto 1370}Mail: ${new_mails /home/vikki/mail/inbox} ${color}                         ${goto 1520}${cpugraph cpu2 22,250 00ff00 ff0000 -t}${font}
+${font JackInput:size=16}${goto 135}${cpugraph cpu1 22,250 00ff00 ff0000 -t} ${color 1994d1}${goto 420}${time %H:%M, %A %d %b}${color fea63c}  ${goto 830}Uptime: ${uptime_short} ${color cd5c5c} ${goto 1115}Vol: ${mixer}% ${color 86c113} ${goto 1370}Mail: ${new_mails /home/v/mail/inbox} ${color}                         ${goto 1520}${cpugraph cpu2 22,250 00ff00 ff0000 -t}${font}

@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-cd() {
-  builtin cd "$@"; l; builtin echo;
-}
-
 # make a thumb %20 the size of a pic
 thumbit() {
   for pic in "$@"; do
@@ -18,15 +14,6 @@ thumbit() {
   done
 }
 
-# grep by paragraph
-grepp() {
-  if [ $# -ne 2 ]; then
-    echo "usage: grepp [term] [file]"
-  else
-    perl -00ne "print if /$1/i" < $2
-  fi
-}
-
 # recursively fix dir/file permissions on a given directory
 fix() {
   if [ -d "$1" ]; then
@@ -34,15 +21,6 @@ fix() {
     find "$1" -type f -exec chmod 644 {} \;
   else
     echo "usage: fix [directory]"
-  fi
-}
-
-# manage services
-service() {
-  if [ $# -lt 2 ]; then
-    echo "usage: service [service] [stop|start|restart]"
-  else
-    sudo /etc/rc.d/$1 $2
   fi
 }
 
@@ -94,31 +72,6 @@ seek()  {
   fi
 }
 
-# daemon statuses
-daemon_status() {
-  C_STOPPED="\033[0;31m" # red
-  C_RUNNING="\033[0;32m" # green
-  C_RESET="\033[m"
-
-  daemons=( /etc/rc.d/* )
-  if [ -z "$1" ]; then
-    for d in ${daemons[@]##*/}; do
-      if [ -f "/var/run/daemons/$d" ]; then
-        printf "%-30b%-10b\n" $d ${C_RUNNING}RUNNING${C_RESET}
-      else
-        printf "%-30b%-10b\n" $d ${C_STOPPED}STOPPED${C_RESET}
-      fi
-    done
-  else
-    [ ! -f /etc/rc.d/$1 ] && echo "err! ${C_STOPPED}$1${C_RESET} is no daemon" && return 1
-    if [ -f "/var/run/daemons/$1" ]; then
-      printf "%-30b%-10b\n" $1 ${C_RUNNING}RUNNING${C_RESET}
-    else
-      printf "%-30b%-10b\n" $1 ${C_STOPPED}STOPPED${C_RESET}
-    fi
-  fi
-}
-
 # mail stats
 fmail() {
   local -A counts; local i
@@ -126,7 +79,7 @@ fmail() {
   for i in "${MAILDIR:-${HOME}/mail}"/**/new/*
     { (( counts[${i:h:h:t}]++ )) }
   for i in ${(k)counts}
-  { print -n ${i//\[Gmail\]./}: $counts[$i]' ' }
+    { print -n ${i//\[Gmail\]./}: $counts[$i]' ' }
 }
 
 # go to google for anything
@@ -158,15 +111,15 @@ pacexe() {
   done
 }
 
-zsh_stats() { history | awk '{print $2}' | sort | uniq -c | sort -rn | head }
-
-mk() { mkdir -p "$1"; cd "$1" }
-
-# get ip of an interface
-getip() { /sbin/ifconfig ${1:-ppp0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}' }
+# tmp connect to ssh host
+sshtmp() {
+    ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" "$@"
+}
 
 # get file & directory count
-files() { set "${1:-$PWD}"; echo "==> $(tree "$1" | tail -1) [$(du "$1" | cut -f1)]"; }
+files() {
+  set "${1:-$PWD}"; echo "==> Files: $(find "$1" -type f | wc -l), Dirs: $(find "$1" -type d | wc -l) [$(du "$1" | awk '{print $1}')]"
+}
 
 # fold functions in vim
 # vim:foldmarker={,}

@@ -47,6 +47,6 @@ lua_draw_hook_pre ring_stats
 
 TEXT
 ${font MonteCarlo}${tail /var/log/messages.log 7 60}${font}
-${uptime_short}                                                                                                              ${color3}${goto 870}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 970}cpu  ${color}${hwmon temp 1}C ${goto 1230}${color3}mpd ${color}${mpd_status} ${goto 1380}${color3}repeat ${color}${mpd_repeat} ${goto 1500}${color3}random ${color}${mpd_random} ${color3}${goto 1640}mail ${color}${new_mails /home/vikki/mail/inbox}
+${uptime_short}                                                                                                              ${color3}${goto 870}sda ${color}${hddtemp /dev/sda}C ${color3}${goto 970}cpu  ${color}${hwmon temp 1}C ${goto 1230}${color3}mpd ${color}${mpd_status} ${goto 1380}${color3}repeat ${color}${mpd_repeat} ${goto 1500}${color3}random ${color}${mpd_random} ${color3}${goto 1640}mail ${color}${new_mails /home/v/mail/inbox}
 ${time %A}    ${goto 275}${color3}${time %H}${color2}${time %M}                                                              ${color3}${goto 870}sdb ${color}${hddtemp /dev/sdb}C ${color3}${goto 970}mobo ${color}${hwmon temp 2}C
 ${time %d %B}                                                   ${goto 390}cpu ${goto 510}mem ${goto 630}disk ${goto 765}vol ${color3}${goto 870}sdc ${color}${hddtemp /dev/sdc}C ${color3}${goto 970}gpu  ${color}${nvidia temp}C  ${goto 1180}${color}${mpd_smart}
