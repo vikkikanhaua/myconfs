@@ -62,7 +62,7 @@ export PAGER="less -winm"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export VISUAL=$EDITOR
-export PATH=/home/vikki/.bin:$PATH
+export PATH=$HOME/.bin:$PATH
 export STARDICT_DATA_DIR=${HOME}/.stardict
 
 # for colored man pages
@@ -79,6 +79,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'
 source ~/.zsh/aliases
 source ~/.zsh/colors
 source ~/.zsh/functions
+eval $(dircolors -b $HOME/.dircolors)
 # }}}
 
 # ---[ keybindings ] {{{
@@ -105,9 +106,10 @@ bindkey '^[[6~'  .undefined-key
 
 #---[ PROMPT ] {{{
 precmd () {
-  [[ $? -eq 0 ]] && color="%{[1;32m%}" || color="%{[1;31m%}"
+  [[ $? -eq 0 ]] && color="`tput setaf 2`" || color="`tput setaf 1`"
 
-  export PROMPT=" %{[0;34m%}%~${color} $%{[0m%} "
+  export PROMPT="`tput bold`${color}-=-=-`tput sgr0` %l `tput bold``tput setaf 4`%/ ${color}-=-=-`tput sgr0`
+>> "
 
   [[ -n "$RANGER_LEVEL" ]] && export RPROMPT="(in ranger; level=$RANGER_LEVEL)"
 }
@@ -115,4 +117,8 @@ precmd () {
 
 # ---[ login manager ] {{{
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx -- vt1 &> /dev/null }
+# }}}
+
+# ---[ start tmux ] {{{
+if [[ $(tty) = /dev/pts/0 ]] && [[ -z "$TMUX" ]] { exec tmux }
 # }}}

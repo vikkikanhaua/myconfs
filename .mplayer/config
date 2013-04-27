@@ -5,7 +5,9 @@ really-quiet="0"
 msgcolor="1"
 msgmodule="1"
 lirc="0"
-input=file="/home/vikki/.mplayer/mplayer_fifo"
+input=file="/home/v/.mplayer/mplayer_fifo"
+font="PT Sans"
+fontconfig="1"
 #
 
 #======
@@ -13,7 +15,6 @@ input=file="/home/vikki/.mplayer/mplayer_fifo"
 #======
 
 # Set video driver.
-vo=vdpau
 vc=ffh264,ffmpeg12,ffwmv3,ffvc1,ffodivx,
 
 #======
@@ -74,7 +75,7 @@ subpos=100
 subalign=2
 
 # Set font size. (2: proportional to movie width)
-subfont-autoscale=1
+subfont-autoscale=0
 
 # Set font blur radius. (default: 2)
 subfont-blur=2.0
@@ -83,10 +84,9 @@ subfont-blur=2.0
 subfont-outline=2.0
 
 # Set autoscale coefficient. (default: 5)
-subfont-text-scale=3.0
+subfont-text-scale=18
 
 # OSD
 #====
-
 # Set autoscale coefficient. (default: 6)
-subfont-osd-scale=2.6
+subfont-osd-scale=18

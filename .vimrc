@@ -9,7 +9,7 @@ if $TERM =~ "256"
   colorscheme zencustom
 else
   set t_Co=16
-  colorscheme default
+  colorscheme delek
 endif
 
 set nocompatible

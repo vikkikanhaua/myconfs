@@ -3,14 +3,14 @@
 #####
 
 set mbox_type           = Maildir
-set mbox                = +mbox
+# set mbox                = +mbox
 set folder              = ~/mail
-set spoolfile           = +inbox
+set spoolfile           = +mail_gmail/inbox
+set record              = +mail_gmail/inbox
 set header_cache        = ~/.mutt/cache/headers
 set message_cachedir    = ~/.mutt/cache/bodies
-set record              = +inbox
-set postponed           = +drafts
-set maildir_trash       = yes
+# set postponed           = +drafts
+# set maildir_trash       = yes
 # }}}
 
 ##
@@ -18,7 +18,7 @@ set maildir_trash       = yes
 #####
 
 set realname            = 'Vikas Kanhaua'
-set from                = "vik_k@archlinux.us"
+set from                = "vikkikanhaua@gmail.com"
 set sendmail            = "/usr/bin/msmtp"
 # }}}
 
@@ -35,6 +35,7 @@ set askcc
 set delete
 set wrap_search
 set reverse_alias
+set sort_alias          = alias           # sort alias file by alias
 set sendmail_wait       = 0
 set confirmcreate       = yes
 set use_from            = yes
@@ -44,33 +45,40 @@ set copy                = yes
 set include             = yes
 set forward_quote       = yes
 set collapse_unread     = yes
+set abort_unmodified    = no
 set status_chars        = "-*%A"
 set editor              = "vim +:silent+?^$"
 set ispell              = "aspell -e -c"
 set sort                = threads
 set sort_aux            = reverse-last-date-received
+
+unset confirmappend
+unset move
 unset mark_old
 
 # headers to show
 ignore *                                          # ignore all headers
-unignore from: to: cc: subject:                   # show only these
-hdr_order from: to: cc: subject:                  # and in this order
+unignore from: to: cc: subject: date:                   # show only these
+unhdr_order *
+hdr_order from: to: cc: subject: date:                 # and in this order
 # }}}
 
 ##
 # Mailboxes & lists {{{
 #####
 
-# subscribe arch-announce arch-dev-pub arch-general aur-general xmonad mc awesome awesome-devel xda
-mailboxes =inbox =sent_mail =unix_tips
-# =facebook =aur-general =arch-general =arch-dev-pub =arch-announce =mc =drafts =awesome =awesome-devel =xmonad =instructables =xda
+folder-hook mail_gmail/* source ~/.mutt/accounts/gmail
+folder-hook mail_arch/* source ~/.mutt/accounts/arch
+
+mailboxes +mail_gmail/inbox +mail_gmail/sent +mail_gmail/arch_lin +mail_gmail/unix_tips +mail_gmail/unix_help +mail_gmail/credit_cards
+mailboxes +mail_arch/archive
 # }}}
 
 ##
 # Enriched messages {{{
 #####
 
-auto_view text/html                                               # view html automatically
+auto_view text/html
 alternative_order text/plain text/enriched text/html              # save html for last
 # }}}
 
@@ -91,7 +99,7 @@ set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+" # how to spot
 #####
 
 set date_format         = "%H:%M (%m/%d/%y)"
-set index_format        = "%4C [%Z]  %D | %-25.25L | %-65.65s %> %c"
+set index_format        = "%3C [%Z]  %D | %-25.25L | %-60.60s %> %c"
 set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusbar
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"
@@ -138,9 +146,9 @@ bind index,pager R      group-reply
 
 macro index h   "c?" "view folders"
 macro index B   "<limit>" "search message bodies"
-macro index I   "<change-folder>!<enter>" "go to Inbox"
+macro index I   "<change-folder>!<enter>" "go to archive"
 macro index P   "<pipe-message>cat > ~/" "save message as"
-macro index Z   "<shell-escape>offlineimap -q -u TTYUI<enter>" "sync IMAP"
+macro index Z   "<shell-escape>offlineimap -o<enter>" "sync IMAP"
 macro index b   "<enter-command>toggle sidebar_visible<enter>"
 macro index \Cr "<tag-pattern>all<enter><tag-prefix><clear-flag>N<untag-pattern>all<enter>" "mark all as read"
 # }}}

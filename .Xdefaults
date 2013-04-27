@@ -1,12 +1,5 @@
-!*font            : -*-profont-medium-*-*-*-11-*-*-*-*-*-*-*
-!*boldFont        : -*-profont-medium-*-*-*-11-*-*-*-*-*-*-*
-!*font            : -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
-!*boldFont        : -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*
-!*font            : -*-envypn-medium-r-*-*-13-*-*-*-*-*-*-*
-!*boldFont        : -*-envypn-medium-r-*-*-13-*-*-*-*-*-*-*
-
-*font            : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
-*boldFont        : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
+*font            : -*-tamsyn-medium-*-normal-*-15-*-*-*-*-*-*-*
+*boldFont        : -*-tamsyn-bold-*-normal-*-15-*-*-*-*-*-*-*
 
 *title           : terminal
 *buffered        : true
@@ -23,9 +16,9 @@
 *dynamicColors   : on
 *jumpScroll      : true
 
-*perl-ext-common : default,matcher
-*perl-lib        : /usr/lib/*perl/
-*urlLauncher     : firefox
+*perl-ext        : default,matcher
+*perl-lib        : /usr/lib/*perl5/
+*url-launcher    : firefox
 *matcher.button  : 1
 
 *cursorColor     : #80724e
@@ -35,7 +28,6 @@
 ! colorscheme
 *foreground      : #ddeedd
 *background      : #000000
-
 *color0          : #1c1c1c
 *color8          : #4D4D4D
 *color1          : #cd5c5c
@@ -52,50 +44,3 @@
 *color14         : #a3babf
 *color7          : #6c887a
 *color15         : #ddeedd
-
-!------------------------------------
-!! jellybeans colors
-! 8 8 8
-! *background: #080808
-! 128 128 128
-! *foreground: #808080
-! black
-! 26 26 26
-!*color0:  #1a1a1a
-! 64 64 64
-!*color8:  #404040
-! red
-! 215 95 95
-!*color1:  #d75f5f
-! 234 132 132
-!*color9:  #EA8484
-! green
-! 135 175 95
-!*color2:  #87af5f
-! 199 240 159
-!*color10: #C7F09F
-! yellow
-! 255 175 95
-!*color3:  #ffaf5f
-! 255 204 154
-!*color11: #FFCC9A
-! blue
-! 135 175 215
-!*color4:  #87afd7
-! 165 202 239
-!*color12: #a5caef
-! magenta
-! 135 135 175
-!*color5:  #8787af
-! 166 166 222
-!*color13: #A6A6DE
-! cyan
-! 95 135 135
-!*color6:  #5f8787
-! 105 178 178
-!*color14: #69b2b2
-! white
-! 128 128 128
-!*color7:  #808080
-! 215 215 215
-!*color15: #d7d7d7

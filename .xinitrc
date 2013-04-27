@@ -2,6 +2,8 @@
 
 FONT="-*-tamsyn-medium-*-normal-*-9-*-*-*-*-*-*-*"
 
+# FONT="Cantarell:pixelsize=9:style=Bold"
+
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"
 
@@ -14,17 +16,9 @@ fi
 
 urxvtd -q -f -o
 
-# tmux start-server
-
 sh ${HOME}/.fehbg
 
 xsetroot -cursor_name left_ptr # -mod 3 3 -bg "#1a1a1a"
-
-#set statusbar
-#while true; do
-#  xsetroot -name "$(statusbar.sh)"
-#  sleep 30s
-#done &
 
 setxkbmap -option terminate:ctrl_alt_bksp
 

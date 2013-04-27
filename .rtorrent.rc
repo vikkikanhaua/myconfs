@@ -14,7 +14,7 @@ max_peers_seed = 10
 max_uploads = 2
 
 # Global upload and download rate in KiB. "0" for unlimited.
-download_rate = 250
+download_rate = 100
 upload_rate = 50
 
 # Default directory to save the downloaded torrents.
@@ -28,14 +28,13 @@ session = ~/.session
 # Watch a directory for new torrents.
 schedule = watch_directory,10,10,"load=~/downloads/*.torrent,d.delete_tied="
 
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/downloads/;d.set_directory=~/downloads/"
-system.method.set_key = event.download.finished,notify_me,"execute=notify,$d.get_name=, [DONE]"
+system.method.set_key = event.download.finished,move_complete_notify,"execute=mv,-u,$d.get_base_path=,~/downloads/;d.set_directory=~/downloads/;execute=notify,$d.get_name=, [DONE]"
 
 # Preallocate files; reduces defragmentation on filesystems.
 system.file_allocate.set = yes
 
 # Set the IP filter file, requires full path.
-# ip_filter = /home/vikki/downloads/psplist.txt
+# ip_filter = /home/v/downloads/psplist.txt
 
 # Port range to use for listening.
 port_range = 55350-55360
