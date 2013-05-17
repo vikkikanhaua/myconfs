@@ -8,8 +8,6 @@ update_interval 1
 update_interval_on_battery 30
 
 TEXT
-^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/mem1.xbm)^fg() ${mem} \
-^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/temp1.xbm)^fg() ${hwmon temp 1}C \
 ^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/wifi_01.xbm)^fg() ${if_up wlan0}^fg(green)${wireless_essid wlan0}^fg()${else}^fg(red)wifi down^fg()${endif} \
 ${if_up tun0}^fg(khaki)\#vpn ^fg()${endif}\
 ${if_up eth0}^fg(khaki)\#eth ^fg()${endif}\

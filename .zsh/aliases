@@ -33,6 +33,7 @@ alias a='alsamixer'
 alias q='quickserve'
 alias v='vnstat'
 alias bm='find ~/mail/**/*.Trash -type f'
+alias m2t='aria2c --bt-metadata-only --bt-save-metadata'
 
 #android tools
 alias arr='sudo adb reboot recovery'

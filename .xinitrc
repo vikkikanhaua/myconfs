@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# FONT="-*-tamsyn-medium-*-normal-*-9-*-*-*-*-*-*-*"
-FONT="-*-ohsnap-medium-*-normal-*-11-*-*-*-*-*-*-*"
+FONT="-*-envypn-medium-*-normal-*-13-*-*-*-*-*-*-*"
 
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"
@@ -21,7 +20,7 @@ xsetroot -cursor_name left_ptr # -mod 3 3 -bg "#1a1a1a"
 
 setxkbmap -option terminate:ctrl_alt_bksp
 
-conky -c ~/.conky/conkyrc_dzen | dzen2 -e '' -x 600 -h 14 -fn "$FONT" -ta 'r' -bg '#1a1a1a' -fg 'white' &
+conky -c ~/.conky/conkyrc_dzen | dzen2 -e '' -x 600 -h 18 -fn "$FONT" -ta 'r' -bg '#1a1a1a' -fg 'white' &
 
 numlockx
 
