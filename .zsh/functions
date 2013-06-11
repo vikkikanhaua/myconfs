@@ -113,12 +113,13 @@ pacexe() {
 
 # tmp connect to ssh host
 sshtmp() {
-    ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" "$@"
+  ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" "$@"
 }
 
 # get file & directory count
 files() {
-  set "${1:-$PWD}"; echo "==> Files: $(find "$1" -type f | wc -l), Dirs: $(find "$1" -type d | wc -l) [$(du "$1" | awk '{print $1}')]"
+  set "${1:-$PWD}";
+  echo "==> Files: $(find "$1" -type f | wc -l), Dirs: $(find "$1" -type d | wc -l) [$(du "$1" | awk '{print $1}')]"
 }
 
 # fold functions in vim

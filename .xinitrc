@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FONT="-*-envypn-medium-*-normal-*-13-*-*-*-*-*-*-*"
+FONT="-*-tamsyn-medium-*-normal-*-12-*-*-*-*-*-*-*"
 
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"

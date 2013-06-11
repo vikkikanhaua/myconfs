@@ -13,6 +13,5 @@ ${if_up tun0}^fg(khaki)\#vpn ^fg()${endif}\
 ${if_up eth0}^fg(khaki)\#eth ^fg()${endif}\
 ${if_up ppp0}^fg(khaki)\#ppp ^fg()${endif}\
 ^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/ac_01.xbm)^fg() ${battery_short} \
-^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/mail.xbm)^fg() ${execi 60 /home/v/.bin/mailnew}\
 ^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/diskette.xbm)^fg() ${fs_free /home} ^fg(khaki)%^fg() ${hddtemp /dev/sda}C \
 ^fg(\#fea63c)|^fg(\#659fdb) ^i(/home/v/.xmonad/dzen/clock.xbm)^fg() ${time %a %d %b, %H:%M} ^fg(\#fea63c)|^fg()

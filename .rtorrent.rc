@@ -28,10 +28,14 @@ session = ~/.session
 # Watch a directory for new torrents.
 schedule = watch_directory,10,10,"load=~/downloads/*.torrent,d.delete_tied="
 
-system.method.set_key = event.download.finished,move_complete_notify,"execute=mv,-u,$d.get_base_path=,~/downloads/;d.set_directory=~/downloads/;execute=notify,$d.get_name=, [DONE]"
+# Notify that download is done and set the directory.
+method.set_key = event.download.finished,notify,"execute=notify,$d.name=, [DONE];d.directory.set=~/downloads/;execute=mv,-u,$d.base_path=,~/downloads/;"
 
 # Preallocate files; reduces defragmentation on filesystems.
 system.file_allocate.set = yes
+
+# The ip address reported to the tracker.
+ip = 192.168.1.1
 
 # Set the IP filter file, requires full path.
 # ip_filter = /home/v/downloads/psplist.txt

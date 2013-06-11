@@ -102,7 +102,8 @@ if has('autocmd')
   au Filetype html,xml,xsl set spell
 
   " Remove trailing whitespace
-  " au BufWritePre * :call setline(1, map(getline(1, "$"), 'substitute(v:val, "\\s\\+$", "","")'))
+  let blacklist = [ 'mail' ]
+  au BufWritePre * if index(blacklist, &ft) < 0 | :call setline(1, map(getline(1, "$"), 'substitute(v:val, "\\s\\+$", "","")'))
 
   " set the title string
   au BufEnter * let &titlestring = "vim: " . substitute(expand("%:p"), $HOME, "~", '')
@@ -134,8 +135,9 @@ if has('autocmd')
   au BufNewFile,BufRead ~/.mutt/temp/mutt* map!  <F3>  <ESC>kgqji
 
   " set comment characters for common languages
-  au FileType python,sh,bash,zsh,ruby,perl     let StartComment="#"  | let EndComment=""
-  au FileType cpp,php,c,javascript             let StartComment="//" | let EndComment=""
+  au FileType *                                 let StartComment="#"  | let EndComment=""
+  au FileType python,sh,bash,zsh,ruby,perl,unix	let StartComment="#"  | let EndComment=""
+  au FileType cpp,php,c,javascript             	let StartComment="//" | let EndComment=""
 
   au FileType html    let StartComment="<!--" | let EndComment="-->"
   au FileType haskell let StartComment="--"   | let EndComment=""
