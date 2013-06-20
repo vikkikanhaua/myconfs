@@ -1,5 +1,5 @@
-*font            : -*-envypn-medium-*-normal-*-13-*-*-*-*-*-*-*
-*boldFont        : -*-envypn-medium-*-normal-*-13-*-*-*-*-*-*-*
+*font            : -*-tamsyn-medium-*-normal-*-15-*-*-*-*-*-*-*
+*boldFont        : -*-tamsyn-medium-*-normal-*-15-*-*-*-*-*-*-*
 
 *title           : terminal
 *buffered        : true
