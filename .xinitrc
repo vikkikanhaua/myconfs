@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FONT="-*-tamsyn-medium-*-normal-*-12-*-*-*-*-*-*-*"
+FONT="-artwiz-nu-medium-*-normal-*-11-*-*-*-*-*-iso8859-*"
 
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"

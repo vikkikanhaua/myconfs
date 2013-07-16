@@ -79,7 +79,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'
 source ~/.zsh/aliases
 source ~/.zsh/colors
 source ~/.zsh/functions
-eval $(dircolors -b $HOME/.dircolors)
+# eval $(dircolors -b $HOME/.dircolors)
 # }}}
 
 # ---[ keybindings ] {{{

@@ -1,5 +1,5 @@
-*font            : -*-tamsyn-medium-*-normal-*-15-*-*-*-*-*-*-*
-*boldFont        : -*-tamsyn-medium-*-normal-*-15-*-*-*-*-*-*-*
+*font            : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
+*boldFont        : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
 
 *title           : terminal
 *buffered        : true
@@ -21,36 +21,27 @@
 *url-launcher    : firefox
 *matcher.button  : 1
 
-*cursorColor     : #80724e
 *cursorColor2    : #fff
 *colorUL         : #fea63c
 *cursorUnderline : true
 
-! colorscheme
-*foreground      : #ddeedd
-*background      : #000000
-
-!black
-*color0:         rgb:19/19/19
-*color8:         rgb:25/25/25
-!red
-*color1:         rgb:80/32/32
-*color9:         rgb:98/2b/2b
-!green
-*color2:         rgb:5b/76/2f
-*color10:        rgb:89/b8/3f
-!brown/yellow
-*color3:         rgb:aa/99/43
-*color11:        rgb:ef/ef/60
-!blue
-*color4:         rgb:32/4c/80
-*color12:        rgb:2b/4f/98
-!magenta
-*color5:         rgb:70/6c/9a
-*color13:        rgb:82/6a/b1
-!cyan
-*color6:         rgb:92/b1/9e
-*color14:        rgb:a1/cd/cd
-!white
-*color7:         rgb:ff/ff/ff
-*color15:        rgb:dd/dd/dd
+! grassland by bohoomil
+*background:  #000000
+*foreground:  #d9e6f2
+*cursorColor: #238c0e
+*color0:  #00070d
+*color8:  #666666
+*color1:  #a83a71
+*color9:  #d78bb1
+*color2:  #71a83a
+*color10: #b1d78b
+*color3:  #a8713a
+*color11: #d7b18b
+*color4:  #3a71a8
+*color12: #8bb1d7
+*color5:  #713aa8
+*color13: #b18bd7
+*color6:  #3aa871
+*color14: #8bd7b1
+*color7:  #a6a6a6
+*color15: #e6e6e6

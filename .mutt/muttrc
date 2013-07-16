@@ -70,7 +70,7 @@ hdr_order from: to: cc: subject: date:                 # and in this order
 folder-hook mail_gmail/* source ~/.mutt/accounts/gmail
 folder-hook mail_arch/* source ~/.mutt/accounts/arch
 
-mailboxes +mail_gmail/inbox +mail_gmail/sent +mail_gmail/arch_lin +mail_gmail/unix_tips +mail_gmail/unix_help +mail_gmail/credit_cards
+mailboxes +mail_gmail/inbox +mail_gmail/sent +mail_gmail/arch_lin +mail_gmail/arch_dev +mail_gmail/arch_general +mail_gmail/unix_tips +mail_gmail/unix_help +mail_gmail/credit_cards +mail_gmail/alerts
 mailboxes +mail_arch/archive
 # }}}
 
