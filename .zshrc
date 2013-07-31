@@ -120,5 +120,5 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] { exec startx -- vt1 &> /dev/
 # }}}
 
 # ---[ start tmux ] {{{
-if [[ $(tty) = /dev/pts/0 ]] && [[ -z "$TMUX" ]] { exec tmux }
+# if [[ $(tty) = /dev/pts/0 ]] && [[ -z "$TMUX" ]] { exec tmux }
 # }}}

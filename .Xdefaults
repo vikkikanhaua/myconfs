@@ -1,5 +1,8 @@
-*font            : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
-*boldFont        : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
+! *font            : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
+! *boldFont        : -*-tamsyn-medium-*-normal-*-14-*-*-*-*-*-*-*
+
+*font            : -*-envypn-*-*-*-*-13-*-*-*-*-*-*-*
+*boldFont        : -*-envypn-*-*-*-*-13-*-*-*-*-*-*-*
 
 *title           : terminal
 *buffered        : true
@@ -26,7 +29,7 @@
 *cursorUnderline : true
 
 ! grassland by bohoomil
-*background:  #000000
+*background:  #0d1926
 *foreground:  #d9e6f2
 *cursorColor: #238c0e
 *color0:  #00070d

@@ -104,6 +104,7 @@ set pager_format        = "[%C/%m] %b  %> %lL (%P)"             # pager statusba
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = "%r %?M?%M/?%m total, %?n?%n new, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread folders ?%>  %V   sort by: %s/%S  (%P) %r"
 set alias_format        = "%4n %t %-20a %r"
+set attribution         = "%n wrote:"
 # }}}
 
 ##
